@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Тренажёр слов</title>
+<style>
+:root{
+  /* ---- Светло-кофейная палитра ---- */
+  --bg-1:#faf3e8;
+  --bg-2:#ecdfc7;
+  --panel:#fffdf7;
+  --panel-2:#f8efdd;
+  --panel-3:#f2e5cd;
+  --border:#e2d2b4;
+  --border-2:#d3bf9a;
+  --text:#3d2e1e;
+  --muted:#8c7458;
+  --accent:#a2653a;
+  --accent-2:#bd8a5e;
+  --accent-soft:rgba(162,101,58,.12);
+  --accent-ring:rgba(162,101,58,.22);
+  --ok:#5e8043;
+  --ok-soft:#ecf1d9;
+  --ok-border:#8fae6a;
+  --err:#b3553f;
+  --err-soft:#f7e2dc;
+  --err-border:#d38a76;
+  --radius:16px;
+  --shadow:0 8px 24px rgba(120,90,50,.10);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  background:
+    radial-gradient(900px 500px at 50% -15%, #fffbf2 0%, transparent 60%),
+    linear-gradient(180deg, var(--bg-1), var(--bg-2));
+  background-attachment:fixed;
+  color:var(--text);
+  display:flex;justify-content:center;
+  padding:24px 16px 60px;
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+.app{width:100%;max-width:780px}
+.hidden{display:none !important}
+
+.head{text-align:center;margin-bottom:22px}
+.head h1{margin:0 0 6px;font-size:1.75rem;letter-spacing:-.02em;color:#4a3520}
+.head p{margin:0;color:var(--muted);font-size:.95rem}
+
+.card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:22px;
+  margin-bottom:16px;
+  box-shadow:var(--shadow);
+}
+.lbl{display:block;font-size:.8rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:8px;font-weight:700}
+.hint{margin:0 0 12px;color:var(--muted);font-size:.86rem;line-height:1.55}
+.hint code{background:var(--panel-3);padding:2px 7px;border-radius:6px;color:var(--accent);font-size:.85em;font-weight:600;border:1px solid var(--border)}
+
+textarea{
+  width:100%;min-height:170px;resize:vertical;
+  background:#fffefb;border:1px solid var(--border);border-radius:12px;
+  color:var(--text);padding:14px;font-size:.95rem;line-height:1.65;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  outline:none;transition:border-color .15s, box-shadow .15s;
+}
+textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-ring)}
+textarea::placeholder{color:#b9a688}
+
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.row.center{justify-content:center}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:640px){.grid{grid-template-columns:1fr}}
+
+select{
+  width:100%;background:#fffefb;border:1px solid var(--border);border-radius:12px;
+  color:var(--text);padding:11px 12px;font-size:.95rem;outline:none;cursor:pointer;
+  font-family:inherit;transition:border-color .15s, box-shadow .15s;
+}
+select:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-ring)}
+
+.btn{
+  border:1px solid var(--border);border-radius:12px;padding:11px 18px;
+  background:var(--panel-2);color:var(--text);font-size:.95rem;font-weight:600;
+  cursor:pointer;transition:.15s;font-family:inherit;
+}
+.btn:hover{background:var(--panel-3);border-color:var(--border-2)}
+.btn:active{transform:translateY(1px)}
+.btn:disabled{opacity:.55;cursor:default;transform:none}
+.btn.primary{
+  background:linear-gradient(135deg,var(--accent),#8a4f2a);
+  border-color:transparent;color:#fff;
+  box-shadow:0 6px 16px rgba(162,101,58,.30);
+}
+.btn.primary:hover{background:linear-gradient(135deg,var(--accent-2),var(--accent));color:#fff}
+.btn.ghost{background:transparent}
+.btn.ghost:hover{background:var(--panel-2)}
+.btn.big{width:100%;padding:15px;font-size:1.05rem;margin-top:18px}
+.btn.wide{width:100%;margin-top:16px;padding:14px}
+.btn.tiny{padding:5px 12px;font-size:.8rem;border-radius:9px}
+
+.file-btn{
+  display:inline-block;border:1px solid var(--border);border-radius:12px;padding:11px 18px;
+  background:var(--panel-2);cursor:pointer;font-weight:600;font-size:.95rem;transition:.15s;
+  color:var(--text);
+}
+.file-btn:hover{background:var(--panel-3);border-color:var(--border-2)}
+
+.parse-info{margin-top:12px;font-size:.88rem;color:var(--muted);min-height:20px}
+.parse-info b{color:var(--accent);font-weight:700}
+
+/* ---- прогресс ---- */
+.progress-wrap{margin-bottom:16px}
+.progress-top{display:flex;align-items:center;gap:14px;margin-bottom:9px;font-size:.88rem;color:var(--muted);font-weight:600}
+.progress-top #scoreText{color:var(--ok)}
+.progress-top .btn{margin-left:auto}
+.progress{height:9px;background:var(--panel-2);border-radius:99px;overflow:hidden;border:1px solid var(--border)}
+#progressFill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:99px;transition:width .35s ease}
+
+/* ---- вопрос ---- */
+.q-hint{font-size:.8rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:14px;font-weight:700}
+.prompt{
+  font-size:clamp(1.5rem,5.8vw,2.1rem);font-weight:700;text-align:center;
+  padding:24px 10px;line-height:1.3;word-break:break-word;color:#4a3520;
+}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:560px){.options{grid-template-columns:1fr}}
+.option{
+  padding:15px 16px;border-radius:12px;border:1.5px solid var(--border);
+  background:var(--panel);color:var(--text);font-size:1rem;cursor:pointer;
+  transition:.15s;text-align:left;font-family:inherit;font-weight:500;
+}
+.option:hover:not(:disabled){border-color:var(--accent);background:var(--accent-soft)}
+.option:disabled{cursor:default}
+.option.correct{background:var(--ok-soft);border-color:var(--ok-border);color:var(--ok);font-weight:700}
+.option.wrong{background:var(--err-soft);border-color:var(--err-border);color:var(--err);font-weight:700}
+
+.feedback{margin-top:16px;font-size:1rem;text-align:center;min-height:24px;font-weight:600}
+.feedback.ok{color:var(--ok)}
+.feedback.err{color:var(--err)}
+.feedback b{color:#4a3520}
+
+/* ---- matching ---- */
+.match-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:8px;
+}
+@media(max-width:520px){.match-grid{gap:8px}}
+.match-col{display:flex;flex-direction:column;gap:10px}
+.match-tile{
+  padding:14px 10px;
+  border-radius:12px;
+  border:1.5px solid var(--border);
+  background:var(--panel);
+  color:var(--text);
+  cursor:pointer;
+  font-size:.95rem;
+  font-weight:600;
+  text-align:center;
+  transition:.15s;
+  font-family:inherit;
+  min-height:56px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  word-break:break-word;
+  line-height:1.3;
+}
+.match-tile:hover:not(.matched):not(.wrong){
+  border-color:var(--accent);
+  background:var(--accent-soft);
+}
+.match-tile.selected{
+  border-color:var(--accent);
+  background:var(--accent-soft);
+  box-shadow:0 0 0 3px var(--accent-ring);
+}
+.match-tile.matched{
+  background:var(--ok-soft);
+  border-color:var(--ok-border);
+  color:var(--ok);
+  cursor:default;
+}
+.match-tile.wrong{
+  background:var(--err-soft);
+  border-color:var(--err-border);
+  color:var(--err);
+  animation:shake .35s;
+}
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  25%{transform:translateX(-5px)}
+  75%{transform:translateX(5px)}
+}
+
+/* ---- флеш-карточки ---- */
+.flashcard{perspective:1200px;height:200px;cursor:pointer;margin-bottom:6px}
+.flashcard-inner{position:relative;width:100%;height:100%;transition:transform .55s cubic-bezier(.4,.2,.2,1);transform-style:preserve-3d}
+.flashcard.flipped .flashcard-inner{transform:rotateY(180deg)}
+.flashcard-face{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  padding:20px;border-radius:var(--radius);
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  font-size:clamp(1.3rem,5.2vw,1.8rem);font-weight:700;text-align:center;
+  border:1.5px solid var(--border);background:var(--panel-2);color:#4a3520;
+  word-break:break-word;box-shadow:var(--shadow);
+}
+.flashcard-face.back{
+  transform:rotateY(180deg);
+  color:var(--ok);background:var(--ok-soft);border-color:var(--ok-border);
+}
+
+/* ---- результаты ---- */
+.center{text-align:center}
+.big-score{
+  font-size:3.4rem;font-weight:800;letter-spacing:-.03em;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+#resText{color:var(--muted);margin:8px 0 22px;font-size:1.05rem}
+.wrong-list{list-style:none;padding:0;margin:0 0 8px;text-align:left}
+.wrong-list li{
+  display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+  padding:11px 14px;border-radius:10px;background:var(--panel-2);margin-bottom:8px;font-size:.92rem;
+  border:1px solid var(--border);
+}
+.w-prompt{color:var(--err);font-weight:700}
+.w-arrow{color:var(--muted)}
+.w-answer{color:var(--ok);font-weight:700}
+.res-sub{font-size:.8rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin:18px 0 10px;font-weight:700}
+
+/* ===== чуть темнее: кофейно-шоколадная палитра ===== */
+:root{
+  --bg-1:#e6d4bc;
+  --bg-2:#cdb393;
+  --panel:#f7eee1;
+  --panel-2:#eee0ca;
+  --panel-3:#e4d1b4;
+  --border:#d3ba96;
+  --border-2:#bf9f74;
+  --text:#2f2116;
+  --muted:#76593f;
+  --accent:#86492a;
+  --accent-2:#a2653a;
+  --accent-soft:rgba(134,73,42,.14);
+  --accent-ring:rgba(134,73,42,.26);
+  --ok:#4e7038;
+  --ok-soft:#e1ebcc;
+  --ok-border:#86a861;
+  --err:#a2452f;
+  --err-soft:#f3d9d0;
+  --err-border:#c97b66;
+  --shadow:0 10px 26px rgba(70,45,25,.16);
+}
+body{
+  background:
+    radial-gradient(900px 500px at 50% -15%, #efe2cf 0%, transparent 60%),
+    linear-gradient(180deg, var(--bg-1), var(--bg-2));
+  background-attachment:fixed;
+}
+.head{
+  background:linear-gradient(135deg,#45301f,#45301f);
+  color:#f1e7de;border-radius:var(--radius);padding:20px 18px 18px;
+  box-shadow:var(--shadow);
+}
+.head h1{color:#f1e7de}
+.head p{color:#d9bfa3}
+textarea,select{background:#fbf5ec !important}
+textarea::placeholder{color:#a88f70}
+.btn.primary{
+  background:linear-gradient(135deg,var(--accent),#5e3220);
+  box-shadow:0 6px 16px rgba(94,50,32,.32);
+}
+.btn.primary:hover{background:linear-gradient(135deg,var(--accent-2),var(--accent))}
+.prompt,.feedback b{color:#2f2116}
+.flashcard-face{color:#2f2116}
+.flashcard-face.back{background:#45301f;border-color:#45301f;color:#f1e7de}
+.match-tile{color:#2f2116}
+button,.option,.match-tile{-webkit-tap-highlight-color:transparent}
+
+/* ===== тёмно-коричневые кнопки ===== */
+.btn,.btn.ghost,.file-btn{
+  background:#45301f;border-color:#45301f;color:#f1e7de;
+  box-shadow:0 3px 0 #45301f;
+}
+.btn:hover,.btn.ghost:hover,.file-btn:hover{background:#5a3f2a;border-color:#45301f;color:#fff}
+.btn:active,.file-btn:active{transform:translateY(2px);box-shadow:0 1px 0 #45301f}
+.btn.primary{
+  background:linear-gradient(135deg,#45301f,#45301f);border-color:#45301f;color:#f1e7de;
+  box-shadow:0 4px 0 #45301f,0 8px 18px rgba(42,22,13,.35);
+}
+.btn.primary:hover{background:linear-gradient(135deg,#55301e,#45301f);color:#fff}
+.btn.primary:active{box-shadow:0 1px 0 #45301f}
+.btn.tiny{box-shadow:0 2px 0 #45301f}
+.btn:disabled{opacity:.5}
+
+/* ===== Тетрадь (общий слой) ===== */
+html{background:#f5efe8}
+body{font-family:'Inter','Segoe UI',system-ui,sans-serif!important;background-color:#f5efe8!important;
+  background-image:repeating-linear-gradient(to bottom,transparent 0 38px,#dccfc2 38px 39px)!important;background-attachment:local!important}
+h1,h2,h3{font-family:'Space Mono','Courier New',monospace!important;letter-spacing:.2px}
+button,input,select,textarea{font-family:inherit}
+
+/* Весь шрифт — Times New Roman */
+html body,html body *:not(.emoji){font-family:"Times New Roman",Times,serif!important}
+
+.wt-pic{display:block;font-size:2.6rem;line-height:1.1;margin-bottom:6px}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style id="fs-scaled-132">html{font-size:132%}</style><style id="white-sheet">:root:not([data-theme="dark"]) body:not([data-theme="dark"]) .card{background:#fff!important;background-image:none!important}</style><style id="stripes-strong">:root:not([data-theme="dark"]) body:not([data-theme="dark"]){background-image:repeating-linear-gradient(to bottom,transparent 0 38px,#cdb7a3 38px 40px)!important}</style></head>
+<body>
+<div class="app">
+  <div class="head">
+    <h1>📚 Тренажёр слов</h1>
+    <p>Загрузите словарь и тренируйте перевод</p>
+  </div>
+
+  <!-- ================= НАСТРОЙКИ ================= -->
+  <section id="setup">
+    <div class="card">
+      <label class="lbl" for="dict">Словарь</label>
+      <p class="hint">Одна пара на строку: <code>слово - перевод</code>. Разделители: <code>-</code>, <code>:</code>, <code>=</code>, <code>;</code>, табуляция. Несколько переводов — через запятую.</p>
+      <textarea id="dict" spellcheck="false" placeholder="apple - яблоко&#10;house - дом&#10;run - бежать, бег&#10;beautiful : красивый"></textarea>
+      <div class="row">
+        <label class="file-btn">📁 Загрузить файл<input type="file" id="fileInput" accept=".txt,.csv,text/plain" hidden></label>
+        <button class="btn ghost" id="sampleBtn">Пример</button>
+        <button class="btn ghost" id="clearBtn">Очистить</button>
+      </div>
+      <div class="parse-info" id="parseInfo"></div>
+    </div>
+
+    <div class="card">
+      <div class="grid">
+        <div>
+          <label class="lbl" for="direction">Направление</label>
+          <select id="direction">
+            <option value="ab">Слово → Перевод</option>
+            <option value="ba">Перевод → Слово</option>
+            <option value="mix">Смешанное</option>
+          </select>
+        </div>
+        <div>
+          <label class="lbl" for="mode">Упражнение</label>
+          <select id="mode">
+            <option value="choice">Выбор варианта</option>
+            <option value="matching">Соединить пары</option>
+            <option value="card">Флеш-карточки</option>
+          </select>
+        </div>
+        <div>
+          <label class="lbl" for="limit">Вопросов</label>
+          <select id="limit">
+            <option value="30">30</option>
+            <option value="all">Все</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn primary big" id="startBtn">Начать тренировку</button>
+    </div>
+  </section>
+
+  <!-- ================= ТРЕНИРОВКА ================= -->
+  <section id="practice" class="hidden">
+    <div class="progress-wrap">
+      <div class="progress-top">
+        <span id="progressText">1 / 10</span>
+        <span id="scoreText">✔ 0</span>
+        <button class="btn tiny ghost" id="quitBtn">Завершить</button>
+      </div>
+      <div class="progress"><div id="progressFill"></div></div>
+    </div>
+    <div class="card">
+      <div class="q-hint" id="qHint"></div>
+      <div id="qbox"></div>
+    </div>
+  </section>
+
+  <!-- ================= РЕЗУЛЬТАТЫ ================= -->
+  <section id="results" class="hidden">
+    <div class="card center">
+      <div class="big-score" id="resScore">0%</div>
+      <p id="resText"></p>
+      <div id="resWrong"></div>
+      <div class="row center">
+        <button class="btn primary" id="againBtn">Ещё раз</button>
+        <button class="btn ghost" id="backBtn">Изменить настройки</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+/* ==================== УТИЛИТЫ ==================== */
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+
+function shuffle(a){
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+  return a;
+}
+function esc(s){
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+/* ==================== ПАРСЕР СЛОВАРЯ ==================== */
+function parseDict(text){
+  const out = [];
+  const seen = new Set();
+  text.replace(/^\uFEFF/,'').split(/\r?\n/).forEach(line => {
+    const s = line.trim();
+    if(!s || s.startsWith('#') || s.startsWith('//')) return;
+
+    let parts = null;
+    if(s.includes('\t')){
+      parts = s.split('\t');
+    } else {
+      const m = s.match(/^(.*?)\s+[-–—:=|]\s+(.*)$/);
+      if(m) parts = [m[1], m[2]];
+      else {
+        const m2 = s.match(/^([^:=;|]+)\s*[:=;|]\s*(.+)$/);
+        if(m2) parts = [m2[1], m2[2]];
+      }
+    }
+    if(!parts || parts.length < 2) return;
+
+    const a = parts[0].trim();
+    const b = parts.slice(1).join(' ').trim();
+    if(!a || !b) return;
+
+    const key = (a + '|' + b).toLowerCase();
+    if(seen.has(key)) return;
+    seen.add(key);
+    out.push({a, b});
+  });
+  return out;
+}
+
+/* ==================== СОСТОЯНИЕ ==================== */
+const state = {
+  words: [],
+  items: [],
+  idx: 0,
+  correct: 0,
+  wrong: [],
+  mode: 'choice',
+  answered: false,
+  /* matching */
+  matchBatches: [],
+  matchIdx: 0,
+  matchMatched: 0,
+  matchSelected: null,
+  matchLock: false,
+  matchHadMistake: new Set(),
+  currentPairs: []
+};
+
+const SAMPLE = `apple - яблоко
+house - дом
+run - бежать, бег
+beautiful : красивый
+water - вода
+friend - друг
+book - книга
+to learn - учить
+fast - быстрый
+city - город
+window - окно
+to remember - помнить`;
+
+/* ==================== НАСТРОЙКИ / ПАРСИНГ ==================== */
+const dictEl = $('#dict');
+const parseInfo = $('#parseInfo');
+
+function updateParseInfo(){
+  const n = parseDict(dictEl.value).length;
+  parseInfo.innerHTML = n
+    ? `Распознано слов: <b>${n}</b>`
+    : (dictEl.value.trim() ? '⚠️ Не удалось распознать ни одного слова' : '');
+}
+
+function saveDict(){ try{ localStorage.setItem('wordTrainerDict', dictEl.value); }catch(e){} }
+
+dictEl.addEventListener('input', () => { updateParseInfo(); saveDict(); });
+
+$('#fileInput').addEventListener('change', e => {
+  const f = e.target.files[0];
+  if(!f) return;
+  const r = new FileReader();
+  r.onload = () => { dictEl.value = r.result; updateParseInfo(); saveDict(); };
+  r.readAsText(f, 'UTF-8');
+  e.target.value = '';
+});
+
+$('#sampleBtn').addEventListener('click', () => {
+  dictEl.value = SAMPLE; updateParseInfo(); saveDict();
+});
+$('#clearBtn').addEventListener('click', () => {
+  dictEl.value = ''; updateParseInfo(); saveDict(); dictEl.focus();
+});
+
+try{
+  const saved = localStorage.getItem('wordTrainerDict');
+  dictEl.value = saved || SAMPLE;
+}catch(e){ dictEl.value = SAMPLE; }
+updateParseInfo();
+
+/* ==================== ЗАПУСК ==================== */
+$('#startBtn').addEventListener('click', startPractice);
+$('#againBtn').addEventListener('click', startPractice);
+$('#backBtn').addEventListener('click', () => show('setup'));
+$('#quitBtn').addEventListener('click', () => {
+  if(confirm('Завершить тренировку и посмотреть результат?')) showResults();
+});
+
+function show(screen){
+  ['setup','practice','results'].forEach(id => {
+    $('#'+id).classList.toggle('hidden', id !== screen);
+  });
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function startPractice(){
+  const words = parseDict(dictEl.value);
+  if(words.length < 2){
+    alert('Нужно минимум 2 слова. Проверьте формат: "слово - перевод"');
+    return;
+  }
+  saveDict();
+
+  state.words = words;
+  state.mode = $('#mode').value;
+  state.idx = 0;
+  state.correct = 0;
+  state.wrong = [];
+  state.matchBatches = [];
+  state.matchIdx = 0;
+  state.matchMatched = 0;
+  state.matchSelected = null;
+  state.matchLock = false;
+  state.matchHadMistake = new Set();
+
+  const dirSetting = $('#direction').value;
+  let pool = shuffle(words.slice());
+  const limit = $('#limit').value;
+  if(limit !== 'all') pool = pool.slice(0, Math.min(parseInt(limit,10), pool.length));
+
+  state.items = pool.map(w => ({
+    w,
+    dir: dirSetting === 'mix' ? (Math.random() < .5 ? 'ab' : 'ba') : dirSetting
+  }));
+
+  /* подготовка для matching */
+  if(state.mode === 'matching'){
+    const BATCH = 5;
+    for(let i=0; i<state.items.length; i+=BATCH){
+      state.matchBatches.push(state.items.slice(i, i+BATCH));
+    }
+  }
+
+  show('practice');
+  renderQuestion();
+}
+
+/* ==================== ОБЩИЕ ФУНКЦИИ ВОПРОСА ==================== */
+function getPair(item){
+  return item.dir === 'ab'
+    ? {prompt: item.w.a, answer: item.w.b}
+    : {prompt: item.w.b, answer: item.w.a};
+}
+
+function renderQuestion(){
+  if(state.mode === 'matching'){
+    renderMatchBatch();
+    return;
+  }
+  const item = state.items[state.idx];
+  const {prompt, answer} = getPair(item);
+  state.answered = false;
+
+  $('#progressText').textContent = (state.idx + 1) + ' / ' + state.items.length;
+  $('#progressFill').style.width = (state.idx / state.items.length * 100) + '%';
+  $('#scoreText').textContent = '✔ ' + state.correct;
+
+  const box = $('#qbox');
+  box.innerHTML = '';
+
+  /* --- ВЫБОР ВАРИАНТА --- */
+  if(state.mode === 'choice'){
+    $('#qHint').textContent = 'Выберите правильный перевод';
+
+    const pool = [...new Set(state.words.map(w => item.dir === 'ab' ? w.b : w.a))]
+      .filter(x => x !== answer);
+    shuffle(pool);
+    const opts = shuffle([answer, ...pool.slice(0, 3)]);
+
+    box.innerHTML = `
+      <div class="prompt">${wtPic(prompt)}${esc(prompt)}</div>
+      <div class="options">
+        ${opts.map(o => `<button class="option">${esc(o)}</button>`).join('')}
+      </div>
+      <div class="feedback"></div>
+      <button class="btn primary wide hidden" id="nextBtn">Далее →</button>`;
+
+    box.querySelectorAll('.option').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if(state.answered) return;
+        state.answered = true;
+        const ok = btn.textContent === answer;
+        box.querySelectorAll('.option').forEach(b => {
+          b.disabled = true;
+          if(b.textContent === answer) b.classList.add('correct');
+        });
+        if(!ok) btn.classList.add('wrong');
+        finishAnswer(ok, item, answer);
+      });
+    });
+  }
+
+  /* --- ФЛЕШ-КАРТОЧКИ --- */
+  else if(state.mode === 'card'){
+    $('#qHint').textContent = 'Вспомните перевод, затем переверните карточку';
+
+    box.innerHTML = `
+      <div class="flashcard" id="flashcard">
+        <div class="flashcard-inner">
+          <div class="flashcard-face front">${wtPic(prompt)}${esc(prompt)}</div>
+          <div class="flashcard-face back">${esc(answer)}</div>
+        </div>
+      </div>
+      <div class="row center" id="cardActions">
+        <button class="btn primary" id="checkBtn">Показать ответ</button>
+      </div>
+      <div class="feedback"></div>
+      <button class="btn primary wide hidden" id="nextBtn">Далее →</button>`;
+
+    const flip = () => {
+      if(state.answered) return;
+      const card = box.querySelector('#flashcard');
+      if(card.classList.contains('flipped')) return;
+      card.classList.add('flipped');
+
+      const acts = box.querySelector('#cardActions');
+      acts.innerHTML = `
+        <button class="btn ghost" id="dontKnow">😕 Не знал</button>
+        <button class="btn primary" id="know">😀 Знал</button>`;
+
+      acts.querySelector('#know').addEventListener('click', () => cardResult(true));
+      acts.querySelector('#dontKnow').addEventListener('click', () => cardResult(false));
+    };
+
+    const cardResult = (ok) => {
+      if(state.answered) return;
+      state.answered = true;
+      box.querySelectorAll('#cardActions button').forEach(b => b.disabled = true);
+      finishAnswer(ok, item, answer, ok ? 'Отлично!' : 'Ничего, повторим позже');
+    };
+
+    box.querySelector('#checkBtn').addEventListener('click', flip);
+    box.querySelector('#flashcard').addEventListener('click', flip);
+  }
+}
+
+/* ==================== MATCHING ==================== */
+function renderMatchBatch(){
+  const batch = state.matchBatches[state.matchIdx];
+  state.matchMatched = 0;
+  state.matchSelected = null;
+  state.matchLock = false;
+  state.matchHadMistake = new Set();
+
+  const pairs = batch.map((item, i) => {
+    const {prompt, answer} = getPair(item);
+    return {id: i, prompt, answer};
+  });
+  state.currentPairs = pairs;
+
+  const leftItems = shuffle(pairs.slice());
+  const rightItems = shuffle(pairs.slice());
+
+  $('#qHint').textContent = `Соедините пары (${state.matchIdx + 1} из ${state.matchBatches.length})`;
+
+  const box = $('#qbox');
+  box.innerHTML = `
+    <div class="match-grid">
+      <div class="match-col" id="matchLeft">
+        ${leftItems.map(p => `<button class="match-tile" data-side="L" data-id="${p.id}">${esc(p.prompt)}</button>`).join('')}
+      </div>
+      <div class="match-col" id="matchRight">
+        ${rightItems.map(p => `<button class="match-tile" data-side="R" data-id="${p.id}">${esc(p.answer)}</button>`).join('')}
+      </div>
+    </div>`;
+
+  box.querySelectorAll('.match-tile').forEach(t => t.addEventListener('click', onMatchClick));
+
+  updateMatchProgress();
+}
+
+function onMatchClick(e){
+  if(state.matchLock) return;
+  const tile = e.currentTarget;
+  if(tile.classList.contains('matched')) return;
+  const side = tile.dataset.side;
+  const id = tile.dataset.id;
+
+  /* выбор первой плитки */
+  if(!state.matchSelected || state.matchSelected.side === side){
+    document.querySelectorAll('.match-tile.selected').forEach(t => t.classList.remove('selected'));
+    tile.classList.add('selected');
+    state.matchSelected = {side, id, el: tile};
+    return;
+  }
+
+  /* сравнение со второй плиткой */
+  const prev = state.matchSelected;
+
+  if(prev.id === id){
+    /* верно */
+    prev.el.classList.remove('selected');
+    prev.el.classList.add('matched');
+    tile.classList.add('matched');
+    state.matchSelected = null;
+    state.matchMatched++;
+
+    if(!state.matchHadMistake.has(id)){
+      state.correct++;
+      $('#scoreText').textContent = '✔ ' + state.correct;
+    } else {
+      const pair = state.currentPairs.find(p => p.id == id);
+      if(pair) state.wrong.push({prompt: pair.prompt, answer: pair.answer});
+    }
+
+    updateMatchProgress();
+
+    if(state.matchMatched === state.currentPairs.length){
+      state.matchLock = true;
+      setTimeout(() => {
+        state.matchIdx++;
+        if(state.matchIdx >= state.matchBatches.length){
+          showResults();
+        } else {
+          renderMatchBatch();
+        }
+      }, 450);
+    }
+  } else {
+    /* неверно */
+    state.matchHadMistake.add(id);
+    state.matchHadMistake.add(prev.id);
+    state.matchLock = true;
+    tile.classList.add('wrong');
+    prev.el.classList.add('wrong');
+    setTimeout(() => {
+      tile.classList.remove('wrong');
+      prev.el.classList.remove('wrong');
+      prev.el.classList.remove('selected');
+      state.matchSelected = null;
+      state.matchLock = false;
+    }, 600);
+  }
+}
+
+function updateMatchProgress(){
+  const doneInPrev = state.matchBatches.slice(0, state.matchIdx)
+    .reduce((s,b) => s + b.length, 0);
+  const totalMatched = doneInPrev + state.matchMatched;
+  const total = state.items.length;
+
+  $('#progressText').textContent = totalMatched + ' / ' + total;
+  $('#progressFill').style.width = (totalMatched / total * 100) + '%';
+  $('#scoreText').textContent = '✔ ' + state.correct;
+}
+
+/* ==================== ОБРАБОТКА ОТВЕТА ==================== */
+function finishAnswer(ok, item, answer, customMsg){
+  const {prompt} = getPair(item);
+  const fb = document.querySelector('.feedback');
+
+  if(ok){
+    state.correct++;
+    fb.className = 'feedback ok';
+    fb.textContent = customMsg || 'Верно!';
+  } else {
+    state.wrong.push({prompt, answer});
+    fb.className = 'feedback err';
+    fb.innerHTML = 'Правильный ответ: <b>' + esc(answer) + '</b>';
+  }
+
+  $('#scoreText').textContent = '✔ ' + state.correct;
+  $('#progressFill').style.width = ((state.idx + 1) / state.items.length * 100) + '%';
+
+  const nb = $('#nextBtn');
+  nb.classList.remove('hidden');
+  nb.textContent = (state.idx === state.items.length - 1) ? 'Показать результат' : 'Далее →';
+  nb.onclick = nextQuestion;
+  setTimeout(() => nb.focus(), 30);
+}
+
+function nextQuestion(){
+  state.idx++;
+  if(state.idx >= state.items.length){ showResults(); return; }
+  renderQuestion();
+}
+
+/* ==================== РЕЗУЛЬТАТЫ ==================== */
+function showResults(){
+  const total = state.items.length;
+  if(!total){ show('setup'); return; }
+
+  const pct = Math.round(state.correct / total * 100);
+  $('#resScore').textContent = pct + '%';
+
+  let msg;
+  if(pct === 100) msg = 'Идеально! Все ответы верны 🎉';
+  else if(pct >= 80) msg = 'Отличный результат! Ещё чуть-чуть до идеала.';
+  else if(pct >= 60) msg = 'Неплохо! Повторите слова с ошибками.';
+  else if(pct >= 40) msg = 'Есть над чем поработать. Попробуйте ещё раз.';
+  else msg = 'Стоит повторить словарь и попробовать снова.';
+
+  $('#resText').textContent = `Верно ${state.correct} из ${total}. ${msg}`;
+
+  const wrap = $('#resWrong');
+  if(state.wrong.length){
+    wrap.innerHTML = '<div class="res-sub">Ошибки</div><ul class="wrong-list">' +
+      state.wrong.map(w =>
+        `<li><span class="w-prompt">${esc(w.prompt)}</span><span class="w-arrow">→</span><span class="w-answer">${esc(w.answer)}</span></li>`
+      ).join('') + '</ul>';
+  } else {
+    wrap.innerHTML = '';
+  }
+
+  show('results');
+}
+
+/* ==================== КЛАВИАТУРА ==================== */
+document.addEventListener('keydown', e => {
+  if($('#practice').classList.contains('hidden')) return;
+
+  if(e.key === 'Enter'){
+    const next = $('#nextBtn');
+    if(next && !next.classList.contains('hidden')){
+      e.preventDefault();
+      next.click();
+    }
+    return;
+  }
+
+  const tag = (document.activeElement && document.activeElement.tagName) || '';
+  if(tag === 'INPUT') return;
+
+  if(/^[1-4]$/.test(e.key) && state.mode === 'choice' && !state.answered){
+    const opts = $$('.option');
+    const i = parseInt(e.key, 10) - 1;
+    if(opts[i]) opts[i].click();
+  }
+});
+
+/* ============ Картинки-эмодзи к словам (словарь) ============ */
+const GF_EMOJI = {
+house:'🏠',home:'🏠',park:'🌳',parks:'🌳',school:'🏫',classroom:'🏫',class:'🏫',dinner:'🍽️',lunch:'🥪',breakfast:'🥣',hair:'💇',mum:'👩',mother:'👩',dad:'👨',
+tennis:'🎾',horse:'🐴',swim:'🏊',swimming:'🏊',music:'🎵',clock:'🕐',water:'💧',homework:'📝',book:'📖',books:'📚',reading:'📖',read:'📖',tv:'📺',television:'📺',
+car:'🚗',bike:'🚲',bed:'🛏️',rain:'🌧️',rains:'🌧️',rained:'🌧️',raining:'🌧️',rainy:'🌧️',run:'🏃',runs:'🏃',running:'🏃',buy:'🛒',boy:'👦',apple:'🍎',apples:'🍎',drink:'🥤',drinks:'🥤',
+cake:'🎂',bus:'🚌',ball:'⚽',coat:'🧥',english:'🇬🇧',cinema:'🎬',cinemas:'🎬',present:'🎁',pizza:'🍕',watch:'⌚',fire:'🔥',australia:'🇦🇺',eyes:'👀',eye:'👁️',football:'⚽',friends:'🧑‍🤝‍🧑',
+sweets:'🍬',sunny:'☀️',sleeping:'😴',fish:'🐟',money:'💰',films:'🎬',film:'🎬',hospital:'🏥',donkey:'🫏',egypt:'🇪🇬',ticket:'🎫',girl:'👧',lions:'🦁',lion:'🦁',healthy:'🥗',aeroplane:'✈️',
+teddy:'🧸',banana:'🍌',dolls:'🪆',doll:'🪆',ride:'🚴',riding:'🚴',zoo:'🦓',umbrella:'☂️',grapes:'🍇',leg:'🦵',legs:'🦵',brother:'👦',sea:'🌊',sad:'😢',morning:'🌅',weather:'🌦️',piano:'🎹',
+usa:'🇺🇸',comic:'📰',dishes:'🍽️',cook:'🧑‍🍳',cooked:'🧑‍🍳',cooking:'🧑‍🍳',holiday:'🏖️',food:'🍲',london:'🇬🇧',turtle:'🐢',italy:'🇮🇹',train:'🚂',dress:'👗',dresses:'👗',sandwich:'🥪',
+elephants:'🐘',elephant:'🐘',monkey:'🐒',monkeys:'🐒',chairs:'🪑',cold:'🥶',skateboard:'🛹',computer:'💻',computers:'💻',milkshake:'🥤',fries:'🍟',maths:'➗',station:'🚉',hot:'🥵',jeans:'👖',
+cow:'🐄',goose:'🪿',hen:'🐔',brazil:'🇧🇷',trams:'🚋',meat:'🥩',doctor:'👩‍⚕️',nurse:'👩‍⚕️',swing:'🛝',swings:'🛝',shoes:'👟',hat:'👒',hats:'👒',garden:'🏡',snakes:'🐍',snake:'🐍',rice:'🍚',
+bird:'🐦',fly:'🪰',flying:'🕊️',table:'🍽️',cat:'🐱',poster:'🖼️',thirsty:'🥤',tired:'🥱',science:'🔬',chocolate:'🍫',nuts:'🥜',fruit:'🍉',door:'🚪',sheep:'🐑',windsurfing:'🏄',parrots:'🦜',parrot:'🦜',
+playground:'🛝',hotel:'🏨',tourists:'📸',volcano:'🌋',red:'🔴',skirt:'👗',email:'📧',bag:'👜',bags:'👜',dolphin:'🐬',dolphins:'🐬',biscuits:'🍪',biscuit:'🍪',coffee:'☕',kite:'🪁',arm:'💪',arms:'💪',
+pool:'🏊',slide:'🛝',seesaw:'🛝',sister:'👧',grandma:'👵',socks:'🧦',bathroom:'🛁',kitchen:'🍳',yogurt:'🥛',box:'📦',sandcastle:'🏰',chicken:'🍗',balloons:'🎈',child:'🧒',children:'👧',prize:'🏆',prizes:'🏆',
+teachers:'👩‍🏫',teacher:'👩‍🏫',uk:'🇬🇧',sugar:'🍬',chess:'♟️',cereal:'🥣',library:'📚',animals:'🐾',guitar:'🎸',shark:'🦈',postcard:'💌',souvenir:'🎁',news:'📰',diver:'🤿',paris:'🇫🇷',flowers:'🌸',
+decorations:'🎉',streets:'🏙️',britain:'🇬🇧',racket:'🏸',telephone:'☎️',phone:'📱',exam:'📝',trainers:'👟',germany:'🇩🇪',map:'🗺️',hello:'👋',ear:'👂',ears:'👂',fingers:'🖐️',finger:'☝️',pilot:'🧑‍✈️',
+vet:'🐶',policeman:'👮',tree:'🌳',zebra:'🦓',zebras:'🦓',tiger:'🐯',bread:'🍞',toy:'🧸',shells:'🐚',pencils:'✏️',pencil:'✏️',angry:'😠',salad:'🥗',blue:'🔵',juice:'🧃',supermarket:'🛒',bank:'🏦',
+shirts:'👕',shirt:'👕',brushing:'🪥',families:'👨‍👩‍👧',family:'👨‍👩‍👧',russia:'🇷🇺',canada:'🇨🇦',spain:'🇪🇸',beach:'🏖️',climbing:'🧗',climb:'🧗',climbed:'🧗',grandpa:'👴',museum:'🏛️',
+rucksack:'🎒',trophy:'🏆',traffic:'🚦',keys:'🔑',party:'🥳',recycle:'♻️',race:'🏁',stamps:'📮',post:'📮',fine:'🙂',eight:'8️⃣',nose:'👃',hall:'🏛️',funny:'😂',carrots:'🥕',cupboard:'🗄️',pillow:'🛏️',
+blanket:'🛏️',boat:'⛵',skate:'⛸️',art:'🎨',pastries:'🥐',evening:'🌆',snowy:'❄️',windy:'💨',cloudy:'☁️',photos:'📷',washing:'🧼',fireman:'🧑‍🚒',man:'👨',men:'👨',woman:'👩',women:'👩',lolly:'🍭',lollies:'🍭',
+seven:'7️⃣',games:'🎲',game:'🎲',drawing:'🖍️',radio:'📻',dog:'🐶',pen:'🖊️',kangaroos:'🦘',brush:'🪥',teeth:'🦷',laugh:'😂',laughed:'😂',pasta:'🍝',bridge:'🌉',aquarium:'🐠',village:'🏘️',mountain:'⛰️',
+exercise:'🤸',throat:'🤒',sore:'🤒',diary:'📔',baking:'🧁',sold:'🏷️',happy:'😊',walking:'🚶',walk:'🚶',walks:'🚶',sleeping2:'😴',green:'🟢',black:'⚫',brown:'🟤',orange:'🍊',lemons:'🍋',sun:'☀️',
+moon:'🌙',snow:'❄️',tea:'🍵',milk:'🥛',egg:'🥚',eggs:'🥚',cheese:'🧀',ice:'🧊',birthday:'🎂',letter:'✉️',window:'🪟',chair:'🪑',plane:'✈️',star:'⭐',duck:'🦆',rabbit:'🐰',mouse:'🐭',spider:'🕷️',
+frog:'🐸',bear:'🐻',lemonade:'🍋',lake:'🏞️',river:'🏞️',city:'🏙️',town:'🏘️',shop:'🏪',shops:'🏪',cafe:'☕',restaurant:'🍽️',bedroom:'🛏️',sofa:'🛋️',clothes:'👕',swimsuit:'🩱',cap:'🧢',glasses:'👓',
+song:'🎵',sing:'🎤',singing:'🎤',dance:'💃',dancing:'💃',painting:'🎨',paint:'🎨',camera:'📷',watching:'📺',sleep:'😴',eat:'🍽️',eating:'🍽️',eats:'🍽️',ate:'🍽️',drunk:'🥤',study:'📚',learn:'📚',
+week:'📅',monday:'📅',tuesday:'📅',wednesday:'📅',saturday:'📅',february:'📅',november:'📅',tomorrow:'📅',yesterday:'📅',today:'📅',birthday2:'🎂',time:'⏰',hours:'⏳',late:'⏰',early:'⏰',
+fast:'💨',slowly:'🐢',slower:'🐢',big:'🐘',bigger:'🐘',small:'🐭',smaller:'🐭',tall:'🦒',taller:'🦒',tallest:'🦒',strong:'💪',hurt:'🤕',ill:'🤒',excited:'🤩',shy:'🙈',famous:'🌟',beautiful:'🌸',
+expensive:'💎',young:'🧒',old:'👴',older:'👴',lost:'🔍',win:'🏆',won:'🏆',music2:'🎶',films2:'🎞️',dessert:'🍨',cards:'🃏',robot:'🤖',sports:'🏅',helped:'🤝',help:'🤝',invited:'💌',invite:'💌',
+letters:'✉️',gift:'🎁',parents:'👨‍👩‍👧',baby:'👶',cousin:'🧒',uncle:'👨',aunt:'👩',friend:'🧑‍🤝‍🧑',boat2:'🚤',island:'🏝️',castle:'🏰',ship:'🚢',taxi:'🚕',lorry:'🚚',bicycle:'🚲',helicopter:'🚁',
+};
+function gfPics(text, max, exclude){
+  const seen = new Set(exclude||[]), out = [];
+  (text.toLowerCase().match(/[a-z]+/g)||[]).forEach(w=>{
+    const e = GF_EMOJI[w];
+    if(e && !seen.has(e)){ seen.add(e); out.push({w, e}); }
+  });
+  return out.slice(0, max);
+}
+
+function wtPic(t){const k=String(t).toLowerCase().trim().replace(/^(to|a|an|the)\s+/,"");const e=GF_EMOJI[k]||GF_EMOJI[k.replace(/s$/,"")];return e?`<span class="wt-pic" aria-hidden="true">${e}</span>`:"";}
+</script>
+</body>
+</html>

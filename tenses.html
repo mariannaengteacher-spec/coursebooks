@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex, nofollow">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+
+    <title>Сводная таблица всех времён английского</title>
+    <style>*{margin:0;padding:0;box-sizing:border-box}
+:root{--ink:#2e241e;--ink-soft:#5a3f2a;--paper:#f5efe8;--paper-alt:#f1e7de;--card:#fffaf5;--border:#e5d6c8;--line:#dccfc2;
+  --cover:#45301f;--cover-soft:#5a3f2a;--cream:#fcf5ed;--accent:#8a6246;--gold:#c3a06a;
+  --mono:'Space Mono','Courier New',monospace;--hand:'Caveat',cursive;color-scheme:light;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{background:var(--paper)}
+body{font-family:'Inter','Segoe UI',system-ui,sans-serif;color:var(--ink);background:var(--paper);
+  background-image:repeating-linear-gradient(to bottom,transparent 0 38px,var(--line) 38px 39px);background-attachment:local;min-height:100vh}
+.header{background:var(--cover);border-bottom:3px solid var(--accent);padding:22px 20px 18px;text-align:center;box-shadow:0 4px 14px rgba(46,36,30,.25)}
+.header h1{font-family:var(--mono);font-size:clamp(29.1px,4.6vw,45px);color:var(--cream);letter-spacing:.3px}
+.header p{font-family:var(--hand);font-size:31.7px;color:var(--gold);margin-top:2px}
+.page{max-width:1400px;margin:0 auto;padding:26px 18px 40px}
+.big-table-wrapper{border-left:2px solid var(--accent);padding-left:22px}
+.table-title{display:inline-block;font-family:var(--mono);font-weight:700;font-size:clamp(23.8px,3vw,31.7px);background:var(--card);
+  border:2px dashed var(--accent);border-radius:10px;padding:8px 18px;transform:rotate(-1deg);box-shadow:0 8px 20px rgba(46,36,30,.07);margin:4px 0 8px}
+.table-sub{font-family:var(--hand);font-size:27.7px;color:var(--ink-soft);margin-bottom:12px}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:0 8px 20px rgba(46,36,30,.05)}
+.tenses-table{width:100%;border-collapse:collapse;table-layout:fixed;min-width:1060px;font-size:19.8px}
+.tenses-table th{background:var(--cover);color:var(--cream);font-family:var(--mono);font-size:18.5px;padding:12px 10px;text-align:left;position:sticky;top:0}
+.tenses-table th .sub{display:block;font-family:var(--hand);font-size:22.4px;font-weight:500;color:var(--gold)}
+.tenses-table td{padding:12px 10px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.55;overflow-wrap:break-word}
+.tenses-table tr:last-child td{border-bottom:none}
+.tenses-table tbody tr:nth-child(even){background:#fbf5ee}
+.tenses-table td.col-icon{text-align:center;font-size:31.7px}
+.tense-name{font-family:var(--mono);font-weight:700;font-size:19.2px;color:var(--ink)}
+.tense-name .small{display:none;font-family:'Inter',sans-serif;font-weight:400;font-size:15.9px;color:var(--ink-soft);margin-top:2px}
+.formula{font-family:var(--mono);font-size:17.1px;background:var(--paper-alt);border:1px solid var(--border);border-radius:8px;padding:4px 10px;margin:3px 0}
+.formula .hl{font-weight:700;color:var(--cover)}
+.example{font-size:19.2px;padding:2px 0}
+.example .en{font-weight:600}
+.example .ru{color:var(--ink-soft);font-size:17.8px}
+.when-tag{display:inline-block;font-size:18.5px;background:var(--paper-alt);border:1.5px dashed var(--accent);border-radius:12px;padding:3px 10px}
+.marker-tag{display:inline-block;font-family:var(--mono);font-size:16.6px;background:var(--paper-alt);border:1px solid var(--border);border-radius:30px;padding:2px 10px;margin:2px 0}
+.tenses-table .row-present td:first-child{border-left:5px solid var(--gold)}
+.tenses-table .row-past td:first-child{border-left:5px solid var(--cover-soft)}
+.tenses-table .row-future td:first-child{border-left:5px solid var(--accent)}
+.tenses-table .row-perfect td:first-child{border-left:5px solid #9b5a3c}
+.tenses-table .row-continuous td:first-child{border-left:5px solid #b9a089}
+col.col-icon{width:5%}col.col-name{width:15%}col.col-formula{width:24%}col.col-example{width:24%}col.col-when{width:16%}col.col-markers{width:16%}
+.footer{text-align:center;font-family:var(--hand);font-size:29.1px;color:var(--ink-soft);margin:28px auto 10px}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:17.1px;color:var(--ink-soft);margin:0 0 12px}
+.legend span::before{content:"";display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--c)}
+@media(max-width:640px){
+  .page{padding:18px 10px 30px}.big-table-wrapper{padding-left:12px}
+  .tenses-table{min-width:880px;font-size:18.5px}
+}
+
+/* Весь шрифт — Times New Roman */
+html body,html body *:not(.emoji){font-family:"Times New Roman",Times,serif!important}
+</style>
+<style id="fs-scaled-132">html{font-size:132%}</style><style id="white-sheet">:root:not([data-theme="dark"]) body:not([data-theme="dark"]) .big-table-wrapper{background:#fff!important;background-image:none!important;border:1px solid #e3d3c4!important;border-left:2px solid #8a6246!important;border-radius:14px!important;box-shadow:0 4px 18px rgba(90,60,40,.09)!important;padding:28px 30px 34px 34px!important;box-sizing:border-box}@media(max-width:520px){:root:not([data-theme="dark"]) body:not([data-theme="dark"]) .big-table-wrapper{padding:18px 14px 22px 16px!important;border-radius:12px!important}}</style><style id="stripes-strong">:root:not([data-theme="dark"]) body:not([data-theme="dark"]){background-image:repeating-linear-gradient(to bottom,transparent 0 38px,#cdb7a3 38px 40px)!important}</style></head>
+<body>
+
+    <div class="header">
+        <h1>Все времена английского</h1>
+        <p>сводная таблица</p>
+    </div>
+
+    <div class="page"><div class="big-table-wrapper">
+        <div class="table-title">Сводная таблица всех времён</div>
+        <div class="table-sub">⭐ — самые важные для начинающих. Таблицу можно прокручивать вбок.</div>
+        <div class="legend"><span style="--c:#c3a06a">Present</span><span style="--c:#5a3f2a">Past</span><span style="--c:#8a6246">Future</span><span style="--c:#9b5a3c">Perfect</span><span style="--c:#b9a089">Continuous</span></div>
+        <div class="scroll">
+        <table class="tenses-table" id="bigTable">
+            <colgroup>
+                <col class="col-icon">
+                <col class="col-name">
+                <col class="col-formula">
+                <col class="col-example">
+                <col class="col-when">
+                <col class="col-markers">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th class="col-icon"></th>
+                    <th class="col-name">Время</th>
+                    <th class="col-formula">Формула<span class="sub">по лицам</span></th>
+                    <th class="col-example">Примеры</th>
+                    <th class="col-when">Когда используем</th>
+                    <th class="col-markers">Маркеры</th>
+                </tr>
+            </thead>
+            <tbody id="bigTableBody"></tbody>
+        </table>
+        </div>
+    </div>
+
+    <div class="footer">
+        Учи времена по одной таблице — просто и наглядно
+    </div>
+    </div>
+
+    <script>
+        const TENSES_DATA = [
+    {
+        "id": "present-simple-be",
+        "label": "Present Simple (to be)",
+        "icon": "🌟",
+        "level": "⭐",
+        "forms": {
+            "I": "am",
+            "He/She/It": "is",
+            "We/You/They": "are",
+            "❓ Вопрос": "Am/Is/Are + ...?",
+            "➖ Отрицание": "am/is/are not"
+        },
+        "examples": [
+            [
+                "I am happy.",
+                "Я счастлив."
+            ],
+            [
+                "She is a doctor.",
+                "Она врач."
+            ],
+            [
+                "They are students.",
+                "Они студенты."
+            ],
+            [
+                "He is not at home.",
+                "Его нет дома."
+            ],
+            [
+                "Are you ready?",
+                "Ты готов?"
+            ]
+        ],
+        "when": "состояние, факт, описание человека",
+        "markers": "now, always, never, today",
+        "rowClass": "row-present"
+    },
+    {
+        "id": "past-simple-be",
+        "label": "Past Simple (to be)",
+        "icon": "🕰️",
+        "level": "⭐",
+        "forms": {
+            "I/He/She/It": "was",
+            "We/You/They": "were",
+            "❓ Вопрос": "Was/Were + ...?",
+            "➖ Отрицание": "wasn't / weren't"
+        },
+        "examples": [
+            [
+                "I was at school yesterday.",
+                "Я был в школе вчера."
+            ],
+            [
+                "They were happy.",
+                "Они были счастливы."
+            ],
+            [
+                "Was she tired?",
+                "Она была уставшей?"
+            ]
+        ],
+        "when": "состояние в прошлом",
+        "markers": "yesterday, last week, ago",
+        "rowClass": "row-past"
+    },
+    {
+        "id": "future-simple-be",
+        "label": "Future Simple (to be)",
+        "icon": "🚀",
+        "level": "⭐",
+        "forms": {
+            "I": "will be",
+            "He/She/It": "will be",
+            "We/You/They": "will be",
+            "❓ Вопрос": "Will + ... + be?",
+            "➖ Отрицание": "won't be"
+        },
+        "examples": [
+            [
+                "I will be a doctor.",
+                "Я буду врачом."
+            ],
+            [
+                "She will be happy.",
+                "Она будет счастлива."
+            ],
+            [
+                "Will you be there?",
+                "Ты будешь там?"
+            ]
+        ],
+        "when": "будущее, обещание, предсказание",
+        "markers": "tomorrow, next week, soon",
+        "rowClass": "row-future"
+    },
+    {
+        "id": "present-continuous",
+        "label": "Present Continuous",
+        "icon": "🏃",
+        "level": "⭐",
+        "forms": {
+            "I": "am speaking",
+            "He/She/It": "is speaking",
+            "We/You/They": "are speaking",
+            "❓ Вопрос": "Am/Is/Are + speaking?",
+            "➖ Отрицание": "am/is/are not speaking"
+        },
+        "examples": [
+            [
+                "I am speaking now.",
+                "Я сейчас говорю."
+            ],
+            [
+                "She is speaking on the phone.",
+                "Она говорит по телефону."
+            ],
+            [
+                "They are speaking English.",
+                "Они говорят по-английски."
+            ],
+            [
+                "We are not speaking now.",
+                "Мы сейчас не говорим."
+            ]
+        ],
+        "when": "прямо сейчас, временно, изменения",
+        "markers": "now, at the moment, today, this week",
+        "rowClass": "row-present row-continuous"
+    },
+    {
+        "id": "past-continuous",
+        "label": "Past Continuous",
+        "icon": "🎬",
+        "level": "⭐",
+        "forms": {
+            "I/He/She/It": "was speaking",
+            "We/You/They": "were speaking",
+            "❓ Вопрос": "Was/Were + speaking?",
+            "➖ Отрицание": "wasn't/weren't speaking"
+        },
+        "examples": [
+            [
+                "I was speaking at 5 pm.",
+                "Я говорил в 5 вечера."
+            ],
+            [
+                "They were speaking when I came.",
+                "Они говорили, когда я пришёл."
+            ],
+            [
+                "Was she speaking?",
+                "Она говорила?"
+            ]
+        ],
+        "when": "процесс в прошлом, прерванное действие, фон",
+        "markers": "at 5 pm, while, when",
+        "rowClass": "row-past row-continuous"
+    },
+    {
+        "id": "future-continuous",
+        "label": "Future Continuous",
+        "icon": "⏰",
+        "level": "",
+        "forms": {
+            "Все лица": "will be speaking",
+            "❓ Вопрос": "Will + ... + be speaking?",
+            "➖ Отрицание": "won't be speaking"
+        },
+        "examples": [
+            [
+                "I will be speaking at 6 pm tomorrow.",
+                "Я буду говорить в 6 вечера завтра."
+            ],
+            [
+                "She will be speaking at 7 pm.",
+                "Она будет говорить в 7 вечера."
+            ],
+            [
+                "Will you be speaking?",
+                "Ты будешь говорить?"
+            ]
+        ],
+        "when": "процесс в будущем в определённый момент",
+        "markers": "at 6 pm, this time tomorrow, at that time",
+        "rowClass": "row-future row-continuous"
+    },
+    {
+        "id": "present-simple",
+        "label": "Present Simple",
+        "icon": "🌞",
+        "level": "⭐",
+        "forms": {
+            "I/You/We/They": "speak",
+            "He/She/It": "speaks",
+            "❓ Вопрос": "Do/Does + speak?",
+            "➖ Отрицание": "don't/doesn't speak"
+        },
+        "examples": [
+            [
+                "I speak English every day.",
+                "Я говорю по-английски каждый день."
+            ],
+            [
+                "She speaks French.",
+                "Она говорит по-французски."
+            ],
+            [
+                "Do you speak Spanish?",
+                "Ты говоришь по-испански?"
+            ],
+            [
+                "He doesn't speak German.",
+                "Он не говорит по-немецки."
+            ]
+        ],
+        "when": "привычки, факты, расписание",
+        "markers": "always, often, never, every day, usually",
+        "rowClass": "row-present"
+    },
+    {
+        "id": "past-simple",
+        "label": "Past Simple",
+        "icon": "📆",
+        "level": "⭐",
+        "forms": {
+            "Все лица": "spoke (2-я форма)",
+            "❓ Вопрос": "Did + speak?",
+            "➖ Отрицание": "didn't speak"
+        },
+        "examples": [
+            [
+                "I spoke to her yesterday.",
+                "Я говорил с ней вчера."
+            ],
+            [
+                "She spoke at the conference.",
+                "Она выступала на конференции."
+            ],
+            [
+                "Did you speak to him?",
+                "Ты говорил с ним?"
+            ]
+        ],
+        "when": "завершённое действие в прошлом",
+        "markers": "yesterday, last week, ago, in 2010",
+        "rowClass": "row-past"
+    },
+    {
+        "id": "future-simple",
+        "label": "Future Simple",
+        "icon": "🌟",
+        "level": "⭐",
+        "forms": {
+            "Все лица": "will speak",
+            "❓ Вопрос": "Will + ... + speak?",
+            "➖ Отрицание": "won't speak"
+        },
+        "examples": [
+            [
+                "I will speak to you tomorrow.",
+                "Я поговорю с тобой завтра."
+            ],
+            [
+                "She will speak at the meeting.",
+                "Она выступит на собрании."
+            ],
+            [
+                "Will they speak?",
+                "Они будут говорить?"
+            ]
+        ],
+        "when": "спонтанное решение, обещание, предсказание",
+        "markers": "tomorrow, next week, soon, in the future",
+        "rowClass": "row-future"
+    },
+    {
+        "id": "present-perfect",
+        "label": "Present Perfect",
+        "icon": "✨",
+        "level": "⭐",
+        "forms": {
+            "I/You/We/They": "have spoken",
+            "He/She/It": "has spoken",
+            "❓ Вопрос": "Have/Has + spoken?",
+            "➖ Отрицание": "haven't/hasn't spoken"
+        },
+        "examples": [
+            [
+                "I have spoken to her already.",
+                "Я уже говорил с ней."
+            ],
+            [
+                "She has spoken to the manager.",
+                "Она говорила с менеджером."
+            ],
+            [
+                "Have you ever spoken to him?",
+                "Ты когда-нибудь говорил с ним?"
+            ],
+            [
+                "He hasn't spoken yet.",
+                "Он ещё не говорил."
+            ]
+        ],
+        "when": "результат важен сейчас, опыт, новости",
+        "markers": "already, yet, just, ever, never, before",
+        "rowClass": "row-present row-perfect"
+    },
+    {
+        "id": "past-perfect",
+        "label": "Past Perfect",
+        "icon": "⏪",
+        "level": "",
+        "forms": {
+            "Все лица": "had spoken",
+            "❓ Вопрос": "Had + ... + spoken?",
+            "➖ Отрицание": "hadn't spoken"
+        },
+        "examples": [
+            [
+                "I had spoken before you came.",
+                "Я уже говорил до твоего прихода."
+            ],
+            [
+                "She had already spoken.",
+                "Она уже говорила."
+            ],
+            [
+                "Had they spoken?",
+                "Они уже говорили?"
+            ]
+        ],
+        "when": "действие ДО другого действия в прошлом",
+        "markers": "before, after, already, just, by the time",
+        "rowClass": "row-past row-perfect"
+    },
+    {
+        "id": "future-perfect",
+        "label": "Future Perfect",
+        "icon": "🎯",
+        "level": "",
+        "forms": {
+            "Все лица": "will have spoken",
+            "❓ Вопрос": "Will + ... + have spoken?",
+            "➖ Отрицание": "won't have spoken"
+        },
+        "examples": [
+            [
+                "I will have spoken by 6 pm.",
+                "Я уже поговорю к 6 вечера."
+            ],
+            [
+                "She will have spoken by then.",
+                "Она уже поговорит к тому времени."
+            ]
+        ],
+        "when": "действие завершится к определённому моменту в будущем",
+        "markers": "by, by the time, before",
+        "rowClass": "row-future row-perfect"
+    },
+    {
+        "id": "present-perfect-cont",
+        "label": "Present Perfect Continuous",
+        "icon": "⏳",
+        "level": "",
+        "forms": {
+            "I/You/We/They": "have been speaking",
+            "He/She/It": "has been speaking",
+            "❓ Вопрос": "Have/Has + been speaking?",
+            "➖ Отрицание": "haven't/hasn't been speaking"
+        },
+        "examples": [
+            [
+                "I have been speaking for an hour.",
+                "Я говорю уже час."
+            ],
+            [
+                "She has been speaking (so she is tired).",
+                "Она говорит (и устала)."
+            ],
+            [
+                "How long have you been speaking?",
+                "Как долго ты говоришь?"
+            ]
+        ],
+        "when": "действие началось в прошлом и продолжается сейчас, видим результат",
+        "markers": "for, since, how long",
+        "rowClass": "row-present row-perfect row-continuous"
+    },
+    {
+        "id": "past-perfect-cont",
+        "label": "Past Perfect Continuous",
+        "icon": "🔁",
+        "level": "",
+        "forms": {
+            "Все лица": "had been speaking",
+            "❓ Вопрос": "Had + ... + been speaking?",
+            "➖ Отрицание": "hadn't been speaking"
+        },
+        "examples": [
+            [
+                "I had been speaking for an hour when she arrived.",
+                "Я говорил уже час, когда она пришла."
+            ],
+            [
+                "He was tired because he had been speaking.",
+                "Он устал, потому что говорил."
+            ]
+        ],
+        "when": "длительное действие до другого действия в прошлом",
+        "markers": "for, since, before",
+        "rowClass": "row-past row-perfect row-continuous"
+    },
+    {
+        "id": "future-perfect-cont",
+        "label": "Future Perfect Continuous",
+        "icon": "⏳",
+        "level": "",
+        "forms": {
+            "Все лица": "will have been speaking",
+            "❓ Вопрос": "Will + ... + have been speaking?",
+            "➖ Отрицание": "won't have been speaking"
+        },
+        "examples": [
+            [
+                "By next year, I will have been speaking English for 5 years.",
+                "К следующему году я буду говорить по-английски уже 5 лет."
+            ]
+        ],
+        "when": "длительное действие, которое будет продолжаться до определённого момента в будущем",
+        "markers": "by, for",
+        "rowClass": "row-future row-perfect row-continuous"
+    }
+];
+
+        const bigTableBody = document.getElementById('bigTableBody');
+
+        function renderBigTable() {
+            let html = '';
+            TENSES_DATA.forEach(t => {
+                const rowClasses = t.rowClass || '';
+                const icon = t.icon || '📚';
+                const levelStar = t.level ? ` ${t.level}` : '';
+                html += `<tr class="${rowClasses}">
+                            <td class="col-icon">${icon}</td>
+                            <td class="col-name">
+                                <div class="tense-name">
+                                    ${t.label}${levelStar}
+                                    <span class="small">${t.id.replace(/-/g, ' ')}</span>
+                                </div>
+                            </td>
+                            <td class="col-formula">`;
+                const formEntries = Object.entries(t.forms);
+                formEntries.forEach(([person, form]) => {
+                    html += `<div class="formula">${person}: <span class="hl">${form}</span></div>`;
+                });
+                html += `</td>
+                            <td class="col-example">`;
+                t.examples.slice(0, 2).forEach(ex => {
+                    html += `<div class="example"><span class="en">${ex[0]}</span> <span class="ru">— ${ex[1]}</span></div>`;
+                });
+                html += `</td>
+                            <td class="col-when"><span class="when-tag">${t.when}</span></td>
+                            <td class="col-markers">`;
+                t.markers.split(',').forEach(m => {
+                    html += `<span class="marker-tag">${m.trim()}</span> `;
+                });
+                html += `</td></tr>`;
+            });
+            bigTableBody.innerHTML = html;
+        }
+
+        renderBigTable();
+    </script>
+</body>
+</html>

@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Next Steps — An Adult English Course (A2+)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #EFE1D3;            /* latte */
+    --panel: #F9F1E8;         /* cream */
+    --ink: #2B1810;           /* dark cocoa */
+    --ink-soft: #6B4A37;      /* roasted brown */
+    --line: #D3B9A3;          /* milk-chocolate tint */
+    --cocoa: #7B4A2E;         /* milk chocolate */
+    --cocoa-deep: #3B1F14;    /* dark chocolate */
+    --caramel: #A65A1E;       /* caramel */
+    --caramel-soft: #EBD3B9;  /* caramel tint */
+    --cream-text: #F6E9DA;
+    --field: #FFFAF4;         /* warm white for inputs */
+    --good: #5F7A45;
+    --good-soft: #E6EBD6;
+    --bad: #A63D2F;
+    --bad-soft: #F3DAD2;
+    --serif: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  *{ box-sizing: border-box; }
+  body{ margin:0; background: var(--bg); color: var(--ink); font-family: var(--sans); line-height: 1.6; }
+
+  .shell{ max-width: 1120px; margin: 0 auto; padding: 40px 24px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+
+  header.masthead{ grid-column: 1 / -1; padding: 34px 38px 32px; background: var(--cocoa-deep); border-radius: 8px; margin-bottom: 8px; }
+  header.masthead .kicker{ font-size: 17.1px; color: #E3A868; font-family: var(--serif); font-style: italic; margin: 0 0 6px; }
+  header.masthead h1{ font-family: var(--serif); font-weight: 400; font-size: 60.8px; margin: 0 0 8px; color: var(--cream-text); }
+  header.masthead p{ max-width: 560px; color: #D6BBA3; margin: 0; font-size: 21.2px; }
+
+  nav.units{ position: sticky; top: 24px; align-self: start; }
+  nav.units .label{ font-family: var(--serif); font-style: italic; color: var(--caramel); display: block; font-size: 17.1px; margin-bottom: 16px; }
+  nav.units button{
+    display: block; width: 100%; text-align: left; background: none; border: none;
+    border-left: 2px solid var(--line); padding: 10px 14px; margin-bottom: 2px;
+    font-family: var(--sans); font-size: 18.5px; color: var(--ink-soft); cursor: pointer;
+    border-radius: 0 4px 4px 0; transition: all .15s;
+  }
+  nav.units button .unum{ font-family: var(--serif); font-style: italic; color: var(--caramel); margin-right: 6px; }
+  nav.units button:hover{ background: var(--caramel-soft); color: var(--cocoa-deep); }
+  nav.units button.active{ background: var(--cocoa-deep); border-left-color: var(--caramel); color: var(--cream-text); font-weight: 600; }
+  nav.units button.active .unum{ color: #E3A868; }
+
+  main{ max-width: 720px; }
+  .unit-panel{ display: none; }
+  .unit-panel.active{ display: block; }
+
+  .unit-head{ margin-bottom: 36px; }
+  .unit-head .kicker{ font-size: 17.1px; color: var(--caramel); font-family: var(--serif); font-style: italic; margin: 0 0 6px; }
+  .unit-head h2{ font-family: var(--serif); font-weight: 400; font-size: 45px; margin: 0 0 10px; color: var(--cocoa-deep); }
+  .unit-head h2::after{ content: ""; display: block; width: 64px; height: 3px; margin-top: 14px; border-radius: 2px; background: var(--caramel); }
+  .unit-head p{ color: var(--ink-soft); margin: 0 0 18px; font-size: 19.8px; max-width: 560px; }
+
+  .unit-toc{ display: flex; flex-wrap: wrap; gap: 8px; }
+  .unit-toc button{
+    font-family: var(--sans); font-size: 17.1px; color: var(--cocoa-deep); background: var(--panel);
+    border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; cursor: pointer; transition: all .15s;
+  }
+  .unit-toc button:hover{ border-color: var(--cocoa-deep); background: var(--cocoa-deep); color: var(--cream-text); }
+
+  section{ margin-bottom: 56px; }
+  section h3{ font-family: var(--serif); font-weight: 400; font-size: 30.4px; color: var(--cocoa-deep); margin: 0 0 18px; padding-left: 14px; border-left: 4px solid var(--caramel); line-height: 1.25; }
+  section > p.lede{ color: var(--ink-soft); margin: -10px 0 18px; font-size: 18.5px; }
+
+  .card{ background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 22px 26px; margin-bottom: 14px; }
+
+  .preview-list{ list-style: none; padding: 0; margin: 0; }
+  .preview-list li{ font-family: var(--serif); font-size: 23.8px; padding: 15px 0; border-bottom: 1px solid var(--line); }
+  .preview-list li:last-child{ border-bottom: none; }
+  .preview-list .q-label{ color: var(--caramel); font-family: var(--sans); font-size: 17.1px; display: block; margin-bottom: 4px; }
+
+  .vocab-grid{ display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 20px; }
+  .vocab-term{ border: 1px solid var(--line); background: var(--panel); border-radius: 6px; padding: 12px 14px; cursor: pointer; font-size: 18.5px; text-align: left; }
+  .vocab-term:hover{ border-color: var(--cocoa); }
+  .vocab-term.open{ background: var(--caramel-soft); border-color: var(--cocoa); }
+  .vocab-term .def{ display: none; font-size: 17.1px; color: var(--ink-soft); margin-top: 6px; }
+  .vocab-term.open .def{ display: block; }
+
+  .exercise-row{ display: flex; align-items: baseline; gap: 10px; margin-bottom: 13px; font-size: 18.5px; flex-wrap: wrap; }
+  .exercise-row .num{ color: var(--caramel); font-family: var(--serif); font-style: italic; width: 18px; flex-shrink: 0; }
+  select, input[type=text]{ font-family: var(--sans); font-size: 18.5px; padding: 6px 8px; border: 1px solid var(--line); border-radius: 4px; background: var(--field); color: var(--ink); }
+  select.correct, input.correct{ border-color: var(--good); background: var(--good-soft); }
+  select.incorrect, input.incorrect{ border-color: var(--bad); background: var(--bad-soft); }
+
+  button.check{ font-family: var(--sans); font-size: 18.5px; font-weight: 600; background: var(--cocoa-deep); color: var(--cream-text); border: none; padding: 10px 24px; border-radius: 999px; cursor: pointer; box-shadow: 0 3px 0 var(--caramel); transition: all .15s; }
+  button.check:hover{ background: var(--cocoa); }
+  button.check:active{ transform: translateY(2px); box-shadow: 0 1px 0 var(--caramel); }
+  .score{ font-size: 17.1px; margin-top: 10px; color: var(--ink-soft); }
+  .ex-title{ font-size: 17.1px; color: var(--ink-soft); margin: 0 0 12px; }
+
+  .reading{ font-family: var(--serif); font-size: 22.4px; line-height: 1.75; }
+  .reading p{ margin: 0 0 16px; }
+
+  .comp-q{ margin-bottom: 18px; }
+  .comp-q p.q{ font-size: 18.5px; margin: 0 0 8px; font-weight: 600; }
+  .comp-q textarea{ width: 100%; min-height: 56px; font-family: var(--sans); font-size: 18.5px; padding: 10px; border: 1px solid var(--line); border-radius: 4px; resize: vertical; }
+
+  .grammar-box{ display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  .grammar-box .panel{ background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 18px 20px; }
+  .grammar-box h4{ font-family: var(--serif); font-weight: 400; font-size: 21.2px; margin: 0 0 8px; color: var(--cocoa); }
+  .grammar-box .formula{ font-size: 17.1px; color: var(--caramel); margin: 0 0 10px; }
+  .grammar-box ul{ margin: 0; padding-left: 18px; font-size: 17.1px; color: var(--ink-soft); }
+  .grammar-box li{ margin-bottom: 6px; }
+
+  .speaking-list{ list-style: none; padding: 0; margin: 0; }
+  .speaking-list li{ font-family: var(--serif); font-size: 21.2px; padding: 10px 0 10px 26px; position: relative; border-bottom: 1px solid var(--line); }
+  .speaking-list li:last-child{ border-bottom: none; }
+  .speaking-list li::before{ content: "—"; position: absolute; left: 0; color: var(--caramel); }
+
+  .writing-box textarea{ width: 100%; min-height: 120px; font-family: var(--sans); font-size: 18.5px; padding: 12px; border: 1px solid var(--line); border-radius: 4px; resize: vertical; }
+
+  /* --- Word bank + drag/tap-to-fill gaps --- */
+  .word-bank{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; }
+  .word-chip{ font-family:var(--sans); font-size:17.8px; padding:8px 15px; border:1px solid var(--line); border-radius:999px; background:var(--field); cursor:grab; transition:all .15s; user-select:none; }
+  .word-chip:hover{ border-color:var(--cocoa); background:var(--caramel-soft); }
+  .word-chip.selected{ border-color:var(--cocoa-deep); background:var(--cocoa-deep); color:var(--cream-text); }
+  .word-chip.used{ opacity:.3; pointer-events:none; cursor:default; }
+  .gap-row .blank{ display:inline-block; min-width:120px; padding:3px 10px; margin:0 2px; border:none; border-bottom:2px dashed var(--cocoa); border-radius:3px; cursor:pointer; font-family:var(--sans); font-weight:600; color:var(--cocoa-deep); text-align:center; transition:all .15s; }
+  .gap-row .blank:hover{ background:var(--caramel-soft); }
+  .gap-row .blank.filled{ border-bottom-style:solid; }
+  .gap-row .blank.correct{ border-color:var(--good); color:var(--good); background:var(--good-soft); }
+  .gap-row .blank.incorrect{ border-color:var(--bad); color:var(--bad); background:var(--bad-soft); }
+  .gap-row .blank.dragover{ background:var(--caramel-soft); }
+
+  /* --- Click-to-match columns --- */
+  .match-cols{ display:flex; gap:14px; margin-top:4px; }
+  .match-col{ flex:1; display:flex; flex-direction:column; gap:7px; }
+  .match-item{ font-family:var(--sans); font-size:17.8px; padding:9px 13px; border:1px solid var(--line); border-radius:6px; background:var(--field); cursor:pointer; transition:all .15s; }
+  .match-item:hover{ border-color:var(--cocoa); }
+  .match-item.selected{ border-color:var(--cocoa-deep); background:var(--cocoa-deep); color:var(--cream-text); }
+  .match-item.matched{ background:var(--good-soft); border-color:var(--good); color:var(--good); cursor:default; }
+  .match-item.wrong{ background:var(--bad-soft); border-color:var(--bad); }
+
+  /* --- Pill-button choice (replaces <select> choose...) --- */
+  .pill-row{ display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+  .pill{ font-family:var(--sans); font-size:17.8px; padding:7px 16px; border:1px solid var(--line); border-radius:999px; background:var(--field); cursor:pointer; transition:all .15s; }
+  .pill:hover{ border-color:var(--cocoa); background:var(--caramel-soft); }
+  .pill.disabled{ pointer-events:none; }
+  .pill.correct{ border-color:var(--good); background:var(--good-soft); color:var(--good); font-weight:600; }
+  .pill.incorrect{ border-color:var(--bad); background:var(--bad-soft); color:var(--bad); }
+
+  @media (max-width: 760px){
+    .shell{ grid-template-columns: 1fr; }
+    nav.units{ position: static; display: flex; overflow-x: auto; gap: 4px; }
+    nav.units button{ border-left: none; border-bottom: 2px solid var(--line); white-space: nowrap; border-radius: 0; }
+    .vocab-grid, .grammar-box{ grid-template-columns: 1fr; }
+    header.masthead h1{ font-size: 42.3px; }
+  }
+:root{--bg:#F5ECE1;--panel:#FCF8F2;--line:#DCC8B5}
+.shell{display:block;max-width:820px;padding:32px 20px 80px}
+header.masthead{margin-bottom:18px;text-align:center}
+header.masthead p{margin:0 auto}
+nav.units{position:static;display:flex;flex-wrap:wrap;justify-content:center;gap:8px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:36px;overflow:visible}
+nav.units .label{width:100%;text-align:center;margin:0 0 4px}
+nav.units button{width:auto;margin:0;border:1px solid var(--line);border-radius:999px;padding:7px 14px;background:transparent;white-space:normal}
+nav.units button.active{border-color:var(--cocoa-deep)}
+main{max-width:none;margin:0 auto}
+.vocab-term .emo{display:block;font-size:39.7px;line-height:1.2;margin-bottom:4px}
+.dlg-line{margin:7px 0;font-size:19.8px;line-height:1.55}.dlg-who{display:inline-block;min-width:104px;font-weight:600;color:var(--caramel)}.dlg-line b{background:var(--caramel-soft);padding:0 4px;border-radius:3px}.wo-row{margin-bottom:16px}.wo-ans{min-height:42px;display:flex;flex-wrap:wrap;gap:6px;padding:6px 0;margin-bottom:6px}.wo-ans:first-of-type{border-bottom:1px dashed var(--line)}.wo-ans.ok{border-bottom:2px solid var(--good)}.wo-ans.bad{border-bottom:2px solid var(--bad)}
+.pic-strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:10px;margin-bottom:16px}.pic{background:var(--field);border:1px solid var(--line);border-radius:8px;padding:12px 8px;text-align:center}.pic .emo{display:block;font-size:45px;line-height:1.2;margin-bottom:4px}.pic b{display:block;font-size:17.8px;font-weight:600}.pic i{display:block;font-size:16.6px;color:var(--ink-soft);margin-top:2px}
+</style>
+<style id="unify">
+/* ===== UNIFIED LAYER (shared by all three books) ===== */
+:root{--u-font:"Times New Roman",Times,"Liberation Serif",serif;--u-bg:#F5ECE1;--u-panel:#FCF8F2;--u-field:#FFFAF4;--u-line:#DCC8B5;--u-ink:#2B1810;--u-soft:#6B4A37;--u-choc:#3B1F14;--u-cocoa:#7B4A2E;--u-caramel:#A65A1E;--u-cream:#F6E9DA;--u-good:#5F7A45;--u-good-soft:#E6EBD6;--u-bad:#A63D2F;--u-bad-soft:#F3DAD2;--u-r:10px}
+html{scroll-behavior:smooth}
+body{font-family:var(--u-font);font-size:21.2px;line-height:1.6;color:var(--u-ink);background:var(--u-bg)}
+button,input,select,textarea{font-family:var(--u-font)}
+
+/* unit heading */
+.unit-head h1,.unit-head h2{font-family:var(--u-font);font-size:42.3px;font-weight:500;font-style:normal;line-height:1.15;margin:4px 0 10px;color:var(--u-choc)}
+.unit-head h1::after,.unit-head h2::after{content:"";display:block;width:56px;height:3px;margin-top:12px;border-radius:2px;background:var(--u-caramel)}
+.unit-head p{font-size:20.5px;color:var(--u-soft);max-width:60ch;margin:0 0 18px}
+.unit-head .kicker,.unit-head .unum{font-size:17.8px;font-style:italic;color:var(--u-caramel);margin:0}
+
+/* section heading: caramel bar */
+section h3,.block h2,.sec-title h2{font-family:var(--u-font);font-size:29.1px;font-weight:500;line-height:1.25;color:var(--u-choc);margin:0 0 14px;padding-left:14px;border-left:4px solid var(--u-caramel)}
+.sec-title h2::after{display:none}
+.sec-num{display:none}
+.sec-head{display:block;margin:0 0 18px}
+.sec-head .sec-title h2{margin-bottom:6px}
+section > p.lede{margin:-8px 0 16px}
+section > p.lede,.block-sub,.sec-title .sub{font-size:19.2px;color:var(--u-soft);max-width:none;padding-left:0}
+.block-sub{margin:-8px 0 16px}
+.sec-title .sub{margin:0}
+section{padding:0;margin:0 0 52px;border:0;scroll-margin-top:90px}
+.block{margin-bottom:52px}
+
+/* cards */
+.card,.explainer,.passage,.route-card,.grammar-box .panel{background:var(--u-panel);border:1px solid var(--u-line);border-radius:var(--u-r)}
+.card{padding:22px 26px}
+.passage{padding:22px 26px;max-width:none}
+.explainer{border-left:3px solid var(--u-cocoa);padding:16px 20px;font-size:20.5px}
+.reading,.passage{font-family:var(--u-font);font-size:22.4px;line-height:1.75}
+.reading p,.passage p{margin:0 0 16px}
+
+/* buttons */
+button.check,.btn{font-family:var(--u-font);font-size:19.8px;font-weight:600;letter-spacing:0;background:var(--u-choc);color:var(--u-cream);border:0;padding:10px 24px;border-radius:999px;cursor:pointer;box-shadow:0 3px 0 var(--u-caramel);transition:all .15s}
+button.check:hover,.btn:hover{background:var(--u-cocoa)}
+button.check:active,.btn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--u-caramel)}
+.score,.fb,.score-badge,.match-status,.word-count,.save-note{font-size:18.5px;color:var(--u-soft)}
+
+/* text fields */
+textarea{width:100%;font-family:var(--u-font);font-size:20.5px;line-height:1.5;color:var(--u-ink);background:var(--u-field);border:1px solid var(--u-line);border-radius:6px;padding:10px 12px;resize:vertical}
+.exercise-row select,.exercise-row input[type=text]{font-family:var(--u-font);font-size:20.5px;padding:6px 10px;border:1px solid var(--u-line);border-radius:6px;background:var(--u-field);color:var(--u-ink)}
+.exercise-row{font-size:21.2px}
+.comp-q p.q,.mcq p.stem,.q-text,.prompt-title{font-size:21.2px;font-weight:600;color:var(--u-ink)}
+.gap-item{font-size:21.2px}
+
+/* options / mcq */
+.opt-btn,.opt,.pill{font-family:var(--u-font);font-size:20.5px;padding:10px 14px;border:1px solid var(--u-line);border-radius:8px;background:var(--u-field);color:var(--u-ink);cursor:pointer}
+.pill{border-radius:999px;padding:7px 16px}
+.opt-btn:hover,.opt:hover,.pill:hover{border-color:var(--u-cocoa)}
+.opt-btn.correct,.opt.correct{border-color:var(--u-good);background:var(--u-good-soft);color:var(--u-ink)}
+.opt-btn.wrong,.opt.wrong{border-color:var(--u-bad);background:var(--u-bad-soft);color:var(--u-ink)}
+.pill.correct{border-color:var(--u-good);background:var(--u-good-soft);color:var(--u-good);font-weight:600}
+.pill.incorrect{border-color:var(--u-bad);background:var(--u-bad-soft);color:var(--u-bad)}
+
+/* matching */
+.match-col{gap:8px}
+.match-item{font-family:var(--u-font);font-size:20.5px;padding:10px 14px;border:1px solid var(--u-line);border-radius:8px;background:var(--u-field);color:var(--u-ink);cursor:pointer;text-align:left}
+.match-item:hover{border-color:var(--u-cocoa)}
+.match-item.selected{border-color:var(--u-choc);background:var(--u-choc);color:var(--u-cream)}
+.match-item.matched,.match-item.correct,.match-item.solved{border-color:var(--u-good);background:var(--u-good-soft);color:var(--u-ink);cursor:default;opacity:1}
+.match-item.wrong{border-color:var(--u-bad);background:var(--u-bad-soft);color:var(--u-ink)}
+
+/* word bank chips */
+.word-chip,.bank-word,.chip{font-family:var(--u-font);font-size:19.8px;font-weight:400;padding:6px 14px;border:1px solid var(--u-line);border-radius:999px;background:var(--u-field);color:var(--u-ink)}
+.word-chip:hover,.chip:hover{border-color:var(--u-cocoa);background:#EBD3B9}
+.word-chip.selected{border-color:var(--u-choc);background:var(--u-choc);color:var(--u-cream)}
+.word-chip.used,.chip.used,.bank-word.used{opacity:.3}
+.word-bank,.bank{display:flex;flex-wrap:wrap;gap:8px}
+
+/* blanks */
+.blank{font-family:var(--u-font);font-size:21.2px;font-weight:600;color:var(--u-choc);min-width:120px;text-align:center}
+.blank.filled{border-radius:3px}
+
+/* vocab */
+.vocab-term{font-size:20.5px;border-radius:var(--u-r)}
+.vocab-term .def{font-size:19.2px}
+.flash-face{border-radius:var(--u-r)}
+.flash-term{font-size:23.8px}
+
+/* grammar */
+.grammar-box li{font-size:19.2px}
+.grammar-box .formula,.ex-title{font-size:18.5px}
+.g-note{font-size:20.5px}
+table.verbs{font-size:19.8px}
+
+/* level-2 pill navigation (jump-to sections / tabs) */
+.unit-toc button,.unit-tab,.side-nav a,.tab-btn{font-family:var(--u-font);font-size:19.2px;font-weight:500}
+
+:root{--sans:var(--u-font);--serif:var(--u-font)}
+.shell{max-width:1180px;padding:0 28px 80px}
+header.masthead{border-radius:0;margin:0 0 24px;padding:24px 0;background:var(--u-choc);text-align:center;box-shadow:0 0 0 100vmax var(--u-choc);clip-path:inset(0 -100vmax)}
+header.masthead .kicker{font-size:18.5px;margin:0 auto 4px}
+header.masthead h1{font-size:45px;font-weight:500;margin:0 0 6px}
+header.masthead p{font-size:19.8px;max-width:70ch}
+nav.units .label{font-size:18.5px}
+nav.units button{font-size:19.2px;font-weight:500}
+nav.units button.active{font-weight:500}
+.unit-toc{margin-bottom:0}
+section{scroll-margin-top:16px}
+main{max-width:none}
+.unit-toc button{background:var(--u-panel);padding:6px 14px}
+.unit-head{margin-bottom:36px}
+.preview-list li{font-size:23.8px}
+.preview-list .q-label{font-size:17.8px}
+.speaking-list li{font-size:22.4px}
+
+/* ---------- иллюстрации, карточки слов, компактность ---------- */
+.preview-row.has-art{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:18px;align-items:start}
+.unit-art{margin:0;border-radius:12px;overflow:hidden;border:1px solid var(--u-line,#D3B9A3);background:#F3E6D8}
+.unit-art-svg{display:block;width:100%;height:auto}
+.unit-art figcaption{padding:8px 14px 10px;font-style:italic;color:#6B4A37;font-size:18.5px;line-height:1.4;background:#F9F1E8;border-top:1px solid var(--u-line,#D3B9A3)}
+.preview-row.has-art .preview-list li{font-size:21.8px;padding:10px 0}
+.flip-tools{display:flex;justify-content:flex-end;margin:-4px 0 10px}
+.flip-all{font-family:inherit;font-size:18.5px;background:none;border:1px solid #D3B9A3;border-radius:99px;padding:5px 14px;color:#6B4A37;cursor:pointer}
+.flip-all:hover{border-color:#6B4A37}
+.flip-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:20px}
+.flip-card{font-family:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;perspective:800px;text-align:center}
+.flip-inner{display:grid;height:100%;min-height:96px;transition:transform .45s ease;transform-style:preserve-3d}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg)}
+.flip-face{grid-area:1/1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:12px 10px;border-radius:10px;border:1px solid #D3B9A3;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.flip-front{background:#F9F1E8;box-shadow:0 2px 0 #E2CDB8}
+.flip-card:hover .flip-front{border-color:#7B4A2E}
+.flip-card:focus-visible .flip-face{outline:3px solid #E3A868;outline-offset:2px}
+.flip-back{background:#3B1F14;border-color:#3B1F14;transform:rotateY(180deg)}
+.fc-w{font-size:23.8px;font-weight:600;color:#2B1810;line-height:1.25}
+.fc-ru{font-size:21.8px;font-weight:600;color:#F6E9DA;line-height:1.25}
+.fc-def{font-size:16.6px;color:#D6BBA3;line-height:1.35}
+.gap-row{display:block!important;line-height:2.1}
+.gap-row .num{display:inline-block;width:22px}
+.gap-row .blank{min-width:5.5em!important;padding:0 8px!important;line-height:1.5}
+@media (max-width:860px){ .flip-grid{grid-template-columns:repeat(3,minmax(0,1fr))} }
+@media (max-width:760px){ .preview-row.has-art{grid-template-columns:1fr;gap:12px} }
+@media (max-width:640px){
+  .shell{padding:0 16px 60px!important}
+  header.masthead{padding:14px 0!important;margin-bottom:12px!important}
+  header.masthead .kicker{font-size:16.6px!important}
+  header.masthead h1{font-size:34.4px!important;margin:0!important}
+  header.masthead p:not(.kicker){display:none}
+  nav.units{flex-wrap:nowrap!important;justify-content:flex-start!important;overflow-x:auto;padding:8px 16px!important;margin:0 -16px 18px!important;border-radius:0!important;border-left:0!important;border-right:0!important;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  nav.units::-webkit-scrollbar,.unit-toc::-webkit-scrollbar{display:none}
+  nav.units .label{display:none!important}
+  nav.units button{flex:none;white-space:nowrap!important;padding:6px 12px!important;font-size:18.5px!important}
+  .unit-head{margin-bottom:20px!important}
+  .unit-head h2{font-size:31.7px}
+  .unit-toc{flex-wrap:nowrap!important;overflow-x:auto;margin:0 -16px;padding:0 16px 4px;scrollbar-width:none}
+  .unit-toc button{flex:none;white-space:nowrap}
+  .flip-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .fc-w{font-size:21.8px}.fc-ru{font-size:20.5px}
+  .card{padding:16px!important}
+  .preview-list li{font-size:21.2px!important}
+  .speaking-list li{font-size:21.2px!important}
+}
+@media (prefers-reduced-motion:reduce){ .flip-inner{transition:none} }
+
+/* ---------- прогресс ---------- */
+nav.units button .u-pct{margin-left:6px;font-size:15.9px;opacity:.75}
+nav.units button.unit-complete:not(.active){border-color:#5F7A45!important;color:#4b6236}
+nav.units button.unit-complete .u-pct{color:#5F7A45;opacity:1;font-weight:700}
+nav.units button.active .u-pct{color:#E3A868}
+.unit-progress{display:flex;align-items:center;gap:10px;margin:0 0 14px;font-size:17.8px;color:#6B4A37;flex-wrap:wrap}
+.up-track{width:160px;height:8px;background:#EAD9C7;border-radius:6px;overflow:hidden;display:inline-block}
+.up-track i{display:block;height:100%;width:0;background:#5F7A45;transition:width .4s}
+.card .done-mark{display:none;margin-left:8px;font-size:16.6px;font-weight:700;color:#5F7A45;font-style:normal}
+.card.ex-done .done-mark{display:inline}
+.card.ex-done{border-color:#B9CFA9!important}
+.retry-btn{margin-left:4px;font-family:inherit;font-size:17.8px;background:#3B1F14;color:#F6E9DA;border:0;border-radius:99px;padding:4px 14px;cursor:pointer}
+.saved-note{font-size:16.6px;color:#9B7E66;font-style:italic;margin:6px 0 0}
+.reset-wrap{text-align:center;margin:30px 0 0}
+.reset-progress{font-family:inherit;font-size:17.8px;background:none;border:1px solid #D3B9A3;border-radius:99px;padding:5px 14px;color:#6B4A37;cursor:pointer}
+.reset-progress:hover{border-color:#6B4A37}
+@media (max-width:640px){ .up-track{width:110px} .unit-progress{font-size:16.6px} }
+
+/* ===== больше коричневого ===== */
+:root{--u-bg:#E9D9C5;--u-panel:#F5EBDD;--u-field:#FAF2E7;--u-line:#CBB095;--u-soft:#5E3E2C}
+body{background:var(--u-bg)}
+.card,.preview-list,.speaking-list{border-color:var(--u-line)}
+nav.units{background:#4A2A1A!important;border-color:#3B1F14!important}
+nav.units .label{color:#E3A868!important}
+nav.units button{color:#F1DFCB!important;border-color:rgba(246,233,218,.28)!important;background:transparent!important}
+nav.units button .unum{color:#D9A26A!important}
+nav.units button:hover{background:rgba(246,233,218,.1)!important}
+nav.units button.active{background:#A65A1E!important;border-color:#A65A1E!important;color:#FFF7EE!important}
+nav.units button.active .unum,nav.units button.active .u-pct{color:#FFE2BF!important}
+nav.units button.unit-complete:not(.active){border-color:#9DBA82!important;color:#DDEBCF!important}
+nav.units button.unit-complete .u-pct{color:#B7D49B!important}
+.unit-toc button{background:#7B4A2E!important;border-color:#7B4A2E!important;color:#F6E9DA!important}
+.unit-toc button:hover{background:#3B1F14!important;border-color:#3B1F14!important}
+section > h3{color:#3B1F14}
+.flip-front{background:#F1E2CF;border-color:#C2A386;box-shadow:0 2px 0 #B8987A}
+.flip-card:hover .flip-front{border-color:#5E3622}
+.word-chip,.pill,.match-item{background:#F3E6D5!important;border-color:#C2A386!important}
+.word-chip:hover,.pill:hover:not(.disabled),.match-item:hover{border-color:#5E3622!important}
+.word-chip.selected,.match-item.selected{background:#3B1F14!important;border-color:#3B1F14!important;color:#F6E9DA!important}
+.pill.correct,.match-item.matched{background:var(--u-good-soft)!important;border-color:var(--u-good)!important;color:var(--u-ink)!important}
+.pill.incorrect,.match-item.wrong{background:var(--u-bad-soft)!important;border-color:var(--u-bad)!important}
+.flip-all,.reset-progress{background:#3B1F14;border-color:#3B1F14;color:#F6E9DA;box-shadow:0 2px 0 #A65A1E}
+.flip-all:hover,.reset-progress:hover{background:#5E3622;border-color:#5E3622}
+.unit-art{border-color:#C2A386}
+.unit-art figcaption{background:#EFDFCB;border-top-color:#C2A386;color:#5E3E2C}
+.up-track{background:#D9C2A8}
+textarea,.exercise-row input[type=text]{background:#FBF5EC!important;border-color:#C2A386!important}
+/* ===== Тетрадь (семейство Wayfinder / Next Steps) ===== */
+:root{
+  --font:'Inter','Segoe UI',system-ui,sans-serif; --u-font:'Inter','Segoe UI',system-ui,sans-serif;
+  --mono:'Space Mono','Courier New',monospace; --hand:'Caveat',cursive;
+  --bg:#f5efe8; --bg-panel:#fffaf5; --bg-sunken:#f1e7de; --ink:#2e241e; --ink-soft:#5a3f2a;
+  --choc-deep:#45301f; --accent:#8a6246; --accent-soft:#f1e7de; --calm:#5a3f2a; --calm-soft:#f1e7de;
+  --gold:#45301f; --gold-soft:#45301f; --good:#2d7a4a; --good-soft:#e3ecdd; --bad:#b34a4a; --bad-soft:#f3e0da;
+  --cream-text:#fcf5ed; --border:#e5d6c8; --white:#fffaf5;
+  --u-bg:#f5efe8; --u-panel:#fffaf5; --u-field:#fffaf5; --u-line:#e5d6c8; --u-ink:#2e241e; --u-soft:#5a3f2a;
+  --u-choc:#45301f; --u-cocoa:#5a3f2a; --u-caramel:#8a6246; --u-cream:#fcf5ed; --u-good:#2d7a4a; --u-good-soft:#e3ecdd;
+  --u-bad:#b34a4a; --u-bad-soft:#f3e0da; --nb-gold:#c3a06a; --nb-line:#dccfc2;
+}
+html,body{background:#f5efe8}
+body{font-family:var(--font);color:var(--ink);
+  background-image:repeating-linear-gradient(to bottom,transparent 0 38px,var(--nb-line) 38px 39px);background-attachment:local}
+body::before{background:#45301f!important}
+h1,h2,h3,.sec-title h2,.unit-head h1,.unit-head h2{font-family:var(--mono);font-weight:700;letter-spacing:.2px}
+.topbar{background:#45301f!important;border-bottom:3px solid var(--accent)!important}
+.brand{font-family:var(--mono);font-weight:700;color:#fcf5ed!important}
+.brand span{color:var(--nb-gold)!important;font-family:var(--hand);font-size:1.15em;font-weight:700}
+.progress-track{background:rgba(0,0,0,.28)!important}
+.progress-fill{background:var(--nb-gold)!important}
+.progress-label{color:rgba(252,245,237,.8)!important}
+.unit-tabs{background:transparent}
+.unit-tab{font-family:var(--mono);font-weight:700;background:#fffaf5;border-color:var(--border);color:var(--ink-soft)}
+.unit-tab.active{background:#45301f!important;border-color:#45301f!important;color:#fcf5ed!important}
+.unit-tab:hover{background:#f1e7de;border-color:var(--accent)}
+main{border-left:2px solid var(--accent);padding-left:26px}
+.unit-head h1,.unit-head h2{display:inline-block;font-size:clamp(29.1px,3.7vw,37px);color:#2e241e;background:#fffaf5;
+  border:2px dashed var(--accent);border-radius:10px;padding:10px 20px;transform:rotate(-1deg);box-shadow:0 8px 20px rgba(46,36,30,.07)}
+.unit-head h1::after,.unit-head h2::after{display:none}
+.unit-head .unum,.unit-head p:first-child{font-family:var(--hand);font-size:26.4px;font-style:normal;color:var(--accent)}
+.sec-title h2{font-size:29.1px;color:#2e241e}
+.sec-title h2::after{background:var(--nb-gold)}
+.sec-title .sub,.hint,.sub{font-family:var(--hand);font-size:25.1px;color:var(--ink-soft);font-style:normal}
+.side-nav a{font-family:'Inter',sans-serif}
+.side-nav a.active,.side-nav a:hover{color:#45301f}
+.side-nav .num{font-family:var(--mono)}
+.card,.explainer,.passage,.route-card,.grammar-box .panel,.reading{background:#fffaf5;border:1px solid var(--border);border-radius:10px;box-shadow:0 6px 16px rgba(46,36,30,.05)}
+.explainer{border-left:6px solid var(--nb-gold)!important;border-radius:0 10px 10px 0}
+.opt-btn,.match-item,.chip,.word-chip{font-family:var(--mono);font-size:18.5px;background:#f1e7de;border:1px solid var(--border);border-radius:30px;color:#2e241e}
+.match-item{border-radius:20px}
+.opt-btn:hover,.match-item:hover,.chip:hover{background:#ead9ca;border-color:var(--accent)}
+.match-item.selected,.chip.selected{background:#45301f!important;border-color:#45301f!important;color:#fcf5ed!important}
+.btn,.flip-all{background:#45301f;color:#fcf5ed;border-radius:30px;font-family:var(--mono)}
+.btn:hover,.flip-all:hover{background:#5a3f2a}
+.flip-front{background:#fffaf5!important;border-color:var(--accent)!important;box-shadow:0 2px 0 #e5d6c8!important}
+.flip-back{background:#45301f!important;border-color:#45301f!important}
+.flip-front .fc-w,.fc-w{font-family:var(--mono)}
+.blank{background:#f5efe8;border-bottom-color:var(--accent)}
+textarea{background:#fffaf5;border-color:var(--border);font-family:'Inter',sans-serif}
+input[type=text]{font-family:'Inter',sans-serif}
+.reset-progress{border-color:var(--border);color:var(--ink-soft)}
+footer{font-family:var(--hand);font-size:23.8px}
+@media(max-width:640px){main{padding-left:14px}.unit-head h1,.unit-head h2{font-size:26.4px;padding:8px 14px}}
+/* ===== Тетрадь: доп. для Next Steps / First Steps / Talking Points ===== */
+:root{
+  --bg:#f5efe8; --panel:#fffaf5; --ink:#2e241e; --ink-soft:#5a3f2a; --line:#e5d6c8; --cocoa:#5a3f2a; --cocoa-deep:#45301f;
+  --caramel:#8a6246; --caramel-soft:#f1e7de; --cream-text:#fcf5ed; --field:#fffaf5;
+  --good:#2d7a4a; --good-soft:#e3ecdd; --bad:#b34a4a; --bad-soft:#f3e0da;
+  --serif:'Inter','Segoe UI',system-ui,sans-serif; --sans:'Inter','Segoe UI',system-ui,sans-serif;
+}
+.masthead{background:#45301f!important;border-bottom:3px solid #8a6246;border-radius:10px}
+.masthead h1{font-family:var(--mono);font-weight:700;color:#fcf5ed}
+.masthead .kicker{font-family:var(--hand);font-style:normal;font-size:26.4px;color:var(--nb-gold)!important}
+.masthead p{color:rgba(252,245,237,.82)}
+.units button,#unitNav button{font-family:var(--mono);font-weight:700;background:#fffaf5;border:1px solid var(--line);color:#5a3f2a;border-radius:30px}
+.units button.active,#unitNav button.active{background:#45301f!important;color:#fcf5ed!important;border-color:#45301f!important}
+.units .label,#unitNav .label{font-family:var(--hand);font-size:25.1px;color:#8a6246}
+.unit-panel{border-left:2px solid #8a6246;padding-left:24px}
+.unit-head .kicker{font-family:var(--hand);font-style:normal;font-size:26.4px;color:#8a6246}
+.unit-head h2{display:inline-block;font-family:var(--mono);font-weight:700;color:#2e241e;background:#fffaf5;border:2px dashed #8a6246;
+  border-radius:10px;padding:10px 20px;transform:rotate(-1deg);box-shadow:0 8px 20px rgba(46,36,30,.07)}
+.unit-head h2::after{display:none}
+.ex-title{font-family:var(--mono)!important;font-weight:700;color:#2e241e}
+.lede{font-family:var(--hand);font-size:25.1px;font-style:normal;color:#5a3f2a}
+.pill{font-family:'Inter',sans-serif;background:#fffaf5;border:1px solid var(--line);border-radius:30px}
+.pill:hover{border-color:#8a6246}
+.word-chip,.match-item,.option,.opt{font-family:var(--mono)}
+.check,.retry-btn{background:#45301f;color:#fcf5ed;border-radius:30px;font-family:var(--mono)}
+.grammar-box .panel{border-left:6px solid var(--nb-gold)}
+.reading{font-family:'Inter',sans-serif}
+.dlg-who{color:#8a6246;font-family:var(--mono)}
+.pic{background:#fffaf5;border-color:var(--line)}
+@media(max-width:640px){.unit-panel{padding-left:12px}.unit-head h2{font-size:26.4px;padding:8px 14px}}
+main#unitMain{border-left:none;padding-left:0}
+.masthead h1{font-family:var(--mono)!important;font-weight:700!important;letter-spacing:.3px}
+#unitMain h2,#unitMain h3,.section-title{font-family:var(--mono)}
+.unit-toc a,.unit-toc button{background:#45301f!important;color:#fcf5ed!important;border-color:#45301f!important;font-family:var(--mono);font-size:17.1px}
+.unit-toc a:hover,.unit-toc button:hover{background:#5a3f2a!important}
+.units button .unum{font-family:var(--mono);font-style:normal;color:var(--nb-gold)}
+
+/* Весь шрифт — Times New Roman */
+html body,html body *:not(.emoji){font-family:"Times New Roman",Times,serif!important}
+</style>
+<style id="fs-scaled-132">html{font-size:132%}</style><style id="mobile-fix">@media(max-width:520px){.flip-face{min-width:0;padding:10px 6px}.fc-w{font-size:19px!important;overflow-wrap:break-word}.fc-ru{font-size:18px!important;overflow-wrap:break-word}}</style><style id="white-sheet">:root:not([data-theme="dark"]) body:not([data-theme="dark"]) .unit-panel{background:#fff!important;background-image:none!important;border:1px solid #e3d3c4!important;border-left:2px solid #8a6246!important;border-radius:14px!important;box-shadow:0 4px 18px rgba(90,60,40,.09)!important;padding:28px 30px 34px 34px!important;box-sizing:border-box}@media(max-width:520px){:root:not([data-theme="dark"]) body:not([data-theme="dark"]) .unit-panel{padding:18px 14px 22px 16px!important;border-radius:12px!important}}</style><style id="stripes-strong">:root:not([data-theme="dark"]) body:not([data-theme="dark"]){background-image:repeating-linear-gradient(to bottom,transparent 0 38px,#cdb7a3 38px 40px)!important}</style></head>
+<body>
+<div class="shell">
+  <header class="masthead">
+    <p class="kicker">An adult English course · Level A2+</p>
+    <h1>Next Steps</h1>
+    <p>Twelve units for learners who have finished A2 and are moving towards B1: experiences, stories, work, the future, the past, health, how things are made, describing people and things, money and shopping, technology, dreams and wishes, and reported speech, with vocabulary and Russian translations, reading, grammar and speaking practice in every unit.</p>
+  </header>
+
+  <nav class="units" id="unitNav"></nav>
+  <main id="unitMain"></main>
+</div>
+
+<script>
+const UNITS = [{"id": "u1", "title": "Have you ever...?", "kicker": "Unit 1", "grammarName": "Present perfect: ever, never, already, yet", "intro": "Talking about life experiences and things you have done.", "preview": ["Have you ever been abroad? Where?", "What is the most exciting thing you have done?", "What new food have you tried recently?", "Is there a place you have never visited but want to see?"], "vocab": [{"word": "ever", "def": "at any time in your life", "ru": "когда-либо", "emo": "🌍"}, {"word": "already", "def": "before now", "ru": "уже", "emo": "✅"}, {"word": "yet", "def": "until now (in questions and negatives)", "ru": "ещё, уже (в вопросах)", "emo": "❓"}, {"word": "abroad", "def": "in another country", "ru": "за границей", "emo": "🌐"}, {"word": "try", "def": "to do or eat something new", "ru": "пробовать", "emo": "😋"}, {"word": "adventure", "def": "an exciting or unusual experience", "ru": "приключение", "emo": "🏔️"}, {"word": "lucky", "def": "having good things happen by chance", "ru": "везучий", "emo": "🍀"}, {"word": "memory", "def": "something from the past that you remember", "ru": "воспоминание", "emo": "💭"}, {"word": "experience", "def": "something that happens to you", "ru": "опыт, переживание"}, {"word": "journey", "def": "a long trip from one place to another", "ru": "путешествие, поездка"}, {"word": "brave", "def": "not afraid of danger", "ru": "храбрый"}, {"word": "achieve", "def": "to succeed in doing something difficult", "ru": "достигать"}, {"word": "unusual", "def": "different from what is normal", "ru": "необычный"}, {"word": "explore", "def": "to travel around a place to learn about it", "ru": "исследовать"}, {"word": "souvenir", "def": "something you buy to remember a place", "ru": "сувенир"}, {"word": "culture", "def": "the customs and ideas of a country", "ru": "культура"}], "vocabGap": [{"sentence": "Have you ___ been to Italy?", "answer": "ever"}, {"sentence": "I have ___ finished my homework, so I can relax.", "answer": "already"}, {"sentence": "She hasn't called me ___. I am still waiting.", "answer": "yet"}, {"sentence": "He lived ___ for two years, in Germany.", "answer": "abroad"}, {"sentence": "I want to ___ Japanese food this weekend.", "answer": "try"}, {"sentence": "Climbing the mountain was a real ___.", "answer": "adventure"}], "vocabTF": [{"statement": "“Already” means “before now”.", "answer": true}, {"statement": "If you are “lucky”, bad things always happen to you.", "answer": false}, {"statement": "A “memory” is something you remember.", "answer": true}], "reading": ["Tom is thirty and he loves travelling. He has visited eleven countries and he has <b>already</b> lived <b>abroad</b> twice. His best <b>memory</b> is a week in Norway, where he went camping in the mountains. “It was a real <b>adventure</b>,” he says.", "He has never been to Asia, but he has just booked a flight to Thailand. He hasn't decided where to stay <b>yet</b>. Has he <b>ever</b> eaten insects? Not <b>yet</b>, but he wants to <b>try</b> them. He feels <b>lucky</b> because his job gives him a lot of holidays."], "comprehension": ["How many countries has Tom visited?", "What is Tom's best memory?", "What has Tom just booked?"], "grammarPanels": [{"title": "Present perfect", "formula": "have / has + past participle", "notes": ["Use it for experiences up to now, with no exact time", "I have visited Spain. She has seen that film.", "Negative: haven't / hasn't. Question: Have you ...?", "Irregular: go → been, see → seen, eat → eaten, do → done"]}, {"title": "Ever, never, already, yet, just", "formula": "time words with the present perfect", "notes": ["Have you ever tried sushi? — Yes, I have. / No, I never have.", "I've already seen it. (before now)", "I haven't finished yet. (until now)", "I've just arrived. (a moment ago)"]}], "grammarWrite": [{"sentence": "I ___ (visit) Paris three times.", "answer": "have visited"}, {"sentence": "She ___ (never, eat) sushi.", "answer": "has never eaten"}, {"sentence": "We ___ (just, arrive) at the hotel.", "answer": "have just arrived"}, {"sentence": "They ___ (not, finish) yet. Use a short form.", "answer": "haven't finished"}, {"sentence": "He ___ (lose) his keys. He can't get in.", "answer": "has lost"}], "grammarChoice": [{"sentence": "She has ___ to Spain twice, but she is at home now.", "options": ["been", "gone"], "answer": "been"}, {"sentence": "I ___ my homework yet.", "options": ["haven't done", "didn't do"], "answer": "haven't done"}, {"sentence": "Have you ___ eaten snails?", "options": ["ever", "yet"], "answer": "ever"}, {"sentence": "We have ___ seen that film. It was great.", "options": ["already", "yet"], "answer": "already"}], "grammarTF": [{"sentence": "I have seen him yesterday.", "answer": false}, {"sentence": "She has never flown in a plane.", "answer": true}, {"sentence": "Have you finished already?", "answer": true}], "speaking": ["Tell your partner about the most interesting place you have visited.", "Ask: Have you ever...? Use five different ideas.", "Talk about something you have never done but want to do."], "writing": "Write 70–80 words about your life experiences. Use the present perfect at least four times, with ever, never or already."}, {"id": "u2", "title": "What happened?", "kicker": "Unit 2", "grammarName": "Past continuous and past simple (when / while)", "intro": "Telling stories about things that happened in the past.", "preview": ["What was the last interesting thing that happened to you?", "Where were you at 8 p.m. yesterday?", "Have you ever had a small accident? What happened?", "Do you like telling stories to friends?"], "vocab": [{"word": "suddenly", "def": "quickly and without warning", "ru": "вдруг", "emo": "⚡"}, {"word": "accident", "def": "something bad that happens by chance", "ru": "несчастный случай", "emo": "🚑"}, {"word": "notice", "def": "to see or realise something", "ru": "замечать", "emo": "👀"}, {"word": "luckily", "def": "by good luck", "ru": "к счастью", "emo": "🍀"}, {"word": "while", "def": "during the time that", "ru": "пока", "emo": "⏳"}, {"word": "scared", "def": "afraid", "ru": "напуганный", "emo": "😨"}, {"word": "happen", "def": "to take place", "ru": "случаться", "emo": "❓"}, {"word": "decide", "def": "to choose what to do", "ru": "решать", "emo": "🤔"}, {"word": "injure", "def": "to hurt a person or an animal", "ru": "ранить, травмировать"}, {"word": "emergency", "def": "a sudden, dangerous situation", "ru": "чрезвычайная ситуация"}, {"word": "rescue", "def": "to save somebody from danger", "ru": "спасать"}, {"word": "witness", "def": "a person who sees an event happen", "ru": "свидетель"}, {"word": "dangerous", "def": "likely to cause harm", "ru": "опасный"}, {"word": "escape", "def": "to get away from a place or from danger", "ru": "сбежать, спастись"}, {"word": "shout", "def": "to say something very loudly", "ru": "кричать"}, {"word": "ambulance", "def": "a vehicle that takes ill people to hospital", "ru": "скорая помощь"}], "vocabGap": [{"sentence": "It was a quiet street, but ___ a car appeared.", "answer": "suddenly"}, {"sentence": "He had a small ___ on his bike.", "answer": "accident"}, {"sentence": "I didn't ___ the time, so I was late.", "answer": "notice"}, {"sentence": "___, nobody was hurt.", "answer": "Luckily"}, {"sentence": "She was cooking ___ I was washing the dishes.", "answer": "while"}, {"sentence": "I was ___ of the dark when I was a child.", "answer": "scared"}], "vocabTF": [{"statement": "If something happens “suddenly”, it is slow and planned.", "answer": false}, {"statement": "“Luckily” means “by good luck”.", "answer": true}, {"statement": "If you are “scared”, you feel afraid.", "answer": true}], "reading": ["Last Friday Anna was riding her bike home from work. It was raining and she was listening to music. <b>Suddenly</b> a dog ran across the road. Anna didn't <b>notice</b> it until the last second. She stopped quickly, but she fell off her bike.", "She was <b>scared</b>, but <b>luckily</b> she wasn't hurt. A man who was walking nearby helped her. They talked <b>while</b> she was checking her bike. Later she <b>decided</b> to buy a bright jacket and a helmet. “Now I know what can <b>happen</b>,” she said."], "comprehension": ["What was Anna doing when the dog ran across the road?", "Why was Anna lucky?", "What did Anna decide to buy?"], "grammarPanels": [{"title": "Past continuous", "formula": "was / were + verb-ing", "notes": ["Use it for an action in progress in the past", "I was reading at nine o'clock.", "They were watching TV.", "Negative: wasn't / weren't. Question: Were you sleeping?"]}, {"title": "Past continuous + past simple", "formula": "when / while", "notes": ["A long action (was doing) is interrupted by a short action (did)", "I was walking home when it started to rain.", "While she was cooking, the phone rang.", "Use while + continuous, when + simple"]}], "grammarWrite": [{"sentence": "I ___ (walk) in the park when it started to rain.", "answer": "was walking"}, {"sentence": "They ___ (watch) TV when I arrived.", "answer": "were watching"}, {"sentence": "She ___ (sleep) when the phone rang.", "answer": "was sleeping"}, {"sentence": "What ___ you doing at nine o'clock? (was / were)", "answer": "were"}, {"sentence": "He ___ (not, listen) when the teacher spoke. Use a short form.", "answer": "wasn't listening"}], "grammarChoice": [{"sentence": "I was cooking ___ the phone rang.", "options": ["when", "while"], "answer": "when"}, {"sentence": "She fell ___ she was running.", "options": ["when", "while"], "answer": "while"}, {"sentence": "What ___ you doing at eight?", "options": ["was", "were"], "answer": "were"}, {"sentence": "He ___ TV when I called.", "options": ["watched", "was watching"], "answer": "was watching"}], "grammarTF": [{"sentence": "She was having dinner when he called.", "answer": true}, {"sentence": "While I walked, I was meeting a friend.", "answer": false}, {"sentence": "We weren't sleeping at midnight.", "answer": true}], "speaking": ["Tell a short story about a day when something unexpected happened.", "Ask your partner: What were you doing at 7 p.m. yesterday?", "Describe an accident or a funny moment you remember."], "writing": "Write a short story (80–100 words) about something that happened to you. Use the past continuous and past simple with when / while."}, {"id": "u3", "title": "Work life", "kicker": "Unit 3", "grammarName": "Have to / don't have to / must", "intro": "Talking about jobs, duties and working conditions.", "preview": ["What do you do? Do you like your job?", "What do you have to do at work every day?", "What is the most important thing in a job: money or time?", "Have you ever applied for a job abroad?"], "vocab": [{"word": "colleague", "def": "a person you work with", "ru": "коллега", "emo": "🧑‍💼"}, {"word": "boss", "def": "the person in charge at work", "ru": "начальник", "emo": "👔"}, {"word": "meeting", "def": "when people talk about work together", "ru": "совещание", "emo": "🗓️"}, {"word": "deadline", "def": "the last day to finish something", "ru": "крайний срок", "emo": "⏰"}, {"word": "apply", "def": "to ask formally for a job", "ru": "подавать заявку", "emo": "📨"}, {"word": "salary", "def": "money you get every month for work", "ru": "зарплата", "emo": "💶"}, {"word": "part-time", "def": "working fewer hours than usual", "ru": "неполная занятость", "emo": "🕑"}, {"word": "promotion", "def": "a move to a better, higher job", "ru": "повышение", "emo": "📈"}, {"word": "employee", "def": "a person who works for a company", "ru": "сотрудник"}, {"word": "employer", "def": "a person or company that gives people work", "ru": "работодатель"}, {"word": "interview", "def": "a meeting to decide if you get a job", "ru": "собеседование"}, {"word": "qualification", "def": "a certificate or exam you pass for a job", "ru": "квалификация"}, {"word": "contract", "def": "a legal agreement, for example for a job", "ru": "контракт"}, {"word": "resign", "def": "to leave your job officially", "ru": "уволиться по собственному желанию"}, {"word": "schedule", "def": "a plan of times for work or events", "ru": "расписание, график"}, {"word": "skill", "def": "an ability to do something well", "ru": "навык"}], "vocabGap": [{"sentence": "My ___ and I share an office. We get on very well.", "answer": "colleague"}, {"sentence": "The ___ wants the report by Friday.", "answer": "boss"}, {"sentence": "We have a ___ every Monday at nine.", "answer": "meeting"}, {"sentence": "I have to finish the project. The ___ is tomorrow.", "answer": "deadline"}, {"sentence": "She wants to ___ for a job in London.", "answer": "apply"}, {"sentence": "He works ___ because he also studies.", "answer": "part-time"}], "vocabTF": [{"statement": "A “salary” is the money you receive every month.", "answer": true}, {"statement": "A “promotion” means you lose your job.", "answer": false}, {"statement": "A “colleague” is someone you work with.", "answer": true}], "reading": ["Maria works in a travel agency. She has to start at nine, and she doesn't have to wear a suit, which she likes. Every Monday there is a <b>meeting</b> with her <b>boss</b>. She must answer all emails before lunch, and she has to finish her reports by the <b>deadline</b>.", "Her <b>colleagues</b> are friendly. Her <b>salary</b> isn't high, but she hopes to get a <b>promotion</b> next year. At the weekend she doesn't have to work. A friend works <b>part-time</b> in a cafe, and he thinks about trying to <b>apply</b> for a full-time job."], "comprehension": ["What does Maria have to do before lunch?", "What doesn't she have to wear?", "What does Maria hope to get next year?"], "grammarPanels": [{"title": "Have to / don't have to", "formula": "have to + verb; don't / doesn't have to + verb", "notes": ["have to = it is necessary: I have to wake up at six.", "don't have to = it is not necessary: You don't have to come.", "Questions: Do you have to work on Saturdays?", "He has to wear a uniform. (has to for he / she / it)"]}, {"title": "Must and mustn't", "formula": "must + verb; mustn't + verb", "notes": ["must = a strong rule or a strong opinion: You must be careful.", "mustn't = it is forbidden: You mustn't use your phone here.", "don't have to ≠ mustn't", "You don't have to pay. / You mustn't park here."]}], "grammarWrite": [{"sentence": "I ___ get up early on weekdays. (have to / has to)", "answer": "have to"}, {"sentence": "She ___ wear a uniform. (have to / has to)", "answer": "has to"}, {"sentence": "We ___ work on Sundays. It's free. (don't have to / mustn't)", "answer": "don't have to"}, {"sentence": "___ you have to work late? (Do / Does)", "answer": "Do"}, {"sentence": "You ___ use your phone here. It is forbidden. (don't have to / mustn't)", "answer": "mustn't"}], "grammarChoice": [{"sentence": "He ___ get up early. He works at six.", "options": ["has to", "have to"], "answer": "has to"}, {"sentence": "You ___ pay. It's free.", "options": ["don't have to", "mustn't"], "answer": "don't have to"}, {"sentence": "You ___ smoke in the office.", "options": ["mustn't", "don't have to"], "answer": "mustn't"}, {"sentence": "Does she ___ work on Saturdays?", "options": ["have to", "has to"], "answer": "have to"}], "grammarTF": [{"sentence": "She has to goes to the office.", "answer": false}, {"sentence": "You don't have to bring a pen. We have some.", "answer": true}, {"sentence": "He haves to work late.", "answer": false}], "speaking": ["Describe your job or the job you want: what you have to do and what you don't have to do.", "Interview your partner: Do you have to work at weekends?", "Talk about rules you mustn't break at work or school."], "writing": "Write 70–80 words about your job or a job you want. Use have to, don't have to and must."}, {"id": "u4", "title": "The future", "kicker": "Unit 4", "grammarName": "Will, might and the first conditional", "intro": "Making predictions, promises and talking about real possibilities.", "preview": ["What do you think you will be doing in five years?", "What do you hope to do next year?", "What will you do if the weather is good this weekend?", "Do you think life will be easier or harder in the future?"], "vocab": [{"word": "probably", "def": "very likely", "ru": "вероятно", "emo": "👍"}, {"word": "maybe", "def": "perhaps", "ru": "может быть", "emo": "🤷"}, {"word": "plan", "def": "what you decide to do", "ru": "план", "emo": "📝"}, {"word": "hope", "def": "to want something to happen", "ru": "надеяться", "emo": "🤞"}, {"word": "expect", "def": "to think that something will happen", "ru": "ожидать", "emo": "🔮"}, {"word": "future", "def": "the time after now", "ru": "будущее", "emo": "🚀"}, {"word": "sure", "def": "certain; with no doubt", "ru": "уверенный", "emo": "✅"}, {"word": "change", "def": "to become different", "ru": "меняться", "emo": "🔄"}, {"word": "prediction", "def": "a statement about what will happen", "ru": "предсказание"}, {"word": "goal", "def": "something you want to achieve", "ru": "цель"}, {"word": "opportunity", "def": "a chance to do something good", "ru": "возможность"}, {"word": "ambition", "def": "a strong wish to be successful", "ru": "амбиция, стремление"}, {"word": "intend", "def": "to plan to do something", "ru": "намереваться"}, {"word": "prepare", "def": "to get ready for something", "ru": "готовиться"}, {"word": "improve", "def": "to become better or to make something better", "ru": "улучшать"}, {"word": "progress", "def": "movement towards a goal", "ru": "прогресс, успехи"}], "vocabGap": [{"sentence": "It's cloudy. It will ___ rain later.", "answer": "probably"}, {"sentence": "___ I will go to the beach, or maybe I will stay at home.", "answer": "Maybe"}, {"sentence": "I have a ___ for the weekend: a trip to the lake.", "answer": "plan"}, {"sentence": "I ___ you have a great holiday!", "answer": "hope"}, {"sentence": "Nobody can say what will happen in the ___.", "answer": "future"}, {"sentence": "I'm ___ she will come. She promised.", "answer": "sure"}], "vocabTF": [{"statement": "“Maybe” means “perhaps”.", "answer": true}, {"statement": "The “future” is the time before now.", "answer": false}, {"statement": "If you are “sure”, you have no doubt.", "answer": true}], "reading": ["Next year will be an important year for Daniel. He <b>expects</b> to finish university and he <b>hopes</b> to find a good job. “I'm <b>sure</b> I will find something,” he says. “If I work hard, I will get a good result.” His <b>plan</b> is to move to a big city.", "He thinks life will <b>change</b> a lot in the <b>future</b>. <b>Maybe</b> he will work from home and <b>probably</b> he will travel more. But he isn't afraid. “If I make a mistake, I will learn from it,” he says. “If I don't find work in my city, I will try another one.”"], "comprehension": ["What does Daniel expect to finish next year?", "What is his plan?", "What will he do if he doesn't find work in his city?"], "grammarPanels": [{"title": "Will and might", "formula": "will + verb; might + verb", "notes": ["will = a prediction or a promise: It will be sunny. I will help you.", "might = it is possible: It might rain.", "Negative: won't / might not", "Time words: tomorrow, next year, soon, in the future"]}, {"title": "First conditional", "formula": "if + present simple, will + verb", "notes": ["Use it for real, possible situations in the future", "If it rains, I will stay at home.", "If you study, you will pass the exam.", "Don't use will after if: If I will go → If I go"]}], "grammarWrite": [{"sentence": "It ___ (be) sunny tomorrow, I think.", "answer": "will be"}, {"sentence": "If it rains, we ___ (stay) at home.", "answer": "will stay"}, {"sentence": "If you ___ (study), you will pass the exam.", "answer": "study"}, {"sentence": "I ___ (not, forget) your birthday. Use a short form.", "answer": "won't forget"}, {"sentence": "She ___ (probably, come) to the party.", "answer": "will probably come"}], "grammarChoice": [{"sentence": "If I ___ time, I will call you.", "options": ["have", "will have"], "answer": "have"}, {"sentence": "It ___ rain later. I'm not sure.", "options": ["might", "will"], "answer": "might"}, {"sentence": "If it ___ tomorrow, we will stay in.", "options": ["rains", "will rain"], "answer": "rains"}, {"sentence": "I think she ___ get the job.", "options": ["will", "does"], "answer": "will"}], "grammarTF": [{"sentence": "If I will see him, I will tell him.", "answer": false}, {"sentence": "If she studies hard, she will pass.", "answer": true}, {"sentence": "It might rain tomorrow, but I'm not sure.", "answer": true}], "speaking": ["Make three predictions about the future of your city or your country.", "Ask your partner: What will you do if...? Use five different situations.", "Talk about your plans for next year."], "writing": "Write 80–90 words about your plans and hopes for the next five years. Use will, might and at least two first conditional sentences."}, {"id": "u5", "title": "Then and now", "kicker": "Unit 5", "grammarName": "Used to", "intro": "Talking about habits and situations in the past that are different now.", "preview": ["What did you use to do as a child that you don't do now?", "Did you use to live in the same place?", "What was your favourite game when you were small?", "How is life different now from when your parents were young?"], "vocab": [{"word": "childhood", "def": "the time when you are a child", "ru": "детство"}, {"word": "nowadays", "def": "in these days; at the present time", "ru": "в наши дни"}, {"word": "change", "def": "to become different; a difference", "ru": "перемена, изменение"}, {"word": "village", "def": "a very small town in the country", "ru": "деревня"}, {"word": "modern", "def": "new and up to date", "ru": "современный"}, {"word": "traditional", "def": "done in the same way for many years", "ru": "традиционный"}, {"word": "habit", "def": "something you do often without thinking", "ru": "привычка"}, {"word": "century", "def": "a period of one hundred years", "ru": "век"}, {"word": "generation", "def": "people born at about the same time", "ru": "поколение"}, {"word": "tradition", "def": "a custom passed down over many years", "ru": "традиция"}, {"word": "society", "def": "people living together in a country", "ru": "общество"}, {"word": "develop", "def": "to grow or change into something bigger or better", "ru": "развиваться"}, {"word": "remain", "def": "to stay the same", "ru": "оставаться"}, {"word": "era", "def": "a long period of history", "ru": "эпоха"}, {"word": "ancestor", "def": "a family member from long ago", "ru": "предок"}, {"word": "custom", "def": "a usual way of doing things in a group", "ru": "обычай"}], "vocabGap": [{"sentence": "In my ___, we played outside all day.", "answer": "childhood"}, {"sentence": "Most people use smartphones ___.", "answer": "nowadays"}, {"sentence": "She lives in a quiet ___ with only two hundred people.", "answer": "village"}, {"sentence": "This is a ___ kitchen with a lot of new machines.", "answer": "modern"}, {"sentence": "Biting your nails is a bad ___.", "answer": "habit"}, {"sentence": "He was born in the twentieth ___.", "answer": "century"}], "vocabTF": [{"statement": "A “village” is bigger than a city.", "answer": false}, {"statement": "“Traditional” food is made in an old way.", "answer": true}, {"statement": "“Nowadays” means “in the past”.", "answer": false}], "reading": ["My grandmother was born in the last <b>century</b>, in a small <b>village</b>. Her <b>childhood</b> was very different from mine. She didn't use to have a TV or a phone, and she used to walk three kilometres to school every day. In the evenings the family used to sit together and tell stories.", "<b>Nowadays</b> life is much easier, but she says that some <b>traditional</b> things have disappeared. People used to know all their neighbours, and they used to help each other. “The <b>modern</b> world is fast,” she says. “The biggest <b>change</b> is that nobody has time. I miss the old <b>habit</b> of having dinner together.”"], "comprehension": ["Where did the grandmother grow up?", "How did she go to school?", "What does she miss?"], "grammarPanels": [{"title": "Used to", "formula": "used to + verb", "notes": ["Use it for past habits and states that are not true now", "I used to play football every day. (I don't now.)", "We used to live in a village.", "It is only for the past: there is no present form"]}, {"title": "Negatives and questions", "formula": "didn't use to + verb; Did ... use to ...?", "notes": ["She didn't use to eat vegetables.", "Did you use to have a pet?", "After did / didn't we say use to (no -d)", "Do not use it for one action: Last year I went to Rome."]}], "grammarWrite": [{"sentence": "When I was a child, I ___ (play) outside every day.", "answer": "used to play"}, {"sentence": "We ___ (live) in a small village, but now we live in a city.", "answer": "used to live"}, {"sentence": "She ___ (not / eat) vegetables when she was young.", "answer": "didn't use to eat"}, {"sentence": "He ___ (smoke), but he stopped five years ago.", "answer": "used to smoke"}, {"sentence": "There ___ (be) a cinema here, but it closed.", "answer": "used to be"}], "grammarChoice": [{"sentence": "I ___ walk to school, but now I take the bus.", "options": ["used to", "use to"], "answer": "used to"}, {"sentence": "Did you ___ live in this street?", "options": ["use to", "used to"], "answer": "use to"}, {"sentence": "She didn't ___ like coffee.", "options": ["use to", "used to"], "answer": "use to"}, {"sentence": "Life ___ be slower in the past.", "options": ["used to", "uses to"], "answer": "used to"}], "grammarTF": [{"sentence": "I used to played football.", "answer": false}, {"sentence": "Did you used to live here?", "answer": false}, {"sentence": "My grandfather used to work on a farm.", "answer": true}], "speaking": ["Tell your partner what you used to do in your childhood.", "Ask: Did you use to...? Use five different ideas.", "Compare life in your town now and twenty years ago."], "writing": "Write 70–80 words about how your life has changed. Use used to at least four times."}, {"id": "u6", "title": "Health and advice", "kicker": "Unit 6", "grammarName": "Should / shouldn't", "intro": "Talking about health and giving and asking for advice.", "preview": ["What do you do when you have a headache?", "Do you think you have a healthy life? Why?", "What advice would you give to a friend who is stressed?", "How often do you do exercise?"], "vocab": [{"word": "advice", "def": "an opinion about what somebody should do", "ru": "совет"}, {"word": "healthy", "def": "good for your body; not ill", "ru": "здоровый"}, {"word": "headache", "def": "a pain in your head", "ru": "головная боль"}, {"word": "exercise", "def": "physical activity to keep fit", "ru": "физическая нагрузка"}, {"word": "stressed", "def": "worried and tired because of problems", "ru": "в стрессе"}, {"word": "rest", "def": "to relax; time without work", "ru": "отдых"}, {"word": "diet", "def": "the food you usually eat", "ru": "рацион, диета"}, {"word": "medicine", "def": "something you take when you are ill", "ru": "лекарство"}, {"word": "symptom", "def": "a sign of an illness", "ru": "симптом"}, {"word": "treatment", "def": "medical care for an illness", "ru": "лечение"}, {"word": "recover", "def": "to become well again", "ru": "выздоравливать"}, {"word": "infection", "def": "an illness caused by germs", "ru": "инфекция"}, {"word": "allergy", "def": "a bad reaction to food, dust or animals", "ru": "аллергия"}, {"word": "appointment", "def": "a planned meeting with a doctor", "ru": "приём (запись к врачу)"}, {"word": "prescription", "def": "a paper from a doctor for medicine", "ru": "рецепт"}, {"word": "fever", "def": "a high body temperature", "ru": "жар, высокая температура"}], "vocabGap": [{"sentence": "I have a terrible ___. I need an aspirin.", "answer": "headache"}, {"sentence": "Can you give me some ___ about my project?", "answer": "advice"}, {"sentence": "You should take this ___ twice a day.", "answer": "medicine"}, {"sentence": "Swimming is good ___ for your back.", "answer": "exercise"}, {"sentence": "After the long trip, you should ___ for an hour.", "answer": "rest"}, {"sentence": "He is very ___ because of his exams.", "answer": "stressed"}], "vocabTF": [{"statement": "A “healthy” person is often ill.", "answer": false}, {"statement": "Your “diet” is the food you usually eat.", "answer": true}, {"statement": "“Advice” is a type of medicine.", "answer": false}], "reading": ["Sara works long hours and she is often <b>stressed</b>. Last week she had a bad <b>headache</b> for three days. Her friend said, “You should drink more water and you should get more <b>rest</b>.” Sara went to the doctor, who gave her some <b>medicine</b> and some <b>advice</b>.", "The doctor said she should change her <b>diet</b>: she shouldn't eat fast food every day. She should also do some <b>exercise</b>, for example walk for thirty minutes. Now Sara feels better and she has a more <b>healthy</b> life."], "comprehension": ["Why was Sara often stressed?", "What did her friend say?", "What shouldn't she eat every day?"], "grammarPanels": [{"title": "Should / shouldn't", "formula": "should / shouldn't + verb", "notes": ["Use it to give advice: You should rest.", "Negative: You shouldn't work so late.", "Question: Should I see a doctor? — Yes, you should.", "No -s and no to: He should go (not: he should to go)"]}, {"title": "Other ways to give advice", "formula": "Why don't you ...? / You'd better ...", "notes": ["Why don't you ask your teacher?", "You'd better take an umbrella. (it is a good idea)", "I think you should sleep more.", "If I were you, I'd see a doctor."]}], "grammarWrite": [{"sentence": "You look tired. You ___ go to bed early. (should / shouldn't)", "answer": "should"}, {"sentence": "You ___ eat so much sugar. (should / shouldn't)", "answer": "shouldn't"}, {"sentence": "___ I see a doctor? — Yes, you should. (Should / Do)", "answer": "Should"}, {"sentence": "What ___ I do about my cough? (should / do)", "answer": "should"}, {"sentence": "Why ___ you ask your teacher? (don't / doesn't)", "answer": "don't"}], "grammarChoice": [{"sentence": "You ___ drink a lot of water.", "options": ["should", "should to"], "answer": "should"}, {"sentence": "He ___ smoke. It's bad for him.", "options": ["shouldn't", "doesn't should"], "answer": "shouldn't"}, {"sentence": "You should ___ more vegetables.", "options": ["eat", "to eat"], "answer": "eat"}, {"sentence": "I have a cold. What ___ I do?", "options": ["should", "are"], "answer": "should"}], "grammarTF": [{"sentence": "She should to see a doctor.", "answer": false}, {"sentence": "You shouldn't stay up so late.", "answer": true}, {"sentence": "Does he should rest?", "answer": false}], "speaking": ["Your friend has a headache. Give him or her three pieces of advice.", "Ask your partner for advice about a problem and answer with should / shouldn't.", "Talk about what people should do to be healthy."], "writing": "Write 70–80 words giving advice to a friend who feels stressed. Use should and shouldn't at least four times."}, {"id": "u7", "title": "How it's made", "kicker": "Unit 7", "grammarName": "Passive: present and past", "intro": "Talking about how things are made and when they were invented.", "preview": ["What things are made in your country?", "Do you know how bread or cheese is made?", "What was the most important thing invented in the last hundred years?", "Where were your shoes made?"], "vocab": [{"word": "factory", "def": "a building where things are made", "ru": "фабрика, завод"}, {"word": "produce", "def": "to make something, often in large numbers", "ru": "производить"}, {"word": "material", "def": "what something is made from", "ru": "материал"}, {"word": "machine", "def": "equipment that does a job", "ru": "машина, станок"}, {"word": "ingredient", "def": "one of the foods in a recipe", "ru": "ингредиент"}, {"word": "invent", "def": "to make or think of something new", "ru": "изобретать"}, {"word": "export", "def": "to sell goods to other countries", "ru": "экспортировать"}, {"word": "quality", "def": "how good something is", "ru": "качество"}, {"word": "manufacture", "def": "to make goods in large numbers", "ru": "производить (на заводе)"}, {"word": "assemble", "def": "to put the parts of something together", "ru": "собирать"}, {"word": "raw", "def": "not cooked or not yet processed", "ru": "сырой, необработанный"}, {"word": "process", "def": "a series of steps to make something", "ru": "процесс"}, {"word": "product", "def": "something that is made to be sold", "ru": "продукт, изделие"}, {"word": "supply", "def": "to give or sell goods to somebody", "ru": "поставлять"}, {"word": "transport", "def": "to move goods from one place to another", "ru": "перевозить"}, {"word": "recycle", "def": "to use materials again", "ru": "перерабатывать"}], "vocabGap": [{"sentence": "Cars are made in a big ___.", "answer": "factory"}, {"sentence": "Farms ___ milk, and factories make cheese.", "answer": "produce"}, {"sentence": "Cotton is a soft ___ for clothes.", "answer": "material"}, {"sentence": "Scientists want to ___ a cheaper battery.", "answer": "invent"}, {"sentence": "Ukraine can ___ grain to many countries.", "answer": "export"}, {"sentence": "Sugar is an important ___ in a cake.", "answer": "ingredient"}], "vocabTF": [{"statement": "An “ingredient” is part of a recipe.", "answer": true}, {"statement": "If you “export” goods, you buy them from another country.", "answer": false}, {"statement": "A “machine” is a person who works in a factory.", "answer": false}], "reading": ["Chocolate is one of the most popular foods in the world. Cocoa beans are grown in hot countries and they are sent to a <b>factory</b>. There, the beans are cleaned, dried and crushed by <b>machines</b>. Then sugar and milk are added: these are the other <b>ingredients</b>.", "The first chocolate bar was <b>invented</b> in England in 1847. Today millions of bars are <b>produced</b> every day, and they are <b>exported</b> to almost every country. Good <b>materials</b> are important, because the <b>quality</b> of the chocolate depends on them."], "comprehension": ["Where are cocoa beans grown?", "What is done to the beans in the factory?", "When was the first chocolate bar invented?"], "grammarPanels": [{"title": "Present passive", "formula": "am / is / are + past participle", "notes": ["Use it when the action is more important than the person who does it", "Cheese is made from milk. These cars are produced in Slovakia.", "Question: Is bread made from flour? Negative: It isn't made here.", "Irregular: make → made, build → built, send → sent"]}, {"title": "Past passive and by", "formula": "was / were + past participle", "notes": ["The telephone was invented in 1876.", "The letters were sent yesterday.", "Use by to say who did it: The telephone was invented by Bell.", "Don't use by when it is not important or not known"]}], "grammarWrite": [{"sentence": "Chocolate ___ (make) from cocoa beans.", "answer": "is made"}, {"sentence": "These cars ___ (produce) in Slovakia.", "answer": "are produced"}, {"sentence": "The Eiffel Tower ___ (build) in 1889.", "answer": "was built"}, {"sentence": "The windows ___ (clean) every week.", "answer": "are cleaned"}, {"sentence": "The first computers ___ (invent) in the 1940s.", "answer": "were invented"}], "grammarChoice": [{"sentence": "Wine ___ in France.", "options": ["is made", "makes"], "answer": "is made"}, {"sentence": "The letters ___ yesterday.", "options": ["were sent", "are sent"], "answer": "were sent"}, {"sentence": "The bridge was built ___ a Roman engineer.", "options": ["by", "from"], "answer": "by"}, {"sentence": "These shoes ___ in Italy.", "options": ["are made", "is made"], "answer": "are made"}], "grammarTF": [{"sentence": "The telephone was invented by Bell.", "answer": true}, {"sentence": "English is speak in many countries.", "answer": false}, {"sentence": "The factory were built in 1990.", "answer": false}], "speaking": ["Describe how a simple product (bread, paper, a T-shirt) is made.", "Ask: Where was it made? When was it invented?", "Talk about three things that are produced in your region."], "writing": "Write 70–80 words about how a product is made. Use the passive at least four times."}, {"id": "u8", "title": "People and things", "kicker": "Unit 8", "grammarName": "Relative clauses: who / which / that / where", "intro": "Describing and defining people, things and places.", "preview": ["Who is the neighbour that you know best?", "What is a gadget that you can't live without?", "Can you describe a person who is important to you?", "What is a place where you like to relax?"], "vocab": [{"word": "neighbour", "def": "a person who lives near you", "ru": "сосед"}, {"word": "stranger", "def": "a person you don't know", "ru": "незнакомец"}, {"word": "tool", "def": "something you use to do a job with your hands", "ru": "инструмент"}, {"word": "gadget", "def": "a small useful machine", "ru": "гаджет, приспособление"}, {"word": "owner", "def": "a person who has something", "ru": "владелец"}, {"word": "customer", "def": "a person who buys things", "ru": "покупатель, клиент"}, {"word": "describe", "def": "to say what somebody or something is like", "ru": "описывать"}, {"word": "useful", "def": "helpful; good for something", "ru": "полезный"}, {"word": "appearance", "def": "how someone looks", "ru": "внешность"}, {"word": "personality", "def": "the way a person thinks and behaves", "ru": "характер"}, {"word": "generous", "def": "happy to give time or money", "ru": "щедрый"}, {"word": "reliable", "def": "can be trusted", "ru": "надёжный"}, {"word": "relative", "def": "a member of your family", "ru": "родственник"}, {"word": "acquaintance", "def": "a person you know a little", "ru": "знакомый"}, {"word": "equipment", "def": "the tools and machines for a job", "ru": "оборудование"}, {"word": "belongings", "def": "things that you own", "ru": "вещи, имущество"}], "vocabGap": [{"sentence": "I don't know that man. He's a ___.", "answer": "stranger"}, {"sentence": "My ___ plays loud music at night.", "answer": "neighbour"}, {"sentence": "A hammer is a ___ for building.", "answer": "tool"}, {"sentence": "The ___ of the shop is always there at eight.", "answer": "owner"}, {"sentence": "The ___ asked for a cheaper price.", "answer": "customer"}, {"sentence": "Can you ___ your best friend?", "answer": "describe"}], "vocabTF": [{"statement": "A “stranger” is a person you know very well.", "answer": false}, {"statement": "A “gadget” is a small, useful device.", "answer": true}, {"statement": "A “customer” buys things in a shop.", "answer": true}], "reading": ["My <b>neighbour</b>, Mr Brown, is a man who loves old things. He has a garage which is full of <b>tools</b> and strange <b>gadgets</b>. He is the person who fixes everybody's bikes on our street.", "Last week a <b>stranger</b> knocked on his door. He was a <b>customer</b> who wanted to repair a clock that his grandfather gave him. Mr Brown is the <b>owner</b> of a small workshop where people bring old things. He can <b>describe</b> every watch in detail, and his work is very <b>useful</b> for people who love their old things."], "comprehension": ["What is Mr Brown's garage full of?", "Who knocked on his door?", "Who gave the clock to the customer?"], "grammarPanels": [{"title": "Who, which, that", "formula": "who = people; which = things; that = both", "notes": ["A baker is a person who makes bread.", "A key is something which opens a door.", "The man that called you is my uncle. (that can be used for people and things)", "Don't repeat the subject: The girl who won (not: who she won)"]}, {"title": "Where", "formula": "where = a place", "notes": ["A cinema is a place where you watch films.", "This is the café where we met.", "Relative clauses tell us which person, thing or place we mean", "We can use them to define: A tool is something that helps you do a job."]}], "grammarWrite": [{"sentence": "A teacher is a person ___ helps students learn.", "answer": "who", "alts": ["that"]}, {"sentence": "A kitchen is a room ___ people cook.", "answer": "where"}, {"sentence": "The man ___ called you is my uncle.", "answer": "who", "alts": ["that"]}, {"sentence": "A cinema is a place ___ you watch films.", "answer": "where"}, {"sentence": "A neighbour is a person ___ lives near you.", "answer": "who", "alts": ["that"]}], "grammarChoice": [{"sentence": "This is the phone ___ I bought last week.", "options": ["which", "who"], "answer": "which"}, {"sentence": "She is the girl ___ won the prize.", "options": ["who", "which"], "answer": "who"}, {"sentence": "A tool is something ___ helps you do a job.", "options": ["that", "who"], "answer": "that"}, {"sentence": "That is the shop ___ I bought my shoes.", "options": ["where", "who"], "answer": "where"}], "grammarTF": [{"sentence": "The man which lives next door is a doctor.", "answer": false}, {"sentence": "A gadget is a thing that makes life easier.", "answer": true}, {"sentence": "The girl who she called me is my sister.", "answer": false}], "speaking": ["Describe a person you know: He / She is a person who...", "Define three objects without naming them. Your partner guesses.", "Talk about a place where you feel happy."], "writing": "Write 70–80 words describing people, things and places that are important to you. Use who, which, that and where."}, {"id": "u9", "title": "Money and shopping", "kicker": "Unit 9", "grammarName": "Much / many, too / enough", "intro": "Talking about prices, shopping and how much or how many we have.", "preview": ["Do you enjoy shopping? What do you usually buy?", "How much money do you spend on food every week?", "Have you ever bought something that was too expensive?", "What is the best way to save money?"], "vocab": [{"word": "price", "def": "how much something costs", "ru": "цена"}, {"word": "cheap", "def": "low in price", "ru": "дешёвый"}, {"word": "expensive", "def": "high in price", "ru": "дорогой"}, {"word": "discount", "def": "a lower price than usual", "ru": "скидка"}, {"word": "receipt", "def": "a paper that shows what you paid for", "ru": "чек"}, {"word": "afford", "def": "to have enough money to buy something", "ru": "позволить себе"}, {"word": "save", "def": "to keep money to use later", "ru": "копить, экономить"}, {"word": "spend", "def": "to use money to buy things", "ru": "тратить"}, {"word": "budget", "def": "a plan for how to spend money", "ru": "бюджет"}, {"word": "income", "def": "money that you earn", "ru": "доход"}, {"word": "borrow", "def": "to take money and give it back later", "ru": "брать в долг"}, {"word": "lend", "def": "to give something to somebody for a short time", "ru": "одалживать, давать в долг"}, {"word": "bargain", "def": "something sold for less than its usual price", "ru": "выгодная покупка"}, {"word": "refund", "def": "money you get back if you return something", "ru": "возврат денег"}, {"word": "cash", "def": "money in coins and notes", "ru": "наличные"}, {"word": "debt", "def": "money that you owe", "ru": "долг"}], "vocabGap": [{"sentence": "There is a 20% ___ on all shoes today.", "answer": "discount"}, {"sentence": "Keep the ___ in case you want to return it.", "answer": "receipt"}, {"sentence": "I can't ___ a new car. It costs too much.", "answer": "afford"}, {"sentence": "She wants to ___ money for a holiday.", "answer": "save"}, {"sentence": "I try not to ___ too much on clothes.", "answer": "spend"}, {"sentence": "The ___ of the ticket is thirty euros.", "answer": "price"}], "vocabTF": [{"statement": "A “cheap” product costs a lot of money.", "answer": false}, {"statement": "If you “save” money, you keep it for later.", "answer": true}, {"statement": "A “receipt” shows what you paid.", "answer": true}], "reading": ["Olga loves shopping, but she doesn't have much money, so she tries to <b>spend</b> carefully. Last weekend she saw a beautiful coat. It was very <b>expensive</b>: the <b>price</b> was too high, and she couldn't <b>afford</b> it.", "A week later there was a <b>discount</b> of thirty percent. Now the coat was <b>cheap</b> enough and she had enough money. She kept the <b>receipt</b> and decided to <b>save</b> a little every month. “I have too many clothes already,” she says, “so next time I'll wait.”"], "comprehension": ["Why couldn't Olga buy the coat at first?", "How big was the discount?", "What does she decide to do every month?"], "grammarPanels": [{"title": "Much, many, a lot of", "formula": "many + countable; much + uncountable", "notes": ["many + things we can count: many shops, many people", "much + things we can't count: much money, much time", "Use much and many mostly in questions and negatives: How much money have you got? I don't have many friends.", "In positive sentences use a lot of: She has a lot of shoes."]}, {"title": "Too and enough", "formula": "too + adjective; adjective + enough; enough + noun", "notes": ["too = more than we want: This bag is too expensive.", "enough = as much as we need: The room is big enough. I have enough money.", "too much / too many + noun: too much sugar, too many cars", "Not enough = less than we need: It isn't cheap enough."]}], "grammarWrite": [{"sentence": "This bag is ___ expensive. I can't buy it. (too / enough)", "answer": "too"}, {"sentence": "Is the room big ___ for ten people? (too / enough)", "answer": "enough"}, {"sentence": "How ___ money do you have? (much / many)", "answer": "much"}, {"sentence": "How ___ people came to the party? (much / many)", "answer": "many"}, {"sentence": "There are ___ cars on the road. I can't cross. (too much / too many)", "answer": "too many"}], "grammarChoice": [{"sentence": "I haven't got ___ time.", "options": ["much", "many"], "answer": "much"}, {"sentence": "She has ___ shoes in her wardrobe.", "options": ["a lot of", "a lot"], "answer": "a lot of"}, {"sentence": "The soup is ___ hot. I can't eat it.", "options": ["too", "enough"], "answer": "too"}, {"sentence": "Is it warm ___ to swim?", "options": ["enough", "too"], "answer": "enough"}], "grammarTF": [{"sentence": "I have too much friends.", "answer": false}, {"sentence": "She isn't old enough to drive.", "answer": true}, {"sentence": "How many money do you need?", "answer": false}], "speaking": ["Talk about the last thing you bought: the price, the shop, and if it was cheap or expensive.", "Ask: How much do you spend on...? Use five different ideas.", "Discuss: What is the best way to save money?"], "writing": "Write 70–80 words about shopping habits. Use too, enough, much and many at least four times."}, {"id": "u10", "title": "Technology", "kicker": "Unit 10", "grammarName": "Gerund and infinitive", "intro": "Talking about devices, apps and what we like or want to do with them.", "preview": ["What devices do you use every day?", "What apps could you not live without?", "Do you enjoy trying new technology?", "How many hours a day do you spend on your phone?"], "vocab": [{"word": "device", "def": "a machine such as a phone or a tablet", "ru": "устройство"}, {"word": "download", "def": "to copy a file from the internet to your device", "ru": "скачивать"}, {"word": "password", "def": "a secret word that opens an account", "ru": "пароль"}, {"word": "screen", "def": "the part of a phone where you see pictures", "ru": "экран"}, {"word": "online", "def": "connected to the internet", "ru": "онлайн"}, {"word": "update", "def": "to make a program newer", "ru": "обновлять"}, {"word": "charge", "def": "to put electricity into a battery", "ru": "заряжать"}, {"word": "app", "def": "a program on a phone", "ru": "приложение"}, {"word": "website", "def": "a place on the internet with pages of information", "ru": "веб-сайт"}, {"word": "browse", "def": "to look at information online", "ru": "просматривать"}, {"word": "install", "def": "to put a program on a computer", "ru": "устанавливать"}, {"word": "connection", "def": "a link to the internet", "ru": "соединение, связь"}, {"word": "delete", "def": "to remove something from a device", "ru": "удалять"}, {"word": "software", "def": "programs that run on a computer", "ru": "программное обеспечение"}, {"word": "upload", "def": "to send a file from your device to the internet", "ru": "загружать (на сервер)"}, {"word": "attachment", "def": "a file that you send with an email", "ru": "вложение"}], "vocabGap": [{"sentence": "I forgot my ___, so I can't open my email.", "answer": "password"}, {"sentence": "Please ___ the file and open it.", "answer": "download"}, {"sentence": "My phone's battery is low. I need to ___ it.", "answer": "charge"}, {"sentence": "There is a new ___ for learning English.", "answer": "app"}, {"sentence": "The ___ of my phone is broken.", "answer": "screen"}, {"sentence": "You should ___ your phone to get the latest version.", "answer": "update"}], "vocabTF": [{"statement": "A “device” can be a phone or a tablet.", "answer": true}, {"statement": "If you are “online”, you are connected to the internet.", "answer": true}, {"statement": "A “password” is something you must tell everyone.", "answer": false}], "reading": ["Max loves technology. He has three <b>devices</b>: a phone, a tablet and a laptop. He enjoys <b>downloading</b> new <b>apps</b>, and he never forgets to <b>update</b> them. But he avoids using the same <b>password</b> for everything.", "Last week his phone died on a trip because he had forgotten to <b>charge</b> it. He decided to buy a power bank, and now he plans to carry it every day. He also wants to spend less time looking at the <b>screen</b>. “I like being <b>online</b>,” he says, “but I need to rest my eyes.”"], "comprehension": ["How many devices does Max have?", "What does he enjoy doing?", "Why did his phone die on the trip?"], "grammarPanels": [{"title": "Verb + -ing (gerund)", "formula": "enjoy / like / love / hate / finish / avoid / mind + -ing", "notes": ["I enjoy listening to podcasts.", "She has finished writing the email.", "He avoids using public Wi-Fi.", "After prepositions we also use -ing: She is good at drawing."]}, {"title": "Verb + to + infinitive", "formula": "want / need / hope / decide / plan / would like + to + verb", "notes": ["I want to buy a new phone.", "We decided to download the app.", "I would like to learn programming.", "For purpose: I use this app to learn English. (= in order to)"]}], "grammarWrite": [{"sentence": "I enjoy ___ (listen) to music on my phone.", "answer": "listening"}, {"sentence": "She wants ___ (buy) a new laptop.", "answer": "to buy"}, {"sentence": "He has finished ___ (write) the email.", "answer": "writing"}, {"sentence": "We decided ___ (download) the app.", "answer": "to download"}, {"sentence": "I use my phone ___ (take) photos.", "answer": "to take"}], "grammarChoice": [{"sentence": "I enjoy ___ new apps.", "options": ["trying", "to try"], "answer": "trying"}, {"sentence": "She hopes ___ a new phone for her birthday.", "options": ["to get", "getting"], "answer": "to get"}, {"sentence": "He avoids ___ the same password.", "options": ["using", "to use"], "answer": "using"}, {"sentence": "I need ___ my laptop.", "options": ["to charge", "charging"], "answer": "to charge"}], "grammarTF": [{"sentence": "I want buying a new tablet.", "answer": false}, {"sentence": "She enjoys playing games online.", "answer": true}, {"sentence": "He decided downloading the file.", "answer": false}], "speaking": ["Tell your partner what you enjoy doing online and what you avoid doing.", "Ask: What do you want to buy? What do you plan to do this weekend?", "Talk about an app you use to learn or to relax."], "writing": "Write 70–80 words about how you use technology. Use at least two verbs with -ing and two with to + verb."}, {"id": "u11", "title": "Dreams and wishes", "kicker": "Unit 11", "grammarName": "Second conditional", "intro": "Talking about imaginary situations and what we would do.", "preview": ["What would you do if you won a million euros?", "If you could live anywhere, where would you live?", "What is your biggest dream?", "What job would you do if you could choose anything?"], "vocab": [{"word": "dream", "def": "something you really want to achieve; pictures in your sleep", "ru": "мечта, сон"}, {"word": "wish", "def": "to want something that is not possible now", "ru": "желать"}, {"word": "imagine", "def": "to make a picture in your mind", "ru": "представлять"}, {"word": "millionaire", "def": "a person who has a lot of money", "ru": "миллионер"}, {"word": "lottery", "def": "a game where you win money by luck", "ru": "лотерея"}, {"word": "luck", "def": "good things that happen by chance", "ru": "удача"}, {"word": "possible", "def": "able to happen", "ru": "возможный"}, {"word": "career", "def": "the work you do for many years", "ru": "карьера"}, {"word": "wealth", "def": "a lot of money or valuable things", "ru": "богатство"}, {"word": "success", "def": "achieving what you wanted", "ru": "успех"}, {"word": "fortune", "def": "a very large amount of money", "ru": "состояние"}, {"word": "freedom", "def": "the right to do what you want", "ru": "свобода"}, {"word": "courage", "def": "the ability to do something frightening", "ru": "смелость"}, {"word": "reality", "def": "the way things really are", "ru": "реальность"}, {"word": "regret", "def": "to feel sorry about something you did", "ru": "сожалеть"}, {"word": "challenge", "def": "something difficult that tests you", "ru": "вызов, трудная задача"}], "vocabGap": [{"sentence": "My ___ is to open my own café.", "answer": "dream"}, {"sentence": "I can't ___ living on the moon.", "answer": "imagine"}, {"sentence": "If you buy a ticket, you can win the ___.", "answer": "lottery"}, {"sentence": "A ___ has more money than he can spend.", "answer": "millionaire"}, {"sentence": "Good ___ in your exams!", "answer": "luck"}, {"sentence": "She wants a ___ in medicine.", "answer": "career"}], "vocabTF": [{"statement": "“Possible” means it can happen.", "answer": true}, {"statement": "A “millionaire” has a lot of money.", "answer": true}, {"statement": "To “imagine” is to see something with your eyes.", "answer": false}], "reading": ["Nina is twenty-eight and works in a bank. Last night she <b>imagined</b> winning the <b>lottery</b>. “If I won a million euros, I would travel around the world,” she said. “I wouldn't buy a big house, but I would help my parents.”", "Nina's biggest <b>dream</b> is to have her own bakery. “If I were a <b>millionaire</b>, I would open it tomorrow,” she says. Her friend smiles: “It's <b>possible</b> without a million. With some <b>luck</b> and hard work, you can build a <b>career</b> in baking.” Nina says she <b>wishes</b> it were that easy."], "comprehension": ["What would Nina do if she won a million euros?", "What is her biggest dream?", "What does her friend say about the bakery?"], "grammarPanels": [{"title": "Second conditional", "formula": "if + past simple, would + verb", "notes": ["Use it for imaginary or unlikely situations", "If I had a million euros, I would travel the world.", "If she were taller, she would play basketball. (were for I / he / she)", "Negative: I wouldn't. Short form: I'd travel."]}, {"title": "Questions and real future", "formula": "What would you do if ...?", "notes": ["What would you do if you won the lottery?", "I would buy a house if I had more money. (the if part can go second)", "Don't mix it with the first conditional: If it rains tomorrow, I will stay home. (a real possibility)", "If I were you, I would call him. (advice)"]}], "grammarWrite": [{"sentence": "If I ___ (have) a million euros, I would travel the world.", "answer": "had"}, {"sentence": "If she ___ (be) taller, she would play basketball.", "answer": "were"}, {"sentence": "What ___ you do if you won the lottery? (would / will)", "answer": "would"}, {"sentence": "He would buy a boat if he ___ (have) more money.", "answer": "had"}, {"sentence": "If I were you, I ___ (take) that job.", "answer": "would take"}], "grammarChoice": [{"sentence": "If I ___ rich, I would buy a house.", "options": ["were", "will be"], "answer": "were"}, {"sentence": "She would travel more if she ___ time.", "options": ["had", "has"], "answer": "had"}, {"sentence": "What ___ you do if you were president?", "options": ["would", "will"], "answer": "would"}, {"sentence": "If it rains tomorrow, I ___ at home.", "options": ["will stay", "would stay"], "answer": "will stay"}], "grammarTF": [{"sentence": "If I will win, I would be happy.", "answer": false}, {"sentence": "If I were you, I would call him.", "answer": true}, {"sentence": "If she has more time, she would learn French.", "answer": false}], "speaking": ["Ask your partner: What would you do if you won a million euros?", "Talk about three things you would change if you could.", "Give advice to a friend: If I were you, I would..."], "writing": "Write 70–80 words about your dream life. Use the second conditional at least four times."}, {"id": "u12", "title": "What did they say?", "kicker": "Unit 12", "grammarName": "Reported speech: said / told", "intro": "Telling other people what somebody said.", "preview": ["What did your friend say to you today?", "Do you often leave voice messages or write texts?", "Have you ever promised something and forgotten?", "What do people complain about most in your town?"], "vocab": [{"word": "message", "def": "words you send or leave for someone", "ru": "сообщение"}, {"word": "reply", "def": "to answer", "ru": "отвечать"}, {"word": "explain", "def": "to make something clear", "ru": "объяснять"}, {"word": "mention", "def": "to say something briefly", "ru": "упомянуть"}, {"word": "complain", "def": "to say you are not happy about something", "ru": "жаловаться"}, {"word": "promise", "def": "to say you will definitely do something", "ru": "обещать"}, {"word": "suggest", "def": "to give an idea", "ru": "предлагать"}, {"word": "whisper", "def": "to speak very quietly", "ru": "шептать"}, {"word": "announce", "def": "to tell people something officially", "ru": "объявлять"}, {"word": "argue", "def": "to disagree angrily", "ru": "спорить"}, {"word": "admit", "def": "to say that something is true", "ru": "признавать"}, {"word": "deny", "def": "to say that something is not true", "ru": "отрицать"}, {"word": "insist", "def": "to say strongly that something must happen", "ru": "настаивать"}, {"word": "warn", "def": "to tell somebody about a danger", "ru": "предупреждать"}, {"word": "remind", "def": "to help somebody remember", "ru": "напоминать"}, {"word": "agree", "def": "to have the same opinion", "ru": "соглашаться"}], "vocabGap": [{"sentence": "Please leave me a ___ after the beep.", "answer": "message"}, {"sentence": "I wrote to her, but she didn't ___.", "answer": "reply"}, {"sentence": "Can you ___ the rule again?", "answer": "explain"}, {"sentence": "Customers often ___ about long waiting times.", "answer": "complain"}, {"sentence": "I ___ I will never be late again.", "answer": "promise"}, {"sentence": "In the library, people ___ so they don't disturb others.", "answer": "whisper"}], "vocabTF": [{"statement": "If you “whisper”, you speak very loudly.", "answer": false}, {"statement": "A “promise” is something you say you will do.", "answer": true}, {"statement": "To “reply” means to answer.", "answer": true}], "reading": ["Last Monday Ben got a <b>message</b> from his manager. She said that the meeting was cancelled, and she told him that he should work from home. She did not <b>mention</b> a new date. Ben tried to <b>reply</b>, but his phone didn't work.", "A colleague <b>explained</b> that the heating didn't work in the office. Another colleague <b>complained</b> that nobody had told her. Ben <b>suggested</b> that they meet online, and he <b>promised</b> that he would send an email to everyone. “Don't say anything yet,” he <b>whispered</b>, “the manager is still on the phone.”"], "comprehension": ["What did the manager say about the meeting?", "What did Ben promise?", "Why did the colleague complain?"], "grammarPanels": [{"title": "Said and told", "formula": "said + that; told + person + that", "notes": ["She said that she was busy.", "She told me that she was busy. (told always needs a person: me, him, us)", "Not: She said me ... / She told that ...", "That is optional: He said he was tired."]}, {"title": "Changing the tenses", "formula": "one step back in the past", "notes": ["am / is → was: “I am tired.” → She said she was tired.", "like → liked: “I like pizza.” → He said he liked pizza.", "will → would; can → could: “I will call.” → She said she would call.", "I → he / she; tomorrow → the next day; today → that day"]}], "grammarWrite": [{"sentence": "“I am tired.” → She said she ___ tired. (be)", "answer": "was"}, {"sentence": "“I like pizza.” → He said he ___ pizza. (like)", "answer": "liked"}, {"sentence": "“I will call you.” → She said she ___ call me. (will)", "answer": "would"}, {"sentence": "“I can swim.” → He told me he ___ swim. (can)", "answer": "could"}, {"sentence": "She ___ me that the shop was closed. (said / told)", "answer": "told"}], "grammarChoice": [{"sentence": "She ___ me that she was busy.", "options": ["told", "said"], "answer": "told"}, {"sentence": "He said ___ he was hungry.", "options": ["that", "me"], "answer": "that"}, {"sentence": "“I am happy.” → She said she ___ happy.", "options": ["was", "is"], "answer": "was"}, {"sentence": "“We will come.” → They said they ___ come.", "options": ["would", "will"], "answer": "would"}], "grammarTF": [{"sentence": "She said me that she was tired.", "answer": false}, {"sentence": "He told us that he was ready.", "answer": true}, {"sentence": "She told that she was busy.", "answer": false}], "speaking": ["Tell your partner what a friend said to you today. Use said and told.", "Report a short conversation: “I'm hungry.” “I will cook.”", "Ask your partner a question and report the answer to the group."], "writing": "Write 70–80 words reporting a conversation you had this week. Use said and told at least four times."}];
+const EMO={"ever": "🌍", "already": "✅", "yet": "❓", "abroad": "🌐", "try": "😋", "adventure": "🏔️", "lucky": "🍀", "memory": "💭", "suddenly": "⚡", "accident": "🚑", "notice": "👀", "luckily": "🍀", "while": "⏳", "scared": "😨", "happen": "❓", "decide": "🤔", "colleague": "🧑‍💼", "boss": "👔", "meeting": "🗓️", "deadline": "⏰", "apply": "📨", "salary": "💶", "part-time": "🕑", "promotion": "📈", "probably": "👍", "maybe": "🤷", "plan": "📝", "hope": "🤞", "expect": "🔮", "future": "🚀", "sure": "✅", "change": "🔄", "childhood": "🧒", "nowadays": "📱", "village": "🏡", "modern": "🏙️", "traditional": "🏺", "habit": "🔁", "century": "📅", "advice": "💬", "healthy": "🥗", "headache": "🤕", "exercise": "🏃", "stressed": "😰", "rest": "😴", "diet": "🍎", "medicine": "💊", "factory": "🏭", "produce": "📦", "material": "🧵", "machine": "⚙️", "ingredient": "🥚", "invent": "💡", "export": "🚢", "quality": "⭐", "neighbour": "🏘️", "stranger": "🕵️", "tool": "🔧", "gadget": "📟", "owner": "🔑", "customer": "🛒", "describe": "🗣️", "useful": "✔️", "price": "🏷️", "cheap": "💸", "expensive": "💎", "discount": "🔖", "receipt": "🧾", "afford": "💳", "save": "🐷", "spend": "🛍️", "device": "📱", "download": "⬇️", "password": "🔐", "screen": "🖥️", "online": "📶", "update": "⬆️", "charge": "🔋", "app": "📲", "dream": "🌙", "wish": "🌠", "imagine": "🧠", "millionaire": "🤑", "lottery": "🎰", "luck": "🎲", "possible": "👌", "career": "📈", "message": "✉️", "reply": "↩️", "explain": "📖", "mention": "👆", "complain": "😤", "promise": "🤝", "suggest": "🙋", "whisper": "🤫", "experience": "🎒", "journey": "🧳", "brave": "🦁", "achieve": "🏆", "unusual": "🦄", "explore": "🧭", "souvenir": "🎁", "culture": "🎭", "injure": "🩹", "emergency": "🚨", "rescue": "🛟", "witness": "👀", "dangerous": "⚠️", "escape": "🚪", "shout": "📢", "ambulance": "🚑", "employee": "👷", "employer": "🏢", "interview": "🎤", "qualification": "🎓", "contract": "📝", "resign": "👋", "schedule": "🗓️", "skill": "🛠️", "prediction": "🔮", "goal": "🎯", "opportunity": "🌟", "ambition": "🔥", "intend": "📌", "prepare": "🧰", "improve": "🌱", "progress": "🪜", "generation": "👪", "tradition": "🎎", "society": "🏛️", "develop": "🌳", "remain": "⏳", "era": "📜", "ancestor": "🌿", "custom": "🎊", "symptom": "🌡️", "treatment": "💉", "recover": "💪", "infection": "🦠", "allergy": "🤧", "appointment": "⏰", "prescription": "✍️", "fever": "🤒", "manufacture": "🏗️", "assemble": "🔩", "raw": "🥩", "process": "➡️", "product": "🎀", "supply": "🚚", "transport": "🚛", "recycle": "♻️", "appearance": "🪞", "personality": "😊", "generous": "🤲", "reliable": "✅", "relative": "👵", "acquaintance": "🙂", "equipment": "🧰", "belongings": "👜", "budget": "📊", "income": "💰", "borrow": "📥", "lend": "📤", "bargain": "🏷️", "refund": "🔙", "cash": "💵", "debt": "📉", "website": "🌐", "browse": "🔎", "install": "💿", "connection": "🔌", "delete": "🗑️", "software": "💻", "upload": "☁️", "attachment": "📎", "wealth": "👑", "success": "🥇", "fortune": "🪙", "freedom": "🕊️", "courage": "🦸", "reality": "🌍", "regret": "😞", "challenge": "⛰️", "announce": "📣", "argue": "😠", "admit": "🙇", "deny": "🙅", "insist": "☝️", "warn": "⚠️", "remind": "🔔", "agree": "👍"};
+const UEMO={"u1": "🌍", "u2": "🚑", "u3": "💼", "u4": "🚀", "u5": "🕰️", "u6": "🩺", "u7": "🏭", "u8": "🧩", "u9": "🛍️", "u10": "📱", "u11": "🌠", "u12": "🗣️"};
+UNITS.forEach(u=>u.vocab.forEach(v=>{v.emo='';}));
+
+function shuffle(arr){
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function checkGroup(containerId, scoreId){
+  const container = document.getElementById(containerId);
+  const fields = container.querySelectorAll("[data-answer]");
+  let correct = 0, answered = 0;
+  fields.forEach(f => {
+    const norm = t => t.toLowerCase().replace(/[\u2018\u2019\u02BC`]/g, "'").replace(/\s+/g, " ").trim().replace(/[.!?,;]+$/, "")
+      .replace(/\bwon't\b/g, "will not").replace(/\bcan't\b/g, "cannot").replace(/\bshan't\b/g, "shall not")
+      .replace(/n't\b/g, " not").replace(/'ll\b/g, " will").replace(/'d\b/g, " would").replace(/'re\b/g, " are").replace(/'ve\b/g, " have").replace(/\bi'm\b/g, "i am")
+      .replace(/\bcan not\b/g, "cannot").replace(/\s+/g, " ").trim();
+    const val = norm(f.value);
+    if (val === "") { f.classList.remove("correct","incorrect"); return; }
+    answered++;
+    const accepted = [f.dataset.answer].concat(f.dataset.alts ? f.dataset.alts.split("|") : []);
+    const ok = accepted.some(a => norm(a) === val);
+    f.classList.toggle("correct", ok);
+    f.classList.toggle("incorrect", !ok);
+    if (ok) correct++;
+  });
+  const scoreEl = document.getElementById(scoreId);
+  if (answered === 0){
+    scoreEl.style.color = "var(--bad)";
+    scoreEl.textContent = "Answer at least one item first.";
+  } else {
+    scoreEl.style.color = "var(--ink-soft)";
+    scoreEl.textContent = correct + " of " + fields.length + " correct.";
+    if (correct === fields.length) a2MarkDone(containerId);
+  }
+}
+
+function el(tag, cls, html){
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (html !== undefined) e.innerHTML = html;
+  return e;
+}
+
+/* ============ Упражнение 1: перетащи / нажми слово в пропуск ============ */
+const gapState = {};
+function renderWordBankGaps(unit, card){
+  const bodyId = unit.id + "-vocabGap";
+  const bankId = bodyId + "-bank";
+  const scoreId = bodyId + "Score";
+  gapState[bodyId] = { selected: null };
+
+  const bank = el("div", "word-bank");
+  bank.id = bankId;
+  shuffle(unit.vocab.map(v => v.word)).forEach(word => {
+    const chip = el("span", "word-chip", word);
+    chip.dataset.word = word;
+    chip.draggable = true;
+    chip.onclick = () => selectChip(bodyId, chip);
+    chip.ondragstart = e => { e.dataTransfer.setData("text/plain", word); selectChip(bodyId, chip); };
+    bank.appendChild(chip);
+  });
+  card.appendChild(bank);
+
+  const body = el("div");
+  body.id = bodyId;
+  unit.vocabGap.forEach((item, i) => {
+    const row = el("div", "exercise-row gap-row");
+    const parts = item.sentence.split("___");
+    row.appendChild(el("span", "num", (i+1) + "."));
+    row.appendChild(document.createTextNode(parts[0]));
+    const blank = el("span", "blank", "_____");
+    blank.dataset.answer = item.answer;
+    blank.onclick = () => fillBlank(bodyId, blank, scoreId);
+    blank.ondragover = e => { e.preventDefault(); blank.classList.add("dragover"); };
+    blank.ondragleave = () => blank.classList.remove("dragover");
+    blank.ondrop = e => {
+      e.preventDefault();
+      blank.classList.remove("dragover");
+      const word = e.dataTransfer.getData("text/plain");
+      const chip = Array.from(document.getElementById(bankId).children).find(c => c.dataset.word === word && !c.classList.contains("used"));
+      if (chip) { gapState[bodyId].selected = chip; fillBlank(bodyId, blank, scoreId); }
+    };
+    row.appendChild(blank);
+    if (parts[1]) row.appendChild(document.createTextNode(parts[1]));
+    body.appendChild(row);
+  });
+  card.appendChild(body);
+
+  const score = el("p", "score", "Drag a word onto a gap, or tap a word then tap a gap.");
+  score.id = scoreId;
+  card.appendChild(score);
+}
+
+/* ============ Грамматика: перетащи / нажми нужную форму в пропуск ============ */
+function renderFormBankGaps(bodyId, items, card){
+  const bankId = bodyId + "-bank";
+  const scoreId = bodyId + "Score";
+  gapState[bodyId] = { selected: null };
+  const bank = el("div", "word-bank");
+  bank.id = bankId;
+  shuffle(items.map(it => it.answer)).forEach(word => {
+    const chip = el("span", "word-chip", word);
+    chip.dataset.word = word;
+    chip.draggable = true;
+    chip.onclick = () => selectChip(bodyId, chip);
+    chip.ondragstart = e => { e.dataTransfer.setData("text/plain", word); selectChip(bodyId, chip); };
+    bank.appendChild(chip);
+  });
+  card.appendChild(bank);
+  const body = el("div");
+  body.id = bodyId;
+  items.forEach((item, i) => {
+    const row = el("div", "exercise-row gap-row");
+    const parts = item.sentence.split("___");
+    row.appendChild(el("span", "num", (i+1) + "."));
+    row.appendChild(document.createTextNode(parts[0]));
+    const blank = el("span", "blank", "_____");
+    blank.dataset.answer = item.answer;
+    blank.onclick = () => fillBlank(bodyId, blank, scoreId);
+    blank.ondragover = e => { e.preventDefault(); blank.classList.add("dragover"); };
+    blank.ondragleave = () => blank.classList.remove("dragover");
+    blank.ondrop = e => {
+      e.preventDefault();
+      blank.classList.remove("dragover");
+      const word = e.dataTransfer.getData("text/plain");
+      const chip = Array.from(document.getElementById(bankId).children).find(c => c.dataset.word === word && !c.classList.contains("used"));
+      if (chip) { gapState[bodyId].selected = chip; fillBlank(bodyId, blank, scoreId); }
+    };
+    row.appendChild(blank);
+    if (parts.length > 1) row.appendChild(document.createTextNode(parts.slice(1).join("___")));
+    body.appendChild(row);
+  });
+  card.appendChild(body);
+  const score = el("p", "score", "Drag a word onto a gap, or tap a word then tap a gap.");
+  score.id = scoreId;
+  card.appendChild(score);
+}
+function selectChip(bodyId, chip){
+  if (chip.classList.contains("used")) return;
+  const state = gapState[bodyId];
+  if (state.selected) state.selected.classList.remove("selected");
+  state.selected = chip;
+  chip.classList.add("selected");
+}
+function fillBlank(bodyId, blank, scoreId){
+  if (blank.classList.contains("correct")) return;
+  if (blank.classList.contains("filled")){
+    const bank = document.getElementById(bodyId + "-bank");
+    const returned = Array.from(bank.children).find(c => c.dataset.word === blank.dataset.filledWord);
+    if (returned) returned.classList.remove("used");
+    blank.textContent = "_____";
+    blank.classList.remove("filled", "incorrect");
+    delete blank.dataset.filledWord;
+    updateGapScore(bodyId, scoreId);
+    return;
+  }
+  const state = gapState[bodyId];
+  if (!state.selected) return;
+  const chip = state.selected;
+  blank.textContent = chip.dataset.word;
+  blank.dataset.filledWord = chip.dataset.word;
+  blank.classList.add("filled");
+  const ok = chip.dataset.word === blank.dataset.answer;
+  blank.classList.add(ok ? "correct" : "incorrect");
+  chip.classList.add("used");
+  chip.classList.remove("selected");
+  state.selected = null;
+  updateGapScore(bodyId, scoreId);
+}
+function updateGapScore(bodyId, scoreId){
+  const body = document.getElementById(bodyId);
+  const blanks = body.querySelectorAll(".blank");
+  const filled = body.querySelectorAll(".blank.filled").length;
+  const correct = body.querySelectorAll(".blank.correct").length;
+  const scoreEl = document.getElementById(scoreId);
+  scoreEl.style.color = "var(--ink-soft)";
+  if (filled === 0){ scoreEl.textContent = "Drag a word onto a gap, or tap a word then tap a gap."; return; }
+  scoreEl.textContent = correct + " of " + blanks.length + " correct" + (filled < blanks.length ? " (" + (blanks.length - filled) + " left)." : ".");
+  if (correct === blanks.length) a2MarkDone(bodyId);
+}
+
+/* ============ Упражнение 2: нажми слово, затем его пару ============ */
+const clickMatchState = {};
+function renderClickMatch(id, leftItems, rightItems, card){
+  const scoreId = id + "Score";
+  clickMatchState[id] = { selIdx: null, selEl: null };
+  const perm = shuffle(rightItems.map((_, i) => i));
+  const wrap = el("div", "match-cols");
+  wrap.id = id;
+  const leftCol = el("div", "match-col");
+  leftItems.forEach((text, i) => {
+    const item = el("div", "match-item", text);
+    item.onclick = () => clickMatch(id, "left", i, item, scoreId, leftItems.length);
+    leftCol.appendChild(item);
+  });
+  const rightCol = el("div", "match-col");
+  perm.forEach(origIdx => {
+    const item = el("div", "match-item", rightItems[origIdx]);
+    item.onclick = () => clickMatch(id, "right", origIdx, item, scoreId, leftItems.length);
+    rightCol.appendChild(item);
+  });
+  wrap.appendChild(leftCol);
+  wrap.appendChild(rightCol);
+  card.appendChild(wrap);
+  const score = el("p", "score", "Tap an item on the left, then its match on the right.");
+  score.id = scoreId;
+  card.appendChild(score);
+}
+function clickMatch(id, side, idx, itemEl, scoreId, total){
+  if (itemEl.classList.contains("matched")) return;
+  const state = clickMatchState[id];
+  if (side === "left"){
+    if (state.selEl) state.selEl.classList.remove("selected");
+    state.selIdx = idx; state.selEl = itemEl; itemEl.classList.add("selected");
+  } else {
+    if (state.selIdx === null) return;
+    if (idx === state.selIdx){
+      itemEl.classList.add("matched"); itemEl.classList.remove("selected");
+      state.selEl.classList.add("matched"); state.selEl.classList.remove("selected");
+      state.selIdx = null; state.selEl = null;
+      const container = document.getElementById(id);
+      const matched = container.querySelectorAll(".match-item.matched").length / 2;
+      const scoreEl = document.getElementById(scoreId);
+      scoreEl.style.color = "var(--ink-soft)";
+      scoreEl.textContent = matched === total ? "All " + total + " matched! 🎉" : matched + " of " + total + " matched.";
+      if (matched === total) a2MarkDone(id);
+    } else {
+      itemEl.classList.add("wrong");
+      const selEl = state.selEl;
+      setTimeout(() => { itemEl.classList.remove("wrong"); if (selEl) selEl.classList.remove("selected"); }, 450);
+      state.selIdx = null; state.selEl = null;
+    }
+  }
+}
+
+/* ============ Упражнения 3: выбор одним нажатием (вместо select) ============ */
+function renderPillChoice(id, items, card){
+  const scoreId = id + "Score";
+  const body = el("div");
+  body.id = id;
+  items.forEach((item, i) => {
+    const row = el("div", "exercise-row");
+    row.style.flexDirection = "column";
+    row.style.alignItems = "flex-start";
+    const top = el("div");
+    top.innerHTML = '<span class="num">' + (i+1) + '.</span><span>' + item.sentence.replace("___", "______") + '</span>';
+    row.appendChild(top);
+    const pillRow = el("div", "pill-row");
+    item.options.forEach(opt => {
+      const pill = el("button", "pill", opt);
+      pill.type = "button";
+      pill.dataset.correct = (opt === item.answer) ? "1" : "0";
+      pill.onclick = () => selectPill(id, scoreId, pill, items.length);
+      pillRow.appendChild(pill);
+    });
+    row.appendChild(pillRow);
+    body.appendChild(row);
+  });
+  card.appendChild(body);
+  const score = el("p", "score", "Tap the correct option in each row.");
+  score.id = scoreId;
+  card.appendChild(score);
+}
+function selectPill(containerId, scoreId, pill, total){
+  const row = pill.closest(".exercise-row");
+  if (row.dataset.answered) return;
+  row.dataset.answered = "1";
+  const isCorrect = pill.dataset.correct === "1";
+  row.dataset.wasCorrect = isCorrect ? "1" : "0";
+  const pills = row.querySelectorAll(".pill");
+  pills.forEach(p => p.classList.add("disabled"));
+  if (isCorrect){
+    pill.classList.add("correct");
+  } else {
+    pill.classList.add("incorrect");
+    pills.forEach(p => { if (p.dataset.correct === "1") p.classList.add("correct"); });
+  }
+  updatePillScore(containerId, scoreId, total);
+}
+function updatePillScore(containerId, scoreId, total){
+  const container = document.getElementById(containerId);
+  const rows = container.querySelectorAll(".exercise-row");
+  const answered = Array.from(rows).filter(r => r.dataset.answered === "1");
+  const correct = answered.filter(r => r.dataset.wasCorrect === "1");
+  const scoreEl = document.getElementById(scoreId);
+  scoreEl.style.color = "var(--ink-soft)";
+  if (answered.length === 0){ scoreEl.textContent = "Tap the correct option in each row."; return; }
+  scoreEl.textContent = correct.length + " of " + rows.length + " correct" + (answered.length < rows.length ? " (" + (rows.length - answered.length) + " left)." : ".");
+  if (answered.length === rows.length){
+    if (correct.length === rows.length){ a2MarkDone(containerId); }
+    else {
+      scoreEl.textContent += " The exercise counts as done when all answers are correct. ";
+      const retry = el("button", "retry-btn", "Try again");
+      retry.type = "button";
+      retry.onclick = () => {
+        rows.forEach(r => { delete r.dataset.answered; delete r.dataset.wasCorrect; r.querySelectorAll(".pill").forEach(p => p.classList.remove("disabled","correct","incorrect")); });
+        updatePillScore(containerId, scoreId, total);
+      };
+      scoreEl.appendChild(retry);
+    }
+  }
+}
+
+/* =========================================================
+   ИЛЛЮСТРАЦИИ К ЮНИТАМ (встроенный SVG, работает офлайн)
+   ========================================================= */
+const ART_C = {
+  bg:'#F3E6D8', blob:'#EAD5C0', ink:'#2B1810', cocoa:'#3B1F14', milk:'#7B4A2E', caramel:'#A65A1E',
+  latte:'#D9BFA6', cream:'#FFFAF4', sage:'#7D9465', sageD:'#5F7A45', steel:'#8FA3AD', steelD:'#5E7480',
+  rose:'#C9846B', gold:'#D9A441', paper:'#FBF4EA'
+};
+function artSvg(label, body){
+  return `<svg class="unit-art-svg" viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${label}"><rect width="720" height="300" fill="${ART_C.bg}"/>${body}</svg>`;
+}
+/* голова + плечи без лица (стилизованная фигура) */
+function artBust(x, y, skin, cloth, hair, s = 1){
+  return `<g transform="translate(${x} ${y}) scale(${s})">
+    <path d="M-46 70 Q-46 18 0 18 Q46 18 46 70 Z" fill="${cloth}"/>
+    <rect x="-8" y="2" width="16" height="20" fill="${skin}"/>
+    <circle cx="0" cy="-16" r="24" fill="${skin}"/>
+    <path d="M-25 -14 Q-26 -44 0 -44 Q26 -44 25 -14 Q20 -30 0 -30 Q-18 -30 -25 -14 Z" fill="${hair}"/>
+  </g>`;
+}
+const UNIT_ART = {
+  Stress: artSvg('A stressed person at a desk full of work', `
+    <circle cx="360" cy="150" r="150" fill="${ART_C.blob}"/>
+    <circle cx="120" cy="78" r="36" fill="${ART_C.cream}" stroke="${ART_C.milk}" stroke-width="5"/>
+    <path d="M120 78 L120 54 M120 78 L138 88" stroke="${ART_C.ink}" stroke-width="4" stroke-linecap="round"/>
+    <g transform="translate(560 34)"><rect width="104" height="92" rx="6" fill="${ART_C.cream}"/><rect width="104" height="22" rx="6" fill="${ART_C.caramel}"/>
+      <g fill="${ART_C.latte}">${[0,1,2,3].map(r=>[0,1,2,3,4].map(c=>`<rect x="${8+c*19}" y="${30+r*15}" width="13" height="9"/>`).join('')).join('')}</g>
+      <circle cx="90" cy="64" r="11" fill="none" stroke="#B5402F" stroke-width="3"/></g>
+    <g fill="${ART_C.gold}" opacity=".9"><rect x="200" y="40" width="34" height="34" transform="rotate(-6 217 57)"/><rect x="476" y="58" width="30" height="30" transform="rotate(8 491 73)"/><rect x="240" y="88" width="28" height="28" transform="rotate(4 254 102)"/></g>
+    <path d="M318 40 q12 -22 30 -6 q14 -20 30 0 q22 -10 22 12 q14 14 -6 22 q-2 18 -24 12 q-12 14 -28 2 q-22 6 -24 -14 q-16 -12 0 -28 z" fill="none" stroke="${ART_C.ink}" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M338 44 c10 10 -14 14 0 22 c14 6 10 -14 22 -6 c10 8 -12 14 2 20" stroke="${ART_C.caramel}" stroke-width="2.5" fill="none"/>
+    ${artBust(360, 130, '#E3B48F', ART_C.steelD, ART_C.cocoa, 1.05)}
+    <path d="M318 168 Q300 130 330 108 M402 168 Q420 130 390 108" stroke="${ART_C.steelD}" stroke-width="16" fill="none" stroke-linecap="round"/>
+    <circle cx="331" cy="108" r="9" fill="#E3B48F"/><circle cx="389" cy="108" r="9" fill="#E3B48F"/>
+    <rect x="60" y="214" width="600" height="14" rx="3" fill="${ART_C.cocoa}"/>
+    <rect x="90" y="228" width="12" height="72" fill="${ART_C.cocoa}"/><rect x="618" y="228" width="12" height="72" fill="${ART_C.cocoa}"/>
+    <path d="M292 150 L428 150 L436 210 L284 210 Z" fill="${ART_C.ink}"/><rect x="272" y="208" width="176" height="8" rx="3" fill="${ART_C.milk}"/>
+    <circle cx="360" cy="180" r="6" fill="${ART_C.latte}"/>
+    <g>${[0,1,2,3,4,5].map(i=>`<rect x="${150+(i%2)*4}" y="${206-i*9}" width="92" height="8" fill="${i%2?ART_C.paper:'#EFE4D6'}" stroke="${ART_C.latte}"/>`).join('')}</g>
+    <g>${[0,1,2].map(i=>`<g transform="translate(${490+i*40} ${176+(i%2)*6})"><path d="M0 0 L26 0 L22 34 L4 34 Z" fill="${i===1?ART_C.cream:ART_C.paper}" stroke="${ART_C.latte}" stroke-width="2"/><rect x="-1" y="-5" width="28" height="6" rx="2" fill="${ART_C.milk}"/></g>`).join('')}</g>
+  `),
+  Work: artSvg('A colleague presenting a chart in a meeting', `
+    <rect x="0" y="0" width="720" height="210" fill="#EEDFCF"/>
+    <rect x="40" y="30" width="170" height="120" fill="${ART_C.steel}" opacity=".35"/>
+    <g fill="${ART_C.steelD}" opacity=".45"><rect x="52" y="80" width="26" height="70"/><rect x="84" y="56" width="22" height="94"/><rect x="112" y="90" width="30" height="60"/><rect x="148" y="66" width="22" height="84"/><rect x="176" y="100" width="24" height="50"/></g>
+    <rect x="40" y="30" width="170" height="120" fill="none" stroke="${ART_C.cream}" stroke-width="8"/><path d="M125 30 V150" stroke="${ART_C.cream}" stroke-width="5"/>
+    <rect x="420" y="36" width="250" height="150" rx="4" fill="${ART_C.cream}" stroke="${ART_C.latte}" stroke-width="4"/>
+    <g fill="${ART_C.latte}"><rect x="450" y="140" width="28" height="30"/><rect x="494" y="118" width="28" height="52"/><rect x="538" y="100" width="28" height="70"/><rect x="582" y="76" width="28" height="94"/></g>
+    <polyline points="450,120 500,104 548,86 610,56" fill="none" stroke="${ART_C.caramel}" stroke-width="4" stroke-linecap="round"/>
+    <path d="M610 56 l-14 0 M610 56 l-4 13" stroke="${ART_C.caramel}" stroke-width="4" stroke-linecap="round"/>
+    <rect x="440" y="186" width="6" height="40" fill="${ART_C.milk}"/><rect x="644" y="186" width="6" height="40" fill="${ART_C.milk}"/>
+    <g transform="translate(360 0)">
+      <rect x="-24" y="120" width="48" height="96" rx="20" fill="${ART_C.caramel}"/>
+      <path d="M18 132 Q52 120 78 96" stroke="${ART_C.caramel}" stroke-width="14" stroke-linecap="round" fill="none"/><circle cx="80" cy="94" r="8" fill="#B07A52"/>
+      <rect x="-6" y="98" width="12" height="18" fill="#B07A52"/><circle cx="0" cy="84" r="22" fill="#B07A52"/>
+      <path d="M-22 84 Q-24 56 0 56 Q24 56 22 80 Q14 66 -4 68 Q-16 70 -22 84 Z" fill="${ART_C.ink}"/>
+      <rect x="-20" y="210" width="16" height="60" fill="${ART_C.ink}"/><rect x="4" y="210" width="16" height="60" fill="${ART_C.ink}"/>
+    </g>
+    <rect x="0" y="236" width="720" height="64" fill="${ART_C.milk}"/>
+    <rect x="30" y="226" width="380" height="14" rx="4" fill="${ART_C.cocoa}"/>
+    ${artBust(110, 214, '#F0C9A6', ART_C.sageD, '#6B4A37', 1.1)}
+    ${artBust(250, 220, '#8A5A3B', ART_C.steelD, ART_C.ink, 1.1)}
+    <g transform="translate(660 210)"><path d="M-16 0 L16 0 L12 40 L-12 40 Z" fill="${ART_C.rose}"/><path d="M0 0 Q-30 -30 -22 -60 Q0 -36 0 0 Q4 -50 24 -66 Q24 -26 0 0" fill="${ART_C.sage}"/></g>
+  `),
+  Money: artSvg('A piggy bank, coins, a bank card and a growing chart', `
+    <circle cx="380" cy="160" r="140" fill="${ART_C.blob}"/>
+    <polyline points="60,250 170,214 250,226 340,160 430,176 520,104 640,54" fill="none" stroke="${ART_C.sage}" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" opacity=".8"/>
+    <path d="M640 54 l-22 2 M640 54 l-6 20" stroke="${ART_C.sage}" stroke-width="6" stroke-linecap="round"/>
+    <rect x="0" y="262" width="720" height="38" fill="${ART_C.latte}"/>
+    <g transform="translate(372 186)">
+      <ellipse cx="0" cy="0" rx="96" ry="66" fill="${ART_C.rose}"/>
+      <ellipse cx="88" cy="-6" rx="22" ry="26" fill="#B8735B"/><ellipse cx="84" cy="-8" rx="4" ry="6" fill="${ART_C.cocoa}"/><ellipse cx="94" cy="-4" rx="4" ry="6" fill="${ART_C.cocoa}"/>
+      <path d="M40 -56 L58 -86 L66 -50 Z" fill="#B8735B"/><circle cx="56" cy="-24" r="5" fill="${ART_C.cocoa}"/>
+      <rect x="-26" y="-64" width="44" height="7" rx="3" fill="${ART_C.cocoa}"/>
+      <rect x="-64" y="46" width="22" height="34" rx="6" fill="#B8735B"/><rect x="34" y="46" width="22" height="34" rx="6" fill="#B8735B"/>
+      <path d="M-96 -6 q-24 -6 -18 -24 q8 -10 14 2" stroke="#B8735B" stroke-width="6" fill="none" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(372 96)"><ellipse rx="22" ry="8" fill="${ART_C.gold}"/><rect x="-22" y="-6" width="44" height="6" fill="${ART_C.gold}"/><ellipse cy="-6" rx="22" ry="8" fill="#E8C063"/></g>
+    ${[[150,262,6],[205,262,4],[96,262,3]].map(([x,y,n])=>`<g>${[...Array(n).keys()].map(i=>`<g transform="translate(${x} ${y-14-i*12})"><ellipse rx="26" ry="9" fill="#C08F2F"/><rect x="-26" y="-7" width="52" height="7" fill="${ART_C.gold}"/><ellipse cy="-7" rx="26" ry="9" fill="#E8C063"/></g>`).join('')}</g>`).join('')}
+    <g transform="translate(560 222) rotate(-10)"><rect x="-70" y="-44" width="140" height="88" rx="10" fill="${ART_C.steelD}"/><rect x="-70" y="-24" width="140" height="14" fill="${ART_C.ink}"/><rect x="-52" y="4" width="26" height="20" rx="3" fill="${ART_C.gold}"/><g fill="${ART_C.cream}" opacity=".8"><rect x="-10" y="10" width="20" height="5"/><rect x="14" y="10" width="20" height="5"/><rect x="38" y="10" width="20" height="5"/></g></g>
+  `),
+  Education: artSvg('Books, a graduation cap and a university building', `
+    <g fill="#E4D1BD"><path d="M110 120 L360 40 L610 120 Z"/><rect x="120" y="120" width="480" height="16"/>${[150,220,290,360,430,500,570].map(x=>`<rect x="${x-14}" y="136" width="28" height="110"/>`).join('')}<rect x="100" y="244" width="520" height="16"/></g>
+    <circle cx="360" cy="94" r="14" fill="${ART_C.bg}"/>
+    <rect x="0" y="252" width="720" height="48" fill="${ART_C.milk}"/>
+    <g transform="translate(150 252)"><path d="M-80 0 L-80 -50 Q-40 -64 0 -50 Q40 -64 80 -50 L80 0 Q40 -12 0 0 Q-40 -12 -80 0 Z" fill="${ART_C.paper}" stroke="${ART_C.latte}" stroke-width="2"/><path d="M0 -50 V0" stroke="${ART_C.latte}" stroke-width="2"/>
+      <g stroke="${ART_C.latte}" stroke-width="2">${[-38,-28,-18].map(y=>`<line x1="-66" y1="${y}" x2="-12" y2="${y-4}"/><line x1="12" y1="${y-4}" x2="66" y2="${y}"/>`).join('')}</g>
+      <rect x="40" y="-18" width="76" height="6" rx="3" fill="${ART_C.gold}" transform="rotate(-24 40 -18)"/></g>
+    <g transform="translate(360 252)">
+      <rect x="-110" y="-28" width="220" height="28" rx="3" fill="${ART_C.steelD}"/><rect x="-100" y="-56" width="200" height="28" rx="3" fill="${ART_C.caramel}"/><rect x="-116" y="-84" width="210" height="28" rx="3" fill="${ART_C.sageD}"/>
+      <g fill="${ART_C.cream}" opacity=".7"><rect x="-96" y="-18" width="70" height="4"/><rect x="-86" y="-46" width="60" height="4"/><rect x="-100" y="-74" width="80" height="4"/></g>
+      <path d="M-70 -104 L0 -128 L70 -104 L0 -80 Z" fill="${ART_C.ink}"/><path d="M-40 -96 L-40 -78 Q0 -64 40 -78 L40 -96 L0 -82 Z" fill="${ART_C.cocoa}"/>
+      <path d="M50 -100 L54 -70" stroke="${ART_C.gold}" stroke-width="3"/><circle cx="54" cy="-66" r="5" fill="${ART_C.gold}"/>
+    </g>
+    <g transform="translate(570 252)"><rect x="-40" y="-8" width="80" height="8" rx="3" fill="${ART_C.cocoa}"/><path d="M0 -8 L-10 -90 L40 -120" stroke="${ART_C.cocoa}" stroke-width="7" fill="none" stroke-linejoin="round"/><path d="M26 -132 L70 -112 L56 -88 L12 -108 Z" fill="${ART_C.caramel}"/><circle cx="62" cy="-96" r="22" fill="${ART_C.gold}" opacity=".3"/></g>
+  `),
+  People: artSvg('A diverse group of people talking', `
+    <circle cx="360" cy="190" r="170" fill="${ART_C.blob}"/>
+    <g font-family="Georgia, serif" font-size="17" fill="${ART_C.ink}">
+      <g transform="translate(150 40)"><rect width="116" height="44" rx="22" fill="${ART_C.cream}"/><path d="M40 42 L36 62 L60 42 Z" fill="${ART_C.cream}"/><text x="58" y="28" text-anchor="middle">Hello!</text></g>
+      <g transform="translate(320 18)"><rect width="196" height="44" rx="22" fill="${ART_C.sage}"/><path d="M60 42 L58 64 L84 42 Z" fill="${ART_C.sage}"/><text x="98" y="28" text-anchor="middle" fill="${ART_C.cream}">Nice to meet you</text></g>
+      <g transform="translate(540 54)"><rect width="104" height="44" rx="22" fill="${ART_C.caramel}"/><path d="M34 42 L30 62 L54 42 Z" fill="${ART_C.caramel}"/><text x="52" y="28" text-anchor="middle" fill="${ART_C.cream}">Hi there</text></g>
+    </g>
+    ${artBust(118, 190, '#E8B996', ART_C.steel, '#C49A5A', 1.05)}
+    ${artBust(222, 176, '#6E4630', ART_C.caramel, ART_C.ink, 1.15)}
+    ${artBust(600, 190, '#F1C9A5', ART_C.sageD, '#8A3B22', 1.05)}
+    ${artBust(498, 172, '#D9A273', ART_C.cocoa, '#3A2A20', 1.15)}
+    ${artBust(300, 214, '#A86B45', ART_C.gold, ART_C.ink, 1.2)}
+    ${artBust(420, 214, '#F0CBB0', ART_C.rose, '#B9A48E', 1.2)}
+    <rect x="0" y="282" width="720" height="18" fill="${ART_C.milk}"/>
+  `),
+  Personality: artSvg('A head silhouette with symbols of different personality traits', `
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    <path d="M300 300 L300 236 Q238 222 240 150 Q242 58 344 48 Q440 42 458 124 L476 158 Q480 168 466 170 L456 172 L458 194 Q460 212 442 212 L420 212 L420 238 Q420 254 402 254 L380 254 L380 300 Z" fill="${ART_C.milk}"/>
+    <g transform="translate(320 120)"><circle r="30" fill="none" stroke="${ART_C.gold}" stroke-width="10"/>${[0,45,90,135,180,225,270,315].map(a=>`<rect x="-6" y="-44" width="12" height="14" rx="2" fill="${ART_C.gold}" transform="rotate(${a})"/>`).join('')}<circle r="10" fill="${ART_C.milk}"/></g>
+    <path d="M390 190 Q370 170 384 158 Q396 150 404 164 Q412 150 424 158 Q438 170 418 190 L404 204 Z" fill="${ART_C.rose}"/>
+    <g transform="translate(404 104)"><path d="M-16 6 Q-28 -8 -20 -24 Q-10 -40 6 -38 Q24 -36 26 -16 Q26 -2 14 8 L12 18 L-12 18 Z" fill="${ART_C.cream}"/><rect x="-12" y="20" width="24" height="10" rx="3" fill="${ART_C.latte}"/><path d="M-6 6 L0 -10 L6 6" stroke="${ART_C.caramel}" stroke-width="2.5" fill="none"/></g>
+    <g transform="translate(300 196)"><path d="M-22 -22 h18 a8 8 0 1 1 8 0 h18 v18 a8 8 0 1 0 0 8 v18 h-44 Z" fill="${ART_C.sage}"/></g>
+    <g transform="translate(120 104)"><circle r="40" fill="${ART_C.cream}" stroke="${ART_C.latte}" stroke-width="4"/><circle cx="-13" cy="-8" r="5" fill="${ART_C.ink}"/><circle cx="13" cy="-8" r="5" fill="${ART_C.ink}"/><path d="M-18 10 Q0 28 18 10" stroke="${ART_C.ink}" stroke-width="4" fill="none" stroke-linecap="round"/></g>
+    <g transform="translate(130 216)"><circle r="32" fill="${ART_C.cream}" stroke="${ART_C.latte}" stroke-width="4"/><circle cx="-10" cy="-6" r="4" fill="${ART_C.ink}"/><circle cx="10" cy="-6" r="4" fill="${ART_C.ink}"/><path d="M-12 14 L12 14" stroke="${ART_C.ink}" stroke-width="4" stroke-linecap="round"/></g>
+    <g transform="translate(600 96)"><circle r="36" fill="${ART_C.cream}" stroke="${ART_C.latte}" stroke-width="4"/><circle cx="-12" cy="-6" r="4.5" fill="${ART_C.ink}"/><circle cx="12" cy="-6" r="4.5" fill="${ART_C.ink}"/><path d="M-14 18 Q0 4 14 18" stroke="${ART_C.ink}" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M-22 -18 L-6 -14 M22 -18 L6 -14" stroke="${ART_C.ink}" stroke-width="3" stroke-linecap="round"/></g>
+    <g transform="translate(596 212)"><circle r="30" fill="${ART_C.cream}" stroke="${ART_C.latte}" stroke-width="4"/><path d="M-14 -6 q4 -6 8 0 M6 -6 q4 -6 8 0" stroke="${ART_C.ink}" stroke-width="3.5" fill="none" stroke-linecap="round"/><path d="M-10 10 Q0 18 10 10" stroke="${ART_C.ink}" stroke-width="3.5" fill="none" stroke-linecap="round"/></g>
+  `),
+  Politics: artSvg('A parliament building, a ballot box and a podium', `
+    <circle cx="360" cy="110" r="130" fill="${ART_C.blob}"/>
+    <g fill="#E1CCB6">
+      <path d="M290 96 Q290 30 360 30 Q430 30 430 96 Z"/><rect x="352" y="8" width="16" height="24"/><rect x="280" y="96" width="160" height="14"/>
+      ${[296,322,348,372,398,424].map(x=>`<rect x="${x-6}" y="110" width="12" height="40"/>`).join('')}
+      <path d="M150 150 L360 116 L570 150 Z"/><rect x="160" y="150" width="400" height="12"/>
+      ${[180,220,260,300,340,380,420,460,500,540].map(x=>`<rect x="${x-9}" y="162" width="18" height="82"/>`).join('')}
+      <rect x="140" y="244" width="440" height="14"/>
+    </g>
+    <rect x="0" y="256" width="720" height="44" fill="${ART_C.milk}"/>
+    <g transform="translate(70 70)"><rect x="0" y="0" width="6" height="190" fill="${ART_C.cocoa}"/><path d="M6 6 Q40 -4 70 8 Q96 18 120 6 L120 60 Q96 72 70 62 Q40 50 6 60 Z" fill="${ART_C.steelD}"/><path d="M6 33 Q40 23 70 35 Q96 45 120 33 L120 46 Q96 58 70 48 Q40 36 6 46 Z" fill="${ART_C.cream}" opacity=".6"/></g>
+    <g transform="translate(200 256)"><rect x="-60" y="-86" width="120" height="86" rx="4" fill="${ART_C.caramel}"/><rect x="-60" y="-96" width="120" height="14" rx="3" fill="${ART_C.cocoa}"/><rect x="-26" y="-92" width="52" height="6" rx="3" fill="${ART_C.ink}"/>
+      <g transform="rotate(-8)"><rect x="-18" y="-142" width="40" height="54" fill="${ART_C.cream}" stroke="${ART_C.latte}" stroke-width="2"/><path d="M-8 -126 l6 8 l12 -16" stroke="${ART_C.sageD}" stroke-width="4" fill="none" stroke-linecap="round"/><g stroke="${ART_C.latte}" stroke-width="2"><line x1="-10" y1="-106" x2="14" y2="-106"/><line x1="-10" y1="-98" x2="10" y2="-98"/></g></g>
+      <text x="0" y="-36" text-anchor="middle" font-family="Georgia, serif" font-size="18" font-weight="700" fill="${ART_C.cream}">VOTE</text></g>
+    <g transform="translate(560 256)"><path d="M-54 0 L-44 -100 L44 -100 L54 0 Z" fill="${ART_C.cocoa}"/><rect x="-60" y="-112" width="120" height="14" rx="3" fill="${ART_C.ink}"/>
+      <path d="M-10 -112 L-22 -150 M10 -112 L22 -150" stroke="${ART_C.ink}" stroke-width="4"/><rect x="-30" y="-166" width="16" height="22" rx="8" fill="${ART_C.steelD}"/><rect x="14" y="-166" width="16" height="22" rx="8" fill="${ART_C.steelD}"/>
+      <circle cx="0" cy="-56" r="20" fill="none" stroke="${ART_C.gold}" stroke-width="4"/></g>
+  `),
+  Internet: artSvg('A laptop, a phone, a padlock and a global network', `
+    <circle cx="360" cy="140" r="132" fill="${ART_C.blob}"/>
+    <g fill="none" stroke="${ART_C.latte}" stroke-width="3"><circle cx="360" cy="140" r="118"/><ellipse cx="360" cy="140" rx="50" ry="118"/><ellipse cx="360" cy="140" rx="96" ry="118"/><path d="M242 140 H478 M256 84 H464 M256 196 H464"/></g>
+    <g stroke="${ART_C.steelD}" stroke-width="2.5" opacity=".8"><line x1="110" y1="70" x2="250" y2="40"/><line x1="250" y1="40" x2="470" y2="34"/><line x1="470" y1="34" x2="620" y2="80"/><line x1="110" y1="70" x2="80" y2="180"/><line x1="620" y1="80" x2="650" y2="176"/></g>
+    <g fill="${ART_C.steelD}"><circle cx="110" cy="70" r="9"/><circle cx="250" cy="40" r="7"/><circle cx="470" cy="34" r="8"/><circle cx="620" cy="80" r="9"/><circle cx="80" cy="180" r="7"/><circle cx="650" cy="176" r="7"/></g>
+    <g transform="translate(140 96)" fill="none" stroke="${ART_C.caramel}" stroke-width="7" stroke-linecap="round"><path d="M-34 0 A48 48 0 0 1 34 0"/><path d="M-20 16 A28 28 0 0 1 20 16"/><circle cx="0" cy="32" r="3" fill="${ART_C.caramel}"/></g>
+    <rect x="0" y="262" width="720" height="38" fill="${ART_C.milk}"/>
+    <g transform="translate(330 262)">
+      <rect x="-130" y="-160" width="260" height="150" rx="10" fill="${ART_C.ink}"/><rect x="-118" y="-148" width="236" height="126" rx="4" fill="${ART_C.cream}"/>
+      <rect x="-118" y="-148" width="236" height="22" fill="#EADBCB"/><circle cx="-104" cy="-137" r="4" fill="${ART_C.rose}"/><circle cx="-92" cy="-137" r="4" fill="${ART_C.gold}"/><circle cx="-80" cy="-137" r="4" fill="${ART_C.sage}"/>
+      <rect x="-60" y="-143" width="160" height="12" rx="6" fill="${ART_C.cream}"/>
+      <g transform="translate(-50 -137)"><rect x="-4" y="-1" width="9" height="7" rx="1" fill="${ART_C.sageD}"/><path d="M-2 -1 v-3 a2.5 2.5 0 0 1 5 0 v3" stroke="${ART_C.sageD}" stroke-width="1.6" fill="none"/></g>
+      <rect x="-100" y="-114" width="100" height="62" fill="${ART_C.steel}" opacity=".5"/><g fill="${ART_C.latte}"><rect x="12" y="-112" width="92" height="8"/><rect x="12" y="-96" width="80" height="8"/><rect x="12" y="-80" width="88" height="8"/><rect x="-100" y="-42" width="200" height="8"/></g>
+      <path d="M-150 -10 L150 -10 L140 6 L-140 6 Z" fill="${ART_C.milk}"/><path d="M-150 -10 L150 -10 L150 -4 L-150 -4 Z" fill="${ART_C.latte}"/>
+      <path d="M40 -60 L40 -32 L48 -40 L54 -28 L59 -30 L53 -42 L64 -42 Z" fill="${ART_C.ink}" stroke="${ART_C.cream}" stroke-width="1.5"/>
+    </g>
+    <g transform="translate(580 262)"><rect x="-44" y="-150" width="88" height="152" rx="14" fill="${ART_C.ink}"/><rect x="-36" y="-136" width="72" height="124" rx="4" fill="${ART_C.cream}"/>
+      <rect x="-30" y="-126" width="46" height="18" rx="9" fill="#EADBCB"/><rect x="-14" y="-102" width="44" height="18" rx="9" fill="${ART_C.sage}"/><rect x="-30" y="-78" width="38" height="18" rx="9" fill="#EADBCB"/><rect x="-6" y="-54" width="36" height="18" rx="9" fill="${ART_C.sage}"/></g>
+    <g transform="translate(470 92)"><rect x="-22" y="-4" width="44" height="36" rx="5" fill="${ART_C.gold}"/><path d="M-13 -4 v-10 a13 13 0 0 1 26 0 v10" stroke="${ART_C.gold}" stroke-width="7" fill="none"/><circle cx="0" cy="12" r="5" fill="${ART_C.cocoa}"/></g>
+  `),
+  Travel: artSvg('A plane, mountains, a suitcase, a passport and a camera', `
+    <rect width="720" height="190" fill="#E6E1D8"/>
+    <circle cx="590" cy="64" r="34" fill="${ART_C.gold}" opacity=".85"/>
+    <path d="M0 196 L110 104 L170 150 L260 70 L360 168 L430 120 L520 190 Z" fill="${ART_C.steel}" opacity=".7"/>
+    <path d="M232 96 L260 70 L286 96 L272 92 L260 102 L248 92 Z" fill="${ART_C.cream}"/>
+    <rect y="186" width="720" height="40" fill="${ART_C.steelD}" opacity=".55"/>
+    <path d="M0 200 q30 -6 60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0" stroke="${ART_C.cream}" stroke-width="2" fill="none" opacity=".6"/>
+    <path d="M90 150 Q250 10 470 60" stroke="${ART_C.caramel}" stroke-width="3" stroke-dasharray="10 9" fill="none"/>
+    <g transform="translate(500 66) rotate(14)"><rect x="-50" y="-9" width="100" height="18" rx="9" fill="${ART_C.cream}"/><path d="M-6 -6 L-30 -42 L-16 -42 L18 -6 Z M-6 6 L-30 42 L-16 42 L18 6 Z" fill="${ART_C.latte}"/><path d="M-44 -6 L-56 -26 L-46 -26 L-34 -6 Z" fill="${ART_C.caramel}"/><g fill="${ART_C.steelD}"><circle cx="20" cy="-1" r="2.5"/><circle cx="30" cy="-1" r="2.5"/><circle cx="10" cy="-1" r="2.5"/></g></g>
+    <rect y="226" width="720" height="74" fill="${ART_C.latte}"/>
+    <g transform="translate(160 286)"><path d="M-30 -136 v-14 q0 -8 8 -8 h44 q8 0 8 8 v14" stroke="${ART_C.cocoa}" stroke-width="8" fill="none"/>
+      <rect x="-66" y="-136" width="132" height="130" rx="12" fill="${ART_C.caramel}"/><rect x="-66" y="-90" width="132" height="8" fill="${ART_C.milk}"/><rect x="-34" y="-136" width="8" height="130" fill="${ART_C.milk}"/><rect x="26" y="-136" width="8" height="130" fill="${ART_C.milk}"/>
+      <circle cx="-2" cy="-112" r="14" fill="${ART_C.sage}"/><rect x="-6" y="-66" width="40" height="24" rx="4" fill="${ART_C.steel}" transform="rotate(-10)"/>
+      <circle cx="-44" cy="0" r="7" fill="${ART_C.ink}"/><circle cx="44" cy="0" r="7" fill="${ART_C.ink}"/></g>
+    <g transform="translate(410 240) rotate(-8) scale(.8)"><rect x="-44" y="-60" width="88" height="120" rx="6" fill="#4A2A35"/><circle cx="0" cy="-10" r="22" fill="none" stroke="${ART_C.gold}" stroke-width="3"/><path d="M-22 -10 H22 M0 -32 V12" stroke="${ART_C.gold}" stroke-width="2"/><rect x="-26" y="26" width="52" height="6" fill="${ART_C.gold}"/></g>
+    <g transform="translate(500 250) rotate(6) scale(.85)"><rect x="-10" y="-38" width="150" height="62" rx="6" fill="${ART_C.cream}"/><path d="M98 -38 V24" stroke="${ART_C.latte}" stroke-dasharray="4 4" stroke-width="2"/><g fill="${ART_C.latte}"><rect x="4" y="-26" width="60" height="7"/><rect x="4" y="-12" width="80" height="7"/><rect x="4" y="2" width="44" height="7"/></g><path d="M110 -8 l20 0 m-6 -6 l6 6 l-6 6" stroke="${ART_C.caramel}" stroke-width="3" fill="none"/></g>
+    <g transform="translate(640 250)"><rect x="-40" y="-26" width="80" height="54" rx="8" fill="${ART_C.ink}"/><rect x="-22" y="-36" width="22" height="12" rx="3" fill="${ART_C.ink}"/><circle cx="2" cy="2" r="18" fill="${ART_C.steelD}"/><circle cx="2" cy="2" r="10" fill="${ART_C.ink}"/><circle cx="-2" cy="-2" r="3" fill="${ART_C.cream}"/></g>
+  `),
+  AI: artSvg('An AI chip connected to text, images, data and translation', `
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    <g stroke="${ART_C.milk}" stroke-width="4" fill="none" stroke-linecap="round">
+      <path d="M300 120 H230 V70 H170"/><path d="M300 180 H230 V230 H170"/><path d="M420 120 H490 V70 H550"/><path d="M420 180 H490 V230 H550"/>
+      <path d="M340 90 V40"/><path d="M380 90 V40"/><path d="M340 210 V258"/><path d="M380 210 V258"/>
+    </g>
+    <g fill="${ART_C.milk}"><circle cx="340" cy="40" r="6"/><circle cx="380" cy="40" r="6"/><circle cx="340" cy="258" r="6"/><circle cx="380" cy="258" r="6"/></g>
+    <g transform="translate(360 150)"><rect x="-64" y="-64" width="128" height="128" rx="14" fill="${ART_C.ink}"/>
+      <g fill="${ART_C.latte}">${[-40,-20,0,20,40].map(v=>`<rect x="${v-4}" y="-76" width="8" height="12" rx="2"/><rect x="${v-4}" y="64" width="8" height="12" rx="2"/><rect x="-76" y="${v-4}" width="12" height="8" rx="2"/><rect x="64" y="${v-4}" width="12" height="8" rx="2"/>`).join('')}</g>
+      <rect x="-44" y="-44" width="88" height="88" rx="8" fill="none" stroke="${ART_C.caramel}" stroke-width="3"/>
+      <text x="0" y="14" text-anchor="middle" font-family="Georgia, serif" font-size="40" font-weight="700" fill="${ART_C.gold}">AI</text></g>
+    <g transform="translate(130 70)"><rect x="-46" y="-30" width="92" height="56" rx="16" fill="${ART_C.cream}"/><path d="M-22 24 L-28 42 L-6 24 Z" fill="${ART_C.cream}"/><g fill="${ART_C.latte}"><rect x="-30" y="-14" width="60" height="7" rx="3"/><rect x="-30" y="2" width="42" height="7" rx="3"/></g></g>
+    <g transform="translate(130 232)"><rect x="-46" y="-34" width="92" height="68" rx="6" fill="${ART_C.cream}"/><path d="M-38 26 L-10 -4 L8 14 L20 2 L38 26 Z" fill="${ART_C.sage}"/><circle cx="22" cy="-16" r="8" fill="${ART_C.gold}"/></g>
+    <g transform="translate(590 70)"><rect x="-46" y="-34" width="92" height="68" rx="6" fill="${ART_C.cream}"/><g fill="${ART_C.steelD}"><rect x="-32" y="0" width="12" height="22"/><rect x="-14" y="-12" width="12" height="34"/><rect x="4" y="-4" width="12" height="26"/><rect x="22" y="-22" width="12" height="44"/></g></g>
+    <g transform="translate(590 232)"><rect x="-46" y="-34" width="92" height="68" rx="6" fill="${ART_C.cream}"/><text x="-18" y="10" text-anchor="middle" font-family="Georgia, serif" font-size="30" font-weight="700" fill="${ART_C.caramel}">A</text><path d="M-2 0 h14 m-5 -6 l5 6 l-5 6" stroke="${ART_C.ink}" stroke-width="2.5" fill="none"/><text x="28" y="10" text-anchor="middle" font-family="Georgia, serif" font-size="28" font-weight="700" fill="${ART_C.steelD}">Я</text></g>
+  `)
+};
+
+const A2_NEW_ART = {
+  u2: artSvg('A cyclist falls in the rain when a dog runs across the road', `
+    <rect width="720" height="300" fill="#DCD6CE"/>
+    <g stroke="${ART_C.steelD}" stroke-width="2.5" stroke-linecap="round" opacity=".55">${[[40,20],[120,60],[200,14],[300,50],[420,20],[520,64],[610,26],[680,70],[80,110],[250,100],[460,96],[640,120]].map(([x,y])=>`<line x1="${x}" y1="${y}" x2="${x-8}" y2="${y+18}"/>`).join('')}</g>
+    <rect x="590" y="30" width="10" height="200" fill="${ART_C.cocoa}"/><path d="M560 40 Q595 20 630 40 L620 52 L570 52 Z" fill="${ART_C.cocoa}"/><circle cx="595" cy="56" r="10" fill="${ART_C.gold}"/><circle cx="595" cy="56" r="28" fill="${ART_C.gold}" opacity=".2"/>
+    <rect y="200" width="720" height="100" fill="#8A8178"/>
+    <path d="M0 252 H720" stroke="${ART_C.cream}" stroke-width="5" stroke-dasharray="40 30"/>
+    <ellipse cx="300" cy="282" rx="120" ry="8" fill="#9DB1BA" opacity=".6"/>
+    <g transform="translate(250 228) rotate(-24)"><circle cx="-56" cy="0" r="30" fill="none" stroke="${ART_C.ink}" stroke-width="6"/><circle cx="56" cy="0" r="30" fill="none" stroke="${ART_C.ink}" stroke-width="6"/><path d="M-56 0 L-12 -40 L36 -40 L56 0 M-12 -40 L6 0 L36 -40 M6 0 L-56 0" stroke="${ART_C.sageD}" stroke-width="6" fill="none" stroke-linejoin="round"/><path d="M-20 -52 L0 -52" stroke="${ART_C.ink}" stroke-width="6" stroke-linecap="round"/><path d="M36 -40 L30 -60 L44 -64" stroke="${ART_C.ink}" stroke-width="5" fill="none"/></g>
+    <g transform="translate(380 200) rotate(30)">
+      <rect x="-14" y="-10" width="28" height="70" rx="12" fill="${ART_C.caramel}"/>
+      <circle cx="0" cy="-28" r="18" fill="#E3B48F"/><path d="M-18 -30 Q-18 -50 0 -50 Q18 -50 18 -30 Q10 -40 0 -40 Q-10 -40 -18 -30 Z" fill="${ART_C.cocoa}"/>
+      <path d="M-10 0 L-40 -20 M10 0 L36 -22" stroke="${ART_C.caramel}" stroke-width="10" stroke-linecap="round"/>
+      <path d="M-6 56 L-20 86 M6 56 L26 84" stroke="${ART_C.steelD}" stroke-width="11" stroke-linecap="round"/></g>
+    <g transform="translate(140 196)"><ellipse cx="0" cy="0" rx="40" ry="18" fill="${ART_C.milk}"/><circle cx="42" cy="-14" r="16" fill="${ART_C.milk}"/><path d="M48 -28 L56 -40 L60 -24 Z" fill="${ART_C.cocoa}"/><circle cx="50" cy="-16" r="2.5" fill="${ART_C.ink}"/><path d="M-40 -6 Q-62 -22 -58 -36" stroke="${ART_C.milk}" stroke-width="7" fill="none" stroke-linecap="round"/><g stroke="${ART_C.milk}" stroke-width="7" stroke-linecap="round"><line x1="-26" y1="12" x2="-40" y2="34"/><line x1="-12" y1="14" x2="-6" y2="36"/><line x1="16" y1="12" x2="4" y2="34"/><line x1="28" y1="10" x2="40" y2="32"/></g></g>
+    <g fill="none" stroke="${ART_C.caramel}" stroke-width="4" stroke-linecap="round"><path d="M450 150 l14 -14 M462 172 l20 -4 M440 128 l4 -20"/></g>
+    <g transform="translate(510 252) rotate(-14)"><path d="M-30 0 Q-30 -30 0 -30 Q30 -30 30 0 Z" fill="${ART_C.gold}"/><rect x="-34" y="-2" width="68" height="6" rx="3" fill="${ART_C.cocoa}"/></g>
+  `),
+  u4: artSvg('A signpost pointing to today, tomorrow and next year, with plans and a forecast', `
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    <rect y="246" width="720" height="54" fill="${ART_C.sage}" opacity=".55"/>
+    <path d="M300 300 Q360 240 400 246 Q470 252 720 160 L720 190 Q470 270 410 268 Q370 266 340 300 Z" fill="${ART_C.latte}"/>
+    <rect x="352" y="70" width="14" height="190" rx="3" fill="${ART_C.cocoa}"/>
+    <g font-family="Georgia, serif" font-size="17" font-weight="700">
+      <g><path d="M366 78 L500 78 L524 98 L500 118 L366 118 Z" fill="${ART_C.caramel}"/><text x="440" y="104" text-anchor="middle" fill="${ART_C.cream}">TOMORROW</text></g>
+      <g><path d="M352 130 L222 130 L198 150 L222 170 L352 170 Z" fill="${ART_C.steelD}"/><text x="280" y="156" text-anchor="middle" fill="${ART_C.cream}">TODAY</text></g>
+      <g><path d="M366 182 L512 182 L536 202 L512 222 L366 222 Z" fill="${ART_C.sageD}"/><text x="446" y="208" text-anchor="middle" fill="${ART_C.cream}">NEXT YEAR</text></g>
+    </g>
+    <g transform="translate(110 70)"><ellipse cx="0" cy="10" rx="40" ry="20" fill="${ART_C.cream}"/><circle cx="-16" cy="0" r="20" fill="${ART_C.cream}"/><circle cx="14" cy="-4" r="24" fill="${ART_C.cream}"/><circle cx="30" cy="-22" r="16" fill="${ART_C.gold}"/><g stroke="${ART_C.steelD}" stroke-width="3" stroke-linecap="round"><line x1="-20" y1="36" x2="-24" y2="48"/><line x1="0" y1="36" x2="-4" y2="48"/><line x1="20" y1="36" x2="16" y2="48"/></g></g>
+    <g transform="translate(600 60)"><rect x="-50" y="0" width="100" height="96" rx="6" fill="${ART_C.cream}"/><rect x="-50" y="0" width="100" height="22" rx="6" fill="${ART_C.caramel}"/><g stroke="${ART_C.latte}" stroke-width="3" stroke-linecap="round"><line x1="-34" y1="40" x2="26" y2="40"/><line x1="-34" y1="58" x2="18" y2="58"/><line x1="-34" y1="76" x2="30" y2="76"/></g><path d="M-40 38 l4 4 l7 -8 M-40 56 l4 4 l7 -8" stroke="${ART_C.sageD}" stroke-width="2.5" fill="none"/><rect x="-42" y="70" width="10" height="10" rx="2" fill="none" stroke="${ART_C.latte}" stroke-width="2"/></g>
+  `),
+  u5: artSvg('Then and now: an old phone and village house next to a smartphone and a modern city', `
+    <rect width="360" height="300" fill="#E5D3BB"/><rect x="360" width="360" height="300" fill="#DCE3E6"/>
+    <rect y="240" width="360" height="60" fill="#B89B78"/><rect x="360" y="240" width="360" height="60" fill="${ART_C.steel}"/>
+    <text x="180" y="40" text-anchor="middle" font-family="Georgia, serif" font-size="22" font-style="italic" fill="${ART_C.milk}">then</text>
+    <text x="540" y="40" text-anchor="middle" font-family="Georgia, serif" font-size="22" font-style="italic" fill="${ART_C.steelD}">now</text>
+    <g transform="translate(100 240)"><rect x="-50" y="-64" width="100" height="64" fill="#C9A77F"/><path d="M-62 -62 L0 -104 L62 -62 Z" fill="${ART_C.milk}"/><rect x="-12" y="-36" width="24" height="36" fill="${ART_C.cocoa}"/><rect x="-40" y="-50" width="18" height="16" fill="${ART_C.cream}"/><rect x="22" y="-50" width="18" height="16" fill="${ART_C.cream}"/></g>
+    <g transform="translate(150 196)" opacity=".75"><rect x="0" y="0" width="8" height="44" fill="${ART_C.milk}"/><circle cx="4" cy="-10" r="18" fill="#9C8A5E"/></g>
+    <g transform="translate(262 236)"><path d="M-50 0 L-40 -50 L40 -50 L50 0 Z" fill="${ART_C.ink}"/><circle cx="0" cy="-26" r="17" fill="${ART_C.cream}"/><g fill="${ART_C.ink}">${[0,51,102,153,204,255,306].map(a=>`<circle cx="${(11*Math.cos(a*Math.PI/180)).toFixed(1)}" cy="${(-26+11*Math.sin(a*Math.PI/180)).toFixed(1)}" r="2.5"/>`).join('')}</g><path d="M-54 -58 Q-54 -74 -38 -74 L38 -74 Q54 -74 54 -58 L54 -52 L34 -52 L30 -62 L-30 -62 L-34 -52 L-54 -52 Z" fill="${ART_C.cocoa}"/></g>
+    <g fill="${ART_C.steelD}" opacity=".75"><rect x="400" y="120" width="40" height="120"/><rect x="448" y="80" width="46" height="160"/><rect x="502" y="140" width="34" height="100"/><rect x="640" y="100" width="44" height="140"/></g>
+    <g fill="#E9F0F2" opacity=".8">${[[408,132],[424,132],[408,152],[424,152],[456,92],[474,92],[456,114],[474,114],[456,136],[474,136],[648,112],[666,112],[648,134],[666,134]].map(([x,y])=>`<rect x="${x}" y="${y}" width="10" height="12"/>`).join('')}</g>
+    <g transform="translate(590 236)"><rect x="-34" y="-122" width="68" height="124" rx="12" fill="${ART_C.ink}"/><rect x="-28" y="-112" width="56" height="102" rx="3" fill="${ART_C.cream}"/><g>${[0,1,2].map(r=>[0,1,2].map(c=>`<rect x="${-22+c*16}" y="${-104+r*18}" width="12" height="12" rx="3" fill="${[ART_C.caramel,ART_C.sage,ART_C.steelD,ART_C.gold,ART_C.rose][(r*3+c)%5]}"/>`).join('')).join('')}</g></g>
+    <rect x="356" y="0" width="8" height="300" fill="${ART_C.cream}"/>
+  `),
+  u6: artSvg('A doctor\'s bag, medicine, water, fruit and a heartbeat line', `
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    <path d="M40 120 H230 L250 80 L272 170 L296 60 L316 140 L334 120 H680" stroke="${ART_C.rose}" stroke-width="5" fill="none" stroke-linejoin="round" opacity=".8"/>
+    <rect y="248" width="720" height="52" fill="${ART_C.milk}"/>
+    <g transform="translate(360 248)"><path d="M-30 -110 V-124 Q-30 -136 -18 -136 H18 Q30 -136 30 -124 V-110" stroke="${ART_C.cocoa}" stroke-width="9" fill="none"/>
+      <rect x="-100" y="-112" width="200" height="112" rx="18" fill="${ART_C.cocoa}"/><rect x="-100" y="-80" width="200" height="8" fill="${ART_C.ink}"/>
+      <rect x="-12" y="-62" width="24" height="52" rx="3" fill="${ART_C.cream}"/><rect x="-26" y="-48" width="52" height="24" rx="3" fill="${ART_C.cream}"/></g>
+    <g transform="translate(160 248)"><rect x="-22" y="-104" width="44" height="104" rx="10" fill="#C9DDE3" opacity=".9"/><rect x="-12" y="-120" width="24" height="18" rx="3" fill="${ART_C.steelD}"/><rect x="-22" y="-60" width="44" height="30" fill="${ART_C.cream}" opacity=".7"/></g>
+    <g transform="translate(560 248)"><circle cx="-26" cy="-30" r="30" fill="#B5402F"/><path d="M-26 -60 q4 -14 14 -16" stroke="${ART_C.cocoa}" stroke-width="4" fill="none"/><path d="M-22 -64 q14 -10 22 2 q-14 6 -22 -2" fill="${ART_C.sage}"/>
+      <rect x="20" y="-74" width="40" height="74" rx="6" fill="${ART_C.cream}"/><rect x="18" y="-86" width="44" height="14" rx="3" fill="${ART_C.caramel}"/><rect x="28" y="-50" width="24" height="18" fill="${ART_C.latte}"/></g>
+    <g transform="translate(250 262)"><rect x="-26" y="-8" width="52" height="16" rx="8" fill="${ART_C.cream}"/><rect x="0" y="-8" width="26" height="16" rx="8" fill="${ART_C.gold}"/></g>
+    <g transform="translate(470 264) rotate(-20)"><rect x="-24" y="-7" width="48" height="14" rx="7" fill="${ART_C.cream}"/><rect x="0" y="-7" width="24" height="14" rx="7" fill="${ART_C.steel}"/></g>
+  `),
+  u7: artSvg('A factory with a conveyor belt, gears and finished chocolate bars', `
+    <rect width="720" height="300" fill="#EEDFCF"/>
+    <g fill="${ART_C.latte}"><rect x="40" y="70" width="230" height="130"/><path d="M40 70 L98 36 L98 70 L156 36 L156 70 L214 36 L214 70 L270 36 L270 70 Z"/><rect x="230" y="8" width="26" height="64"/></g>
+    <g fill="${ART_C.cream}" opacity=".7"><circle cx="250" cy="0" r="12"/><circle cx="270" cy="-6" r="10"/></g>
+    <g fill="${ART_C.steel}" opacity=".7">${[70,120,170,220].map(x=>`<rect x="${x-14}" y="104" width="28" height="30"/>`).join('')}</g>
+    <g transform="translate(560 90)"><circle r="40" fill="none" stroke="${ART_C.caramel}" stroke-width="14"/>${[0,45,90,135,180,225,270,315].map(a=>`<rect x="-9" y="-58" width="18" height="20" rx="3" fill="${ART_C.caramel}" transform="rotate(${a})"/>`).join('')}<circle r="12" fill="#EEDFCF"/></g>
+    <g transform="translate(640 150)"><circle r="24" fill="none" stroke="${ART_C.milk}" stroke-width="9"/>${[0,60,120,180,240,300].map(a=>`<rect x="-6" y="-36" width="12" height="13" rx="2" fill="${ART_C.milk}" transform="rotate(${a})"/>`).join('')}<circle r="7" fill="#EEDFCF"/></g>
+    <rect y="262" width="720" height="38" fill="${ART_C.milk}"/>
+    <rect x="30" y="214" width="660" height="22" rx="11" fill="${ART_C.ink}"/>
+    <g fill="${ART_C.steelD}">${[50,110,170,230,290,350,410,470,530,590,650,670].map(x=>`<circle cx="${x}" cy="225" r="7"/>`).join('')}</g>
+    <g stroke="${ART_C.ink}" stroke-width="8"><line x1="70" y1="236" x2="70" y2="262"/><line x1="650" y1="236" x2="650" y2="262"/></g>
+    <g>${[[110,'#6B3A22'],[230,'#6B3A22'],[350,'#6B3A22']].map(([x,c])=>`<g transform="translate(${x} 214)"><rect x="-38" y="-24" width="76" height="24" rx="3" fill="${c}"/><g stroke="#4E2814" stroke-width="2">${[-19,0,19].map(d=>`<line x1="${d}" y1="-24" x2="${d}" y2="0"/>`).join('')}<line x1="-38" y1="-12" x2="38" y2="-12"/></g></g>`).join('')}</g>
+    <g transform="translate(500 214)"><rect x="-44" y="-30" width="88" height="30" rx="3" fill="${ART_C.caramel}"/><rect x="-44" y="-30" width="30" height="30" fill="${ART_C.gold}"/><text x="14" y="-10" text-anchor="middle" font-family="Georgia, serif" font-size="13" font-weight="700" fill="${ART_C.cream}">CHOCO</text></g>
+    <g transform="translate(610 214)"><rect x="-34" y="-46" width="68" height="46" fill="${ART_C.latte}"/><path d="M-34 -46 L0 -30 L34 -46" stroke="${ART_C.milk}" stroke-width="2" fill="none"/></g>
+  `),
+  u9: artSvg('Shopping bags, a price tag with a discount, a receipt and a bank card', `
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    <rect y="262" width="720" height="38" fill="${ART_C.latte}"/>
+    <g transform="translate(250 262)"><path d="M-34 -150 Q-34 -186 0 -186 Q34 -186 34 -150" stroke="${ART_C.cocoa}" stroke-width="8" fill="none"/><path d="M-80 -150 L80 -150 L92 0 L-92 0 Z" fill="${ART_C.caramel}"/><rect x="-80" y="-150" width="160" height="16" fill="#8E4A18"/></g>
+    <g transform="translate(380 262)"><path d="M-24 -110 Q-24 -138 0 -138 Q24 -138 24 -110" stroke="${ART_C.cocoa}" stroke-width="7" fill="none"/><path d="M-60 -110 L60 -110 L68 0 L-68 0 Z" fill="${ART_C.sageD}"/><rect x="-60" y="-110" width="120" height="12" fill="#4A6234"/></g>
+    <g transform="translate(150 100) rotate(-18)"><path d="M-46 -26 L30 -26 L56 0 L30 26 L-46 26 Z" fill="${ART_C.gold}"/><circle cx="32" cy="0" r="6" fill="${ART_C.blob}"/><text x="-12" y="9" text-anchor="middle" font-family="Georgia, serif" font-size="24" font-weight="700" fill="${ART_C.cocoa}">-20%</text><path d="M38 0 Q60 -10 70 -40" stroke="${ART_C.cocoa}" stroke-width="2" fill="none"/></g>
+    <g transform="translate(540 54)"><path d="M0 0 H110 V176 L98 168 L86 176 L74 168 L62 176 L50 168 L38 176 L26 168 L14 176 L0 168 Z" fill="${ART_C.cream}"/>
+      <g fill="${ART_C.latte}">${[24,42,60,78,96].map(y=>`<rect x="12" y="${y}" width="56" height="7"/><rect x="78" y="${y}" width="20" height="7"/>`).join('')}</g><rect x="12" y="120" width="86" height="3" fill="${ART_C.milk}"/><rect x="12" y="132" width="40" height="9" fill="${ART_C.cocoa}"/><rect x="70" y="132" width="28" height="9" fill="${ART_C.cocoa}"/></g>
+    <g transform="translate(560 252) rotate(8)"><rect x="-60" y="-38" width="120" height="76" rx="9" fill="${ART_C.steelD}"/><rect x="-60" y="-20" width="120" height="12" fill="${ART_C.ink}"/><rect x="-44" y="4" width="22" height="16" rx="3" fill="${ART_C.gold}"/></g>
+  `),
+  u11: artSvg('A night sky with a shooting star and a dream of a café and travel', `
+    <rect width="720" height="300" fill="#2F3550"/>
+    <g fill="${ART_C.cream}">${[[40,40],[100,90],[170,30],[230,120],[300,50],[420,30],[470,110],[560,60],[640,30],[690,110],[60,170],[600,170]].map(([x,y],i)=>`<circle cx="${x}" cy="${y}" r="${i%3?1.8:2.8}"/>`).join('')}</g>
+    <path d="M610 40 A26 26 0 1 0 636 88 A20 20 0 1 1 610 40 Z" fill="#F4E9C8"/>
+    <path d="M120 60 L260 120" stroke="${ART_C.gold}" stroke-width="10" stroke-linecap="round" opacity=".25"/><path d="M160 76 L260 120" stroke="${ART_C.gold}" stroke-width="4" stroke-linecap="round" opacity=".7"/>
+    <path d="M262 108 l5 10 l11 2 l-8 8 l2 11 l-10 -5 l-10 5 l2 -11 l-8 -8 l11 -2 z" fill="${ART_C.gold}"/>
+    <path d="M0 260 Q180 230 360 250 Q540 270 720 240 L720 300 L0 300 Z" fill="#1F2438"/>
+    ${artBust(200, 236, '#E3B48F', ART_C.caramel, ART_C.cocoa, 1.1).replace('translate(200 236)', 'translate(200 236)')}
+    <g fill="${ART_C.cream}" opacity=".9"><circle cx="262" cy="196" r="5"/><circle cx="282" cy="176" r="8"/></g>
+    <g transform="translate(450 160)"><ellipse rx="150" ry="74" fill="${ART_C.cream}"/><circle cx="-110" cy="-30" r="40" fill="${ART_C.cream}"/><circle cx="100" cy="-40" r="46" fill="${ART_C.cream}"/><circle cx="0" cy="-60" r="50" fill="${ART_C.cream}"/>
+      <g transform="translate(-60 20)"><rect x="-44" y="-40" width="88" height="56" fill="${ART_C.caramel}"/><path d="M-54 -40 L54 -40 L46 -56 L-46 -56 Z" fill="${ART_C.cocoa}"/><g fill="${ART_C.cream}">${[-44,-22,0,22].map(x=>`<path d="M${x} -40 h22 v8 q-11 8 -22 0 z"/>`).join('')}</g><rect x="-10" y="-14" width="20" height="30" fill="${ART_C.cocoa}"/><text x="0" y="-22" text-anchor="middle" font-family="Georgia, serif" font-size="11" font-weight="700" fill="${ART_C.cream}">CAFÉ</text></g>
+      <g transform="translate(70 -10) rotate(-14)"><rect x="-40" y="-7" width="80" height="14" rx="7" fill="${ART_C.steelD}"/><path d="M-6 -4 L-24 -32 L-12 -32 L14 -4 Z M-6 4 L-24 32 L-12 32 L14 4 Z" fill="${ART_C.steel}"/><path d="M-34 -4 L-44 -20 L-36 -20 L-26 -4 Z" fill="${ART_C.caramel}"/></g>
+      <path d="M40 40 q30 -20 60 0" stroke="${ART_C.latte}" stroke-width="3" stroke-dasharray="6 6" fill="none"/>
+    </g>
+  `),
+  u12: artSvg('Two people talking, speech bubbles with quotes and a phone message', `
+    <circle cx="360" cy="160" r="140" fill="${ART_C.blob}"/>
+    <rect y="270" width="720" height="30" fill="${ART_C.milk}"/>
+    ${artBust(170, 220, '#D9A273', ART_C.sageD, ART_C.ink, 1.3)}
+    ${artBust(550, 220, '#F1C9A5', ART_C.caramel, '#8A3B22', 1.3)}
+    <g font-family="Georgia, serif" fill="${ART_C.ink}">
+      <g transform="translate(70 30)"><rect width="200" height="64" rx="18" fill="${ART_C.cream}"/><path d="M70 62 L74 90 L100 62 Z" fill="${ART_C.cream}"/><text x="100" y="30" text-anchor="middle" font-size="18">“I'll call you</text><text x="100" y="52" text-anchor="middle" font-size="18">tomorrow.”</text></g>
+      <g transform="translate(430 30)"><rect width="220" height="64" rx="18" fill="${ART_C.steelD}"/><path d="M140 62 L134 90 L112 62 Z" fill="${ART_C.steelD}"/><text x="110" y="30" text-anchor="middle" font-size="16" fill="${ART_C.cream}">She said she</text><text x="110" y="52" text-anchor="middle" font-size="16" fill="${ART_C.cream}">would call me.</text></g>
+    </g>
+    <g transform="translate(360 200)"><rect x="-36" y="-70" width="72" height="128" rx="12" fill="${ART_C.ink}"/><rect x="-29" y="-60" width="58" height="104" rx="3" fill="${ART_C.cream}"/><circle cx="0" cy="-26" r="16" fill="${ART_C.caramel}"/><path d="M-6 -32 L-6 -20 L6 -26 Z" fill="${ART_C.cream}"/><g stroke="${ART_C.latte}" stroke-width="4" stroke-linecap="round"><line x1="-20" y1="2" x2="20" y2="2"/><line x1="-20" y1="14" x2="10" y2="14"/><line x1="-20" y1="26" x2="16" y2="26"/></g></g>
+    <path d="M300 130 q-30 -10 -40 -40" stroke="${ART_C.caramel}" stroke-width="3" stroke-dasharray="6 6" fill="none"/><path d="M420 130 q30 -10 40 -40" stroke="${ART_C.caramel}" stroke-width="3" stroke-dasharray="6 6" fill="none"/>
+  `)
+};
+
+const A2_ART = { u1: UNIT_ART.Travel, u2: A2_NEW_ART.u2, u3: UNIT_ART.Work, u4: A2_NEW_ART.u4, u5: A2_NEW_ART.u5, u6: A2_NEW_ART.u6,
+  u7: A2_NEW_ART.u7, u8: UNIT_ART.People, u9: A2_NEW_ART.u9, u10: UNIT_ART.Internet, u11: A2_NEW_ART.u11, u12: A2_NEW_ART.u12 };
+
+function renderUnit(unit, index){
+  const panel = el("div", "unit-panel" + (index === 0 ? " active" : ""));
+  panel.id = unit.id;
+
+  const head = el("div", "unit-head",
+    '<p class="kicker">' + unit.kicker + ' · Grammar focus: ' + unit.grammarName + '</p>' +
+    '<h2>' + unit.title + '</h2><p>' + unit.intro + '</p>'
+  );
+  const toc = el("div", "unit-toc");
+  const tocSections = [
+    ["Preview", unit.id + "-preview"],
+    ["Vocabulary", unit.id + "-vocab"],
+    ["Reading", unit.id + "-reading"],
+    ["Comprehension", unit.id + "-comprehension"],
+    ["Grammar", unit.id + "-grammar"],
+    ["Speaking", unit.id + "-speaking"],
+    ["Writing", unit.id + "-writing"]
+  ];
+  tocSections.forEach(([label, secId]) => {
+    const b = el("button", null, label);
+    b.type = "button";
+    b.onclick = () => document.getElementById(secId).scrollIntoView({behavior: "smooth", block: "start"});
+    toc.appendChild(b);
+  });
+  head.appendChild(toc);
+  panel.appendChild(head);
+
+  // Preview
+  const preview = el("section");
+  preview.id = unit.id + "-preview";
+  preview.appendChild(el("h3", null, "Before you read"));
+  preview.appendChild(el("p", "lede", "Think about these questions for a minute, then discuss."));
+  const pList = el("ul", "preview-list");
+  unit.preview.forEach((q, i) => {
+    pList.appendChild(el("li", null, '<span class="q-label">0' + (i+1) + '</span>' + q));
+  });
+  const pRow = el("div", "preview-row" + (A2_ART[unit.id] ? " has-art" : ""));
+  if (A2_ART[unit.id]) pRow.appendChild(el("figure", "unit-art", A2_ART[unit.id] + '<figcaption>Look at the picture. What can you see? How is it connected to the topic?</figcaption>'));
+  pRow.appendChild(pList);
+  preview.appendChild(pRow);
+  panel.appendChild(preview);
+
+  // Vocabulary
+  const vocabSec = el("section");
+  vocabSec.id = unit.id + "-vocab";
+  vocabSec.appendChild(el("h3", null, "Vocabulary"));
+  vocabSec.appendChild(el("p", "lede", "Tap a card to see the translation, then complete the exercises below."));
+  const flipTools = el("div", "flip-tools");
+  const flipAll = el("button", "flip-all", "Show all translations");
+  flipAll.type = "button";
+  flipTools.appendChild(flipAll);
+  vocabSec.appendChild(flipTools);
+  const vGrid = el("div", "flip-grid");
+  unit.vocab.forEach(v => {
+    const card = el("button", "flip-card",
+      '<span class="flip-inner"><span class="flip-face flip-front"><span class="fc-w">' + v.word + '</span></span>' +
+      '<span class="flip-face flip-back"><span class="fc-ru">' + (v.ru || '') + '</span><span class="fc-def">' + v.def + '</span></span></span>');
+    card.type = "button";
+    card.setAttribute("aria-pressed", "false");
+    card.onclick = () => { const on = card.classList.toggle("flipped"); card.setAttribute("aria-pressed", on ? "true" : "false"); };
+    vGrid.appendChild(card);
+  });
+  flipAll.onclick = () => {
+    const cards = vGrid.querySelectorAll(".flip-card");
+    const showAll = Array.from(cards).some(c => !c.classList.contains("flipped"));
+    cards.forEach(c => { c.classList.toggle("flipped", showAll); c.setAttribute("aria-pressed", showAll ? "true" : "false"); });
+    flipAll.textContent = showAll ? "Hide translations" : "Show all translations";
+  };
+  vocabSec.appendChild(vGrid);
+
+  // Vocab exercise 1: gap fill — drag / tap a word from the bank into the gap
+  const vGapCard = el("div", "card");
+  vGapCard.appendChild(el("p", "ex-title", "1. Drag (or tap) the correct word into each gap."));
+  renderWordBankGaps(unit, vGapCard);
+  vocabSec.appendChild(vGapCard);
+
+  // Vocab exercise 2: matching — tap a word, then tap its definition
+  const vMatchCard = el("div", "card");
+  vMatchCard.appendChild(el("p", "ex-title", "2. Tap a word, then tap its definition."));
+  renderClickMatch(unit.id + "-vocabMatch", unit.vocab.map(v => (v.emo ? v.emo + " " : "") + v.word), unit.vocab.map(v => v.def), vMatchCard);
+  vocabSec.appendChild(vMatchCard);
+
+  // Vocab exercise 3: true/false — tap True or False
+  const vTFCard = el("div", "card");
+  vTFCard.appendChild(el("p", "ex-title", "3. True or false?"));
+  renderPillChoice(
+    unit.id + "-vocabTF",
+    unit.vocabTF.map(item => ({ sentence: item.statement, options: ["True", "False"], answer: item.answer ? "True" : "False" })),
+    vTFCard
+  );
+  vocabSec.appendChild(vTFCard);
+
+  panel.appendChild(vocabSec);
+
+  // Reading
+  const readSec = el("section");
+  readSec.id = unit.id + "-reading";
+  readSec.appendChild(el("h3", null, "Reading"));
+  const readCard = el("div", "card reading");
+  unit.reading.forEach(p => readCard.appendChild(el("p", null, p)));
+  readSec.appendChild(readCard);
+  panel.appendChild(readSec);
+
+  // Comprehension
+  const compSec = el("section");
+  compSec.id = unit.id + "-comprehension";
+  compSec.appendChild(el("h3", null, "Comprehension"));
+  const compCard = el("div", "card");
+  unit.comprehension.forEach((q, i) => {
+    const block = el("div", "comp-q");
+    block.innerHTML = '<p class="q">' + (i+1) + '. ' + q + '</p><textarea data-save="' + unit.id + '-comp-' + i + '" placeholder="Write your answer here..."></textarea>';
+    compCard.appendChild(block);
+  });
+  compSec.appendChild(compCard);
+  panel.appendChild(compSec);
+
+  // Grammar
+  const gramSec = el("section");
+  gramSec.id = unit.id + "-grammar";
+  gramSec.appendChild(el("h3", null, "Grammar: " + unit.grammarName));
+  gramSec.appendChild(el("p", "lede", "Study the two forms, then complete the exercises."));
+  const gBox = el("div", "grammar-box");
+  unit.grammarPanels.forEach(p => {
+    const pnl = el("div", "panel");
+    pnl.innerHTML = '<h4>' + p.title + '</h4><p class="formula">' + p.formula + '</p><ul>' + p.notes.map(n => '<li>' + n + '</li>').join("") + '</ul>';
+    gBox.appendChild(pnl);
+  });
+  gramSec.appendChild(gBox);
+
+  // Grammar exercise 1: drag / tap the correct form into the gap
+  const gWriteCard = el("div", "card");
+  gWriteCard.appendChild(el("p", "ex-title", "1. Drag the correct form into each gap."));
+  renderFormBankGaps(unit.id + "-grammarWrite", unit.grammarWrite, gWriteCard);
+  gramSec.appendChild(gWriteCard);
+
+  // Grammar exercise 2: choice — tap the correct option
+  const gChoiceCard = el("div", "card");
+  gChoiceCard.appendChild(el("p", "ex-title", "2. Tap the correct option."));
+  renderPillChoice(
+    unit.id + "-grammarChoice",
+    unit.grammarChoice.map(item => ({ sentence: item.sentence, options: item.options, answer: item.answer })),
+    gChoiceCard
+  );
+  gramSec.appendChild(gChoiceCard);
+
+  // Grammar exercise 3: correct/incorrect — tap Correct or Incorrect
+  const gTFCard = el("div", "card");
+  gTFCard.appendChild(el("p", "ex-title", "3. Is the sentence correct or incorrect?"));
+  renderPillChoice(
+    unit.id + "-grammarTF",
+    unit.grammarTF.map(item => ({ sentence: item.sentence, options: ["Correct", "Incorrect"], answer: item.answer ? "Correct" : "Incorrect" })),
+    gTFCard
+  );
+  gramSec.appendChild(gTFCard);
+
+  panel.appendChild(gramSec);
+
+  // Speaking
+  const speakSec = el("section");
+  speakSec.id = unit.id + "-speaking";
+  speakSec.appendChild(el("h3", null, "Speaking"));
+  const sList = el("ul", "speaking-list");
+  unit.speaking.forEach(q => sList.appendChild(el("li", null, q)));
+  speakSec.appendChild(sList);
+  panel.appendChild(speakSec);
+
+  // Writing
+  const writeSec = el("section");
+  writeSec.id = unit.id + "-writing";
+  writeSec.appendChild(el("h3", null, "Writing"));
+  const writeCard = el("div", "card writing-box");
+  writeCard.innerHTML = '<p class="lede" style="margin-top:0;">' + unit.writing + '</p><textarea data-save="' + unit.id + '-writing" placeholder="Write your answer here..."></textarea><p class="saved-note">Your text is saved automatically in this browser.</p>';
+  writeSec.appendChild(writeCard);
+  panel.appendChild(writeSec);
+
+  return panel;
+}
+
+const navEl = document.getElementById("unitNav");
+const mainEl = document.getElementById("unitMain");
+navEl.appendChild(el("span", "label", "Course contents"));
+
+UNITS.forEach((unit, i) => {
+  const btn = el("button", i === 0 ? "active" : "", '<span class="unum">' + String(i+1).padStart(2,'0') + '</span>' + unit.title);
+  btn.onclick = () => {
+    document.querySelectorAll(".unit-panel").forEach(p => p.classList.remove("active"));
+    document.getElementById(unit.id).classList.add("active");
+    navEl.querySelectorAll("button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    window.scrollTo({top: 0, behavior: "smooth"});
+  };
+  navEl.appendChild(btn);
+  mainEl.appendChild(renderUnit(unit, i));
+});
+
+/* ============ ПРОГРЕСС И СОХРАНЕНИЕ ОТВЕТОВ ============ */
+const A2_KEYS = ["vocabGap", "vocabMatch", "vocabTF", "grammarWrite", "grammarChoice", "grammarTF"];
+const A2_STORE = "nextStepsA2Progress", A2_TEXTS = "nextStepsA2Answers", A2_LAST = "nextStepsA2LastUnit";
+function a2Load(key){ try { return JSON.parse(localStorage.getItem(key) || "{}") || {}; } catch(e){ return {}; } }
+function a2Save(key, obj){ try { localStorage.setItem(key, JSON.stringify(obj)); } catch(e){} }
+let a2Done = a2Load(A2_STORE);
+const a2Texts = a2Load(A2_TEXTS);
+
+function a2UnitPct(uid){ return Math.round(A2_KEYS.filter(k => a2Done[uid + "-" + k]).length / A2_KEYS.length * 100); }
+function a2CoursePct(){
+  const total = UNITS.length * A2_KEYS.length;
+  return Math.round(Object.keys(a2Done).filter(k => a2Done[k]).length / total * 100);
+}
+function a2MarkDone(key){
+  if (a2Done[key]) return;
+  a2Done[key] = true;
+  a2Save(A2_STORE, a2Done);
+  a2Render();
+}
+function a2Render(){
+  // отметки на упражнениях
+  UNITS.forEach(u => A2_KEYS.forEach(k => {
+    const box = document.getElementById(u.id + "-" + k);
+    const card = box && box.closest(".card");
+    if (!card) return;
+    const done = !!a2Done[u.id + "-" + k];
+    card.classList.toggle("ex-done", done);
+    const t = card.querySelector(".ex-title");
+    if (t && !t.querySelector(".done-mark")) { const m = el("span", "done-mark", "✓ done"); t.appendChild(m); }
+  }));
+  // кнопки юнитов
+  navEl.querySelectorAll("button").forEach((b, i) => {
+    const u = UNITS[i]; if (!u) return;
+    const pct = a2UnitPct(u.id);
+    let tag = b.querySelector(".u-pct");
+    if (!tag) { tag = el("span", "u-pct"); b.appendChild(tag); }
+    tag.textContent = pct === 100 ? "✓" : (pct ? pct + "%" : "");
+    b.classList.toggle("unit-complete", pct === 100);
+  });
+  // полоска прогресса в шапке юнита
+  UNITS.forEach(u => {
+    const head = document.querySelector("#" + u.id + " .unit-head");
+    if (!head) return;
+    let bar = head.querySelector(".unit-progress");
+    if (!bar) {
+      bar = el("div", "unit-progress", '<span class="up-track"><i></i></span><span class="up-text"></span>');
+      head.insertBefore(bar, head.querySelector(".unit-toc"));
+    }
+    const done = A2_KEYS.filter(k => a2Done[u.id + "-" + k]).length;
+    bar.querySelector("i").style.width = (done / A2_KEYS.length * 100) + "%";
+    bar.querySelector(".up-text").textContent = "Unit progress: " + done + " of " + A2_KEYS.length + " exercises · Course: " + a2CoursePct() + "%";
+  });
+}
+// сохранение ответов на вопросы и Writing
+document.querySelectorAll("textarea[data-save]").forEach(ta => {
+  if (a2Texts[ta.dataset.save]) ta.value = a2Texts[ta.dataset.save];
+  let timer = null;
+  ta.addEventListener("input", () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      if (ta.value.trim()) a2Texts[ta.dataset.save] = ta.value; else delete a2Texts[ta.dataset.save];
+      a2Save(A2_TEXTS, a2Texts);
+    }, 400);
+  });
+});
+// запомнить последний юнит
+navEl.querySelectorAll("button").forEach((b, i) => b.addEventListener("click", () => {
+  try { localStorage.setItem(A2_LAST, String(i)); } catch(e){}
+  if (b.scrollIntoView && navEl.scrollWidth > navEl.clientWidth) b.scrollIntoView({ inline: "center", block: "nearest" });
+}));
+(function(){
+  let last = 0;
+  try { last = parseInt(localStorage.getItem(A2_LAST), 10) || 0; } catch(e){}
+  const btns = navEl.querySelectorAll("button");
+  if (last > 0 && btns[last]) {
+    document.querySelectorAll(".unit-panel").forEach(p => p.classList.remove("active"));
+    document.getElementById(UNITS[last].id).classList.add("active");
+    btns.forEach(x => x.classList.remove("active"));
+    btns[last].classList.add("active");
+  }
+})();
+// сброс
+const a2Reset = el("div", "reset-wrap", '<button type="button" class="reset-progress">Reset progress</button>');
+mainEl.insertAdjacentElement("afterend", a2Reset);
+a2Reset.querySelector("button").onclick = () => {
+  if (!confirm("Reset all progress and saved answers?")) return;
+  try { localStorage.removeItem(A2_STORE); localStorage.removeItem(A2_TEXTS); } catch(e){}
+  location.reload();
+};
+a2Render();
+
+</script>
+<script id="anchor-fix">document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;e.preventDefault();var t=document.getElementById(a.getAttribute("href").slice(1));if(t)t.scrollIntoView({behavior:"smooth",block:"start"});});window.addEventListener("scroll",function(){var l=document.querySelectorAll(".side-nav a");if(l.length&&window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-4){l.forEach(function(a,i){a.classList.toggle("active",i===l.length-1);});}},{passive:true});</script>
+</body>
+</html>

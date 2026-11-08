@@ -1,0 +1,2271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Talking Points — An Adult English Course (B1–B2)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #EFE1D3;            /* latte */
+    --panel: #F9F1E8;         /* cream */
+    --ink: #2B1810;           /* dark cocoa */
+    --ink-soft: #6B4A37;      /* roasted brown */
+    --line: #D3B9A3;          /* milk-chocolate tint */
+    --cocoa: #7B4A2E;         /* milk chocolate */
+    --cocoa-deep: #3B1F14;    /* dark chocolate */
+    --caramel: #A65A1E;       /* caramel */
+    --caramel-soft: #EBD3B9;  /* caramel tint */
+    --cream-text: #F6E9DA;
+    --field: #FFFAF4;         /* warm white for inputs */
+    --good: #5F7A45;
+    --good-soft: #E6EBD6;
+    --bad: #A63D2F;
+    --bad-soft: #F3DAD2;
+    --serif: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  *{ box-sizing: border-box; }
+  body{ margin:0; background: var(--bg); color: var(--ink); font-family: var(--sans); line-height: 1.6; }
+
+  .shell{ max-width: 1120px; margin: 0 auto; padding: 40px 24px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+
+  header.masthead{ grid-column: 1 / -1; padding: 34px 38px 32px; background: var(--cocoa-deep); border-radius: 8px; margin-bottom: 8px; }
+  header.masthead .kicker{ font-size: 17.1px; color: #E3A868; font-family: var(--serif); font-style: italic; margin: 0 0 6px; }
+  header.masthead h1{ font-family: var(--serif); font-weight: 400; font-size: 60.8px; margin: 0 0 8px; color: var(--cream-text); }
+  header.masthead p{ max-width: 560px; color: #D6BBA3; margin: 0; font-size: 21.2px; }
+
+  nav.units{ position: sticky; top: 24px; align-self: start; }
+  nav.units .label{ font-family: var(--serif); font-style: italic; color: var(--caramel); display: block; font-size: 17.1px; margin-bottom: 16px; }
+  nav.units button{
+    display: block; width: 100%; text-align: left; background: none; border: none;
+    border-left: 2px solid var(--line); padding: 10px 14px; margin-bottom: 2px;
+    font-family: var(--sans); font-size: 18.5px; color: var(--ink-soft); cursor: pointer;
+    border-radius: 0 4px 4px 0; transition: all .15s;
+  }
+  nav.units button .unum{ font-family: var(--serif); font-style: italic; color: var(--caramel); margin-right: 6px; }
+  nav.units button:hover{ background: var(--caramel-soft); color: var(--cocoa-deep); }
+  nav.units button.active{ background: var(--cocoa-deep); border-left-color: var(--caramel); color: var(--cream-text); font-weight: 600; }
+  nav.units button.active .unum{ color: #E3A868; }
+
+  main{ max-width: 720px; }
+  .unit-panel{ display: none; }
+  .unit-panel.active{ display: block; }
+
+  .unit-head{ margin-bottom: 36px; }
+  .unit-head .kicker{ font-size: 17.1px; color: var(--caramel); font-family: var(--serif); font-style: italic; margin: 0 0 6px; }
+  .unit-head h2{ font-family: var(--serif); font-weight: 400; font-size: 45px; margin: 0 0 10px; color: var(--cocoa-deep); }
+  .unit-head h2::after{ content: ""; display: block; width: 64px; height: 3px; margin-top: 14px; border-radius: 2px; background: var(--caramel); }
+  .unit-head p{ color: var(--ink-soft); margin: 0 0 18px; font-size: 19.8px; max-width: 560px; }
+
+  .unit-toc{ display: flex; flex-wrap: wrap; gap: 8px; }
+  .unit-toc button{
+    font-family: var(--sans); font-size: 17.1px; color: var(--cocoa-deep); background: var(--panel);
+    border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; cursor: pointer; transition: all .15s;
+  }
+  .unit-toc button:hover{ border-color: var(--cocoa-deep); background: var(--cocoa-deep); color: var(--cream-text); }
+
+  section{ margin-bottom: 56px; }
+  section h3{ font-family: var(--serif); font-weight: 400; font-size: 30.4px; color: var(--cocoa-deep); margin: 0 0 18px; padding-left: 14px; border-left: 4px solid var(--caramel); line-height: 1.25; }
+  section > p.lede{ color: var(--ink-soft); margin: -10px 0 18px; font-size: 18.5px; }
+
+  .card{ background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 22px 26px; margin-bottom: 14px; }
+
+  .preview-list{ list-style: none; padding: 0; margin: 0; }
+  .preview-list li{ font-family: var(--serif); font-size: 23.8px; padding: 15px 0; border-bottom: 1px solid var(--line); }
+  .preview-list li:last-child{ border-bottom: none; }
+  .preview-list .q-label{ color: var(--caramel); font-family: var(--sans); font-size: 17.1px; display: block; margin-bottom: 4px; }
+
+  .vocab-grid{ display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 20px; }
+  .vocab-term{ border: 1px solid var(--line); background: var(--panel); border-radius: 6px; padding: 12px 14px; cursor: pointer; font-size: 18.5px; text-align: left; }
+  .vocab-term:hover{ border-color: var(--cocoa); }
+  .vocab-term.open{ background: var(--caramel-soft); border-color: var(--cocoa); }
+  .vocab-term .def{ display: none; font-size: 17.1px; color: var(--ink-soft); margin-top: 6px; }
+  .vocab-term.open .def{ display: block; }
+
+  .exercise-row{ display: flex; align-items: baseline; gap: 10px; margin-bottom: 13px; font-size: 18.5px; flex-wrap: wrap; }
+  .exercise-row .num{ color: var(--caramel); font-family: var(--serif); font-style: italic; width: 18px; flex-shrink: 0; }
+  select, input[type=text]{ font-family: var(--sans); font-size: 18.5px; padding: 6px 8px; border: 1px solid var(--line); border-radius: 4px; background: var(--field); color: var(--ink); }
+  select.correct, input.correct{ border-color: var(--good); background: var(--good-soft); }
+  select.incorrect, input.incorrect{ border-color: var(--bad); background: var(--bad-soft); }
+
+  button.check{ font-family: var(--sans); font-size: 18.5px; font-weight: 600; background: var(--cocoa-deep); color: var(--cream-text); border: none; padding: 10px 24px; border-radius: 999px; cursor: pointer; box-shadow: 0 3px 0 var(--caramel); transition: all .15s; }
+  button.check:hover{ background: var(--cocoa); }
+  button.check:active{ transform: translateY(2px); box-shadow: 0 1px 0 var(--caramel); }
+  .score{ font-size: 17.1px; margin-top: 10px; color: var(--ink-soft); }
+  .ex-title{ font-size: 17.1px; color: var(--ink-soft); margin: 0 0 12px; }
+
+  .reading{ font-family: var(--serif); font-size: 22.4px; line-height: 1.75; }
+  .reading p{ margin: 0 0 16px; }
+
+  .comp-q{ margin-bottom: 18px; }
+  .comp-q p.q{ font-size: 18.5px; margin: 0 0 8px; font-weight: 600; }
+  .comp-q textarea{ width: 100%; min-height: 56px; font-family: var(--sans); font-size: 18.5px; padding: 10px; border: 1px solid var(--line); border-radius: 4px; resize: vertical; }
+
+  .grammar-box{ display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  .grammar-box .panel{ background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 18px 20px; }
+  .grammar-box h4{ font-family: var(--serif); font-weight: 400; font-size: 21.2px; margin: 0 0 8px; color: var(--cocoa); }
+  .grammar-box .formula{ font-size: 17.1px; color: var(--caramel); margin: 0 0 10px; }
+  .grammar-box ul{ margin: 0; padding-left: 18px; font-size: 17.1px; color: var(--ink-soft); }
+  .grammar-box li{ margin-bottom: 6px; }
+
+  .speaking-list{ list-style: none; padding: 0; margin: 0; }
+  .speaking-list li{ font-family: var(--serif); font-size: 21.2px; padding: 10px 0 10px 26px; position: relative; border-bottom: 1px solid var(--line); }
+  .speaking-list li:last-child{ border-bottom: none; }
+  .speaking-list li::before{ content: "—"; position: absolute; left: 0; color: var(--caramel); }
+
+  .writing-box textarea{ width: 100%; min-height: 120px; font-family: var(--sans); font-size: 18.5px; padding: 12px; border: 1px solid var(--line); border-radius: 4px; resize: vertical; }
+
+  /* --- Word bank + drag/tap-to-fill gaps --- */
+  .word-bank{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; }
+  .word-chip{ font-family:var(--sans); font-size:17.8px; padding:8px 15px; border:1px solid var(--line); border-radius:999px; background:var(--field); cursor:grab; transition:all .15s; user-select:none; }
+  .word-chip:hover{ border-color:var(--cocoa); background:var(--caramel-soft); }
+  .word-chip.selected{ border-color:var(--cocoa-deep); background:var(--cocoa-deep); color:var(--cream-text); }
+  .word-chip.used{ opacity:.3; pointer-events:none; cursor:default; }
+  .gap-row .blank{ display:inline-block; min-width:120px; padding:3px 10px; margin:0 2px; border:none; border-bottom:2px dashed var(--cocoa); border-radius:3px; cursor:pointer; font-family:var(--sans); font-weight:600; color:var(--cocoa-deep); text-align:center; transition:all .15s; }
+  .gap-row .blank:hover{ background:var(--caramel-soft); }
+  .gap-row .blank.filled{ border-bottom-style:solid; }
+  .gap-row .blank.correct{ border-color:var(--good); color:var(--good); background:var(--good-soft); }
+  .gap-row .blank.incorrect{ border-color:var(--bad); color:var(--bad); background:var(--bad-soft); }
+  .gap-row .blank.dragover{ background:var(--caramel-soft); }
+
+  /* --- Click-to-match columns --- */
+  .match-cols{ display:flex; gap:14px; margin-top:4px; }
+  .match-col{ flex:1; display:flex; flex-direction:column; gap:7px; }
+  .match-item{ font-family:var(--sans); font-size:17.8px; padding:9px 13px; border:1px solid var(--line); border-radius:6px; background:var(--field); cursor:pointer; transition:all .15s; }
+  .match-item:hover{ border-color:var(--cocoa); }
+  .match-item.selected{ border-color:var(--cocoa-deep); background:var(--cocoa-deep); color:var(--cream-text); }
+  .match-item.matched{ background:var(--good-soft); border-color:var(--good); color:var(--good); cursor:default; }
+  .match-item.wrong{ background:var(--bad-soft); border-color:var(--bad); }
+
+  /* --- Pill-button choice (replaces <select> choose...) --- */
+  .pill-row{ display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+  .pill{ font-family:var(--sans); font-size:17.8px; padding:7px 16px; border:1px solid var(--line); border-radius:999px; background:var(--field); cursor:pointer; transition:all .15s; }
+  .pill:hover{ border-color:var(--cocoa); background:var(--caramel-soft); }
+  .pill.disabled{ pointer-events:none; }
+  .pill.correct{ border-color:var(--good); background:var(--good-soft); color:var(--good); font-weight:600; }
+  .pill.incorrect{ border-color:var(--bad); background:var(--bad-soft); color:var(--bad); }
+
+  @media (max-width: 760px){
+    .shell{ grid-template-columns: 1fr; }
+    nav.units{ position: static; display: flex; overflow-x: auto; gap: 4px; }
+    nav.units button{ border-left: none; border-bottom: 2px solid var(--line); white-space: nowrap; border-radius: 0; }
+    .vocab-grid, .grammar-box{ grid-template-columns: 1fr; }
+    header.masthead h1{ font-size: 42.3px; }
+  }
+:root{--bg:#F5ECE1;--panel:#FCF8F2;--line:#DCC8B5}
+.shell{display:block;max-width:820px;padding:32px 20px 80px}
+header.masthead{margin-bottom:18px;text-align:center}
+header.masthead p{margin:0 auto}
+nav.units{position:static;display:flex;flex-wrap:wrap;justify-content:center;gap:8px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:36px;overflow:visible}
+nav.units .label{width:100%;text-align:center;margin:0 0 4px}
+nav.units button{width:auto;margin:0;border:1px solid var(--line);border-radius:999px;padding:7px 14px;background:transparent;white-space:normal}
+nav.units button.active{border-color:var(--cocoa-deep)}
+main{max-width:none;margin:0 auto}
+</style>
+<style id="unify">
+/* ===== UNIFIED LAYER (shared by all three books) ===== */
+:root{--u-font:"Times New Roman",Times,"Liberation Serif",serif;--u-bg:#F5ECE1;--u-panel:#FCF8F2;--u-field:#FFFAF4;--u-line:#DCC8B5;--u-ink:#2B1810;--u-soft:#6B4A37;--u-choc:#3B1F14;--u-cocoa:#7B4A2E;--u-caramel:#A65A1E;--u-cream:#F6E9DA;--u-good:#5F7A45;--u-good-soft:#E6EBD6;--u-bad:#A63D2F;--u-bad-soft:#F3DAD2;--u-r:10px}
+html{scroll-behavior:smooth}
+body{font-family:var(--u-font);font-size:21.2px;line-height:1.6;color:var(--u-ink);background:var(--u-bg)}
+button,input,select,textarea{font-family:var(--u-font)}
+
+/* unit heading */
+.unit-head h1,.unit-head h2{font-family:var(--u-font);font-size:42.3px;font-weight:500;font-style:normal;line-height:1.15;margin:4px 0 10px;color:var(--u-choc)}
+.unit-head h1::after,.unit-head h2::after{content:"";display:block;width:56px;height:3px;margin-top:12px;border-radius:2px;background:var(--u-caramel)}
+.unit-head p{font-size:20.5px;color:var(--u-soft);max-width:60ch;margin:0 0 18px}
+.unit-head .kicker,.unit-head .unum{font-size:17.8px;font-style:italic;color:var(--u-caramel);margin:0}
+
+/* section heading: caramel bar */
+section h3,.block h2,.sec-title h2{font-family:var(--u-font);font-size:29.1px;font-weight:500;line-height:1.25;color:var(--u-choc);margin:0 0 14px;padding-left:14px;border-left:4px solid var(--u-caramel)}
+.sec-title h2::after{display:none}
+.sec-num{display:none}
+.sec-head{display:block;margin:0 0 18px}
+.sec-head .sec-title h2{margin-bottom:6px}
+section > p.lede{margin:-8px 0 16px}
+section > p.lede,.block-sub,.sec-title .sub{font-size:19.2px;color:var(--u-soft);max-width:none;padding-left:0}
+.block-sub{margin:-8px 0 16px}
+.sec-title .sub{margin:0}
+section{padding:0;margin:0 0 52px;border:0;scroll-margin-top:90px}
+.block{margin-bottom:52px}
+
+/* cards */
+.card,.explainer,.passage,.route-card,.grammar-box .panel{background:var(--u-panel);border:1px solid var(--u-line);border-radius:var(--u-r)}
+.card{padding:22px 26px}
+.passage{padding:22px 26px;max-width:none}
+.explainer{border-left:3px solid var(--u-cocoa);padding:16px 20px;font-size:20.5px}
+.reading,.passage{font-family:var(--u-font);font-size:22.4px;line-height:1.75}
+.reading p,.passage p{margin:0 0 16px}
+
+/* buttons */
+button.check,.btn{font-family:var(--u-font);font-size:19.8px;font-weight:600;letter-spacing:0;background:var(--u-choc);color:var(--u-cream);border:0;padding:10px 24px;border-radius:999px;cursor:pointer;box-shadow:0 3px 0 var(--u-caramel);transition:all .15s}
+button.check:hover,.btn:hover{background:var(--u-cocoa)}
+button.check:active,.btn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--u-caramel)}
+.score,.fb,.score-badge,.match-status,.word-count,.save-note{font-size:18.5px;color:var(--u-soft)}
+
+/* text fields */
+textarea{width:100%;font-family:var(--u-font);font-size:20.5px;line-height:1.5;color:var(--u-ink);background:var(--u-field);border:1px solid var(--u-line);border-radius:6px;padding:10px 12px;resize:vertical}
+.exercise-row select,.exercise-row input[type=text]{font-family:var(--u-font);font-size:20.5px;padding:6px 10px;border:1px solid var(--u-line);border-radius:6px;background:var(--u-field);color:var(--u-ink)}
+.exercise-row{font-size:21.2px}
+.comp-q p.q,.mcq p.stem,.q-text,.prompt-title{font-size:21.2px;font-weight:600;color:var(--u-ink)}
+.gap-item{font-size:21.2px}
+
+/* options / mcq */
+.opt-btn,.opt,.pill{font-family:var(--u-font);font-size:20.5px;padding:10px 14px;border:1px solid var(--u-line);border-radius:8px;background:var(--u-field);color:var(--u-ink);cursor:pointer}
+.pill{border-radius:999px;padding:7px 16px}
+.opt-btn:hover,.opt:hover,.pill:hover{border-color:var(--u-cocoa)}
+.opt-btn.correct,.opt.correct{border-color:var(--u-good);background:var(--u-good-soft);color:var(--u-ink)}
+.opt-btn.wrong,.opt.wrong{border-color:var(--u-bad);background:var(--u-bad-soft);color:var(--u-ink)}
+.pill.correct{border-color:var(--u-good);background:var(--u-good-soft);color:var(--u-good);font-weight:600}
+.pill.incorrect{border-color:var(--u-bad);background:var(--u-bad-soft);color:var(--u-bad)}
+
+/* matching */
+.match-col{gap:8px}
+.match-item{font-family:var(--u-font);font-size:20.5px;padding:10px 14px;border:1px solid var(--u-line);border-radius:8px;background:var(--u-field);color:var(--u-ink);cursor:pointer;text-align:left}
+.match-item:hover{border-color:var(--u-cocoa)}
+.match-item.selected{border-color:var(--u-choc);background:var(--u-choc);color:var(--u-cream)}
+.match-item.matched,.match-item.correct,.match-item.solved{border-color:var(--u-good);background:var(--u-good-soft);color:var(--u-ink);cursor:default;opacity:1}
+.match-item.wrong{border-color:var(--u-bad);background:var(--u-bad-soft);color:var(--u-ink)}
+
+/* word bank chips */
+.word-chip,.bank-word,.chip{font-family:var(--u-font);font-size:19.8px;font-weight:400;padding:6px 14px;border:1px solid var(--u-line);border-radius:999px;background:var(--u-field);color:var(--u-ink)}
+.word-chip:hover,.chip:hover{border-color:var(--u-cocoa);background:#EBD3B9}
+.word-chip.selected{border-color:var(--u-choc);background:var(--u-choc);color:var(--u-cream)}
+.word-chip.used,.chip.used,.bank-word.used{opacity:.3}
+.word-bank,.bank{display:flex;flex-wrap:wrap;gap:8px}
+
+/* blanks */
+.blank{font-family:var(--u-font);font-size:21.2px;font-weight:600;color:var(--u-choc);min-width:120px;text-align:center}
+.blank.filled{border-radius:3px}
+
+/* vocab */
+.vocab-term{font-size:20.5px;border-radius:var(--u-r)}
+.vocab-term .def{font-size:19.2px}
+.flash-face{border-radius:var(--u-r)}
+.flash-term{font-size:23.8px}
+
+/* grammar */
+.grammar-box li{font-size:19.2px}
+.grammar-box .formula,.ex-title{font-size:18.5px}
+.g-note{font-size:20.5px}
+table.verbs{font-size:19.8px}
+
+/* level-2 pill navigation (jump-to sections / tabs) */
+.unit-toc button,.unit-tab,.side-nav a,.tab-btn{font-family:var(--u-font);font-size:19.2px;font-weight:500}
+
+:root{--sans:var(--u-font);--serif:var(--u-font)}
+.shell{max-width:1180px;padding:0 28px 80px}
+header.masthead{border-radius:0;margin:0 0 24px;padding:24px 0;background:var(--u-choc);text-align:center;box-shadow:0 0 0 100vmax var(--u-choc);clip-path:inset(0 -100vmax)}
+header.masthead .kicker{font-size:18.5px;margin:0 auto 4px}
+header.masthead h1{font-size:45px;font-weight:500;margin:0 0 6px}
+header.masthead p{font-size:19.8px;max-width:70ch}
+nav.units .label{font-size:18.5px}
+nav.units button{font-size:19.2px;font-weight:500}
+nav.units button.active{font-weight:500}
+.unit-toc{margin-bottom:0}
+section{scroll-margin-top:16px}
+main{max-width:none}
+.unit-toc button{background:var(--u-panel);padding:6px 14px}
+.unit-head{margin-bottom:36px}
+.preview-list li{font-size:23.8px}
+.preview-list .q-label{font-size:17.8px}
+.speaking-list li{font-size:22.4px}
+
+/* ---------- иллюстрации, карточки слов, компактность ---------- */
+.preview-row.has-art{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:18px;align-items:start}
+.unit-art{margin:0;border-radius:12px;overflow:hidden;border:1px solid var(--u-line,#D3B9A3);background:#F3E6D8}
+.unit-art-svg{display:block;width:100%;height:auto}
+.unit-art figcaption{padding:8px 14px 10px;font-style:italic;color:#6B4A37;font-size:18.5px;line-height:1.4;background:#F9F1E8;border-top:1px solid var(--u-line,#D3B9A3)}
+.preview-row.has-art .preview-list li{font-size:21.8px;padding:10px 0}
+.flip-tools{display:flex;justify-content:flex-end;margin:-4px 0 10px}
+.flip-all{font-family:inherit;font-size:18.5px;background:none;border:1px solid #D3B9A3;border-radius:99px;padding:5px 14px;color:#6B4A37;cursor:pointer}
+.flip-all:hover{border-color:#6B4A37}
+.flip-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:20px}
+.flip-card{font-family:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;perspective:800px;text-align:center}
+.flip-inner{display:grid;height:100%;min-height:96px;transition:transform .45s ease;transform-style:preserve-3d}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg)}
+.flip-face{grid-area:1/1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:12px 10px;border-radius:10px;border:1px solid #D3B9A3;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.flip-front{background:#F9F1E8;box-shadow:0 2px 0 #E2CDB8}
+.flip-card:hover .flip-front{border-color:#7B4A2E}
+.flip-card:focus-visible .flip-face{outline:3px solid #E3A868;outline-offset:2px}
+.flip-back{background:#3B1F14;border-color:#3B1F14;transform:rotateY(180deg)}
+.fc-w{font-size:23.8px;font-weight:600;color:#2B1810;line-height:1.25}
+.fc-ru{font-size:21.8px;font-weight:600;color:#F6E9DA;line-height:1.25}
+.fc-def{font-size:16.6px;color:#D6BBA3;line-height:1.35}
+.gap-row{display:block!important;line-height:2.1}
+.gap-row .num{display:inline-block;width:22px}
+.gap-row .blank{min-width:5.5em!important;padding:0 8px!important;line-height:1.5}
+@media (max-width:860px){ .flip-grid{grid-template-columns:repeat(3,minmax(0,1fr))} }
+@media (max-width:760px){ .preview-row.has-art{grid-template-columns:1fr;gap:12px} }
+@media (max-width:640px){
+  .shell{padding:0 16px 60px!important}
+  header.masthead{padding:14px 0!important;margin-bottom:12px!important}
+  header.masthead .kicker{font-size:16.6px!important}
+  header.masthead h1{font-size:34.4px!important;margin:0!important}
+  header.masthead p:not(.kicker){display:none}
+  nav.units{flex-wrap:nowrap!important;justify-content:flex-start!important;overflow-x:auto;padding:8px 16px!important;margin:0 -16px 18px!important;border-radius:0!important;border-left:0!important;border-right:0!important;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  nav.units::-webkit-scrollbar,.unit-toc::-webkit-scrollbar{display:none}
+  nav.units .label{display:none!important}
+  nav.units button{flex:none;white-space:nowrap!important;padding:6px 12px!important;font-size:18.5px!important}
+  .unit-head{margin-bottom:20px!important}
+  .unit-head h2{font-size:31.7px}
+  .unit-toc{flex-wrap:nowrap!important;overflow-x:auto;margin:0 -16px;padding:0 16px 4px;scrollbar-width:none}
+  .unit-toc button{flex:none;white-space:nowrap}
+  .flip-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .fc-w{font-size:21.8px}.fc-ru{font-size:20.5px}
+  .card{padding:16px!important}
+  .preview-list li{font-size:21.2px!important}
+  .speaking-list li{font-size:21.2px!important}
+}
+@media (prefers-reduced-motion:reduce){ .flip-inner{transition:none} }
+
+/* ---------- прогресс ---------- */
+nav.units button .u-pct{margin-left:6px;font-size:15.9px;opacity:.75}
+nav.units button.unit-complete:not(.active){border-color:#5F7A45!important;color:#4b6236}
+nav.units button.unit-complete .u-pct{color:#5F7A45;opacity:1;font-weight:700}
+nav.units button.active .u-pct{color:#E3A868}
+.unit-progress{display:flex;align-items:center;gap:10px;margin:0 0 14px;font-size:17.8px;color:#6B4A37;flex-wrap:wrap}
+.up-track{width:160px;height:8px;background:#EAD9C7;border-radius:6px;overflow:hidden;display:inline-block}
+.up-track i{display:block;height:100%;width:0;background:#5F7A45;transition:width .4s}
+.card .done-mark{display:none;margin-left:8px;font-size:16.6px;font-weight:700;color:#5F7A45;font-style:normal}
+.card.ex-done .done-mark{display:inline}
+.card.ex-done{border-color:#B9CFA9!important}
+.retry-btn{margin-left:4px;font-family:inherit;font-size:17.8px;background:#3B1F14;color:#F6E9DA;border:0;border-radius:99px;padding:4px 14px;cursor:pointer}
+.saved-note{font-size:16.6px;color:#9B7E66;font-style:italic;margin:6px 0 0}
+.reset-wrap{text-align:center;margin:30px 0 0}
+.reset-progress{font-family:inherit;font-size:17.8px;background:none;border:1px solid #D3B9A3;border-radius:99px;padding:5px 14px;color:#6B4A37;cursor:pointer}
+.reset-progress:hover{border-color:#6B4A37}
+@media (max-width:640px){ .up-track{width:110px} .unit-progress{font-size:16.6px} }
+
+/* ===== больше коричневого ===== */
+:root{--u-bg:#E9D9C5;--u-panel:#F5EBDD;--u-field:#FAF2E7;--u-line:#CBB095;--u-soft:#5E3E2C}
+body{background:var(--u-bg)}
+.card,.preview-list,.speaking-list{border-color:var(--u-line)}
+nav.units{background:#4A2A1A!important;border-color:#3B1F14!important}
+nav.units .label{color:#E3A868!important}
+nav.units button{color:#F1DFCB!important;border-color:rgba(246,233,218,.28)!important;background:transparent!important}
+nav.units button .unum{color:#D9A26A!important}
+nav.units button:hover{background:rgba(246,233,218,.1)!important}
+nav.units button.active{background:#A65A1E!important;border-color:#A65A1E!important;color:#FFF7EE!important}
+nav.units button.active .unum,nav.units button.active .u-pct{color:#FFE2BF!important}
+nav.units button.unit-complete:not(.active){border-color:#9DBA82!important;color:#DDEBCF!important}
+nav.units button.unit-complete .u-pct{color:#B7D49B!important}
+.unit-toc button{background:#7B4A2E!important;border-color:#7B4A2E!important;color:#F6E9DA!important}
+.unit-toc button:hover{background:#3B1F14!important;border-color:#3B1F14!important}
+section > h3{color:#3B1F14}
+.flip-front{background:#F1E2CF;border-color:#C2A386;box-shadow:0 2px 0 #B8987A}
+.flip-card:hover .flip-front{border-color:#5E3622}
+.word-chip,.pill,.match-item{background:#F3E6D5!important;border-color:#C2A386!important}
+.word-chip:hover,.pill:hover:not(.disabled),.match-item:hover{border-color:#5E3622!important}
+.word-chip.selected,.match-item.selected{background:#3B1F14!important;border-color:#3B1F14!important;color:#F6E9DA!important}
+.pill.correct,.match-item.matched{background:var(--u-good-soft)!important;border-color:var(--u-good)!important;color:var(--u-ink)!important}
+.pill.incorrect,.match-item.wrong{background:var(--u-bad-soft)!important;border-color:var(--u-bad)!important}
+.flip-all,.reset-progress{background:#3B1F14;border-color:#3B1F14;color:#F6E9DA;box-shadow:0 2px 0 #A65A1E}
+.flip-all:hover,.reset-progress:hover{background:#5E3622;border-color:#5E3622}
+.unit-art{border-color:#C2A386}
+.unit-art figcaption{background:#EFDFCB;border-top-color:#C2A386;color:#5E3E2C}
+.up-track{background:#D9C2A8}
+textarea,.exercise-row input[type=text]{background:#FBF5EC!important;border-color:#C2A386!important}
+/* ===== Тетрадь (семейство Wayfinder / Next Steps) ===== */
+:root{
+  --font:'Inter','Segoe UI',system-ui,sans-serif; --u-font:'Inter','Segoe UI',system-ui,sans-serif;
+  --mono:'Space Mono','Courier New',monospace; --hand:'Caveat',cursive;
+  --bg:#f5efe8; --bg-panel:#fffaf5; --bg-sunken:#f1e7de; --ink:#2e241e; --ink-soft:#5a3f2a;
+  --choc-deep:#45301f; --accent:#8a6246; --accent-soft:#f1e7de; --calm:#5a3f2a; --calm-soft:#f1e7de;
+  --gold:#45301f; --gold-soft:#45301f; --good:#2d7a4a; --good-soft:#e3ecdd; --bad:#b34a4a; --bad-soft:#f3e0da;
+  --cream-text:#fcf5ed; --border:#e5d6c8; --white:#fffaf5;
+  --u-bg:#f5efe8; --u-panel:#fffaf5; --u-field:#fffaf5; --u-line:#e5d6c8; --u-ink:#2e241e; --u-soft:#5a3f2a;
+  --u-choc:#45301f; --u-cocoa:#5a3f2a; --u-caramel:#8a6246; --u-cream:#fcf5ed; --u-good:#2d7a4a; --u-good-soft:#e3ecdd;
+  --u-bad:#b34a4a; --u-bad-soft:#f3e0da; --nb-gold:#c3a06a; --nb-line:#dccfc2;
+}
+html,body{background:#f5efe8}
+body{font-family:var(--font);color:var(--ink);
+  background-image:repeating-linear-gradient(to bottom,transparent 0 38px,var(--nb-line) 38px 39px);background-attachment:local}
+body::before{background:#45301f!important}
+h1,h2,h3,.sec-title h2,.unit-head h1,.unit-head h2{font-family:var(--mono);font-weight:700;letter-spacing:.2px}
+.topbar{background:#45301f!important;border-bottom:3px solid var(--accent)!important}
+.brand{font-family:var(--mono);font-weight:700;color:#fcf5ed!important}
+.brand span{color:var(--nb-gold)!important;font-family:var(--hand);font-size:1.15em;font-weight:700}
+.progress-track{background:rgba(0,0,0,.28)!important}
+.progress-fill{background:var(--nb-gold)!important}
+.progress-label{color:rgba(252,245,237,.8)!important}
+.unit-tabs{background:transparent}
+.unit-tab{font-family:var(--mono);font-weight:700;background:#fffaf5;border-color:var(--border);color:var(--ink-soft)}
+.unit-tab.active{background:#45301f!important;border-color:#45301f!important;color:#fcf5ed!important}
+.unit-tab:hover{background:#f1e7de;border-color:var(--accent)}
+main{border-left:2px solid var(--accent);padding-left:26px}
+.unit-head h1,.unit-head h2{display:inline-block;font-size:clamp(29.1px,3.7vw,37px);color:#2e241e;background:#fffaf5;
+  border:2px dashed var(--accent);border-radius:10px;padding:10px 20px;transform:rotate(-1deg);box-shadow:0 8px 20px rgba(46,36,30,.07)}
+.unit-head h1::after,.unit-head h2::after{display:none}
+.unit-head .unum,.unit-head p:first-child{font-family:var(--hand);font-size:26.4px;font-style:normal;color:var(--accent)}
+.sec-title h2{font-size:29.1px;color:#2e241e}
+.sec-title h2::after{background:var(--nb-gold)}
+.sec-title .sub,.hint,.sub{font-family:var(--hand);font-size:25.1px;color:var(--ink-soft);font-style:normal}
+.side-nav a{font-family:'Inter',sans-serif}
+.side-nav a.active,.side-nav a:hover{color:#45301f}
+.side-nav .num{font-family:var(--mono)}
+.card,.explainer,.passage,.route-card,.grammar-box .panel,.reading{background:#fffaf5;border:1px solid var(--border);border-radius:10px;box-shadow:0 6px 16px rgba(46,36,30,.05)}
+.explainer{border-left:6px solid var(--nb-gold)!important;border-radius:0 10px 10px 0}
+.opt-btn,.match-item,.chip,.word-chip{font-family:var(--mono);font-size:18.5px;background:#f1e7de;border:1px solid var(--border);border-radius:30px;color:#2e241e}
+.match-item{border-radius:20px}
+.opt-btn:hover,.match-item:hover,.chip:hover{background:#ead9ca;border-color:var(--accent)}
+.match-item.selected,.chip.selected{background:#45301f!important;border-color:#45301f!important;color:#fcf5ed!important}
+.btn,.flip-all{background:#45301f;color:#fcf5ed;border-radius:30px;font-family:var(--mono)}
+.btn:hover,.flip-all:hover{background:#5a3f2a}
+.flip-front{background:#fffaf5!important;border-color:var(--accent)!important;box-shadow:0 2px 0 #e5d6c8!important}
+.flip-back{background:#45301f!important;border-color:#45301f!important}
+.flip-front .fc-w,.fc-w{font-family:var(--mono)}
+.blank{background:#f5efe8;border-bottom-color:var(--accent)}
+textarea{background:#fffaf5;border-color:var(--border);font-family:'Inter',sans-serif}
+input[type=text]{font-family:'Inter',sans-serif}
+.reset-progress{border-color:var(--border);color:var(--ink-soft)}
+footer{font-family:var(--hand);font-size:23.8px}
+@media(max-width:640px){main{padding-left:14px}.unit-head h1,.unit-head h2{font-size:26.4px;padding:8px 14px}}
+/* ===== Тетрадь: доп. для Next Steps / First Steps / Talking Points ===== */
+:root{
+  --bg:#f5efe8; --panel:#fffaf5; --ink:#2e241e; --ink-soft:#5a3f2a; --line:#e5d6c8; --cocoa:#5a3f2a; --cocoa-deep:#45301f;
+  --caramel:#8a6246; --caramel-soft:#f1e7de; --cream-text:#fcf5ed; --field:#fffaf5;
+  --good:#2d7a4a; --good-soft:#e3ecdd; --bad:#b34a4a; --bad-soft:#f3e0da;
+  --serif:'Inter','Segoe UI',system-ui,sans-serif; --sans:'Inter','Segoe UI',system-ui,sans-serif;
+}
+.masthead{background:#45301f!important;border-bottom:3px solid #8a6246;border-radius:10px}
+.masthead h1{font-family:var(--mono);font-weight:700;color:#fcf5ed}
+.masthead .kicker{font-family:var(--hand);font-style:normal;font-size:26.4px;color:var(--nb-gold)!important}
+.masthead p{color:rgba(252,245,237,.82)}
+.units button,#unitNav button{font-family:var(--mono);font-weight:700;background:#fffaf5;border:1px solid var(--line);color:#5a3f2a;border-radius:30px}
+.units button.active,#unitNav button.active{background:#45301f!important;color:#fcf5ed!important;border-color:#45301f!important}
+.units .label,#unitNav .label{font-family:var(--hand);font-size:25.1px;color:#8a6246}
+.unit-panel{border-left:2px solid #8a6246;padding-left:24px}
+.unit-head .kicker{font-family:var(--hand);font-style:normal;font-size:26.4px;color:#8a6246}
+.unit-head h2{display:inline-block;font-family:var(--mono);font-weight:700;color:#2e241e;background:#fffaf5;border:2px dashed #8a6246;
+  border-radius:10px;padding:10px 20px;transform:rotate(-1deg);box-shadow:0 8px 20px rgba(46,36,30,.07)}
+.unit-head h2::after{display:none}
+.ex-title{font-family:var(--mono)!important;font-weight:700;color:#2e241e}
+.lede{font-family:var(--hand);font-size:25.1px;font-style:normal;color:#5a3f2a}
+.pill{font-family:'Inter',sans-serif;background:#fffaf5;border:1px solid var(--line);border-radius:30px}
+.pill:hover{border-color:#8a6246}
+.word-chip,.match-item,.option,.opt{font-family:var(--mono)}
+.check,.retry-btn{background:#45301f;color:#fcf5ed;border-radius:30px;font-family:var(--mono)}
+.grammar-box .panel{border-left:6px solid var(--nb-gold)}
+.reading{font-family:'Inter',sans-serif}
+.dlg-who{color:#8a6246;font-family:var(--mono)}
+.pic{background:#fffaf5;border-color:var(--line)}
+@media(max-width:640px){.unit-panel{padding-left:12px}.unit-head h2{font-size:26.4px;padding:8px 14px}}
+main#unitMain{border-left:none;padding-left:0}
+.masthead h1{font-family:var(--mono)!important;font-weight:700!important;letter-spacing:.3px}
+#unitMain h2,#unitMain h3,.section-title{font-family:var(--mono)}
+.unit-toc a,.unit-toc button{background:#45301f!important;color:#fcf5ed!important;border-color:#45301f!important;font-family:var(--mono);font-size:17.1px}
+.unit-toc a:hover,.unit-toc button:hover{background:#5a3f2a!important}
+.units button .unum{font-family:var(--mono);font-style:normal;color:var(--nb-gold)}
+
+/* Весь шрифт — Times New Roman */
+html body,html body *:not(.emoji){font-family:"Times New Roman",Times,serif!important}
+</style>
+<style id="fs-scaled-132">html{font-size:132%}</style><style id="mobile-fix">@media(max-width:520px){.flip-face{min-width:0;padding:10px 6px}.fc-w{font-size:19px!important;overflow-wrap:break-word}.fc-ru{font-size:18px!important;overflow-wrap:break-word}}</style><style id="white-sheet">:root:not([data-theme="dark"]) body:not([data-theme="dark"]) .unit-panel{background:#fff!important;background-image:none!important;border:1px solid #e3d3c4!important;border-left:2px solid #8a6246!important;border-radius:14px!important;box-shadow:0 4px 18px rgba(90,60,40,.09)!important;padding:28px 30px 34px 34px!important;box-sizing:border-box}@media(max-width:520px){:root:not([data-theme="dark"]) body:not([data-theme="dark"]) .unit-panel{padding:18px 14px 22px 16px!important;border-radius:12px!important}}</style><style id="stripes-strong">:root:not([data-theme="dark"]) body:not([data-theme="dark"]){background-image:repeating-linear-gradient(to bottom,transparent 0 38px,#cdb7a3 38px 40px)!important}</style><style id="preview-fit">.preview-row.has-art .preview-list li{font-size:19px!important;line-height:1.45;padding:7px 0!important}.preview-row.has-art .preview-list .q-label{font-size:14px!important;margin-bottom:2px!important}@media(min-width:700px){.preview-row.has-art{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)!important;align-items:stretch!important}.preview-row.has-art .unit-art{display:flex;flex-direction:column;height:100%}.preview-row.has-art .unit-art svg{flex:1 1 auto;width:100%;height:100%;min-height:0}}</style></head>
+<body>
+<div class="shell">
+  <header class="masthead">
+    <p class="kicker">An adult English course · Levels B1–B2</p>
+    <h1>Talking Points</h1>
+    <p>Twelve units built around real conversations — work, technology, creativity and culture — with vocabulary, reading, grammar and speaking practice in every unit.</p>
+  </header>
+
+  <nav class="units" id="unitNav"></nav>
+  <main id="unitMain"></main>
+</div>
+
+<script>
+const TP_RU = {"cope with": "справляться с", "overwhelmed": "перегруженный, подавленный", "trigger": "причина, триггер", "bounce back": "быстро восстановиться", "unwind": "расслабиться", "sharpen": "обострять, повышать (внимание)", "drive": "подталкивать, мотивировать", "pile up": "накапливаться", "workload": "рабочая нагрузка", "deadline": "крайний срок", "overtime": "сверхурочная работа", "burnout": "выгорание", "flexible hours": "гибкий график", "prioritize": "расставлять приоритеты", "switch off": "отключиться, отдохнуть", "delegate": "делегировать, поручать", "miscommunication": "недопонимание, сбой в общении", "tone": "тон", "context": "контекст", "assume": "предполагать, считать", "clarify": "прояснить, уточнить", "interpret": "истолковать, понять", "misunderstanding": "недоразумение", "nonverbal": "невербальный", "automate": "автоматизировать", "convenience": "удобство", "dependent": "зависимый", "innovation": "инновация, новшество", "obsolete": "устаревший", "streamline": "упростить, оптимизировать", "upgrade": "обновить, модернизировать", "malfunction": "давать сбой, неисправность", "breakthrough": "прорыв", "inspiration": "вдохновение", "original": "оригинальный, новый", "experiment": "экспериментировать", "collaborate": "сотрудничать", "perspective": "взгляд, точка зрения", "insight": "понимание, озарение", "brainstorm": "проводить мозговой штурм", "culture shock": "культурный шок", "etiquette": "этикет", "custom": "обычай", "hospitality": "гостеприимство", "adapt": "адаптироваться, приспособиться", "stereotype": "стереотип", "tradition": "традиция", "immerse": "погрузиться", "save up": "копить", "splurge": "потратиться, шикануть", "budget": "бюджет", "broke": "без денег, на мели", "worth it": "оно того стоит", "thrifty": "бережливый, экономный", "invest": "инвестировать, вкладывать", "debt": "долг", "achieve": "достигать", "ambition": "амбиция, стремление", "persistence": "упорство, настойчивость", "setback": "неудача, препятствие", "fulfil": "реализовать, исполнить", "potential": "потенциал", "milestone": "важный этап, веха", "worthwhile": "стоящий, полезный", "outgoing": "общительный", "reserved": "сдержанный", "easy-going": "спокойный, лёгкий в общении", "stubborn": "упрямый", "empathetic": "чуткий, умеющий сопереживать", "assertive": "уверенный, напористый", "adaptable": "гибкий, легко приспосабливающийся", "self-aware": "осознающий себя", "curriculum": "учебная программа", "enrol": "записаться, поступить", "tuition": "плата за обучение", "scholarship": "стипендия", "lecture": "лекция", "assignment": "задание", "graduate": "окончить (вуз)", "literacy": "грамотность", "outsource": "передать на аутсорсинг", "hire": "нанимать", "colleague": "коллега", "promotion": "повышение", "resign": "уволиться по собственному желанию", "negotiate": "вести переговоры", "supervise": "руководить, контролировать", "workplace": "рабочее место", "legislation": "законодательство", "citizen": "гражданин", "campaign": "кампания", "vote": "голосовать", "policy": "политика, курс", "debate": "дебаты", "regulation": "правило, регулирование", "accountable": "подотчётный, ответственный"};
+const UNITS = [
+{
+  id: "u1", title: "Stress", kicker: "Unit 1", grammarName: "Present Perfect vs Present Perfect Continuous",
+  intro: "How we talk about pressure, coping and recovery.",
+  preview: [
+    "What was the last thing that stressed you out — and how did you know you were stressed?",
+    "Do you think some stress can be useful, or is it always bad for us?",
+    "What do you usually do to switch off after a difficult day?",
+    "Has the amount of stress in your life changed over the past few years? In what way?"
+  ],
+  vocab: [
+    {word:"cope with", def:"to deal successfully with a difficult situation"},
+    {word:"overwhelmed", def:"having more to deal with than you can manage"},
+    {word:"trigger", def:"something that causes a reaction or feeling to start"},
+    {word:"bounce back", def:"to recover quickly after something difficult"},
+    {word:"unwind", def:"to relax after a period of work or stress"},
+    {word:"sharpen", def:"to make something clearer or more focused"},
+    {word:"drive", def:"to push someone to do or achieve something"},
+    {word:"pile up", def:"to gradually increase in amount until there is too much"}
+  ],
+  vocabGap: [
+    {sentence:"Short breaks during the day help the body ___ before tension builds up.", answer:"unwind"},
+    {sentence:"An unmanageable workload is a common ___ of stress.", answer:"trigger"},
+    {sentence:"People with strong support networks tend to ___ setbacks more easily.", answer:"cope with"},
+    {sentence:"After a difficult month, it took her a while to ___.", answer:"bounce back"},
+    {sentence:"A looming deadline can ___ us to finally get started on a task.", answer:"drive"},
+    {sentence:"If small problems ___, they can eventually feel impossible to manage.", answer:"pile up"}
+  ],
+  vocabTF: [
+    {statement:"\u201cTo cope with\u201d something means to avoid it completely.", answer:false},
+    {statement:"If you feel \u201coverwhelmed\u201d, you have more to deal with than you can manage.", answer:true},
+    {statement:"\u201cTo bounce back\u201d means to recover quickly after something difficult.", answer:true},
+    {statement:"\u201cTo unwind\u201d means to become more tense and stressed.", answer:false},
+    {statement:"A \u201ctrigger\u201d is something that causes a reaction or feeling to start.", answer:true}
+  ],
+  reading: [
+    "Stress used to be seen simply as something to avoid. These days, psychologists take a more balanced view. In moderate amounts, stress can actually <b>sharpen</b> our focus and <b>drive</b> us to meet deadlines we would otherwise put off. The trouble starts when pressure becomes constant, and we no longer get the chance to recover between one demand and the next.",
+    "Researchers have identified a number of common <b>triggers</b>: an unmanageable workload, financial insecurity, conflict at home, and — increasingly — the sense of always being reachable through our phones. When these pressures <b>pile up</b>, people often describe feeling <b>overwhelmed</b>, unable to think clearly or make even small decisions.",
+    "What seems to make the biggest difference is not the absence of stress but how well someone can <b>bounce back</b> from it. People who sleep well, exercise regularly and maintain close relationships tend to <b>cope with</b> setbacks more easily. Taking short breaks during the day, rather than waiting for a holiday, also helps the body <b>unwind</b> before tension has a chance to build up.",
+    "None of this means stress should be dismissed. Chronic, unmanaged stress has real physical costs, from disrupted sleep to a weakened immune system. But treating stress as something to understand and manage, rather than as a personal failure, is proving far more useful than simply telling people to relax."
+  ],
+  comprehension: [
+    "According to the text, why isn't all stress necessarily bad?",
+    "What four triggers of stress does the text mention?",
+    "What does the writer say makes the biggest difference to how people handle stress?",
+    "In your own words, what is the text's main message about how we should view stress?"
+  ],
+  grammarPanels: [
+    {title:"Present Perfect", formula:"have / has + past participle", notes:["Focuses on the result or the fact that something happened","Completed actions relevant to now","I've finished the report.","She's had three stressful weeks in a row."]},
+    {title:"Present Perfect Continuous", formula:"have / has been + verb-ing", notes:["Focuses on the duration or the activity itself","Often still happening, or just stopped","I've been working on the report all week.","She's been feeling stressed lately."]}
+  ],
+  grammarWrite: [
+    {sentence:"I ___ (work) on this presentation since nine this morning.", answer:"have been working"},
+    {sentence:"She ___ (finish) all her exams — she's finally free.", answer:"has finished"},
+    {sentence:"We ___ (try) to reach you all afternoon.", answer:"have been trying"},
+    {sentence:"He ___ (write) three emails about the project so far today.", answer:"has written"},
+    {sentence:"They ___ (feel) really stressed lately.", answer:"have been feeling", "alts": ["have felt"]},
+    {sentence:"I ___ (lose) my notes — I can't find them anywhere.", answer:"have lost"},
+    {sentence:"She ___ (sleep) badly for the past two weeks.", answer:"has been sleeping", "alts": ["has slept"]}
+  ],
+  grammarChoice: [
+    {sentence:"Look at all these unread messages — they ___ up all week.", options:["have piled","have been piling"], answer:"have been piling"},
+    {sentence:"I ___ this book, so I can lend it to you now.", options:["have finished","have been finishing"], answer:"have finished"},
+    {sentence:"Her eyes are red — she ___.", options:["has cried","has been crying"], answer:"has been crying"},
+    {sentence:"We ___ three clients since lunchtime.", options:["have called","have been calling"], answer:"have called"},
+    {sentence:"He ___ really run down recently, so he booked some time off.", options:["has felt","has been feeling"], answer:"has been feeling"}
+  ],
+  grammarTF: [
+    {sentence:"She has been finished her homework, so she's free now.", answer:false},
+    {sentence:"I have been feeling tired all week.", answer:true},
+    {sentence:"We have wrote two reports already today.", answer:false},
+    {sentence:"They have been arguing about the schedule for an hour.", answer:true},
+    {sentence:"He has broken his arm, so he can't type.", answer:true}
+  ],
+  speaking: [
+    "What helps you personally to bounce back after a stressful day?",
+    "Do you think workplaces do enough to reduce stress for employees?",
+    "Tell me about a time a small amount of pressure actually helped you perform better."
+  ],
+  writing: "Write a short paragraph (80–100 words) about how your stress levels have changed recently, using at least two Present Perfect or Present Perfect Continuous sentences."
+},
+{
+  id:"u2", title:"Work-Life Balance", kicker:"Unit 2", grammarName:"Second Conditional",
+  intro: "Imagining a different kind of working life.",
+  preview: [
+    "How many hours a week do you usually work, and does it feel like the right amount?",
+    "Do you find it easy to switch off from work in the evenings and at weekends?",
+    "What would you change about your daily schedule if you could?",
+    "Is it normal in your country to work overtime? How do people feel about it?"
+  ],
+  vocab: [
+    {word:"workload", def:"the amount of work a person has to do"},
+    {word:"deadline", def:"the time by which something must be finished"},
+    {word:"overtime", def:"extra hours worked beyond the normal schedule"},
+    {word:"burnout", def:"extreme physical or mental exhaustion caused by prolonged stress"},
+    {word:"flexible hours", def:"a work schedule that lets employees choose when they start and finish"},
+    {word:"prioritize", def:"to treat something as more important than other things"},
+    {word:"switch off", def:"to stop thinking about work and relax"},
+    {word:"delegate", def:"to give part of your work or responsibility to someone else"}
+  ],
+  vocabGap: [
+    {sentence:"She has too much on her plate — her ___ has doubled this month.", answer:"workload"},
+    {sentence:"He's been working ___ every night this week to finish the report.", answer:"overtime"},
+    {sentence:"It's important to ___ tasks so you focus on what matters most.", answer:"prioritize"},
+    {sentence:"Many managers find it hard to ___ tasks instead of doing everything themselves.", answer:"delegate"},
+    {sentence:"After months of pressure without a break, she started showing signs of ___.", answer:"burnout"},
+    {sentence:"Some companies now offer ___ so staff can choose when they start work.", answer:"flexible hours"}
+  ],
+  vocabTF: [
+    {statement:"Overtime means hours worked beyond the normal schedule.", answer:true},
+    {statement:"To delegate means to do every task yourself without help.", answer:false},
+    {statement:"Burnout is a feeling of being full of energy and motivation.", answer:false},
+    {statement:"To switch off means to stop thinking about work and relax.", answer:true},
+    {statement:"Flexible hours let employees choose when they start and finish work.", answer:true}
+  ],
+  reading: [
+    "Many adults today describe their working lives as unbalanced. Long hours, constant emails and tight deadlines can leave little time or energy for anything else. Some companies have started offering <b>flexible hours</b>, allowing employees to start and finish when it suits them, while others encourage staff to <b>delegate</b> more and take on less themselves. Even so, many people admit that if their employer offered a four-day week, they would take it immediately.",
+    "Psychologists say that <b>burnout</b> rarely appears overnight. It usually builds up slowly, after months of ignoring the warning signs — tiredness, irritability and a loss of motivation. If people learned to <b>prioritize</b> a handful of important tasks instead of trying to do everything, they would probably feel far less overwhelmed.",
+    "Ultimately, balance looks different for everyone. For some, it means leaving the office on time; for others, it means never checking email after seven in the evening. Whatever the model, most experts agree on one thing: if we never allow ourselves to <b>switch off</b> completely, sooner or later, our work — and our health — will suffer."
+  ],
+  comprehension: [
+    "According to the text, what are two things that some companies do to help employees achieve better balance?",
+    "How does burnout typically develop, according to psychologists?",
+    "What example does the text give of what \"balance\" might mean for different people?",
+    "In your own words, what is the text's main warning at the end?"
+  ],
+  grammarPanels: [
+    {title:"Second Conditional", formula:"If + past simple, ... would + infinitive", notes:["Describes an imaginary or unlikely present/future situation and its result","If I had more free time, I would travel more.","Focuses on hypothetical, not real, situations"]},
+    {title:"With \"were\"", formula:"If + were, ... would + infinitive", notes:["Use \"were\" for all persons in formal or careful style","If I were you, I would ask for flexible hours.","Often used to give advice"]}
+  ],
+  grammarWrite: [
+    {sentence:"If I ___ (have) more free time, I would learn a new language.", answer:"had"},
+    {sentence:"She ___ (feel) much less stressed if she delegated more tasks.", answer:"would feel"},
+    {sentence:"If he switched off his phone in the evenings, he ___ (sleep) better.", answer:"would sleep"},
+    {sentence:"We would take a four-day week immediately if our boss ___ (offer) one.", answer:"offered"},
+    {sentence:"If I ___ (be) you, I would ask for flexible hours.", answer:"were"},
+    {sentence:"They ___ (be) far less overwhelmed if they prioritized their tasks.", answer:"would be"}
+  ],
+  grammarChoice: [
+    {sentence:"If I ___ you, I'd talk to my manager about the workload.", options:["was","were"], answer:"were"},
+    {sentence:"If he delegated more, he ___ so overwhelmed.", options:["wouldn't feel","won't feel"], answer:"wouldn't feel"},
+    {sentence:"If we ___ flexible hours, more people would apply for this job.", options:["offer","offered"], answer:"offered"},
+    {sentence:"She would switch off her phone if she ___ able to relax.", options:["is","were"], answer:"were"},
+    {sentence:"If they prioritized better, they ___ deadlines so often.", options:["wouldn't miss","don't miss"], answer:"wouldn't miss"}
+  ],
+  grammarTF: [
+    {sentence:"If I have more time, I would exercise every day.", answer:false},
+    {sentence:"If she were less busy, she would call you back.", answer:true},
+    {sentence:"If he switched off his laptop earlier, he will sleep better.", answer:false},
+    {sentence:"If we delegated more tasks, we would feel less stressed.", answer:true},
+    {sentence:"If they was more organized, they would meet every deadline.", answer:false}
+  ],
+  speaking: [
+    "If you could redesign your ideal work schedule, what would it look like?",
+    "Do you think it's possible to fully switch off from work today? Why or why not?",
+    "Tell me about a time you felt overwhelmed by your workload — what did you do?"
+  ],
+  writing: "Write a short paragraph (80–100 words) describing what a perfectly balanced working day would look like for you, using at least two Second Conditional sentences."
+},
+{
+  id:"u3", title:"Communication in the Digital Age", kicker:"Unit 3", grammarName:"Reported Speech",
+  intro: "How tone and meaning survive — or get lost — in writing.",
+  preview: [
+    "Do you prefer talking on the phone, texting, or meeting in person? Why?",
+    "Have you ever been misunderstood because of a text or email? What happened?",
+    "How much do you rely on emojis or punctuation to show your tone in writing?",
+    "Do you think technology has made communication easier or more complicated overall?"
+  ],
+  vocab: [
+    {word:"miscommunication", def:"a failure to communicate clearly, causing confusion"},
+    {word:"tone", def:"the feeling or attitude expressed in someone's voice or writing"},
+    {word:"context", def:"the situation or circumstances that help explain a message"},
+    {word:"assume", def:"to believe something is true without checking"},
+    {word:"clarify", def:"to make something easier to understand"},
+    {word:"interpret", def:"to decide what you think a message or action means"},
+    {word:"misunderstanding", def:"a situation in which people do not understand each other correctly"},
+    {word:"nonverbal", def:"communicated without words, e.g. through gestures or expressions"}
+  ],
+  vocabGap: [
+    {sentence:"Without seeing someone's face, it's easy to ___ their tone incorrectly.", answer:"interpret"},
+    {sentence:"A short, one-word reply can easily lead to a ___.", answer:"misunderstanding"},
+    {sentence:"Please ___ what you mean — I'm not sure I understood your message.", answer:"clarify"},
+    {sentence:"Body language and facial expressions are examples of ___ communication.", answer:"nonverbal"},
+    {sentence:"Don't ___ that someone is upset just because their message is short.", answer:"assume"},
+    {sentence:"Poor ___ at work often comes from unclear emails rather than bad intentions.", answer:"miscommunication"}
+  ],
+  vocabTF: [
+    {statement:"\"Tone\" refers to the feeling expressed in someone's voice or writing.", answer:true},
+    {statement:"To \"assume\" means to check the facts carefully before believing something.", answer:false},
+    {statement:"\"Nonverbal\" communication uses words to express a message.", answer:false},
+    {statement:"To \"clarify\" means to make something easier to understand.", answer:true},
+    {statement:"A \"misunderstanding\" happens when people understand each other perfectly.", answer:false}
+  ],
+  reading: [
+    "A huge part of face-to-face conversation happens without words at all — through tone of voice, facial expressions and body language. When we communicate through text messages or emails, all of that <b>nonverbal</b> information disappears, and misunderstandings become far more likely.",
+    "Researchers have found that people often <b>assume</b> a neutral message is negative, simply because they can't hear the speaker's <b>tone</b>. A short reply like 'Fine.' can sound relaxed when spoken aloud, but cold or annoyed in writing. To avoid this kind of <b>miscommunication</b>, many people now rely on emojis, punctuation, or extra words to <b>clarify</b> how a message should be <b>interpreted</b>.",
+    "<b>Context</b> matters just as much as the words themselves. The same sentence can mean something completely different depending on who sent it, when, and why. A manager who once told a colleague, 'We need to talk,' later admitted she had meant something quite ordinary — but the message caused a full day of anxiety before they actually spoke.",
+    "As more of our relationships move online, learning to communicate clearly in writing may be just as important as speaking well out loud."
+  ],
+  comprehension: [
+    "According to the text, what disappears when we communicate through text instead of face-to-face?",
+    "Why do people often assume a neutral written message is negative?",
+    "What example does the text give involving a manager and a colleague?",
+    "What is the text's main conclusion about communicating in writing?"
+  ],
+  grammarPanels: [
+    {title:"Reported Statements", formula:"said (that) + past tense (backshift)", notes:["\"I am tired,\" she said. → She said (that) she was tired.","Present simple → past simple; present continuous → past continuous","Present perfect → past perfect"]},
+    {title:"Reported \"will\"", formula:"said (that) + would", notes:["\"I will call you,\" he said. → He said (that) he would call me.","Pronouns and time/place words often change too","tomorrow → the next day, here → there"]}
+  ],
+  grammarWrite: [
+    {sentence:"\"I'm working from home today,\" she said. → She said (that) she ___ (work) from home that day.", answer:"was working"},
+    {sentence:"\"I sent the email yesterday,\" he said. → He said (that) he ___ (send) the email the day before.", answer:"had sent"},
+    {sentence:"\"We will finish the report on time,\" they said. → They said (that) they ___ (finish) the report on time.", answer:"would finish"},
+    {sentence:"\"I can't understand this message,\" she said. → She said (that) she ___ (understand) the message.", answer:"couldn't understand"},
+    {sentence:"\"I have already replied,\" he said. → He said (that) he ___ (already / reply).", answer:"had already replied"},
+    {sentence:"\"I'm going to call you later,\" she said. → She said (that) she ___ (call) me later.", answer:"was going to call"}
+  ],
+  grammarChoice: [
+    {sentence:"He said he ___ tired.", options:["is","was"], answer:"was"},
+    {sentence:"She told me she ___ finish the project by Friday.", options:["will","would"], answer:"would"},
+    {sentence:"They said they ___ already sent the file.", options:["have","had"], answer:"had"},
+    {sentence:"He said he ___ understand the instructions.", options:["can't","couldn't"], answer:"couldn't"},
+    {sentence:"She said she ___ working from the café that day.", options:["is","was"], answer:"was"}
+  ],
+  grammarTF: [
+    {sentence:"She said that she is busy that afternoon.", answer:false},
+    {sentence:"He told me he had already left the office.", answer:true},
+    {sentence:"They said they will call back later.", answer:false},
+    {sentence:"She said she couldn't hear me clearly.", answer:true},
+    {sentence:"He said he is going to reply tomorrow.", answer:false}
+  ],
+  speaking: [
+    "Tell me about a message you once misread — what tone did you assume, and were you right?",
+    "How do you try to make your tone clear when you write in English?",
+    "Do you think emojis genuinely help people avoid misunderstandings, or do they cause new ones?"
+  ],
+  writing: "Write a short dialogue (6–8 lines) between two colleagues who misunderstand each other over a text message. Then report what each person said in one paragraph, using reported speech."
+},
+{
+  id:"u4", title:"Technology and Everyday Life", kicker:"Unit 4", grammarName:"Passive Voice",
+  intro: "What convenience gives us — and what it quietly takes away.",
+  preview: [
+    "Which piece of technology would you find hardest to give up for a week?",
+    "Do you think we have become too dependent on our devices? Why or why not?",
+    "What's the most useful app or gadget you've started using in the last year?",
+    "Can you think of something that used to be common but is now obsolete?"
+  ],
+  vocab: [
+    {word:"automate", def:"to make a process work by machine instead of by people"},
+    {word:"convenience", def:"the quality of being easy or useful"},
+    {word:"dependent", def:"needing something in order to function normally"},
+    {word:"innovation", def:"a new idea, method or piece of technology"},
+    {word:"obsolete", def:"no longer used because something newer has replaced it"},
+    {word:"streamline", def:"to make a process simpler and more efficient"},
+    {word:"upgrade", def:"to replace something with a newer or better version"},
+    {word:"malfunction", def:"to fail to work correctly"}
+  ],
+  vocabGap: [
+    {sentence:"Technology continues to ___ many everyday tasks to save people time.", answer:"automate"},
+    {sentence:"Some people worry they have become too ___ on their phones.", answer:"dependent"},
+    {sentence:"A good app can really ___ a complicated process.", answer:"streamline"},
+    {sentence:"Paper maps are becoming ___ as more people use GPS.", answer:"obsolete"},
+    {sentence:"Her laptop started to ___ right before an important meeting.", answer:"malfunction"},
+    {sentence:"Constant technological ___ means gadgets go out of date quickly.", answer:"innovation"}
+  ],
+  vocabTF: [
+    {statement:"Something \"obsolete\" is no longer used because it has been replaced.", answer:true},
+    {statement:"To \"automate\" a task means to do it entirely by hand.", answer:false},
+    {statement:"A \"malfunction\" means a device is working perfectly.", answer:false},
+    {statement:"To \"streamline\" a process means to make it simpler and more efficient.", answer:true},
+    {statement:"\"Convenience\" means something is difficult and slow to use.", answer:false}
+  ],
+  reading: [
+    "Over the last two decades, countless everyday tasks have been <b>automated</b>. Bills are paid automatically, groceries are delivered without a single phone call, and entire homes can be controlled from a smartphone screen. This <b>convenience</b> is hard to argue with — routines that once took hours are now <b>streamlined</b> into a few taps.",
+    "At the same time, many people have noticed how <b>dependent</b> they've become on devices that used to be considered luxuries. When a phone is lost or a wifi router <b>malfunctions</b>, whole households can grind to a halt. Skills that were once practiced regularly — reading paper maps, doing mental arithmetic, remembering phone numbers — are quietly becoming <b>obsolete</b>.",
+    "New <b>innovations</b> are launched constantly, and last year's essential gadget is often replaced within months. Consumers are encouraged to <b>upgrade</b> devices they barely understand the previous version of, creating a cycle that some experts describe as unsustainable.",
+    "None of this means technology is a mistake. But as more of daily life is automated, it may be worth asking which conveniences are actually worth keeping — and which skills are worth holding on to."
+  ],
+  comprehension: [
+    "According to the text, what kinds of everyday tasks have been automated?",
+    "What happens to households when a device or wifi router malfunctions?",
+    "What example skills does the text say are becoming obsolete?",
+    "What question does the writer suggest we should ask about technology?"
+  ],
+  grammarPanels: [
+    {title:"Present Simple Passive", formula:"am / is / are + past participle", notes:["Used when the action or result matters more than who does it","Bills are paid automatically.","These tasks are automated in most offices."]},
+    {title:"Past Simple Passive", formula:"was / were + past participle", notes:["The device was replaced within months.","The agent (\"by...\") is often omitted when unknown or unimportant"]}
+  ],
+  grammarWrite: [
+    {sentence:"Groceries ___ (deliver) without a single phone call these days.", answer:"are delivered"},
+    {sentence:"The old router ___ (replace) last week.", answer:"was replaced"},
+    {sentence:"This app ___ (download) by millions of people every year.", answer:"is downloaded"},
+    {sentence:"The malfunction ___ (fix) by a technician yesterday.", answer:"was fixed"},
+    {sentence:"New software updates ___ (release) every few months.", answer:"are released"},
+    {sentence:"Her phone ___ (steal) while she was travelling last year.", answer:"was stolen"}
+  ],
+  grammarChoice: [
+    {sentence:"The bill ___ automatically every month.", options:["is paid","was paid"], answer:"is paid"},
+    {sentence:"The device ___ upgraded last year.", options:["is","was"], answer:"was"},
+    {sentence:"These tasks ___ automated in most modern offices.", options:["are","were"], answer:"are"},
+    {sentence:"The old maps ___ replaced by GPS apps years ago.", options:["are","were"], answer:"were"},
+    {sentence:"Most homes ___ now controlled remotely through an app.", options:["are","were"], answer:"are"}
+  ],
+  grammarTF: [
+    {sentence:"The router are fixed yesterday.", answer:false},
+    {sentence:"Bills are paid automatically every month.", answer:true},
+    {sentence:"The app was download by millions of people.", answer:false},
+    {sentence:"New updates are released every few months.", answer:true},
+    {sentence:"Her old phone was stealing last year.", answer:false}
+  ],
+  speaking: [
+    "Which everyday task would you most like to see automated that isn't already?",
+    "Do you upgrade your devices often, or keep them until they stop working?",
+    "Is there a skill you've lost because technology now does it for you?"
+  ],
+  writing: "Write a short paragraph (80–100 words) about one piece of technology that has changed your daily routine, using at least three passive voice sentences."
+},
+{
+  id:"u5", title:"Creativity and Innovation", kicker:"Unit 5", grammarName:"Relative Clauses",
+  intro: "Where good ideas actually come from.",
+  preview: [
+    "What's something creative you've made or done recently, even something small?",
+    "Do you work better alone or when you collaborate with others?",
+    "Where do you usually find inspiration when you need a new idea?",
+    "Do you think creativity can be taught, or is it something you're born with?"
+  ],
+  vocab: [
+    {word:"breakthrough", def:"an important discovery or development after a lot of effort"},
+    {word:"inspiration", def:"something that gives you ideas for creative work"},
+    {word:"original", def:"new and not copied from anything else"},
+    {word:"experiment", def:"to try something in order to see what happens"},
+    {word:"collaborate", def:"to work together with someone to produce something"},
+    {word:"perspective", def:"a particular way of thinking about something"},
+    {word:"insight", def:"a clear understanding of a complicated problem or situation"},
+    {word:"brainstorm", def:"to think of as many ideas as possible in a short time"}
+  ],
+  vocabGap: [
+    {sentence:"It took years of research before the team achieved a real ___.", answer:"breakthrough"},
+    {sentence:"She found ___ for her new project during a long walk.", answer:"inspiration"},
+    {sentence:"Instead of copying others, try to come up with something more ___.", answer:"original"},
+    {sentence:"Scientists often ___ with an idea before they know if it will work.", answer:"experiment"},
+    {sentence:"Two departments decided to ___ on the new product together.", answer:"collaborate"},
+    {sentence:"Talking to someone outside your field can offer a fresh ___.", answer:"perspective"}
+  ],
+  vocabTF: [
+    {statement:"A \"breakthrough\" is an important discovery after a lot of effort.", answer:true},
+    {statement:"To \"brainstorm\" means to carefully choose only one idea from the start.", answer:false},
+    {statement:"\"Insight\" means a clear understanding of a complicated situation.", answer:true},
+    {statement:"To \"collaborate\" means to work completely alone.", answer:false},
+    {statement:"Something \"original\" is new and not copied from anything else.", answer:true}
+  ],
+  reading: [
+    "For a long time, creativity was seen as a rare gift that only a few lucky people were born with. Today, most researchers, who have studied thousands of inventors and artists, disagree. They argue that creativity is less about sudden <b>inspiration</b> and more about the habits that support it.",
+    "One habit that stands out is <b>collaboration</b>. Ideas that are developed entirely alone rarely turn into real <b>breakthroughs</b>; it's usually the conversation with someone who sees the problem from a different <b>perspective</b> that produces the missing <b>insight</b>. Companies that once discouraged casual conversation between departments now design offices specifically to encourage it.",
+    "Another key habit is a willingness to <b>experiment</b>, which means testing an idea quickly rather than waiting until it feels perfect. Teams that <b>brainstorm</b> freely, without judging ideas too early, tend to generate more <b>original</b> solutions than those that try to get everything right the first time.",
+    "Ultimately, the myth of the lone genius, whose brilliant idea appears from nowhere, is being replaced by a simpler truth: most good ideas are built, tested and improved by people working together."
+  ],
+  comprehension: [
+    "How did people traditionally view creativity, according to the text?",
+    "What do researchers now believe creativity depends on more than sudden inspiration?",
+    "Why do companies now design offices to encourage casual conversation?",
+    "What \"myth\" does the text say is being replaced, and by what?"
+  ],
+  grammarPanels: [
+    {title:"Defining Relative Clauses", formula:"noun + who / which / that + clause", notes:["No commas — identifies exactly which person or thing we mean","The team that brainstorms freely generates more ideas.","\"That\" can replace who/which"]},
+    {title:"Non-defining Relative Clauses", formula:"noun, who / which, + clause,", notes:["Commas required — adds extra, removable information","Researchers, who have studied thousands of inventors, disagree.","Never use \"that\" here"]}
+  ],
+  grammarWrite: [
+    {sentence:"The scientist ___ discovered the idea won an award.", answer:"who", alts:["that"]},
+    {sentence:"The company, ___ was founded in 2010, has grown quickly.", answer:"which"},
+    {sentence:"Ideas ___ are tested quickly tend to improve faster.", answer:"that", alts:["which"]},
+    {sentence:"My colleague, ___ has worked here for ten years, gave me great advice.", answer:"who"},
+    {sentence:"The office ___ they redesigned now encourages more collaboration.", answer:"that", alts:["which"]},
+    {sentence:"Her latest project, ___ took two years to finish, was very original.", answer:"which"}
+  ],
+  grammarChoice: [
+    {sentence:"The team ___ won the award works in our building.", options:["who","which"], answer:"who"},
+    {sentence:"My manager, ___ started the company, is retiring.", options:["that","who"], answer:"who"},
+    {sentence:"The idea ___ he proposed was completely original.", options:["that","who"], answer:"that"},
+    {sentence:"The invention, ___ changed the industry, took years to develop.", options:["that","which"], answer:"which"},
+    {sentence:"People ___ collaborate well often produce better ideas.", options:["who","which"], answer:"who"}
+  ],
+  grammarTF: [
+    {sentence:"The scientist, that discovered the idea, won an award.", answer:false},
+    {sentence:"The team that brainstorms freely tends to be more creative.", answer:true},
+    {sentence:"Her project, which took two years to finish was very original.", answer:false},
+    {sentence:"People who collaborate well often produce better ideas.", answer:true},
+    {sentence:"The invention that changed the industry, took years to develop.", answer:false}
+  ],
+  speaking: [
+    "Describe a time when talking to someone gave you a completely new perspective on a problem.",
+    "Do you think brainstorming in groups actually produces better ideas than working alone?",
+    "What's an everyday example of creativity that people don't usually notice?"
+  ],
+  writing: "Write a short paragraph (80–100 words) about a creative person you admire, using at least two relative clauses — one defining, one non-defining."
+},
+{
+  id:"u6", title:"Travel and Cultural Differences", kicker:"Unit 6", grammarName:"Modals of Deduction (Past)",
+  intro: "Reading between the lines of an unfamiliar culture.",
+  preview: [
+    "What's the biggest cultural difference you've noticed while travelling or meeting people from another country?",
+    "Have you ever experienced culture shock? What caused it?",
+    "Do you think it's important to learn local etiquette before visiting a country?",
+    "What's a tradition from your own culture that visitors often find surprising?"
+  ],
+  vocab: [
+    {word:"culture shock", def:"the confusion or anxiety felt when experiencing an unfamiliar culture"},
+    {word:"etiquette", def:"the accepted rules of polite behaviour in a society"},
+    {word:"custom", def:"a traditional way of doing something in a particular place"},
+    {word:"hospitality", def:"the friendly treatment of guests or visitors"},
+    {word:"adapt", def:"to change your behaviour to suit a new situation"},
+    {word:"stereotype", def:"a fixed, oversimplified idea about a group of people"},
+    {word:"tradition", def:"a belief or custom passed down through generations"},
+    {word:"immerse", def:"to become fully involved in an experience or activity"}
+  ],
+  vocabGap: [
+    {sentence:"Moving to a new country can cause serious ___ at first.", answer:"culture shock"},
+    {sentence:"Learning basic table ___ can help you avoid embarrassing mistakes.", answer:"etiquette"},
+    {sentence:"It's a local ___ to remove your shoes before entering a home.", answer:"custom"},
+    {sentence:"Locals are known for their warm ___ toward visitors.", answer:"hospitality"},
+    {sentence:"It takes time to ___ to a completely different way of life.", answer:"adapt"},
+    {sentence:"Not every visitor fits the ___ people have about their country.", answer:"stereotype"}
+  ],
+  vocabTF: [
+    {statement:"\"Culture shock\" is the confusion felt when experiencing an unfamiliar culture.", answer:true},
+    {statement:"\"Etiquette\" means having no rules of polite behaviour at all.", answer:false},
+    {statement:"To \"immerse\" yourself means to avoid an experience completely.", answer:false},
+    {statement:"\"Hospitality\" means the friendly treatment of guests or visitors.", answer:true},
+    {statement:"A \"stereotype\" is always a completely accurate description of a group.", answer:false}
+  ],
+  reading: [
+    "Anyone who has travelled to an unfamiliar country knows that even simple daily habits can feel confusing at first. A traveller who forgets to remove their shoes before entering a home, or who tips generously in a country where tipping is considered rude, hasn't necessarily made a serious mistake — they simply haven't learned the local <b>etiquette</b> yet.",
+    "Researchers who study <b>culture shock</b> say it usually happens in stages. At first, everything feels exciting and new. After a few weeks, small misunderstandings begin to pile up, and visitors can feel frustrated or even lonely. Eventually, most people <b>adapt</b>, learning to read unfamiliar social signals almost without thinking.",
+    "Long-term travellers often say that the fastest way through this stage is to <b>immerse</b> yourself in daily life rather than relying only on guidebooks. Sharing a meal, asking questions and making mistakes in front of local hosts, whose <b>hospitality</b> is often far more forgiving than visitors expect, tends to teach far more than any list of dos and don'ts.",
+    "Of course, not every <b>custom</b> fits neatly into a <b>stereotype</b> — and that, travellers often say, is exactly the point."
+  ],
+  comprehension: [
+    "What two examples of etiquette mistakes does the text mention?",
+    "According to researchers, what usually happens in the early stages of culture shock?",
+    "What do long-term travellers recommend as the fastest way to adapt?",
+    "What is the text's final point about customs and stereotypes?"
+  ],
+  grammarPanels: [
+    {title:"must have / can't have", formula:"must / can't + have + past participle", notes:["Strong certainty about a past event, based on evidence","must have = positive certainty: She must have forgotten.","can't have = negative certainty: He can't have known."]},
+    {title:"might have / could have", formula:"might / could + have + past participle", notes:["Possibility only, not certainty","They might have misunderstood the tradition.","Based on incomplete evidence"]}
+  ],
+  grammarWrite: [
+    {sentence:"She's not answering her phone — she ___ (leave) already. (must)", answer:"must have left"},
+    {sentence:"He knew the custom well, so he ___ (make) that mistake on purpose. (can't)", answer:"can't have made"},
+    {sentence:"They looked confused, so they ___ (understand) the instructions. (might not)", answer:"might not have understood"},
+    {sentence:"The host wasn't offended at all, so we ___ (offend) her. (can't)", answer:"can't have offended"},
+    {sentence:"She adapted so quickly — she ___ (travel) before. (must)", answer:"must have travelled", "alts": ["must have traveled"]},
+    {sentence:"He seemed unsure about local etiquette, so he ___ (skip) the guidebook. (might)", answer:"might have skipped"}
+  ],
+  grammarChoice: [
+    {sentence:"She's fluent in the local language — she ___ lived there before.", options:["must have","can't have"], answer:"must have"},
+    {sentence:"He wasn't rude on purpose — he ___ known the custom.", options:["must have","can't have"], answer:"can't have"},
+    {sentence:"They seemed a little lost — they ___ misunderstood the directions.", options:["might have","can't have"], answer:"might have"},
+    {sentence:"She looked surprised, so she ___ expected that tradition.", options:["can't have","must have"], answer:"can't have"},
+    {sentence:"He adapted so fast — he ___ read about the culture beforehand.", options:["must have","might not have"], answer:"must have"}
+  ],
+  grammarTF: [
+    {sentence:"She must has forgotten the local custom.", answer:false},
+    {sentence:"He can't have known about the tradition — he looked shocked.", answer:true},
+    {sentence:"They might have misunderstand the etiquette.", answer:false},
+    {sentence:"She must have travelled a lot — she adapts so quickly.", answer:true},
+    {sentence:"He can't have read the guidebook, because he made every mistake in it.", answer:true}
+  ],
+  speaking: [
+    "Describe a moment when you completely misunderstood a local custom while travelling.",
+    "Do you think stereotypes about your own culture are usually fair or unfair?",
+    "What's the best way to learn a country's etiquette before visiting?"
+  ],
+  writing: "Write a short paragraph (80–100 words) about a time you had to adapt to unfamiliar customs, using at least two modals of deduction about the past (must have / can't have / might have)."
+},
+{
+  id:"u7", title:"Money", kicker:"Unit 7", grammarName:"Used to / Would",
+  intro: "How our habits around money form — and change.",
+  preview: [
+    "Did you get pocket money as a child? What did you usually spend it on?",
+    "Are you someone who saves carefully or spends easily?",
+    "What's the most expensive thing you've ever saved up for?",
+    "Has your attitude toward money changed since you were younger?"
+  ],
+  vocab: [
+    {word:"save up", def:"to gradually collect money for something specific"},
+    {word:"splurge", def:"to spend a lot of money on something, often as a treat"},
+    {word:"budget", def:"a plan for how much money will be spent and on what"},
+    {word:"broke", def:"having no money at all"},
+    {word:"worth it", def:"valuable enough to justify the cost or effort"},
+    {word:"thrifty", def:"careful about spending money; not wasteful"},
+    {word:"invest", def:"to put money into something in the hope of making a profit"},
+    {word:"debt", def:"money that is owed to someone else"}
+  ],
+  vocabGap: [
+    {sentence:"It took her two years to ___ enough money for the trip.", answer:"save up"},
+    {sentence:"He decided to ___ on a nice dinner to celebrate.", answer:"splurge"},
+    {sentence:"Sticking to a strict ___ helped them pay off their debt faster.", answer:"budget"},
+    {sentence:"By the end of the month, he was completely ___.", answer:"broke"},
+    {sentence:"The expensive course was costly, but she felt it was ___.", answer:"worth it"},
+    {sentence:"Growing up, her family was always quite ___ with money.", answer:"thrifty"}
+  ],
+  vocabTF: [
+    {statement:"To \"save up\" means to gradually collect money for something specific.", answer:true},
+    {statement:"\"Broke\" means having a lot of money.", answer:false},
+    {statement:"A \"budget\" is a plan for how much money will be spent.", answer:true},
+    {statement:"To \"splurge\" means to spend very carefully and cautiously.", answer:false},
+    {statement:"\"Debt\" is money that is owed to someone else.", answer:true}
+  ],
+  reading: [
+    "Most people's first lessons about money happened long before they had a bank account. As children, many of us used to receive a small amount of pocket money each week, and we would spend it almost as soon as we got it. Few of us understood the difference between saving and simply being <b>broke</b> by Tuesday.",
+    "Attitudes often change with age. Someone who used to <b>splurge</b> on the first thing they saw might grow into a careful saver who sets a strict <b>budget</b> every month. Others go the opposite way: a naturally <b>thrifty</b> teenager sometimes becomes an adult who finally allows themselves the occasional treat, deciding it's <b>worth it</b> after years of caution.",
+    "Family habits play a large role too. Parents who used to talk openly about money at home often raise children who feel comfortable discussing it later in life, while those who grew up in households where money was never mentioned sometimes struggle to know whether it's normal to have <b>debt</b>, to <b>invest</b>, or simply to ask for advice.",
+    "However our habits were formed, most of us would probably manage our money differently today if we could talk to our younger selves."
+  ],
+  comprehension: [
+    "According to the text, what did many people not understand as children about money?",
+    "Give an example the text gives of how attitudes toward spending can change with age.",
+    "How does the text say family habits affect how comfortable people are discussing money?",
+    "What is the writer's final suggestion about our younger selves?"
+  ],
+  grammarPanels: [
+    {title:"used to", formula:"used to + infinitive", notes:["Describes past habits AND past states","I used to get pocket money every week.","I used to have very little money as a student."]},
+    {title:"would", formula:"would + infinitive", notes:["Describes repeated past actions only — not states","We would spend it as soon as we got it.","Cannot be used for states: not \"I would have\" a bank account"]}
+  ],
+  grammarWrite: [
+    {sentence:"He ___ (have) very little money when he was a student.", answer:"used to have"},
+    {sentence:"Every Friday, they ___ (spend) their allowance on sweets.", answer:"would spend", alts:["used to spend"]},
+    {sentence:"She ___ (be) terrible with money in her twenties.", answer:"used to be"},
+    {sentence:"We ___ (save) a little every week until we had enough.", answer:"would save", alts:["used to save"]},
+    {sentence:"He ___ (not have) a bank account until he was eighteen.", answer:"didn't use to have"},
+    {sentence:"They ___ (argue) about money almost every month.", answer:"would argue", alts:["used to argue"]}
+  ],
+  grammarChoice: [
+    {sentence:"I ___ live in a tiny apartment when I was a student.", options:["used to","would"], answer:"used to"},
+    {sentence:"Every summer, we ___ save half our earnings.", options:["use to","would"], answer:"would"},
+    {sentence:"She ___ have no interest in saving at all.", options:["used to","would"], answer:"used to"},
+    {sentence:"He ___ spend his whole paycheck within a week.", options:["use to","would"], answer:"would"},
+    {sentence:"They ___ own a small business together.", options:["used to","would"], answer:"used to"}
+  ],
+  grammarTF: [
+    {sentence:"I would have a lot less money when I was younger.", answer:false},
+    {sentence:"We used to save a little every month.", answer:true},
+    {sentence:"She would be very careful with money as a teenager.", answer:false},
+    {sentence:"They would argue about bills every week.", answer:true},
+    {sentence:"He used to spend his allowance immediately.", answer:true}
+  ],
+  speaking: [
+    "What's one piece of money advice you'd give your younger self?",
+    "Do you think it's better to save carefully or enjoy your money now? Why?",
+    "How did your parents' attitude toward money affect your own habits?"
+  ],
+  writing: "Write a short paragraph (80–100 words) about your money habits as a child, using \"used to\" and \"would\" correctly."
+},
+{
+  id:"u8", title:"Success", kicker:"Unit 8", grammarName:"Third Conditional",
+  intro: "What failure and persistence teach us about achievement.",
+  preview: [
+    "How do you personally define success?",
+    "Who is someone you consider successful, and why?",
+    "Have you ever had a setback that later helped you succeed?",
+    "Do you think success is mostly about talent or persistence?"
+  ],
+  vocab: [
+    {word:"achieve", def:"to successfully complete or reach something through effort"},
+    {word:"ambition", def:"a strong desire to achieve something"},
+    {word:"persistence", def:"continuing to try despite difficulty"},
+    {word:"setback", def:"a problem that delays or hinders progress"},
+    {word:"fulfil", def:"to achieve something desired or promised"},
+    {word:"potential", def:"the ability to develop or achieve something in the future"},
+    {word:"milestone", def:"an important point or event in progress toward a goal"},
+    {word:"worthwhile", def:"valuable enough to be worth the time or effort"}
+  ],
+  vocabGap: [
+    {sentence:"It took years of hard work for her to ___ her goal.", answer:"achieve"},
+    {sentence:"His main ___ was always to start his own company.", answer:"ambition"},
+    {sentence:"Without ___, most people give up after the first failure.", answer:"persistence"},
+    {sentence:"Losing that client felt like a major ___ at the time.", answer:"setback"},
+    {sentence:"She finally felt she had ___ her true potential.", answer:"fulfil"},
+    {sentence:"Reaching that ___ took much longer than she expected.", answer:"milestone"}
+  ],
+  vocabTF: [
+    {statement:"\"Persistence\" means giving up as soon as something becomes difficult.", answer:false},
+    {statement:"A \"setback\" is a problem that delays or hinders progress.", answer:true},
+    {statement:"To \"fulfil\" a goal means to give up on it entirely.", answer:false},
+    {statement:"\"Potential\" is the ability to develop or achieve something in the future.", answer:true},
+    {statement:"Something \"worthwhile\" is valuable enough to be worth the time or effort.", answer:true}
+  ],
+  reading: [
+    "For a long time, success was measured almost entirely by money and status. Today, more people define it differently — as a sense of having <b>achieved</b> something meaningful, or having <b>fulfilled</b> their own <b>potential</b> rather than someone else's expectations.",
+    "Many well-known figures now openly admit that if they hadn't failed early in their careers, they wouldn't have found the path that eventually worked. A famous inventor once said that if he had given up after his first hundred failed experiments, he would never have reached his final breakthrough. Stories like this suggest that <b>persistence</b>, not talent alone, often makes the biggest difference.",
+    "<b>Setbacks</b>, in this view, aren't obstacles to success but part of how it's built. If people avoided every risk of failure, they would probably never attempt anything worth attempting in the first place. Reaching a <b>milestone</b> rarely happens in a straight line; it usually involves several wrong turns first.",
+    "Ultimately, many people say that if they had chased only money or status, their achievements would have felt far less <b>worthwhile</b>. What matters more, they argue, is whether the journey itself felt like it was theirs."
+  ],
+  comprehension: [
+    "How did the text say success used to be measured, and how has that changed?",
+    "What point does the story about the inventor illustrate?",
+    "According to the text, what role do setbacks play in success?",
+    "What is the text's final argument about money, status and worthwhile achievements?"
+  ],
+  grammarPanels: [
+    {title:"Third Conditional", formula:"If + past perfect, ... would have + past participle", notes:["Describes an imaginary result of a past situation that didn't happen","If he had given up, he wouldn't have succeeded.","Used for regrets or reflecting on past decisions"]},
+    {title:"Negative forms", formula:"hadn't + past participle, ... wouldn't have + past participle", notes:["If they hadn't failed, they wouldn't have found the right path.","Both clauses can be negative or positive in any combination"]}
+  ],
+  grammarWrite: [
+    {sentence:"If he ___ (give up) early, he would never have reached his breakthrough.", answer:"had given up"},
+    {sentence:"She wouldn't have succeeded if she ___ (not persist).", answer:"hadn't persisted"},
+    {sentence:"If they ___ (avoid) every risk, they would never have achieved anything.", answer:"had avoided"},
+    {sentence:"He would have felt less fulfilled if he ___ (chase) only money.", answer:"had chased"},
+    {sentence:"If I ___ (know) then what I know now, I would have made different choices.", answer:"had known"},
+    {sentence:"She ___ (not reach) that milestone if she hadn't kept trying.", answer:"wouldn't have reached"}
+  ],
+  grammarChoice: [
+    {sentence:"If he ___ given up, he wouldn't have succeeded.", options:["had","has"], answer:"had"},
+    {sentence:"She wouldn't have achieved her goal if she ___ persistent.", options:["hadn't been","wasn't"], answer:"hadn't been"},
+    {sentence:"If they had taken the risk, they ___ regretted it.", options:["wouldn't have","won't have"], answer:"wouldn't have"},
+    {sentence:"He ___ have failed so many times if he had prepared better.", options:["wouldn't","won't"], answer:"wouldn't"},
+    {sentence:"If I had known the outcome, I ___ chosen a different path.", options:["would have","will have"], answer:"would have"}
+  ],
+  grammarTF: [
+    {sentence:"If he had given up, he would succeed.", answer:false},
+    {sentence:"If she hadn't persisted, she wouldn't have reached her goal.", answer:true},
+    {sentence:"If they avoided every risk, they would never achieved anything.", answer:false},
+    {sentence:"He would have felt less fulfilled if he had chased only money.", answer:true},
+    {sentence:"If I had known that, I would have made different choices.", answer:true}
+  ],
+  speaking: [
+    "What's one setback in your life that turned out to be useful later?",
+    "Do you think talent or persistence matters more for success? Why?",
+    "If you could go back and change one decision, would you? What would you do differently?"
+  ],
+  writing: "Write a short paragraph (80–100 words) about a decision you made that shaped your success, using at least two Third Conditional sentences."
+},
+{
+  id:"u9", title:"Personality", kicker:"Unit 9", grammarName:"Gerunds and Infinitives",
+  intro: "How much of who we are is fixed — and how much is habit.",
+  preview: [
+    "How would you describe your own personality in three words?",
+    "Do you think personality changes over time, or stays mostly the same?",
+    "Are you more outgoing or reserved in new social situations?",
+    "What personality trait do you admire most in other people?"
+  ],
+  vocab: [
+    {word:"outgoing", def:"friendly, confident and comfortable meeting new people"},
+    {word:"reserved", def:"quiet and not showing feelings or opinions easily"},
+    {word:"easy-going", def:"relaxed and not easily worried or annoyed"},
+    {word:"stubborn", def:"determined not to change your mind or behaviour"},
+    {word:"empathetic", def:"able to understand and share the feelings of others"},
+    {word:"assertive", def:"confident and direct in expressing your opinions or needs"},
+    {word:"adaptable", def:"able to adjust easily to new conditions"},
+    {word:"self-aware", def:"having a clear understanding of your own personality and feelings"}
+  ],
+  vocabGap: [
+    {sentence:"She's quite ___ — she loves meeting new people at parties.", answer:"outgoing"},
+    {sentence:"He's fairly ___ and prefers small, quiet gatherings.", answer:"reserved"},
+    {sentence:"Being ___ helps you stay calm even when plans suddenly change.", answer:"adaptable"},
+    {sentence:"A good manager needs to be ___ enough to notice how others feel.", answer:"empathetic"},
+    {sentence:"He can be quite ___ once he's made up his mind.", answer:"stubborn"},
+    {sentence:"Being ___ means understanding your own strengths and weaknesses.", answer:"self-aware"}
+  ],
+  vocabTF: [
+    {statement:"Someone \"outgoing\" is shy and avoids meeting new people.", answer:false},
+    {statement:"\"Easy-going\" describes someone relaxed and not easily worried.", answer:true},
+    {statement:"A \"stubborn\" person changes their mind very easily.", answer:false},
+    {statement:"\"Empathetic\" means able to understand and share the feelings of others.", answer:true},
+    {statement:"Being \"adaptable\" means struggling to adjust to new conditions.", answer:false}
+  ],
+  reading: [
+    "People often enjoy discussing personality as if it were fixed — as though someone is simply born <b>outgoing</b> or naturally <b>stubborn</b>. Psychologists tend to avoid making such simple claims, preferring instead to focus on the mix of genetics, environment and habit that shapes how we behave.",
+    "Certain traits do seem to appear early and remain fairly stable. A <b>reserved</b> child often grows into a reserved adult, and someone who finds it easy to stay calm under pressure tends to keep that quality for life. However, many people manage to develop skills that don't come naturally to them. A naturally stubborn person can learn to become more <b>adaptable</b> by practising to listen before reacting, while someone who avoids conflict can train themselves to be more <b>assertive</b> when it matters.",
+    "Becoming more <b>self-aware</b> seems to help the most. People who spend time reflecting on their own reactions often decide to change specific habits, even if their core personality stays largely the same. An <b>empathetic</b> colleague and an <b>easy-going</b> one might behave very differently, yet both can choose to work on the same weakness if they recognise it.",
+    "In the end, most experts agree that personality sets the starting point — but habits decide the rest."
+  ],
+  comprehension: [
+    "What do psychologists tend to avoid doing when discussing personality, according to the text?",
+    "What example does the text give of a trait that remains fairly stable?",
+    "How can a naturally stubborn person learn to become more adaptable?",
+    "What is the text's final conclusion about personality and habits?"
+  ],
+  grammarPanels: [
+    {title:"Verb + gerund (-ing)", formula:"enjoy / avoid / practise / keep + verb-ing", notes:["Used after certain verbs like enjoy, avoid, practise, keep, finish","People often enjoy discussing personality.","They practised listening more carefully."]},
+    {title:"Verb + infinitive", formula:"decide / manage / learn / want / choose + to + verb", notes:["Used after certain verbs like decide, manage, learn, want, choose","She decided to change a specific habit.","He managed to stay calm under pressure."]}
+  ],
+  grammarWrite: [
+    {sentence:"He enjoys ___ (meet) new people at parties.", answer:"meeting"},
+    {sentence:"She decided ___ (become) more assertive at work.", answer:"to become"},
+    {sentence:"They practised ___ (listen) more carefully before reacting.", answer:"listening"},
+    {sentence:"He managed ___ (stay) calm during the difficult meeting.", answer:"to stay"},
+    {sentence:"She avoids ___ (argue) whenever possible.", answer:"arguing"},
+    {sentence:"They chose ___ (work) on their weaknesses together.", answer:"to work"}
+  ],
+  grammarChoice: [
+    {sentence:"He finished ___ the report before the deadline.", options:["writing","to write"], answer:"writing"},
+    {sentence:"She wants ___ more confident in meetings.", options:["being","to be"], answer:"to be"},
+    {sentence:"They kept ___ about the same issue for hours.", options:["arguing","to argue"], answer:"arguing"},
+    {sentence:"He learned ___ his temper over the years.", options:["controlling","to control"], answer:"to control"},
+    {sentence:"She avoids ___ to large groups of people.", options:["talking","to talk"], answer:"talking"}
+  ],
+  grammarTF: [
+    {sentence:"She enjoys to meet new people.", answer:false},
+    {sentence:"He decided to become more assertive.", answer:true},
+    {sentence:"They practised to listen more carefully.", answer:false},
+    {sentence:"She managed to stay calm during the meeting.", answer:true},
+    {sentence:"He avoids to argue with his colleagues.", answer:false}
+  ],
+  speaking: [
+    "Which of the personality traits in this unit best describes you, and why?",
+    "Do you think it's possible to change a core personality trait? Give an example.",
+    "Describe someone you know who is very self-aware — how does it show?"
+  ],
+  writing: "Write a short paragraph (80–100 words) describing your own personality and one trait you'd like to develop, using at least two gerunds and two infinitives."
+},
+{
+  id:"u10", title:"Education", kicker:"Unit 10", grammarName:"The + comparative, the + comparative",
+  intro: "How the old model of learning is being rewritten.",
+  preview: [
+    "What's one subject you wish you'd studied more seriously at school?",
+    "Do you think traditional exams are still the best way to measure learning?",
+    "Would you ever go back to studying as an adult? What would you study?",
+    "Who was the teacher who influenced you the most, and why?"
+  ],
+  vocab: [
+    {word:"curriculum", def:"the subjects and content taught in a course or school"},
+    {word:"enrol", def:"to officially register for a course or programme"},
+    {word:"tuition", def:"the fees paid for teaching, especially at a university"},
+    {word:"scholarship", def:"money given to a student to help pay for their studies"},
+    {word:"lecture", def:"a formal talk given to teach students about a subject"},
+    {word:"assignment", def:"a task or piece of work given to a student"},
+    {word:"graduate", def:"to successfully complete a degree or course of study"},
+    {word:"literacy", def:"the ability to read and write"}
+  ],
+  vocabGap: [
+    {sentence:"She decided to ___ in an evening course after work.", answer:"enrol"},
+    {sentence:"Many students rely on a ___ to help cover tuition costs.", answer:"scholarship"},
+    {sentence:"He missed the first ___ of the semester.", answer:"lecture"},
+    {sentence:"The ___ was due at the end of the week.", answer:"assignment"},
+    {sentence:"Basic ___ includes the ability to read and write confidently.", answer:"literacy"},
+    {sentence:"It took her five years to ___ from university.", answer:"graduate"}
+  ],
+  vocabTF: [
+    {statement:"\"Tuition\" refers to the fees paid for teaching at a school or university.", answer:true},
+    {statement:"To \"enrol\" means to leave a course permanently.", answer:false},
+    {statement:"A \"scholarship\" is money given to help pay for a student's studies.", answer:true},
+    {statement:"\"Literacy\" means the ability to read and write.", answer:true},
+    {statement:"To \"graduate\" means to fail a course of study.", answer:false}
+  ],
+  reading: [
+    "Education used to mean one thing: a fixed number of years spent in a classroom, followed by a diploma. The longer people studied, the more secure their future career felt — or so the old model promised. Today, that model is being questioned. The faster technology changes, the more skills seem to become outdated, and many careers now require constant retraining rather than a single qualification earned once.",
+    "Universities have started to respond. Some now offer short online courses alongside traditional <b>lectures</b>, and more employers accept alternative routes into a profession that don't require years of <b>tuition</b>. <b>Scholarships</b> increasingly support people re-entering education later in life, not only school leavers <b>enrolling</b> for the first time.",
+    "Even so, the basics haven't disappeared. Reading, writing and basic numeracy — the foundations of <b>literacy</b> — remain as important as ever, and the earlier children build these skills, the easier later learning becomes.",
+    "What has changed is the assumption that learning stops the moment you <b>graduate</b>. Increasingly, the more curious people stay after leaving school, the more prepared they seem to be for whatever comes next."
+  ],
+  comprehension: [
+    "According to the text, what did the \"old model\" of education promise?",
+    "How are universities responding to the fact that careers now require constant retraining?",
+    "What does the text say has NOT changed about education?",
+    "What assumption about learning has changed, according to the writer?"
+  ],
+  grammarPanels: [
+    {title:"Full structure", formula:"The + comparative + clause, the + comparative + clause", notes:["Shows how two things change together","The longer people studied, the more secure their future felt.","The faster technology changes, the more skills become outdated."]},
+    {title:"Short fixed phrases", formula:"The + comparative, the + comparative", notes:["Used without a full clause, as a fixed expression","The sooner, the better.","The more, the merrier."]}
+  ],
+  grammarWrite: [
+    {sentence:"The harder you study, the ___ (good) your results will be.", answer:"better"},
+    {sentence:"The ___ (early) you start, the more time you'll have to prepare.", answer:"earlier"},
+    {sentence:"The more you read, the ___ (large) your vocabulary becomes.", answer:"larger"},
+    {sentence:"The ___ (much) curious you stay, the more prepared you'll be.", answer:"more"},
+    {sentence:"The sooner you enrol, the ___ (soon) you can start classes.", answer:"sooner"},
+    {sentence:"The ___ (little) you practise, the more you forget.", answer:"less"}
+  ],
+  grammarChoice: [
+    {sentence:"The more you study, the ___ you'll remember.", options:["more","most"], answer:"more"},
+    {sentence:"The ___ you start, the easier it gets.", options:["sooner","soonest"], answer:"sooner"},
+    {sentence:"The harder the exam, the ___ people feel afterwards.", options:["more tired","tireder"], answer:"more tired"},
+    {sentence:"The ___ you practise, the better you become.", options:["more","much"], answer:"more"},
+    {sentence:"The less you revise, the ___ you forget.", options:["quicklier","more quickly"], answer:"more quickly"}
+  ],
+  grammarTF: [
+    {sentence:"The more you study, the better you remember.", answer:true},
+    {sentence:"The sooner you start, easier it gets.", answer:false},
+    {sentence:"The harder the exam, the more tired people feel.", answer:true},
+    {sentence:"The more you practise, the gooder you become.", answer:false},
+    {sentence:"The less you revise, the more quickly you forget.", answer:true}
+  ],
+  speaking: [
+    "Do you think online courses will eventually replace traditional lectures?",
+    "What's a skill you wish schools spent more time teaching?",
+    "Would a scholarship system based only on need be fairer than one based on grades?"
+  ],
+  writing: "Write a short paragraph (80–100 words) about how your own approach to learning has changed over time, using at least two \"the + comparative, the + comparative\" structures."
+},
+{
+  id:"u11", title:"Work", kicker:"Unit 11", grammarName:"Causative (have / get something done)",
+  intro: "What it means to be good at your job when no one does everything alone.",
+  preview: [
+    "Have you ever had something done for you at work that you used to do yourself?",
+    "Do you think companies outsource too much work these days?",
+    "What's the best negotiation you've ever had at work — a raise, a deadline, anything?",
+    "Would you rather supervise a team or work independently?"
+  ],
+  vocab: [
+    {word:"outsource", def:"to pay another company to do work instead of doing it yourself"},
+    {word:"hire", def:"to employ someone for a job"},
+    {word:"colleague", def:"a person you work with"},
+    {word:"promotion", def:"a move to a higher position or rank at work"},
+    {word:"resign", def:"to formally leave a job"},
+    {word:"negotiate", def:"to discuss something in order to reach an agreement"},
+    {word:"supervise", def:"to watch over and direct the work of others"},
+    {word:"workplace", def:"the place where someone works"}
+  ],
+  vocabGap: [
+    {sentence:"The company decided to ___ its customer support to another firm.", answer:"outsource"},
+    {sentence:"They plan to ___ two new developers next month.", answer:"hire"},
+    {sentence:"She asked a ___ to review her report before sending it.", answer:"colleague"},
+    {sentence:"After years of hard work, she finally earned a ___.", answer:"promotion"},
+    {sentence:"He decided to ___ from his position after fifteen years.", answer:"resign"},
+    {sentence:"It's important to ___ clearly when discussing a pay rise.", answer:"negotiate"}
+  ],
+  vocabTF: [
+    {statement:"To \"outsource\" means to pay another company to do work for you.", answer:true},
+    {statement:"A \"colleague\" is someone you compete against, never work with.", answer:false},
+    {statement:"To \"resign\" means to formally leave a job.", answer:true},
+    {statement:"To \"negotiate\" means to refuse to discuss anything.", answer:false},
+    {statement:"To \"supervise\" means to watch over and direct the work of others.", answer:true}
+  ],
+  reading: [
+    "Modern workplaces rarely function through one person doing everything alone. Instead, tasks are increasingly <b>outsourced</b>, delegated or handled by specialists <b>hired</b> specifically for the job. A small business owner might have her website built by a freelancer, get her accounts checked by an external accountant, and have her office cleaned by a contracted company — all without doing any of it herself.",
+    "This shift has changed what it means to be good at your job. A manager today is often judged less on how much she can do personally and more on how well she can get the right things done through other people. Being able to <b>negotiate</b> clearly, <b>supervise</b> fairly, and know when to <b>hire</b> outside help has become as valuable as any single technical skill.",
+    "Of course, this arrangement isn't always smooth. Employees sometimes <b>resign</b> when they feel a <b>colleague</b> is taking credit for work they arranged rather than did, and disagreements over who \"owns\" outsourced work are common. Still, most people in today's <b>workplace</b> agree that getting something done well, by the right person, usually beats doing everything alone."
+  ],
+  comprehension: [
+    "According to the text, what does the small business owner example illustrate?",
+    "How has the definition of \"being good at your job\" changed, according to the writer?",
+    "What three skills does the text say have become especially valuable for managers?",
+    "What kind of workplace disagreement does the text mention?"
+  ],
+  grammarPanels: [
+    {title:"have + object + past participle", formula:"have + something + done", notes:["Arranging for someone else to do something for you","She had her website built by a freelancer.","He had his contract checked by a lawyer."]},
+    {title:"get + object + past participle", formula:"get + something + done", notes:["A more informal alternative to \"have\"","He got his accounts checked by an accountant.","We got the website redesigned before the launch."]}
+  ],
+  grammarWrite: [
+    {sentence:"She ___ (have / her office / clean) every week by a contracted company.", answer:"has her office cleaned"},
+    {sentence:"He ___ (get / his contract / check) by a lawyer before signing.", answer:"got his contract checked"},
+    {sentence:"They ___ (have / the report / write) by an outside consultant last month.", answer:"had the report written"},
+    {sentence:"We ___ (get / the website / redesign) before the launch.", answer:"got the website redesigned"},
+    {sentence:"She ___ (have / her presentation / review) by a colleague yesterday.", answer:"had her presentation reviewed"},
+    {sentence:"He always ___ (get / his emails / proofread) before sending them.", answer:"gets his emails proofread"}
+  ],
+  grammarChoice: [
+    {sentence:"She had her accounts ___ by an external accountant.", options:["check","checked"], answer:"checked"},
+    {sentence:"He got his laptop ___ last week.", options:["repair","repaired"], answer:"repaired"},
+    {sentence:"They ___ the office cleaned every Friday.", options:["have","has"], answer:"have"},
+    {sentence:"We always ___ our contract reviewed before signing.", options:["got","get"], answer:"get"},
+    {sentence:"She had her website ___ by a professional designer.", options:["build","built"], answer:"built"}
+  ],
+  grammarTF: [
+    {sentence:"She had her office cleaning every week.", answer:false},
+    {sentence:"He got his contract checked by a lawyer.", answer:true},
+    {sentence:"They had the report wrote by a consultant.", answer:false},
+    {sentence:"We got the website redesigned before the launch.", answer:true},
+    {sentence:"She has her presentation reviewing by a colleague.", answer:false}
+  ],
+  speaking: [
+    "What's something at work you'd like to outsource or delegate if you could?",
+    "Do you think it's harder to negotiate a promotion or a pay rise? Why?",
+    "Describe a colleague who taught you something valuable about work."
+  ],
+  writing: "Write a short paragraph (80–100 words) about a task you've had done for you rather than doing yourself, using at least two causative structures (have/get something done)."
+},
+{
+  id:"u12", title:"Politics", kicker:"Unit 12", grammarName:"Modals of Obligation and Permission",
+  intro: "The rules citizens live under, and how much say they have in them.",
+  preview: [
+    "Do you follow politics closely, or try to avoid it? Why?",
+    "Should voting be a legal obligation, or entirely a personal choice?",
+    "What's one policy you'd introduce if you were in charge?",
+    "Do you think politicians today are held accountable enough for their actions?"
+  ],
+  vocab: [
+    {word:"legislation", def:"laws that have been officially approved"},
+    {word:"citizen", def:"a legally recognised member of a country"},
+    {word:"campaign", def:"a series of actions to achieve a political goal, such as an election"},
+    {word:"vote", def:"to formally choose a candidate or option in an election"},
+    {word:"policy", def:"a plan of action agreed by a government or organisation"},
+    {word:"debate", def:"a formal discussion of opposing viewpoints"},
+    {word:"regulation", def:"an official rule made by an authority"},
+    {word:"accountable", def:"required to explain your actions and take responsibility for them"}
+  ],
+  vocabGap: [
+    {sentence:"New ___ was passed to regulate the industry more closely.", answer:"legislation"},
+    {sentence:"Every ___ has the right to vote in a democracy.", answer:"citizen"},
+    {sentence:"She decided to run a local ___ for city council.", answer:"campaign"},
+    {sentence:"It's important to ___ in every election, big or small.", answer:"vote"},
+    {sentence:"The government introduced a new ___ on healthcare.", answer:"policy"},
+    {sentence:"Officials should be ___ for their decisions.", answer:"accountable"}
+  ],
+  vocabTF: [
+    {statement:"\"Legislation\" refers to laws that have been officially approved.", answer:true},
+    {statement:"A \"citizen\" has no legal connection to any country.", answer:false},
+    {statement:"To \"vote\" means to formally choose a candidate or option in an election.", answer:true},
+    {statement:"A \"policy\" is a plan of action agreed by a government or organisation.", answer:true},
+    {statement:"Being \"accountable\" means never having to explain your actions.", answer:false}
+  ],
+  reading: [
+    "Every <b>citizen</b> lives under a web of laws and regulations they had little direct say in creating. In a democracy, people don't have to agree with every piece of <b>legislation</b>, but they are expected to follow it — and they have the right to <b>campaign</b> for change if they disagree.",
+    "<b>Voting</b> is one of the clearest ways citizens can influence <b>policy</b>, though rules vary widely. In some countries, people must vote by law; in others, it's entirely optional. Either way, most political systems allow open <b>debate</b>, and citizens don't need permission to criticise a policy publicly, even if they can't change it immediately.",
+    "<b>Accountability</b> is a central idea in modern politics. Officials are supposed to be <b>accountable</b> to the public, which means they must explain their decisions and can be removed from office if enough people disagree with how they've governed. Whether this actually happens in practice, of course, varies enormously from country to country.",
+    "What most systems agree on, at least in theory, is that citizens should be allowed to question those in power — even if they aren't always required to agree with them."
+  ],
+  comprehension: [
+    "According to the text, what are citizens expected to do even if they disagree with legislation?",
+    "How does the text say voting rules differ between countries?",
+    "What does \"accountability\" mean, according to the text?",
+    "What is the text's final point about questioning those in power?"
+  ],
+  grammarPanels: [
+    {title:"must / have to", formula:"must / have to + infinitive", notes:["Obligation — something is required","People must vote by law in some countries.","Citizens have to follow legislation."]},
+    {title:"don't have to / be allowed to", formula:"don't have to / be allowed to + infinitive", notes:["Lack of obligation, or permission","Citizens don't need permission to criticise a policy.","In some countries, voting isn't obligatory."]}
+  ],
+  grammarWrite: [
+    {sentence:"In some countries, citizens ___ (must / vote) by law.", answer:"must vote"},
+    {sentence:"You ___ (not / have to / agree) with a policy to obey it.", answer:"don't have to agree"},
+    {sentence:"Officials ___ (must / explain) their decisions to the public.", answer:"must explain"},
+    {sentence:"Citizens ___ (be allowed to / criticise) a policy publicly.", answer:"are allowed to criticise"},
+    {sentence:"In a democracy, people ___ (not / have to / support) the government to remain citizens.", answer:"don't have to support"},
+    {sentence:"Politicians ___ (must / be) accountable for their actions, in theory.", answer:"must be"}
+  ],
+  grammarChoice: [
+    {sentence:"In some countries, people ___ vote by law.", options:["must","can"], answer:"must"},
+    {sentence:"Citizens ___ agree with every policy to obey it.", options:["don't have to","mustn't"], answer:"don't have to"},
+    {sentence:"Journalists ___ allowed to question officials publicly.", options:["are","must"], answer:"are"},
+    {sentence:"Officials ___ explain their decisions to remain accountable.", options:["must","can"], answer:"must"},
+    {sentence:"In some places, voting ___ compulsory by law.", options:["is","must"], answer:"is"}
+  ],
+  grammarTF: [
+    {sentence:"Citizens must to vote in every country.", answer:false},
+    {sentence:"You don't have to agree with a policy to obey it.", answer:true},
+    {sentence:"Officials must explains their decisions.", answer:false},
+    {sentence:"Citizens are allowed to criticise a policy publicly.", answer:true},
+    {sentence:"In some countries, voting must being compulsory.", answer:false}
+  ],
+  speaking: [
+    "Do you think politicians are held accountable enough today? Why or why not?",
+    "Should voting be compulsory, or should it stay a personal choice?",
+    "What's one regulation in your country you strongly agree or disagree with?"
+  ],
+  writing: "Write a short paragraph (80–100 words) giving your opinion on whether voting should be compulsory, using at least two modals of obligation or permission."
+}
+];
+
+function shuffle(arr){
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function checkGroup(containerId, scoreId){
+  const container = document.getElementById(containerId);
+  const fields = container.querySelectorAll("[data-answer]");
+  let correct = 0, answered = 0;
+  fields.forEach(f => {
+    const norm = t => t.toLowerCase().replace(/[\u2018\u2019\u02BC`]/g, "'").replace(/\s+/g, " ").trim().replace(/[.!?,;]+$/, "")
+      .replace(/\bwon't\b/g, "will not").replace(/\bcan't\b/g, "cannot").replace(/\bshan't\b/g, "shall not")
+      .replace(/n't\b/g, " not").replace(/'ll\b/g, " will").replace(/'d\b/g, " would").replace(/'re\b/g, " are").replace(/'ve\b/g, " have").replace(/\bi'm\b/g, "i am")
+      .replace(/\bcan not\b/g, "cannot")
+      .replace(/practis/g, "practic").replace(/([a-z]{2,})is(e|es|ed|ing|ation)\b/g, "$1iz$2").replace(/([aeiou])ll(ed|ing)\b/g, "$1l$2")
+      .replace(/\s+/g, " ").trim();
+    const val = norm(f.value);
+    if (val === "") { f.classList.remove("correct","incorrect"); return; }
+    answered++;
+    const accepted = [f.dataset.answer].concat(f.dataset.alts ? f.dataset.alts.split("|") : []);
+    const ok = accepted.some(a => norm(a) === val);
+    f.classList.toggle("correct", ok);
+    f.classList.toggle("incorrect", !ok);
+    if (ok) correct++;
+  });
+  const scoreEl = document.getElementById(scoreId);
+  if (answered === 0){
+    scoreEl.style.color = "var(--bad)";
+    scoreEl.textContent = "Answer at least one item first.";
+  } else {
+    scoreEl.style.color = "var(--ink-soft)";
+    scoreEl.textContent = correct + " of " + fields.length + " correct.";
+    if (correct === fields.length) a2MarkDone(containerId);
+  }
+}
+
+function el(tag, cls, html){
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (html !== undefined) e.innerHTML = html;
+  return e;
+}
+
+/* ============ Упражнение 1: перетащи / нажми слово в пропуск ============ */
+const gapState = {};
+function renderWordBankGaps(unit, card){
+  const bodyId = unit.id + "-vocabGap";
+  const bankId = bodyId + "-bank";
+  const scoreId = bodyId + "Score";
+  gapState[bodyId] = { selected: null };
+
+  const bank = el("div", "word-bank");
+  bank.id = bankId;
+  shuffle(unit.vocab.map(v => v.word)).forEach(word => {
+    const chip = el("span", "word-chip", word);
+    chip.dataset.word = word;
+    chip.draggable = true;
+    chip.onclick = () => selectChip(bodyId, chip);
+    chip.ondragstart = e => { e.dataTransfer.setData("text/plain", word); selectChip(bodyId, chip); };
+    bank.appendChild(chip);
+  });
+  card.appendChild(bank);
+
+  const body = el("div");
+  body.id = bodyId;
+  unit.vocabGap.forEach((item, i) => {
+    const row = el("div", "exercise-row gap-row");
+    const parts = item.sentence.split("___");
+    row.appendChild(el("span", "num", (i+1) + "."));
+    row.appendChild(document.createTextNode(parts[0]));
+    const blank = el("span", "blank", "_____");
+    blank.dataset.answer = item.answer;
+    blank.onclick = () => fillBlank(bodyId, blank, scoreId);
+    blank.ondragover = e => { e.preventDefault(); blank.classList.add("dragover"); };
+    blank.ondragleave = () => blank.classList.remove("dragover");
+    blank.ondrop = e => {
+      e.preventDefault();
+      blank.classList.remove("dragover");
+      const word = e.dataTransfer.getData("text/plain");
+      const chip = Array.from(document.getElementById(bankId).children).find(c => c.dataset.word === word && !c.classList.contains("used"));
+      if (chip) { gapState[bodyId].selected = chip; fillBlank(bodyId, blank, scoreId); }
+    };
+    row.appendChild(blank);
+    if (parts[1]) row.appendChild(document.createTextNode(parts[1]));
+    body.appendChild(row);
+  });
+  card.appendChild(body);
+
+  const score = el("p", "score", "Drag a word onto a gap, or tap a word then tap a gap.");
+  score.id = scoreId;
+  card.appendChild(score);
+}
+function selectChip(bodyId, chip){
+  if (chip.classList.contains("used")) return;
+  const state = gapState[bodyId];
+  if (state.selected) state.selected.classList.remove("selected");
+  state.selected = chip;
+  chip.classList.add("selected");
+}
+function fillBlank(bodyId, blank, scoreId){
+  if (blank.classList.contains("correct")) return;
+  if (blank.classList.contains("filled")){
+    const bank = document.getElementById(bodyId + "-bank");
+    const returned = Array.from(bank.children).find(c => c.dataset.word === blank.dataset.filledWord);
+    if (returned) returned.classList.remove("used");
+    blank.textContent = "_____";
+    blank.classList.remove("filled", "incorrect");
+    delete blank.dataset.filledWord;
+    updateGapScore(bodyId, scoreId);
+    return;
+  }
+  const state = gapState[bodyId];
+  if (!state.selected) return;
+  const chip = state.selected;
+  blank.textContent = chip.dataset.word;
+  blank.dataset.filledWord = chip.dataset.word;
+  blank.classList.add("filled");
+  const ok = chip.dataset.word === blank.dataset.answer;
+  blank.classList.add(ok ? "correct" : "incorrect");
+  chip.classList.add("used");
+  chip.classList.remove("selected");
+  state.selected = null;
+  updateGapScore(bodyId, scoreId);
+}
+function updateGapScore(bodyId, scoreId){
+  const body = document.getElementById(bodyId);
+  const blanks = body.querySelectorAll(".blank");
+  const filled = body.querySelectorAll(".blank.filled").length;
+  const correct = body.querySelectorAll(".blank.correct").length;
+  const scoreEl = document.getElementById(scoreId);
+  scoreEl.style.color = "var(--ink-soft)";
+  if (filled === 0){ scoreEl.textContent = "Drag a word onto a gap, or tap a word then tap a gap."; return; }
+  scoreEl.textContent = correct + " of " + blanks.length + " correct" + (filled < blanks.length ? " (" + (blanks.length - filled) + " left)." : ".");
+  if (correct === blanks.length) a2MarkDone(bodyId);
+}
+
+/* ============ Упражнение 2: нажми слово, затем его пару ============ */
+const clickMatchState = {};
+function renderClickMatch(id, leftItems, rightItems, card){
+  const scoreId = id + "Score";
+  clickMatchState[id] = { selIdx: null, selEl: null };
+  const perm = shuffle(rightItems.map((_, i) => i));
+  const wrap = el("div", "match-cols");
+  wrap.id = id;
+  const leftCol = el("div", "match-col");
+  leftItems.forEach((text, i) => {
+    const item = el("div", "match-item", text);
+    item.onclick = () => clickMatch(id, "left", i, item, scoreId, leftItems.length);
+    leftCol.appendChild(item);
+  });
+  const rightCol = el("div", "match-col");
+  perm.forEach(origIdx => {
+    const item = el("div", "match-item", rightItems[origIdx]);
+    item.onclick = () => clickMatch(id, "right", origIdx, item, scoreId, leftItems.length);
+    rightCol.appendChild(item);
+  });
+  wrap.appendChild(leftCol);
+  wrap.appendChild(rightCol);
+  card.appendChild(wrap);
+  const score = el("p", "score", "Tap an item on the left, then its match on the right.");
+  score.id = scoreId;
+  card.appendChild(score);
+}
+function clickMatch(id, side, idx, itemEl, scoreId, total){
+  if (itemEl.classList.contains("matched")) return;
+  const state = clickMatchState[id];
+  if (side === "left"){
+    if (state.selEl) state.selEl.classList.remove("selected");
+    state.selIdx = idx; state.selEl = itemEl; itemEl.classList.add("selected");
+  } else {
+    if (state.selIdx === null) return;
+    if (idx === state.selIdx){
+      itemEl.classList.add("matched"); itemEl.classList.remove("selected");
+      state.selEl.classList.add("matched"); state.selEl.classList.remove("selected");
+      state.selIdx = null; state.selEl = null;
+      const container = document.getElementById(id);
+      const matched = container.querySelectorAll(".match-item.matched").length / 2;
+      const scoreEl = document.getElementById(scoreId);
+      scoreEl.style.color = "var(--ink-soft)";
+      scoreEl.textContent = matched === total ? "All " + total + " matched! 🎉" : matched + " of " + total + " matched.";
+      if (matched === total) a2MarkDone(id);
+    } else {
+      itemEl.classList.add("wrong");
+      const selEl = state.selEl;
+      setTimeout(() => { itemEl.classList.remove("wrong"); if (selEl) selEl.classList.remove("selected"); }, 450);
+      state.selIdx = null; state.selEl = null;
+    }
+  }
+}
+
+/* ============ Упражнения 3: выбор одним нажатием (вместо select) ============ */
+function renderPillChoice(id, items, card){
+  const scoreId = id + "Score";
+  const body = el("div");
+  body.id = id;
+  items.forEach((item, i) => {
+    const row = el("div", "exercise-row");
+    row.style.flexDirection = "column";
+    row.style.alignItems = "flex-start";
+    const top = el("div");
+    top.innerHTML = '<span class="num">' + (i+1) + '.</span><span>' + item.sentence.replace("___", "______") + '</span>';
+    row.appendChild(top);
+    const pillRow = el("div", "pill-row");
+    item.options.forEach(opt => {
+      const pill = el("button", "pill", opt);
+      pill.type = "button";
+      pill.dataset.correct = (opt === item.answer) ? "1" : "0";
+      pill.onclick = () => selectPill(id, scoreId, pill, items.length);
+      pillRow.appendChild(pill);
+    });
+    row.appendChild(pillRow);
+    body.appendChild(row);
+  });
+  card.appendChild(body);
+  const score = el("p", "score", "Tap the correct option in each row.");
+  score.id = scoreId;
+  card.appendChild(score);
+}
+function selectPill(containerId, scoreId, pill, total){
+  const row = pill.closest(".exercise-row");
+  if (row.dataset.answered) return;
+  row.dataset.answered = "1";
+  const isCorrect = pill.dataset.correct === "1";
+  row.dataset.wasCorrect = isCorrect ? "1" : "0";
+  const pills = row.querySelectorAll(".pill");
+  pills.forEach(p => p.classList.add("disabled"));
+  if (isCorrect){
+    pill.classList.add("correct");
+  } else {
+    pill.classList.add("incorrect");
+    pills.forEach(p => { if (p.dataset.correct === "1") p.classList.add("correct"); });
+  }
+  updatePillScore(containerId, scoreId, total);
+}
+function updatePillScore(containerId, scoreId, total){
+  const container = document.getElementById(containerId);
+  const rows = container.querySelectorAll(".exercise-row");
+  const answered = Array.from(rows).filter(r => r.dataset.answered === "1");
+  const correct = answered.filter(r => r.dataset.wasCorrect === "1");
+  const scoreEl = document.getElementById(scoreId);
+  scoreEl.style.color = "var(--ink-soft)";
+  if (answered.length === 0){ scoreEl.textContent = "Tap the correct option in each row."; return; }
+  scoreEl.textContent = correct.length + " of " + rows.length + " correct" + (answered.length < rows.length ? " (" + (rows.length - answered.length) + " left)." : ".");
+  if (answered.length === rows.length){
+    if (correct.length === rows.length){ a2MarkDone(containerId); }
+    else {
+      scoreEl.textContent += " The exercise counts as done when all answers are correct. ";
+      const retry = el("button", "retry-btn", "Try again");
+      retry.type = "button";
+      retry.onclick = () => {
+        rows.forEach(r => { delete r.dataset.answered; delete r.dataset.wasCorrect; r.querySelectorAll(".pill").forEach(p => p.classList.remove("disabled","correct","incorrect")); });
+        updatePillScore(containerId, scoreId, total);
+      };
+      scoreEl.appendChild(retry);
+    }
+  }
+}
+
+/* =========================================================
+   ИЛЛЮСТРАЦИИ К ЮНИТАМ (встроенный SVG, работает офлайн)
+   ========================================================= */
+const ART_C = {
+  bg:'#F3E6D8', blob:'#EAD5C0', ink:'#2B1810', cocoa:'#3B1F14', milk:'#7B4A2E', caramel:'#A65A1E',
+  latte:'#D9BFA6', cream:'#FFFAF4', sage:'#7D9465', sageD:'#5F7A45', steel:'#8FA3AD', steelD:'#5E7480',
+  rose:'#C9846B', gold:'#D9A441', paper:'#FBF4EA'
+};
+function artSvg(label, body){
+  return `<svg class="unit-art-svg" viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${label}"><rect width="720" height="300" fill="${ART_C.bg}"/>${body}</svg>`;
+}
+/* голова + плечи без лица (стилизованная фигура) */
+function artBust(x, y, skin, cloth, hair, s = 1){
+  return `<g transform="translate(${x} ${y}) scale(${s})">
+    <path d="M-46 70 Q-46 18 0 18 Q46 18 46 70 Z" fill="${cloth}"/>
+    <rect x="-8" y="2" width="16" height="20" fill="${skin}"/>
+    <circle cx="0" cy="-16" r="24" fill="${skin}"/>
+    <path d="M-25 -14 Q-26 -44 0 -44 Q26 -44 25 -14 Q20 -30 0 -30 Q-18 -30 -25 -14 Z" fill="${hair}"/>
+  </g>`;
+}
+const UNIT_ART = {
+  Stress: artSvg('A stressed person at a desk full of work', `
+    <circle cx="360" cy="150" r="150" fill="${ART_C.blob}"/>
+    <circle cx="120" cy="78" r="36" fill="${ART_C.cream}" stroke="${ART_C.milk}" stroke-width="5"/>
+    <path d="M120 78 L120 54 M120 78 L138 88" stroke="${ART_C.ink}" stroke-width="4" stroke-linecap="round"/>
+    <g transform="translate(560 34)"><rect width="104" height="92" rx="6" fill="${ART_C.cream}"/><rect width="104" height="22" rx="6" fill="${ART_C.caramel}"/>
+      <g fill="${ART_C.latte}">${[0,1,2,3].map(r=>[0,1,2,3,4].map(c=>`<rect x="${8+c*19}" y="${30+r*15}" width="13" height="9"/>`).join('')).join('')}</g>
+      <circle cx="90" cy="64" r="11" fill="none" stroke="#B5402F" stroke-width="3"/></g>
+    <g fill="${ART_C.gold}" opacity=".9"><rect x="200" y="40" width="34" height="34" transform="rotate(-6 217 57)"/><rect x="476" y="58" width="30" height="30" transform="rotate(8 491 73)"/><rect x="240" y="88" width="28" height="28" transform="rotate(4 254 102)"/></g>
+    <path d="M318 40 q12 -22 30 -6 q14 -20 30 0 q22 -10 22 12 q14 14 -6 22 q-2 18 -24 12 q-12 14 -28 2 q-22 6 -24 -14 q-16 -12 0 -28 z" fill="none" stroke="${ART_C.ink}" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M338 44 c10 10 -14 14 0 22 c14 6 10 -14 22 -6 c10 8 -12 14 2 20" stroke="${ART_C.caramel}" stroke-width="2.5" fill="none"/>
+    ${artBust(360, 130, '#E3B48F', ART_C.steelD, ART_C.cocoa, 1.05)}
+    <path d="M318 168 Q300 130 330 108 M402 168 Q420 130 390 108" stroke="${ART_C.steelD}" stroke-width="16" fill="none" stroke-linecap="round"/>
+    <circle cx="331" cy="108" r="9" fill="#E3B48F"/><circle cx="389" cy="108" r="9" fill="#E3B48F"/>
+    <rect x="60" y="214" width="600" height="14" rx="3" fill="${ART_C.cocoa}"/>
+    <rect x="90" y="228" width="12" height="72" fill="${ART_C.cocoa}"/><rect x="618" y="228" width="12" height="72" fill="${ART_C.cocoa}"/>
+    <path d="M292 150 L428 150 L436 210 L284 210 Z" fill="${ART_C.ink}"/><rect x="272" y="208" width="176" height="8" rx="3" fill="${ART_C.milk}"/>
+    <circle cx="360" cy="180" r="6" fill="${ART_C.latte}"/>
+    <g>${[0,1,2,3,4,5].map(i=>`<rect x="${150+(i%2)*4}" y="${206-i*9}" width="92" height="8" fill="${i%2?ART_C.paper:'#EFE4D6'}" stroke="${ART_C.latte}"/>`).join('')}</g>
+    <g>${[0,1,2].map(i=>`<g transform="translate(${490+i*40} ${176+(i%2)*6})"><path d="M0 0 L26 0 L22 34 L4 34 Z" fill="${i===1?ART_C.cream:ART_C.paper}" stroke="${ART_C.latte}" stroke-width="2"/><rect x="-1" y="-5" width="28" height="6" rx="2" fill="${ART_C.milk}"/></g>`).join('')}</g>
+  `),
+  Work: artSvg('A colleague presenting a chart in a meeting', `
+    <rect x="0" y="0" width="720" height="210" fill="#EEDFCF"/>
+    <rect x="40" y="30" width="170" height="120" fill="${ART_C.steel}" opacity=".35"/>
+    <g fill="${ART_C.steelD}" opacity=".45"><rect x="52" y="80" width="26" height="70"/><rect x="84" y="56" width="22" height="94"/><rect x="112" y="90" width="30" height="60"/><rect x="148" y="66" width="22" height="84"/><rect x="176" y="100" width="24" height="50"/></g>
+    <rect x="40" y="30" width="170" height="120" fill="none" stroke="${ART_C.cream}" stroke-width="8"/><path d="M125 30 V150" stroke="${ART_C.cream}" stroke-width="5"/>
+    <rect x="420" y="36" width="250" height="150" rx="4" fill="${ART_C.cream}" stroke="${ART_C.latte}" stroke-width="4"/>
+    <g fill="${ART_C.latte}"><rect x="450" y="140" width="28" height="30"/><rect x="494" y="118" width="28" height="52"/><rect x="538" y="100" width="28" height="70"/><rect x="582" y="76" width="28" height="94"/></g>
+    <polyline points="450,120 500,104 548,86 610,56" fill="none" stroke="${ART_C.caramel}" stroke-width="4" stroke-linecap="round"/>
+    <path d="M610 56 l-14 0 M610 56 l-4 13" stroke="${ART_C.caramel}" stroke-width="4" stroke-linecap="round"/>
+    <rect x="440" y="186" width="6" height="40" fill="${ART_C.milk}"/><rect x="644" y="186" width="6" height="40" fill="${ART_C.milk}"/>
+    <g transform="translate(360 0)">
+      <rect x="-24" y="120" width="48" height="96" rx="20" fill="${ART_C.caramel}"/>
+      <path d="M18 132 Q52 120 78 96" stroke="${ART_C.caramel}" stroke-width="14" stroke-linecap="round" fill="none"/><circle cx="80" cy="94" r="8" fill="#B07A52"/>
+      <rect x="-6" y="98" width="12" height="18" fill="#B07A52"/><circle cx="0" cy="84" r="22" fill="#B07A52"/>
+      <path d="M-22 84 Q-24 56 0 56 Q24 56 22 80 Q14 66 -4 68 Q-16 70 -22 84 Z" fill="${ART_C.ink}"/>
+      <rect x="-20" y="210" width="16" height="60" fill="${ART_C.ink}"/><rect x="4" y="210" width="16" height="60" fill="${ART_C.ink}"/>
+    </g>
+    <rect x="0" y="236" width="720" height="64" fill="${ART_C.milk}"/>
+    <rect x="30" y="226" width="380" height="14" rx="4" fill="${ART_C.cocoa}"/>
+    ${artBust(110, 214, '#F0C9A6', ART_C.sageD, '#6B4A37', 1.1)}
+    ${artBust(250, 220, '#8A5A3B', ART_C.steelD, ART_C.ink, 1.1)}
+    <g transform="translate(660 210)"><path d="M-16 0 L16 0 L12 40 L-12 40 Z" fill="${ART_C.rose}"/><path d="M0 0 Q-30 -30 -22 -60 Q0 -36 0 0 Q4 -50 24 -66 Q24 -26 0 0" fill="${ART_C.sage}"/></g>
+  `),
+  Money: artSvg('A piggy bank, coins, a bank card and a growing chart', `
+    <circle cx="380" cy="160" r="140" fill="${ART_C.blob}"/>
+    <polyline points="60,250 170,214 250,226 340,160 430,176 520,104 640,54" fill="none" stroke="${ART_C.sage}" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" opacity=".8"/>
+    <path d="M640 54 l-22 2 M640 54 l-6 20" stroke="${ART_C.sage}" stroke-width="6" stroke-linecap="round"/>
+    <rect x="0" y="262" width="720" height="38" fill="${ART_C.latte}"/>
+    <g transform="translate(372 186)">
+      <ellipse cx="0" cy="0" rx="96" ry="66" fill="${ART_C.rose}"/>
+      <ellipse cx="88" cy="-6" rx="22" ry="26" fill="#B8735B"/><ellipse cx="84" cy="-8" rx="4" ry="6" fill="${ART_C.cocoa}"/><ellipse cx="94" cy="-4" rx="4" ry="6" fill="${ART_C.cocoa}"/>
+      <path d="M40 -56 L58 -86 L66 -50 Z" fill="#B8735B"/><circle cx="56" cy="-24" r="5" fill="${ART_C.cocoa}"/>
+      <rect x="-26" y="-64" width="44" height="7" rx="3" fill="${ART_C.cocoa}"/>
+      <rect x="-64" y="46" width="22" height="34" rx="6" fill="#B8735B"/><rect x="34" y="46" width="22" height="34" rx="6" fill="#B8735B"/>
+      <path d="M-96 -6 q-24 -6 -18 -24 q8 -10 14 2" stroke="#B8735B" stroke-width="6" fill="none" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(372 96)"><ellipse rx="22" ry="8" fill="${ART_C.gold}"/><rect x="-22" y="-6" width="44" height="6" fill="${ART_C.gold}"/><ellipse cy="-6" rx="22" ry="8" fill="#E8C063"/></g>
+    ${[[150,262,6],[205,262,4],[96,262,3]].map(([x,y,n])=>`<g>${[...Array(n).keys()].map(i=>`<g transform="translate(${x} ${y-14-i*12})"><ellipse rx="26" ry="9" fill="#C08F2F"/><rect x="-26" y="-7" width="52" height="7" fill="${ART_C.gold}"/><ellipse cy="-7" rx="26" ry="9" fill="#E8C063"/></g>`).join('')}</g>`).join('')}
+    <g transform="translate(560 222) rotate(-10)"><rect x="-70" y="-44" width="140" height="88" rx="10" fill="${ART_C.steelD}"/><rect x="-70" y="-24" width="140" height="14" fill="${ART_C.ink}"/><rect x="-52" y="4" width="26" height="20" rx="3" fill="${ART_C.gold}"/><g fill="${ART_C.cream}" opacity=".8"><rect x="-10" y="10" width="20" height="5"/><rect x="14" y="10" width="20" height="5"/><rect x="38" y="10" width="20" height="5"/></g></g>
+  `),
+  Education: artSvg('Books, a graduation cap and a university building', `
+    <g fill="#E4D1BD"><path d="M110 120 L360 40 L610 120 Z"/><rect x="120" y="120" width="480" height="16"/>${[150,220,290,360,430,500,570].map(x=>`<rect x="${x-14}" y="136" width="28" height="110"/>`).join('')}<rect x="100" y="244" width="520" height="16"/></g>
+    <circle cx="360" cy="94" r="14" fill="${ART_C.bg}"/>
+    <rect x="0" y="252" width="720" height="48" fill="${ART_C.milk}"/>
+    <g transform="translate(150 252)"><path d="M-80 0 L-80 -50 Q-40 -64 0 -50 Q40 -64 80 -50 L80 0 Q40 -12 0 0 Q-40 -12 -80 0 Z" fill="${ART_C.paper}" stroke="${ART_C.latte}" stroke-width="2"/><path d="M0 -50 V0" stroke="${ART_C.latte}" stroke-width="2"/>
+      <g stroke="${ART_C.latte}" stroke-width="2">${[-38,-28,-18].map(y=>`<line x1="-66" y1="${y}" x2="-12" y2="${y-4}"/><line x1="12" y1="${y-4}" x2="66" y2="${y}"/>`).join('')}</g>
+      <rect x="40" y="-18" width="76" height="6" rx="3" fill="${ART_C.gold}" transform="rotate(-24 40 -18)"/></g>
+    <g transform="translate(360 252)">
+      <rect x="-110" y="-28" width="220" height="28" rx="3" fill="${ART_C.steelD}"/><rect x="-100" y="-56" width="200" height="28" rx="3" fill="${ART_C.caramel}"/><rect x="-116" y="-84" width="210" height="28" rx="3" fill="${ART_C.sageD}"/>
+      <g fill="${ART_C.cream}" opacity=".7"><rect x="-96" y="-18" width="70" height="4"/><rect x="-86" y="-46" width="60" height="4"/><rect x="-100" y="-74" width="80" height="4"/></g>
+      <path d="M-70 -104 L0 -128 L70 -104 L0 -80 Z" fill="${ART_C.ink}"/><path d="M-40 -96 L-40 -78 Q0 -64 40 -78 L40 -96 L0 -82 Z" fill="${ART_C.cocoa}"/>
+      <path d="M50 -100 L54 -70" stroke="${ART_C.gold}" stroke-width="3"/><circle cx="54" cy="-66" r="5" fill="${ART_C.gold}"/>
+    </g>
+    <g transform="translate(570 252)"><rect x="-40" y="-8" width="80" height="8" rx="3" fill="${ART_C.cocoa}"/><path d="M0 -8 L-10 -90 L40 -120" stroke="${ART_C.cocoa}" stroke-width="7" fill="none" stroke-linejoin="round"/><path d="M26 -132 L70 -112 L56 -88 L12 -108 Z" fill="${ART_C.caramel}"/><circle cx="62" cy="-96" r="22" fill="${ART_C.gold}" opacity=".3"/></g>
+  `),
+  People: artSvg('A diverse group of people talking', `
+    <circle cx="360" cy="190" r="170" fill="${ART_C.blob}"/>
+    <g font-family="Georgia, serif" font-size="17" fill="${ART_C.ink}">
+      <g transform="translate(150 40)"><rect width="116" height="44" rx="22" fill="${ART_C.cream}"/><path d="M40 42 L36 62 L60 42 Z" fill="${ART_C.cream}"/><text x="58" y="28" text-anchor="middle">Hello!</text></g>
+      <g transform="translate(320 18)"><rect width="196" height="44" rx="22" fill="${ART_C.sage}"/><path d="M60 42 L58 64 L84 42 Z" fill="${ART_C.sage}"/><text x="98" y="28" text-anchor="middle" fill="${ART_C.cream}">Nice to meet you</text></g>
+      <g transform="translate(540 54)"><rect width="104" height="44" rx="22" fill="${ART_C.caramel}"/><path d="M34 42 L30 62 L54 42 Z" fill="${ART_C.caramel}"/><text x="52" y="28" text-anchor="middle" fill="${ART_C.cream}">Hi there</text></g>
+    </g>
+    ${artBust(118, 190, '#E8B996', ART_C.steel, '#C49A5A', 1.05)}
+    ${artBust(222, 176, '#6E4630', ART_C.caramel, ART_C.ink, 1.15)}
+    ${artBust(600, 190, '#F1C9A5', ART_C.sageD, '#8A3B22', 1.05)}
+    ${artBust(498, 172, '#D9A273', ART_C.cocoa, '#3A2A20', 1.15)}
+    ${artBust(300, 214, '#A86B45', ART_C.gold, ART_C.ink, 1.2)}
+    ${artBust(420, 214, '#F0CBB0', ART_C.rose, '#B9A48E', 1.2)}
+    <rect x="0" y="282" width="720" height="18" fill="${ART_C.milk}"/>
+  `),
+  Personality: artSvg('A head silhouette with symbols of different personality traits', `
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    <path d="M300 300 L300 236 Q238 222 240 150 Q242 58 344 48 Q440 42 458 124 L476 158 Q480 168 466 170 L456 172 L458 194 Q460 212 442 212 L420 212 L420 238 Q420 254 402 254 L380 254 L380 300 Z" fill="${ART_C.milk}"/>
+    <g transform="translate(320 120)"><circle r="30" fill="none" stroke="${ART_C.gold}" stroke-width="10"/>${[0,45,90,135,180,225,270,315].map(a=>`<rect x="-6" y="-44" width="12" height="14" rx="2" fill="${ART_C.gold}" transform="rotate(${a})"/>`).join('')}<circle r="10" fill="${ART_C.milk}"/></g>
+    <path d="M390 190 Q370 170 384 158 Q396 150 404 164 Q412 150 424 158 Q438 170 418 190 L404 204 Z" fill="${ART_C.rose}"/>
+    <g transform="translate(404 104)"><path d="M-16 6 Q-28 -8 -20 -24 Q-10 -40 6 -38 Q24 -36 26 -16 Q26 -2 14 8 L12 18 L-12 18 Z" fill="${ART_C.cream}"/><rect x="-12" y="20" width="24" height="10" rx="3" fill="${ART_C.latte}"/><path d="M-6 6 L0 -10 L6 6" stroke="${ART_C.caramel}" stroke-width="2.5" fill="none"/></g>
+    <g transform="translate(300 196)"><path d="M-22 -22 h18 a8 8 0 1 1 8 0 h18 v18 a8 8 0 1 0 0 8 v18 h-44 Z" fill="${ART_C.sage}"/></g>
+    <g transform="translate(120 104)"><circle r="40" fill="${ART_C.cream}" stroke="${ART_C.latte}" stroke-width="4"/><circle cx="-13" cy="-8" r="5" fill="${ART_C.ink}"/><circle cx="13" cy="-8" r="5" fill="${ART_C.ink}"/><path d="M-18 10 Q0 28 18 10" stroke="${ART_C.ink}" stroke-width="4" fill="none" stroke-linecap="round"/></g>
+    <g transform="translate(130 216)"><circle r="32" fill="${ART_C.cream}" stroke="${ART_C.latte}" stroke-width="4"/><circle cx="-10" cy="-6" r="4" fill="${ART_C.ink}"/><circle cx="10" cy="-6" r="4" fill="${ART_C.ink}"/><path d="M-12 14 L12 14" stroke="${ART_C.ink}" stroke-width="4" stroke-linecap="round"/></g>
+    <g transform="translate(600 96)"><circle r="36" fill="${ART_C.cream}" stroke="${ART_C.latte}" stroke-width="4"/><circle cx="-12" cy="-6" r="4.5" fill="${ART_C.ink}"/><circle cx="12" cy="-6" r="4.5" fill="${ART_C.ink}"/><path d="M-14 18 Q0 4 14 18" stroke="${ART_C.ink}" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M-22 -18 L-6 -14 M22 -18 L6 -14" stroke="${ART_C.ink}" stroke-width="3" stroke-linecap="round"/></g>
+    <g transform="translate(596 212)"><circle r="30" fill="${ART_C.cream}" stroke="${ART_C.latte}" stroke-width="4"/><path d="M-14 -6 q4 -6 8 0 M6 -6 q4 -6 8 0" stroke="${ART_C.ink}" stroke-width="3.5" fill="none" stroke-linecap="round"/><path d="M-10 10 Q0 18 10 10" stroke="${ART_C.ink}" stroke-width="3.5" fill="none" stroke-linecap="round"/></g>
+  `),
+  Politics: artSvg('A parliament building, a ballot box and a podium', `
+    <circle cx="360" cy="110" r="130" fill="${ART_C.blob}"/>
+    <g fill="#E1CCB6">
+      <path d="M290 96 Q290 30 360 30 Q430 30 430 96 Z"/><rect x="352" y="8" width="16" height="24"/><rect x="280" y="96" width="160" height="14"/>
+      ${[296,322,348,372,398,424].map(x=>`<rect x="${x-6}" y="110" width="12" height="40"/>`).join('')}
+      <path d="M150 150 L360 116 L570 150 Z"/><rect x="160" y="150" width="400" height="12"/>
+      ${[180,220,260,300,340,380,420,460,500,540].map(x=>`<rect x="${x-9}" y="162" width="18" height="82"/>`).join('')}
+      <rect x="140" y="244" width="440" height="14"/>
+    </g>
+    <rect x="0" y="256" width="720" height="44" fill="${ART_C.milk}"/>
+    <g transform="translate(70 70)"><rect x="0" y="0" width="6" height="190" fill="${ART_C.cocoa}"/><path d="M6 6 Q40 -4 70 8 Q96 18 120 6 L120 60 Q96 72 70 62 Q40 50 6 60 Z" fill="${ART_C.steelD}"/><path d="M6 33 Q40 23 70 35 Q96 45 120 33 L120 46 Q96 58 70 48 Q40 36 6 46 Z" fill="${ART_C.cream}" opacity=".6"/></g>
+    <g transform="translate(200 256)"><rect x="-60" y="-86" width="120" height="86" rx="4" fill="${ART_C.caramel}"/><rect x="-60" y="-96" width="120" height="14" rx="3" fill="${ART_C.cocoa}"/><rect x="-26" y="-92" width="52" height="6" rx="3" fill="${ART_C.ink}"/>
+      <g transform="rotate(-8)"><rect x="-18" y="-142" width="40" height="54" fill="${ART_C.cream}" stroke="${ART_C.latte}" stroke-width="2"/><path d="M-8 -126 l6 8 l12 -16" stroke="${ART_C.sageD}" stroke-width="4" fill="none" stroke-linecap="round"/><g stroke="${ART_C.latte}" stroke-width="2"><line x1="-10" y1="-106" x2="14" y2="-106"/><line x1="-10" y1="-98" x2="10" y2="-98"/></g></g>
+      <text x="0" y="-36" text-anchor="middle" font-family="Georgia, serif" font-size="18" font-weight="700" fill="${ART_C.cream}">VOTE</text></g>
+    <g transform="translate(560 256)"><path d="M-54 0 L-44 -100 L44 -100 L54 0 Z" fill="${ART_C.cocoa}"/><rect x="-60" y="-112" width="120" height="14" rx="3" fill="${ART_C.ink}"/>
+      <path d="M-10 -112 L-22 -150 M10 -112 L22 -150" stroke="${ART_C.ink}" stroke-width="4"/><rect x="-30" y="-166" width="16" height="22" rx="8" fill="${ART_C.steelD}"/><rect x="14" y="-166" width="16" height="22" rx="8" fill="${ART_C.steelD}"/>
+      <circle cx="0" cy="-56" r="20" fill="none" stroke="${ART_C.gold}" stroke-width="4"/></g>
+  `),
+  Internet: artSvg('A laptop, a phone, a padlock and a global network', `
+    <circle cx="360" cy="140" r="132" fill="${ART_C.blob}"/>
+    <g fill="none" stroke="${ART_C.latte}" stroke-width="3"><circle cx="360" cy="140" r="118"/><ellipse cx="360" cy="140" rx="50" ry="118"/><ellipse cx="360" cy="140" rx="96" ry="118"/><path d="M242 140 H478 M256 84 H464 M256 196 H464"/></g>
+    <g stroke="${ART_C.steelD}" stroke-width="2.5" opacity=".8"><line x1="110" y1="70" x2="250" y2="40"/><line x1="250" y1="40" x2="470" y2="34"/><line x1="470" y1="34" x2="620" y2="80"/><line x1="110" y1="70" x2="80" y2="180"/><line x1="620" y1="80" x2="650" y2="176"/></g>
+    <g fill="${ART_C.steelD}"><circle cx="110" cy="70" r="9"/><circle cx="250" cy="40" r="7"/><circle cx="470" cy="34" r="8"/><circle cx="620" cy="80" r="9"/><circle cx="80" cy="180" r="7"/><circle cx="650" cy="176" r="7"/></g>
+    <g transform="translate(140 96)" fill="none" stroke="${ART_C.caramel}" stroke-width="7" stroke-linecap="round"><path d="M-34 0 A48 48 0 0 1 34 0"/><path d="M-20 16 A28 28 0 0 1 20 16"/><circle cx="0" cy="32" r="3" fill="${ART_C.caramel}"/></g>
+    <rect x="0" y="262" width="720" height="38" fill="${ART_C.milk}"/>
+    <g transform="translate(330 262)">
+      <rect x="-130" y="-160" width="260" height="150" rx="10" fill="${ART_C.ink}"/><rect x="-118" y="-148" width="236" height="126" rx="4" fill="${ART_C.cream}"/>
+      <rect x="-118" y="-148" width="236" height="22" fill="#EADBCB"/><circle cx="-104" cy="-137" r="4" fill="${ART_C.rose}"/><circle cx="-92" cy="-137" r="4" fill="${ART_C.gold}"/><circle cx="-80" cy="-137" r="4" fill="${ART_C.sage}"/>
+      <rect x="-60" y="-143" width="160" height="12" rx="6" fill="${ART_C.cream}"/>
+      <g transform="translate(-50 -137)"><rect x="-4" y="-1" width="9" height="7" rx="1" fill="${ART_C.sageD}"/><path d="M-2 -1 v-3 a2.5 2.5 0 0 1 5 0 v3" stroke="${ART_C.sageD}" stroke-width="1.6" fill="none"/></g>
+      <rect x="-100" y="-114" width="100" height="62" fill="${ART_C.steel}" opacity=".5"/><g fill="${ART_C.latte}"><rect x="12" y="-112" width="92" height="8"/><rect x="12" y="-96" width="80" height="8"/><rect x="12" y="-80" width="88" height="8"/><rect x="-100" y="-42" width="200" height="8"/></g>
+      <path d="M-150 -10 L150 -10 L140 6 L-140 6 Z" fill="${ART_C.milk}"/><path d="M-150 -10 L150 -10 L150 -4 L-150 -4 Z" fill="${ART_C.latte}"/>
+      <path d="M40 -60 L40 -32 L48 -40 L54 -28 L59 -30 L53 -42 L64 -42 Z" fill="${ART_C.ink}" stroke="${ART_C.cream}" stroke-width="1.5"/>
+    </g>
+    <g transform="translate(580 262)"><rect x="-44" y="-150" width="88" height="152" rx="14" fill="${ART_C.ink}"/><rect x="-36" y="-136" width="72" height="124" rx="4" fill="${ART_C.cream}"/>
+      <rect x="-30" y="-126" width="46" height="18" rx="9" fill="#EADBCB"/><rect x="-14" y="-102" width="44" height="18" rx="9" fill="${ART_C.sage}"/><rect x="-30" y="-78" width="38" height="18" rx="9" fill="#EADBCB"/><rect x="-6" y="-54" width="36" height="18" rx="9" fill="${ART_C.sage}"/></g>
+    <g transform="translate(470 92)"><rect x="-22" y="-4" width="44" height="36" rx="5" fill="${ART_C.gold}"/><path d="M-13 -4 v-10 a13 13 0 0 1 26 0 v10" stroke="${ART_C.gold}" stroke-width="7" fill="none"/><circle cx="0" cy="12" r="5" fill="${ART_C.cocoa}"/></g>
+  `),
+  Travel: artSvg('A plane, mountains, a suitcase, a passport and a camera', `
+    <rect width="720" height="190" fill="#E6E1D8"/>
+    <circle cx="590" cy="64" r="34" fill="${ART_C.gold}" opacity=".85"/>
+    <path d="M0 196 L110 104 L170 150 L260 70 L360 168 L430 120 L520 190 Z" fill="${ART_C.steel}" opacity=".7"/>
+    <path d="M232 96 L260 70 L286 96 L272 92 L260 102 L248 92 Z" fill="${ART_C.cream}"/>
+    <rect y="186" width="720" height="40" fill="${ART_C.steelD}" opacity=".55"/>
+    <path d="M0 200 q30 -6 60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0" stroke="${ART_C.cream}" stroke-width="2" fill="none" opacity=".6"/>
+    <path d="M90 150 Q250 10 470 60" stroke="${ART_C.caramel}" stroke-width="3" stroke-dasharray="10 9" fill="none"/>
+    <g transform="translate(500 66) rotate(14)"><rect x="-50" y="-9" width="100" height="18" rx="9" fill="${ART_C.cream}"/><path d="M-6 -6 L-30 -42 L-16 -42 L18 -6 Z M-6 6 L-30 42 L-16 42 L18 6 Z" fill="${ART_C.latte}"/><path d="M-44 -6 L-56 -26 L-46 -26 L-34 -6 Z" fill="${ART_C.caramel}"/><g fill="${ART_C.steelD}"><circle cx="20" cy="-1" r="2.5"/><circle cx="30" cy="-1" r="2.5"/><circle cx="10" cy="-1" r="2.5"/></g></g>
+    <rect y="226" width="720" height="74" fill="${ART_C.latte}"/>
+    <g transform="translate(160 286)"><path d="M-30 -136 v-14 q0 -8 8 -8 h44 q8 0 8 8 v14" stroke="${ART_C.cocoa}" stroke-width="8" fill="none"/>
+      <rect x="-66" y="-136" width="132" height="130" rx="12" fill="${ART_C.caramel}"/><rect x="-66" y="-90" width="132" height="8" fill="${ART_C.milk}"/><rect x="-34" y="-136" width="8" height="130" fill="${ART_C.milk}"/><rect x="26" y="-136" width="8" height="130" fill="${ART_C.milk}"/>
+      <circle cx="-2" cy="-112" r="14" fill="${ART_C.sage}"/><rect x="-6" y="-66" width="40" height="24" rx="4" fill="${ART_C.steel}" transform="rotate(-10)"/>
+      <circle cx="-44" cy="0" r="7" fill="${ART_C.ink}"/><circle cx="44" cy="0" r="7" fill="${ART_C.ink}"/></g>
+    <g transform="translate(410 240) rotate(-8) scale(.8)"><rect x="-44" y="-60" width="88" height="120" rx="6" fill="#4A2A35"/><circle cx="0" cy="-10" r="22" fill="none" stroke="${ART_C.gold}" stroke-width="3"/><path d="M-22 -10 H22 M0 -32 V12" stroke="${ART_C.gold}" stroke-width="2"/><rect x="-26" y="26" width="52" height="6" fill="${ART_C.gold}"/></g>
+    <g transform="translate(500 250) rotate(6) scale(.85)"><rect x="-10" y="-38" width="150" height="62" rx="6" fill="${ART_C.cream}"/><path d="M98 -38 V24" stroke="${ART_C.latte}" stroke-dasharray="4 4" stroke-width="2"/><g fill="${ART_C.latte}"><rect x="4" y="-26" width="60" height="7"/><rect x="4" y="-12" width="80" height="7"/><rect x="4" y="2" width="44" height="7"/></g><path d="M110 -8 l20 0 m-6 -6 l6 6 l-6 6" stroke="${ART_C.caramel}" stroke-width="3" fill="none"/></g>
+    <g transform="translate(640 250)"><rect x="-40" y="-26" width="80" height="54" rx="8" fill="${ART_C.ink}"/><rect x="-22" y="-36" width="22" height="12" rx="3" fill="${ART_C.ink}"/><circle cx="2" cy="2" r="18" fill="${ART_C.steelD}"/><circle cx="2" cy="2" r="10" fill="${ART_C.ink}"/><circle cx="-2" cy="-2" r="3" fill="${ART_C.cream}"/></g>
+  `),
+  AI: artSvg('An AI chip connected to text, images, data and translation', `
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    <g stroke="${ART_C.milk}" stroke-width="4" fill="none" stroke-linecap="round">
+      <path d="M300 120 H230 V70 H170"/><path d="M300 180 H230 V230 H170"/><path d="M420 120 H490 V70 H550"/><path d="M420 180 H490 V230 H550"/>
+      <path d="M340 90 V40"/><path d="M380 90 V40"/><path d="M340 210 V258"/><path d="M380 210 V258"/>
+    </g>
+    <g fill="${ART_C.milk}"><circle cx="340" cy="40" r="6"/><circle cx="380" cy="40" r="6"/><circle cx="340" cy="258" r="6"/><circle cx="380" cy="258" r="6"/></g>
+    <g transform="translate(360 150)"><rect x="-64" y="-64" width="128" height="128" rx="14" fill="${ART_C.ink}"/>
+      <g fill="${ART_C.latte}">${[-40,-20,0,20,40].map(v=>`<rect x="${v-4}" y="-76" width="8" height="12" rx="2"/><rect x="${v-4}" y="64" width="8" height="12" rx="2"/><rect x="-76" y="${v-4}" width="12" height="8" rx="2"/><rect x="64" y="${v-4}" width="12" height="8" rx="2"/>`).join('')}</g>
+      <rect x="-44" y="-44" width="88" height="88" rx="8" fill="none" stroke="${ART_C.caramel}" stroke-width="3"/>
+      <text x="0" y="14" text-anchor="middle" font-family="Georgia, serif" font-size="40" font-weight="700" fill="${ART_C.gold}">AI</text></g>
+    <g transform="translate(130 70)"><rect x="-46" y="-30" width="92" height="56" rx="16" fill="${ART_C.cream}"/><path d="M-22 24 L-28 42 L-6 24 Z" fill="${ART_C.cream}"/><g fill="${ART_C.latte}"><rect x="-30" y="-14" width="60" height="7" rx="3"/><rect x="-30" y="2" width="42" height="7" rx="3"/></g></g>
+    <g transform="translate(130 232)"><rect x="-46" y="-34" width="92" height="68" rx="6" fill="${ART_C.cream}"/><path d="M-38 26 L-10 -4 L8 14 L20 2 L38 26 Z" fill="${ART_C.sage}"/><circle cx="22" cy="-16" r="8" fill="${ART_C.gold}"/></g>
+    <g transform="translate(590 70)"><rect x="-46" y="-34" width="92" height="68" rx="6" fill="${ART_C.cream}"/><g fill="${ART_C.steelD}"><rect x="-32" y="0" width="12" height="22"/><rect x="-14" y="-12" width="12" height="34"/><rect x="4" y="-4" width="12" height="26"/><rect x="22" y="-22" width="12" height="44"/></g></g>
+    <g transform="translate(590 232)"><rect x="-46" y="-34" width="92" height="68" rx="6" fill="${ART_C.cream}"/><text x="-18" y="10" text-anchor="middle" font-family="Georgia, serif" font-size="30" font-weight="700" fill="${ART_C.caramel}">A</text><path d="M-2 0 h14 m-5 -6 l5 6 l-5 6" stroke="${ART_C.ink}" stroke-width="2.5" fill="none"/><text x="28" y="10" text-anchor="middle" font-family="Georgia, serif" font-size="28" font-weight="700" fill="${ART_C.steelD}">Я</text></g>
+  `)
+};
+
+const TP_NEW_ART = {
+  u2: artSvg('A balance scale weighing a laptop and work against home, family and rest', `
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    <rect y="262" width="720" height="38" fill="${ART_C.milk}"/>
+    <path d="M330 262 L360 120 L390 262 Z" fill="${ART_C.cocoa}"/><circle cx="360" cy="112" r="12" fill="${ART_C.gold}"/>
+    <g transform="rotate(-6 360 112)">
+      <rect x="170" y="106" width="380" height="10" rx="5" fill="${ART_C.ink}"/>
+      <path d="M200 116 L170 186 M200 116 L230 186" stroke="${ART_C.ink}" stroke-width="3"/><path d="M150 186 Q200 214 250 186 Z" fill="${ART_C.caramel}"/>
+      <path d="M520 116 L490 186 M520 116 L550 186" stroke="${ART_C.ink}" stroke-width="3"/><path d="M470 186 Q520 214 570 186 Z" fill="${ART_C.sageD}"/>
+    </g>
+    <g transform="translate(206 152) rotate(-6)"><path d="M-38 0 L-30 -38 L30 -38 L38 0 Z" fill="${ART_C.ink}"/><rect x="-26" y="-34" width="52" height="28" fill="${ART_C.steel}"/><rect x="-44" y="0" width="88" height="6" rx="2" fill="${ART_C.milk}"/></g>
+    <g transform="translate(150 92)"><rect x="-26" y="-30" width="52" height="58" rx="4" fill="${ART_C.cream}"/><rect x="-26" y="-30" width="52" height="14" rx="4" fill="${ART_C.caramel}"/><g stroke="${ART_C.latte}" stroke-width="3"><line x1="-16" y1="-2" x2="16" y2="-2"/><line x1="-16" y1="8" x2="10" y2="8"/><line x1="-16" y1="18" x2="14" y2="18"/></g></g>
+    <g transform="translate(530 118) rotate(-6)"><rect x="-30" y="-2" width="60" height="40" fill="${ART_C.cream}"/><path d="M-38 0 L0 -30 L38 0 Z" fill="${ART_C.caramel}"/><rect x="-8" y="16" width="16" height="22" fill="${ART_C.cocoa}"/></g>
+    <g transform="translate(600 80)"><path d="M0 18 Q-26 0 -16 -14 Q-6 -24 0 -10 Q6 -24 16 -14 Q26 0 0 18 Z" fill="${ART_C.rose}"/></g>
+    <g transform="translate(470 70)"><circle r="18" fill="${ART_C.cream}"/><path d="M-4 -12 A13 13 0 1 0 10 8 A10 10 0 0 1 -4 -12 Z" fill="${ART_C.gold}"/></g>
+    <g transform="translate(110 210)"><circle r="30" fill="${ART_C.cream}" stroke="${ART_C.milk}" stroke-width="4"/><path d="M0 0 V-20 M0 0 L14 8" stroke="${ART_C.ink}" stroke-width="4" stroke-linecap="round"/></g>
+  `),
+  u3: artSvg('Two phones exchanging messages, with an emoji and a confused question mark', `
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    <rect y="270" width="720" height="30" fill="${ART_C.milk}"/>
+    <g transform="translate(200 160)"><rect x="-62" y="-118" width="124" height="230" rx="18" fill="${ART_C.ink}"/><rect x="-52" y="-104" width="104" height="196" rx="4" fill="${ART_C.cream}"/>
+      <rect x="-44" y="-92" width="70" height="26" rx="13" fill="#EADBCB"/><rect x="-14" y="-56" width="58" height="26" rx="13" fill="${ART_C.sage}"/>
+      <text x="15" y="-38" text-anchor="middle" font-family="Georgia, serif" font-size="14" fill="${ART_C.cream}">ok.</text>
+      <rect x="-44" y="-20" width="80" height="26" rx="13" fill="#EADBCB"/><g fill="${ART_C.latte}"><rect x="-34" y="-84" width="50" height="8" rx="4"/><rect x="-34" y="-12" width="60" height="8" rx="4"/></g></g>
+    <g transform="translate(520 160)"><rect x="-62" y="-118" width="124" height="230" rx="18" fill="${ART_C.ink}"/><rect x="-52" y="-104" width="104" height="196" rx="4" fill="${ART_C.cream}"/>
+      <rect x="-44" y="-92" width="58" height="26" rx="13" fill="#EADBCB"/><text x="-15" y="-74" text-anchor="middle" font-family="Georgia, serif" font-size="14" fill="${ART_C.ink}">ok.</text>
+      <g transform="translate(14 -10)"><circle r="26" fill="${ART_C.gold}"/><circle cx="-9" cy="-6" r="3.5" fill="${ART_C.ink}"/><circle cx="9" cy="-6" r="3.5" fill="${ART_C.ink}"/><path d="M-10 12 Q0 4 10 12" stroke="${ART_C.ink}" stroke-width="3" fill="none" stroke-linecap="round"/></g>
+      <rect x="-14" y="30" width="58" height="26" rx="13" fill="${ART_C.caramel}"/><g fill="${ART_C.cream}"><circle cx="2" cy="43" r="3"/><circle cx="15" cy="43" r="3"/><circle cx="28" cy="43" r="3"/></g></g>
+    <path d="M276 90 Q360 40 444 90" stroke="${ART_C.caramel}" stroke-width="3" stroke-dasharray="7 7" fill="none"/>
+    <text x="360" y="150" text-anchor="middle" font-family="Georgia, serif" font-size="64" font-weight="700" fill="${ART_C.caramel}">?</text>
+  `),
+  u4: artSvg('A smart home: a phone app controlling lights, a robot vacuum and a speaker', `
+    <rect width="720" height="300" fill="#EEDFCF"/>
+    <rect x="80" y="70" width="560" height="190" fill="${ART_C.cream}"/>
+    <path d="M60 76 L360 10 L660 76 Z" fill="${ART_C.milk}"/>
+    <rect y="258" width="720" height="42" fill="${ART_C.latte}"/>
+    <g transform="translate(180 70)"><path d="M0 0 V36" stroke="${ART_C.ink}" stroke-width="3"/><path d="M-26 62 L-16 36 L16 36 L26 62 Z" fill="${ART_C.gold}"/><circle cx="0" cy="66" r="36" fill="${ART_C.gold}" opacity=".18"/></g>
+    <g transform="translate(540 70)"><path d="M0 0 V36" stroke="${ART_C.ink}" stroke-width="3"/><path d="M-26 62 L-16 36 L16 36 L26 62 Z" fill="${ART_C.gold}"/><circle cx="0" cy="66" r="36" fill="${ART_C.gold}" opacity=".18"/></g>
+    <g transform="translate(360 160)"><rect x="-44" y="-80" width="88" height="160" rx="14" fill="${ART_C.ink}"/><rect x="-36" y="-68" width="72" height="134" rx="3" fill="${ART_C.cream}"/>
+      <g>${[0,1].map(r=>[0,1].map(c=>`<rect x="${-28+c*34}" y="${-58+r*40}" width="28" height="32" rx="6" fill="${[ART_C.gold,ART_C.sage,ART_C.steelD,ART_C.caramel][r*2+c]}"/>`).join('')).join('')}</g>
+      <rect x="-28" y="26" width="56" height="10" rx="5" fill="${ART_C.latte}"/><circle cx="14" cy="31" r="7" fill="${ART_C.sageD}"/></g>
+    <g fill="none" stroke="${ART_C.caramel}" stroke-width="3" stroke-linecap="round"><path d="M300 110 Q260 90 220 120"/><path d="M420 110 Q460 90 500 120"/><path d="M330 236 Q280 250 236 244"/></g>
+    <g transform="translate(200 250)"><ellipse rx="44" ry="14" fill="${ART_C.ink}"/><ellipse cy="-6" rx="44" ry="14" fill="${ART_C.steelD}"/><circle cx="0" cy="-8" r="6" fill="${ART_C.sage}"/></g>
+    <g transform="translate(560 258)"><rect x="-22" y="-74" width="44" height="74" rx="18" fill="${ART_C.cocoa}"/><g fill="${ART_C.latte}">${[-58,-48,-38,-28].map(y=>`<rect x="-12" y="${y}" width="24" height="3" rx="1.5"/>`).join('')}</g><circle cy="-66" r="3" fill="${ART_C.sage}"/></g>
+  `),
+  u5: artSvg('A big light bulb surrounded by sketches, sticky notes and a pencil', `
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    <g fill="${ART_C.gold}" opacity=".95"><rect x="96" y="60" width="64" height="64" transform="rotate(-6 128 92)"/><rect x="560" y="70" width="60" height="60" transform="rotate(7 590 100)"/></g>
+    <rect x="530" y="160" width="64" height="64" fill="${ART_C.sage}" transform="rotate(-5 562 192)"/>
+    <rect x="110" y="170" width="70" height="60" fill="${ART_C.rose}" transform="rotate(5 145 200)"/>
+    <g stroke="${ART_C.cocoa}" stroke-width="2.5" fill="none"><path d="M110 82 h30 M110 94 h36 M110 106 h24"/><path d="M572 88 l12 12 l18 -22"/><circle cx="560" cy="190" r="12"/><path d="M124 196 l30 0 l-10 -10 M154 196 l-10 10"/></g>
+    <g transform="translate(360 140)"><circle r="90" fill="${ART_C.gold}" opacity=".18"/>
+      <path d="M-48 10 Q-62 -50 0 -64 Q62 -50 48 10 Q40 30 32 44 L-32 44 Q-40 30 -48 10 Z" fill="#F7DD84"/>
+      <rect x="-30" y="44" width="60" height="30" rx="5" fill="${ART_C.steelD}"/><path d="M-30 54 H30 M-30 64 H30" stroke="${ART_C.ink}" stroke-width="2.5"/>
+      <path d="M-14 30 L-8 -10 L0 8 L8 -10 L14 30" stroke="${ART_C.caramel}" stroke-width="4" fill="none" stroke-linejoin="round"/>
+      <g stroke="${ART_C.gold}" stroke-width="6" stroke-linecap="round"><line x1="0" y1="-84" x2="0" y2="-104"/><line x1="-66" y1="-60" x2="-80" y2="-74"/><line x1="66" y1="-60" x2="80" y2="-74"/><line x1="-86" y1="-6" x2="-106" y2="-6"/><line x1="86" y1="-6" x2="106" y2="-6"/></g></g>
+    <rect y="262" width="720" height="38" fill="${ART_C.milk}"/>
+    <g transform="translate(470 252) rotate(-22)"><rect x="-80" y="-7" width="140" height="14" fill="${ART_C.caramel}"/><path d="M60 -7 L82 0 L60 7 Z" fill="${ART_C.latte}"/><path d="M76 -2 L82 0 L76 2 Z" fill="${ART_C.ink}"/><rect x="-92" y="-7" width="14" height="14" fill="${ART_C.rose}"/></g>
+  `),
+  u8: artSvg('A climber reaching a flag on a mountain peak, with milestones along the path', `
+    <rect width="720" height="300" fill="#E6E1D8"/>
+    <circle cx="600" cy="60" r="30" fill="${ART_C.gold}" opacity=".85"/>
+    <path d="M0 300 L260 60 L360 150 L440 90 L720 300 Z" fill="${ART_C.steel}"/>
+    <path d="M230 88 L260 60 L290 88 L276 84 L262 96 L246 84 Z" fill="${ART_C.cream}"/>
+    <path d="M40 290 Q120 260 160 220 Q200 180 220 140 Q236 110 256 72" stroke="${ART_C.cream}" stroke-width="4" stroke-dasharray="10 9" fill="none"/>
+    <g fill="${ART_C.caramel}"><circle cx="100" cy="268" r="8"/><circle cx="170" cy="210" r="8"/><circle cx="216" cy="148" r="8"/></g>
+    <path d="M262 62 V20" stroke="${ART_C.cocoa}" stroke-width="4"/><path d="M264 22 L300 32 L264 44 Z" fill="#B5402F"/>
+    <g transform="translate(236 104)"><circle cx="0" cy="-16" r="9" fill="#E3B48F"/><path d="M-6 -6 L6 -6 L8 18 L-8 18 Z" fill="${ART_C.sageD}"/><path d="M6 -2 L22 -18 M-6 0 L-14 14 M-4 18 L-10 32 M4 18 L12 30" stroke="${ART_C.sageD}" stroke-width="5" stroke-linecap="round"/><rect x="-14" y="-4" width="10" height="18" rx="3" fill="${ART_C.caramel}"/></g>
+    <rect y="262" width="720" height="38" fill="${ART_C.milk}"/>
+    <g transform="translate(560 262)"><path d="M-30 -70 L30 -70 L24 -36 Q0 -20 -24 -36 Z" fill="${ART_C.gold}"/><path d="M-30 -64 Q-50 -60 -42 -44 Q-36 -36 -24 -40 M30 -64 Q50 -60 42 -44 Q36 -36 24 -40" stroke="${ART_C.gold}" stroke-width="5" fill="none"/><rect x="-6" y="-30" width="12" height="16" fill="${ART_C.gold}"/><rect x="-24" y="-16" width="48" height="16" rx="3" fill="${ART_C.cocoa}"/></g>
+  `)
+};
+
+const TP_ART = { u1: UNIT_ART.Stress, u2: TP_NEW_ART.u2, u3: TP_NEW_ART.u3, u4: TP_NEW_ART.u4, u5: TP_NEW_ART.u5, u6: UNIT_ART.Travel,
+  u7: UNIT_ART.Money, u8: TP_NEW_ART.u8, u9: UNIT_ART.Personality, u10: UNIT_ART.Education, u11: UNIT_ART.Work, u12: UNIT_ART.Politics };
+
+function renderUnit(unit, index){
+  const panel = el("div", "unit-panel" + (index === 0 ? " active" : ""));
+  panel.id = unit.id;
+
+  const head = el("div", "unit-head",
+    '<p class="kicker">' + unit.kicker + ' · Grammar focus: ' + unit.grammarName + '</p>' +
+    '<h2>' + unit.title + '</h2><p>' + unit.intro + '</p>'
+  );
+  const toc = el("div", "unit-toc");
+  const tocSections = [
+    ["Preview", unit.id + "-preview"],
+    ["Vocabulary", unit.id + "-vocab"],
+    ["Reading", unit.id + "-reading"],
+    ["Comprehension", unit.id + "-comprehension"],
+    ["Grammar", unit.id + "-grammar"],
+    ["Speaking", unit.id + "-speaking"],
+    ["Writing", unit.id + "-writing"]
+  ];
+  tocSections.forEach(([label, secId]) => {
+    const b = el("button", null, label);
+    b.type = "button";
+    b.onclick = () => document.getElementById(secId).scrollIntoView({behavior: "smooth", block: "start"});
+    toc.appendChild(b);
+  });
+  head.appendChild(toc);
+  panel.appendChild(head);
+
+  // Preview
+  const preview = el("section");
+  preview.id = unit.id + "-preview";
+  preview.appendChild(el("h3", null, "Before you read"));
+  preview.appendChild(el("p", "lede", "Think about these questions for a minute, then discuss."));
+  const pList = el("ul", "preview-list");
+  unit.preview.forEach((q, i) => {
+    pList.appendChild(el("li", null, '<span class="q-label">0' + (i+1) + '</span>' + q));
+  });
+  const pRow = el("div", "preview-row" + (TP_ART[unit.id] ? " has-art" : ""));
+  if (TP_ART[unit.id]) pRow.appendChild(el("figure", "unit-art", TP_ART[unit.id] + '<figcaption>Look at the picture. What can you see? How is it connected to the topic?</figcaption>'));
+  pRow.appendChild(pList);
+  preview.appendChild(pRow);
+  panel.appendChild(preview);
+
+  // Vocabulary
+  const vocabSec = el("section");
+  vocabSec.id = unit.id + "-vocab";
+  vocabSec.appendChild(el("h3", null, "Vocabulary"));
+  vocabSec.appendChild(el("p", "lede", "Tap a card to see the translation, then complete the exercises below."));
+  const flipTools = el("div", "flip-tools");
+  const flipAll = el("button", "flip-all", "Show all translations");
+  flipAll.type = "button";
+  flipTools.appendChild(flipAll);
+  vocabSec.appendChild(flipTools);
+  const vGrid = el("div", "flip-grid");
+  unit.vocab.forEach(v => {
+    const card = el("button", "flip-card",
+      '<span class="flip-inner"><span class="flip-face flip-front"><span class="fc-w">' + v.word + '</span></span>' +
+      '<span class="flip-face flip-back"><span class="fc-ru">' + (TP_RU[v.word] || '') + '</span><span class="fc-def">' + v.def + '</span></span></span>');
+    card.type = "button";
+    card.setAttribute("aria-pressed", "false");
+    card.onclick = () => { const on = card.classList.toggle("flipped"); card.setAttribute("aria-pressed", on ? "true" : "false"); };
+    vGrid.appendChild(card);
+  });
+  flipAll.onclick = () => {
+    const cards = vGrid.querySelectorAll(".flip-card");
+    const showAll = Array.from(cards).some(c => !c.classList.contains("flipped"));
+    cards.forEach(c => { c.classList.toggle("flipped", showAll); c.setAttribute("aria-pressed", showAll ? "true" : "false"); });
+    flipAll.textContent = showAll ? "Hide translations" : "Show all translations";
+  };
+  vocabSec.appendChild(vGrid);
+
+  // Vocab exercise 1: gap fill — drag / tap a word from the bank into the gap
+  const vGapCard = el("div", "card");
+  vGapCard.appendChild(el("p", "ex-title", "1. Drag (or tap) the correct word into each gap."));
+  renderWordBankGaps(unit, vGapCard);
+  vocabSec.appendChild(vGapCard);
+
+  // Vocab exercise 2: matching — tap a word, then tap its definition
+  const vMatchCard = el("div", "card");
+  vMatchCard.appendChild(el("p", "ex-title", "2. Tap a word, then tap its definition."));
+  renderClickMatch(unit.id + "-vocabMatch", unit.vocab.map(v => v.word), unit.vocab.map(v => v.def), vMatchCard);
+  vocabSec.appendChild(vMatchCard);
+
+  // Vocab exercise 3: true/false — tap True or False
+  const vTFCard = el("div", "card");
+  vTFCard.appendChild(el("p", "ex-title", "3. True or false?"));
+  renderPillChoice(
+    unit.id + "-vocabTF",
+    unit.vocabTF.map(item => ({ sentence: item.statement, options: ["True", "False"], answer: item.answer ? "True" : "False" })),
+    vTFCard
+  );
+  vocabSec.appendChild(vTFCard);
+
+  panel.appendChild(vocabSec);
+
+  // Reading
+  const readSec = el("section");
+  readSec.id = unit.id + "-reading";
+  readSec.appendChild(el("h3", null, "Reading"));
+  const readCard = el("div", "card reading");
+  unit.reading.forEach(p => readCard.appendChild(el("p", null, p)));
+  readSec.appendChild(readCard);
+  panel.appendChild(readSec);
+
+  // Comprehension
+  const compSec = el("section");
+  compSec.id = unit.id + "-comprehension";
+  compSec.appendChild(el("h3", null, "Comprehension"));
+  const compCard = el("div", "card");
+  unit.comprehension.forEach((q, i) => {
+    const block = el("div", "comp-q");
+    block.innerHTML = '<p class="q">' + (i+1) + '. ' + q + '</p><textarea data-save="' + unit.id + '-comp-' + i + '" placeholder="Write your answer here..."></textarea>';
+    compCard.appendChild(block);
+  });
+  compSec.appendChild(compCard);
+  panel.appendChild(compSec);
+
+  // Grammar
+  const gramSec = el("section");
+  gramSec.id = unit.id + "-grammar";
+  gramSec.appendChild(el("h3", null, "Grammar: " + unit.grammarName));
+  gramSec.appendChild(el("p", "lede", "Study the two forms, then complete the exercises."));
+  const gBox = el("div", "grammar-box");
+  unit.grammarPanels.forEach(p => {
+    const pnl = el("div", "panel");
+    pnl.innerHTML = '<h4>' + p.title + '</h4><p class="formula">' + p.formula + '</p><ul>' + p.notes.map(n => '<li>' + n + '</li>').join("") + '</ul>';
+    gBox.appendChild(pnl);
+  });
+  gramSec.appendChild(gBox);
+
+  // Grammar exercise 1: write
+  const gWriteCard = el("div", "card");
+  gWriteCard.appendChild(el("p", "ex-title", "1. Write the correct form."));
+  const gWriteBody = el("div");
+  gWriteBody.id = unit.id + "-grammarWrite";
+  unit.grammarWrite.forEach((item, i) => {
+    const row = el("div", "exercise-row");
+    row.innerHTML = '<span class="num">' + (i+1) + '.</span><span>' + item.sentence + '</span>';
+    const input = document.createElement("input");
+    input.type = "text";
+    input.placeholder = "type the verb form";
+    input.dataset.answer = item.answer;
+    if (item.alts) input.dataset.alts = item.alts.join("|");
+    row.appendChild(input);
+    gWriteBody.appendChild(row);
+  });
+  gWriteCard.appendChild(gWriteBody);
+  const gWriteBtn = el("button", "check", "Check answers");
+  gWriteBtn.onclick = () => checkGroup(unit.id + "-grammarWrite", unit.id + "-grammarWriteScore");
+  gWriteCard.appendChild(gWriteBtn);
+  gWriteCard.appendChild(el("p", "score", ""));
+  gWriteCard.lastChild.id = unit.id + "-grammarWriteScore";
+  gramSec.appendChild(gWriteCard);
+
+  // Grammar exercise 2: choice — tap the correct option
+  const gChoiceCard = el("div", "card");
+  gChoiceCard.appendChild(el("p", "ex-title", "2. Tap the correct option."));
+  renderPillChoice(
+    unit.id + "-grammarChoice",
+    unit.grammarChoice.map(item => ({ sentence: item.sentence, options: item.options, answer: item.answer })),
+    gChoiceCard
+  );
+  gramSec.appendChild(gChoiceCard);
+
+  // Grammar exercise 3: correct/incorrect — tap Correct or Incorrect
+  const gTFCard = el("div", "card");
+  gTFCard.appendChild(el("p", "ex-title", "3. Is the sentence correct or incorrect?"));
+  renderPillChoice(
+    unit.id + "-grammarTF",
+    unit.grammarTF.map(item => ({ sentence: item.sentence, options: ["Correct", "Incorrect"], answer: item.answer ? "Correct" : "Incorrect" })),
+    gTFCard
+  );
+  gramSec.appendChild(gTFCard);
+
+  panel.appendChild(gramSec);
+
+  // Speaking
+  const speakSec = el("section");
+  speakSec.id = unit.id + "-speaking";
+  speakSec.appendChild(el("h3", null, "Speaking"));
+  const sList = el("ul", "speaking-list");
+  unit.speaking.forEach(q => sList.appendChild(el("li", null, q)));
+  speakSec.appendChild(sList);
+  panel.appendChild(speakSec);
+
+  // Writing
+  const writeSec = el("section");
+  writeSec.id = unit.id + "-writing";
+  writeSec.appendChild(el("h3", null, "Writing"));
+  const writeCard = el("div", "card writing-box");
+  writeCard.innerHTML = '<p class="lede" style="margin-top:0;">' + unit.writing + '</p><textarea data-save="' + unit.id + '-writing" placeholder="Write your answer here..."></textarea><p class="saved-note">Your text is saved automatically in this browser.</p>';
+  writeSec.appendChild(writeCard);
+  panel.appendChild(writeSec);
+
+  return panel;
+}
+
+const navEl = document.getElementById("unitNav");
+const mainEl = document.getElementById("unitMain");
+navEl.appendChild(el("span", "label", "Course contents"));
+
+UNITS.forEach((unit, i) => {
+  const btn = el("button", i === 0 ? "active" : "", '<span class="unum">' + String(i+1).padStart(2,'0') + '</span>' + unit.title);
+  btn.onclick = () => {
+    document.querySelectorAll(".unit-panel").forEach(p => p.classList.remove("active"));
+    document.getElementById(unit.id).classList.add("active");
+    navEl.querySelectorAll("button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    window.scrollTo({top: 0, behavior: "smooth"});
+  };
+  navEl.appendChild(btn);
+  mainEl.appendChild(renderUnit(unit, i));
+});
+
+/* ============ ПРОГРЕСС И СОХРАНЕНИЕ ОТВЕТОВ ============ */
+const A2_KEYS = ["vocabGap", "vocabMatch", "vocabTF", "grammarWrite", "grammarChoice", "grammarTF"];
+const A2_STORE = "talkingPointsProgress", A2_TEXTS = "talkingPointsAnswers", A2_LAST = "talkingPointsLastUnit";
+function a2Load(key){ try { return JSON.parse(localStorage.getItem(key) || "{}") || {}; } catch(e){ return {}; } }
+function a2Save(key, obj){ try { localStorage.setItem(key, JSON.stringify(obj)); } catch(e){} }
+let a2Done = a2Load(A2_STORE);
+const a2Texts = a2Load(A2_TEXTS);
+
+function a2UnitPct(uid){ return Math.round(A2_KEYS.filter(k => a2Done[uid + "-" + k]).length / A2_KEYS.length * 100); }
+function a2CoursePct(){
+  const total = UNITS.length * A2_KEYS.length;
+  return Math.round(Object.keys(a2Done).filter(k => a2Done[k]).length / total * 100);
+}
+function a2MarkDone(key){
+  if (a2Done[key]) return;
+  a2Done[key] = true;
+  a2Save(A2_STORE, a2Done);
+  a2Render();
+}
+function a2Render(){
+  // отметки на упражнениях
+  UNITS.forEach(u => A2_KEYS.forEach(k => {
+    const box = document.getElementById(u.id + "-" + k);
+    const card = box && box.closest(".card");
+    if (!card) return;
+    const done = !!a2Done[u.id + "-" + k];
+    card.classList.toggle("ex-done", done);
+    const t = card.querySelector(".ex-title");
+    if (t && !t.querySelector(".done-mark")) { const m = el("span", "done-mark", "✓ done"); t.appendChild(m); }
+  }));
+  // кнопки юнитов
+  navEl.querySelectorAll("button").forEach((b, i) => {
+    const u = UNITS[i]; if (!u) return;
+    const pct = a2UnitPct(u.id);
+    let tag = b.querySelector(".u-pct");
+    if (!tag) { tag = el("span", "u-pct"); b.appendChild(tag); }
+    tag.textContent = pct === 100 ? "✓" : (pct ? pct + "%" : "");
+    b.classList.toggle("unit-complete", pct === 100);
+  });
+  // полоска прогресса в шапке юнита
+  UNITS.forEach(u => {
+    const head = document.querySelector("#" + u.id + " .unit-head");
+    if (!head) return;
+    let bar = head.querySelector(".unit-progress");
+    if (!bar) {
+      bar = el("div", "unit-progress", '<span class="up-track"><i></i></span><span class="up-text"></span>');
+      head.insertBefore(bar, head.querySelector(".unit-toc"));
+    }
+    const done = A2_KEYS.filter(k => a2Done[u.id + "-" + k]).length;
+    bar.querySelector("i").style.width = (done / A2_KEYS.length * 100) + "%";
+    bar.querySelector(".up-text").textContent = "Unit progress: " + done + " of " + A2_KEYS.length + " exercises · Course: " + a2CoursePct() + "%";
+  });
+}
+// сохранение ответов на вопросы и Writing
+document.querySelectorAll("textarea[data-save]").forEach(ta => {
+  if (a2Texts[ta.dataset.save]) ta.value = a2Texts[ta.dataset.save];
+  let timer = null;
+  ta.addEventListener("input", () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      if (ta.value.trim()) a2Texts[ta.dataset.save] = ta.value; else delete a2Texts[ta.dataset.save];
+      a2Save(A2_TEXTS, a2Texts);
+    }, 400);
+  });
+});
+// запомнить последний юнит
+navEl.querySelectorAll("button").forEach((b, i) => b.addEventListener("click", () => {
+  try { localStorage.setItem(A2_LAST, String(i)); } catch(e){}
+  if (b.scrollIntoView && navEl.scrollWidth > navEl.clientWidth) b.scrollIntoView({ inline: "center", block: "nearest" });
+}));
+(function(){
+  let last = 0;
+  try { last = parseInt(localStorage.getItem(A2_LAST), 10) || 0; } catch(e){}
+  const btns = navEl.querySelectorAll("button");
+  if (last > 0 && btns[last]) {
+    document.querySelectorAll(".unit-panel").forEach(p => p.classList.remove("active"));
+    document.getElementById(UNITS[last].id).classList.add("active");
+    btns.forEach(x => x.classList.remove("active"));
+    btns[last].classList.add("active");
+  }
+})();
+// сброс
+const a2Reset = el("div", "reset-wrap", '<button type="button" class="reset-progress">Reset progress</button>');
+mainEl.insertAdjacentElement("afterend", a2Reset);
+a2Reset.querySelector("button").onclick = () => {
+  if (!confirm("Reset all progress and saved answers?")) return;
+  try { localStorage.removeItem(A2_STORE); localStorage.removeItem(A2_TEXTS); } catch(e){}
+  location.reload();
+};
+a2Render();
+</script>
+<script id="anchor-fix">document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;e.preventDefault();var t=document.getElementById(a.getAttribute("href").slice(1));if(t)t.scrollIntoView({behavior:"smooth",block:"start"});});window.addEventListener("scroll",function(){var l=document.querySelectorAll(".side-nav a");if(l.length&&window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-4){l.forEach(function(a,i){a.classList.toggle("active",i===l.length-1);});}},{passive:true});</script>
+</body>
+</html>

@@ -1,0 +1,3416 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Business English Toolkit</title>
+<style>
+  :root{
+    --paper:#FBF8F3;
+    --paper-2:#F8F0E8;
+    --ink:#2D1F13;
+    --ink-soft:#7A644F;
+    --line:#D4C0B0;
+    --teal:#6F8F5B;
+    --teal-bg:#EAF0E3;
+    --brick:#C1652E;
+    --brick-bg:#F5E1CB;
+    --red:#8B3A2B;
+    --red-bg:#F1DAD2;
+    --steel:#5C4030;
+    --steel-bg:#E6D9C4;
+    --plum:#7A4A1E;
+    --plum-bg:#EEDFC0;
+    --gold:#9C7A1F;
+    --gold-bg:#F0E6C0;
+    --white:#FBF8F3;
+    --radius:3px;
+    --shadow: 0 1px 0 rgba(45,31,19,.1);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper-2);
+    color:var(--ink);
+    font-family:'Times New Roman',Times,serif;
+    font-size:21.2px;
+    line-height:1.55;
+  }
+  h1,h2,h3,h4{
+    font-family:'Times New Roman',Times,serif;
+    font-weight:600;
+    margin:0;
+    color:var(--ink);
+  }
+  .letterhead{
+    background:var(--ink);
+    color:var(--paper);
+    padding:28px clamp(16px,4vw,48px) 22px;
+    border-bottom:4px solid var(--brick);
+  }
+  .letterhead-inner{
+    max-width:1180px;
+    margin:0 auto;
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+  }
+  .letterhead h1{
+    color:var(--white);
+    font-size:clamp(34.4px,4.6vw,45px);
+    letter-spacing:.2px;
+  }
+  .letterhead p{
+    margin:6px 0 0;
+    color:#D9C9AF;
+    font-size:19.2px;
+    max-width:46ch;
+  }
+  .level-key{
+    display:flex;
+    gap:10px;
+    font-size:17.1px;
+    color:#D9C9AF;
+  }
+  .level-key span{
+    border:1px solid #6B5642;
+    border-radius:20px;
+    padding:4px 12px;
+  }
+  .level-key b{color:var(--white);}
+
+  .layout{
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:200px 1fr;
+    gap:0;
+    align-items:start;
+  }
+  .tabs{
+    position:sticky;
+    top:0;
+    padding:26px 0 26px 0;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .tab-btn{
+    text-align:left;
+    border:none;
+    border-left:4px solid transparent;
+    background:transparent;
+    font-family:'Times New Roman',Times,serif;
+    font-weight:600;
+    font-size:19.2px;
+    color:var(--ink-soft);
+    padding:12px 16px;
+    cursor:pointer;
+    letter-spacing:.2px;
+    transition:background .15s,color .15s,border-color .15s;
+    border-radius:0 var(--radius) var(--radius) 0;
+  }
+  .tab-btn .lv{
+    display:block;
+    font-family:'Times New Roman',Times,serif;
+    font-weight:500;
+    font-size:15.2px;
+    color:var(--ink-soft);
+    opacity:.65;
+    margin-top:2px;
+  }
+  .tab-btn:hover{background:var(--paper);}
+  .tab-btn.active{
+    background:var(--white);
+    color:var(--ink);
+    box-shadow:var(--shadow);
+  }
+  .tab-btn[data-section="email"].active{border-left-color:var(--teal);}
+  .tab-btn[data-section="phone"].active{border-left-color:var(--brick);}
+  .tab-btn[data-section="negotiations"].active{border-left-color:var(--red);}
+  .tab-btn[data-section="presentations"].active{border-left-color:var(--steel);}
+  .tab-btn[data-section="grammar"].active{border-left-color:var(--plum);}
+  .tab-btn[data-section="talking"].active{border-left-color:var(--gold);}
+  .tab-btn[data-section="emailsamples"].active{border-left-color:var(--teal);}
+  .tab-btn[data-section="negsamples"].active{border-left-color:var(--red);}
+
+  .content{
+    background:var(--white);
+    min-height:70vh;
+    padding:32px clamp(16px,4vw,44px) 60px;
+    border-left:1px solid var(--line);
+  }
+  .section{display:none;}
+  .section.active{display:block;animation:fade .25s ease;}
+  @keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
+
+  .section-head{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding-bottom:18px;
+    margin-bottom:22px;
+    border-bottom:1px solid var(--line);
+    flex-wrap:wrap;
+  }
+  .section-head h2{font-size:clamp(29.1px,3.4vw,37px);}
+  .badge{
+    font-family:'Times New Roman',Times,serif;
+    font-weight:700;
+    font-size:16.6px;
+    padding:4px 11px;
+    border-radius:20px;
+    letter-spacing:.3px;
+  }
+  .badge-b1{background:var(--teal-bg);color:var(--teal);}
+  .badge-b2{background:var(--plum-bg);color:var(--plum);}
+  .section-intro{
+    color:var(--ink-soft);
+    font-size:19.8px;
+    max-width:70ch;
+    margin-bottom:26px;
+  }
+  .block-label{
+    font-family:'Times New Roman',Times,serif;
+    font-weight:700;
+    font-size:17.1px;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    letter-spacing:.6px;
+    margin:34px 0 14px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .block-label::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+
+  /* ---- reading: email ---- */
+  .reading-wrap{
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+    margin-bottom:8px;
+  }
+  .email-card{
+    background:var(--white);
+    padding:18px 20px;
+  }
+  .email-card + .email-card{border-top:1px dashed var(--line);background:var(--paper);}
+  .email-meta{
+    font-family:'Times New Roman',Times,serif;
+    font-size:16.6px;
+    color:var(--ink-soft);
+    line-height:1.9;
+    padding-bottom:10px;
+    margin-bottom:12px;
+    border-bottom:1px solid var(--line);
+  }
+  .email-meta b{color:var(--ink);font-weight:600;}
+  .email-body p{margin:0 0 12px;font-size:19.5px;}
+  .email-body p:last-child{margin-bottom:0;}
+
+  /* ---- reading: dialogue ---- */
+  .dialogue-wrap{background:var(--white);padding:6px 20px;}
+  .dialogue-line{
+    display:flex;
+    gap:12px;
+    padding:11px 0;
+    border-bottom:1px dashed var(--line);
+    font-size:19.5px;
+  }
+  .dialogue-line:last-child{border-bottom:none;}
+  .dialogue-speaker{
+    flex-shrink:0;
+    width:92px;
+    font-weight:700;
+    font-size:17.1px;
+    padding-top:1px;
+  }
+  .dialogue-text{flex:1;}
+
+  /* ---- reading: transcript ---- */
+  .transcript-wrap{background:var(--white);padding:20px 22px;}
+  .transcript-wrap p{font-size:19.5px;margin:0 0 13px;}
+  .transcript-wrap p:last-child{margin-bottom:0;}
+  .transcript-tag{
+    font-family:'Times New Roman',Times,serif;
+    font-size:15.9px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+    color:var(--steel);
+    margin-bottom:10px;
+    display:block;
+  }
+
+  /* ---- accordion (shared) ---- */
+  .exercise{
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    margin-bottom:12px;
+    overflow:hidden;
+    background:var(--paper);
+  }
+  .ex-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:14px 18px;
+    cursor:pointer;
+    background:var(--white);
+  }
+  .ex-head:hover{background:var(--paper);}
+  .ex-title{
+    font-family:'Times New Roman',Times,serif;
+    font-weight:600;
+    font-size:19.8px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .ex-num{
+    width:26px;height:26px;
+    border-radius:50%;
+    display:inline-flex;align-items:center;justify-content:center;
+    font-size:16.6px;font-weight:700;
+    background:var(--paper-2);
+    color:var(--ink-soft);
+    flex-shrink:0;
+  }
+  .ex-status{
+    font-size:16.6px;
+    color:var(--ink-soft);
+    font-weight:500;
+    white-space:nowrap;
+  }
+  .ex-caret{
+    font-size:15.9px;color:var(--ink-soft);
+    transition:transform .2s;
+  }
+  .exercise.open .ex-caret{transform:rotate(90deg);}
+  .ex-body{
+    display:none;
+    padding:18px 18px 22px;
+    border-top:1px solid var(--line);
+  }
+  .exercise.open .ex-body{display:block;}
+
+  /* matching */
+  .match-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 22px;
+  }
+  .match-item{
+    text-align:left;
+    width:100%;
+    border:1px solid var(--line);
+    background:var(--white);
+    border-radius:var(--radius);
+    padding:10px 13px;
+    font-size:19.2px;
+    cursor:pointer;
+    transition:all .12s;
+    color:var(--ink);
+  }
+  .match-item:hover{border-color:var(--ink-soft);}
+  .match-item.selected{
+    border-color:var(--ink);
+    background:var(--paper-2);
+    box-shadow:inset 0 0 0 1px var(--ink);
+  }
+  .match-item.correct{
+    border-color:var(--teal);
+    background:var(--teal-bg);
+    color:var(--teal);
+    cursor:default;
+    font-weight:600;
+  }
+  .match-item.wrong{
+    border-color:var(--red);
+    background:var(--red-bg);
+    animation:shake .3s;
+  }
+  .match-item.disabled{cursor:default;opacity:.55;}
+  @keyframes shake{
+    0%,100%{transform:translateX(0);}
+    25%{transform:translateX(-4px);}
+    75%{transform:translateX(4px);}
+  }
+  .match-reset{
+    margin-top:14px;
+    font-size:17.1px;
+    font-family:'Times New Roman',Times,serif;
+    font-weight:600;
+    background:none;
+    border:1px solid var(--line);
+    color:var(--ink-soft);
+    padding:7px 14px;
+    border-radius:20px;
+    cursor:pointer;
+  }
+  .match-reset:hover{border-color:var(--ink-soft);}
+
+  /* word bank */
+  .wb-bank{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:16px;
+    padding-bottom:16px;
+    border-bottom:1px dashed var(--line);
+  }
+  .wb-chip{
+    font-family:'Times New Roman',Times,serif;
+    font-size:16.9px;
+    background:var(--teal-bg);
+    color:var(--teal);
+    border:1px solid #d6e2cc;
+    padding:5px 11px;
+    border-radius:20px;
+    cursor:pointer;
+    user-select:none;
+  }
+  .wb-chip:hover{background:#dde9d2;}
+  .wb-chip.used{opacity:.35;text-decoration:line-through;cursor:default;pointer-events:none;}
+  .wb-chip.dragging{opacity:.5;}
+  .wb-chip[draggable="true"]{cursor:grab;}
+
+  /* grammar / gap rows (shared with wordbank) */
+  .g-instructions{
+    font-size:17.8px;
+    color:var(--ink-soft);
+    margin-bottom:14px;
+    font-style:italic;
+  }
+  .g-row{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    padding:9px 0;
+    border-bottom:1px dashed var(--line);
+    font-size:19.2px;
+    flex-wrap:wrap;
+  }
+  .g-row:last-of-type{border-bottom:none;}
+  .g-num{
+    font-weight:700;
+    color:var(--ink-soft);
+    font-size:17.1px;
+    width:18px;
+    flex-shrink:0;
+  }
+  .g-sentence{flex:1;min-width:220px;}
+  .g-input{
+    border:none;
+    border-bottom:2px solid var(--line);
+    background:transparent;
+    font-family:'Times New Roman',Times,serif;
+    font-size:19.2px;
+    padding:2px 4px;
+    width:170px;
+    color:var(--ink);
+    font-weight:600;
+  }
+  .g-input:focus{outline:none;border-bottom-color:var(--plum);}
+  .g-input.correct{border-bottom-color:var(--teal);color:var(--teal);background:var(--teal-bg);}
+  .g-input.wrong{border-bottom-color:var(--red);color:var(--red);background:var(--red-bg);}
+  .g-dropzone{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:150px;
+    min-height:26px;
+    width:auto;
+    border:none;
+    border-bottom:2px dashed var(--ink-soft);
+    cursor:pointer;
+    vertical-align:bottom;
+  }
+  .g-dropzone:empty::before{
+    content:"drop word here";
+    color:var(--ink-soft);
+    opacity:.55;
+    font-weight:400;
+    font-style:italic;
+    font-size:17.1px;
+  }
+  .g-dropzone.filled{border-bottom-style:solid;border-bottom-color:var(--line);}
+  .g-dropzone.selected{border-bottom-color:var(--plum);border-bottom-style:solid;background:var(--plum-bg);}
+  .g-dropzone.dragover{background:var(--teal-bg);border-bottom-color:var(--teal);}
+  .g-dropzone.disabled-zone{cursor:default;}
+
+  /* word order exercise */
+  .wo-row{
+    padding:14px 0;
+    border-bottom:1px dashed var(--line);
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+  }
+  .wo-row:last-of-type{border-bottom:none;}
+  .wo-col{flex:1;min-width:0;}
+  .wo-answer{
+    min-height:38px;
+    border:2px dashed var(--line);
+    border-radius:var(--radius);
+    padding:6px 8px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    align-items:center;
+    margin-bottom:10px;
+    background:var(--paper);
+  }
+  .wo-answer.dragover{background:var(--teal-bg);border-color:var(--teal);}
+  .wo-row.correct .wo-answer{border-style:solid;border-color:var(--teal);background:var(--teal-bg);}
+  .wo-row.wrong .wo-answer{border-style:solid;border-color:var(--red);background:var(--red-bg);}
+  .wo-word{
+    font-family:'Times New Roman',Times,serif;
+    font-size:16.9px;
+    background:var(--white);
+    border:1px solid var(--line);
+    padding:5px 11px;
+    border-radius:20px;
+    cursor:pointer;
+    user-select:none;
+  }
+  .wo-row.disabled .wo-word{cursor:default;pointer-events:none;}
+  .wo-pool{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .g-select{
+    font-family:'Times New Roman',Times,serif;
+    font-size:19.2px;
+    padding:5px 8px;
+    border:2px solid var(--line);
+    border-radius:var(--radius);
+    background:var(--white);
+    color:var(--ink);
+    font-weight:600;
+  }
+  .g-select.correct{border-color:var(--teal);background:var(--teal-bg);color:var(--teal);}
+  .g-select.wrong{border-color:var(--red);background:var(--red-bg);color:var(--red);}
+  .g-answer{
+    font-size:17.1px;
+    color:var(--red);
+    font-weight:600;
+  }
+  .g-footer{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    margin-top:16px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    font-family:'Times New Roman',Times,serif;
+    font-weight:700;
+    font-size:17.8px;
+    background:var(--ink);
+    color:var(--white);
+    border:none;
+    padding:9px 18px;
+    border-radius:20px;
+    cursor:pointer;
+  }
+  .btn:hover{background:#1E1509;}
+  .btn.secondary{background:none;color:var(--ink-soft);border:1px solid var(--line);}
+  .btn.secondary:hover{border-color:var(--ink-soft);}
+  .g-score{
+    font-size:17.8px;
+    font-weight:700;
+    color:var(--ink-soft);
+  }
+  .g-score.good{color:var(--teal);}
+
+  /* talking / discussion questions */
+  .talk-list{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    margin-bottom:8px;
+  }
+  .talk-q{
+    display:flex;
+    gap:12px;
+    align-items:baseline;
+    padding:12px 4px;
+    border-bottom:1px dashed var(--line);
+    font-size:19.8px;
+  }
+  .talk-q:last-child{border-bottom:none;}
+  .talk-q .g-num{color:var(--gold);}
+  .talk-q span.q-text{font-style:italic;color:var(--ink);}
+
+  /* ---- samples (extra emails / negotiations) ---- */
+  .sample-nav{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin:0 0 6px;
+  }
+  .sample-chip{
+    font-family:'Times New Roman',Times,serif;
+    font-size:17.1px;
+    font-weight:600;
+    color:var(--ink);
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:6px 14px;
+    cursor:pointer;
+    transition:border-color .12s,background .12s;
+  }
+  .sample-chip b{color:var(--ink-soft);margin-right:4px;}
+  .sample-chip:hover{border-color:var(--ink-soft);background:var(--paper-2);}
+  .sample{
+    margin-top:38px;
+    padding-top:26px;
+    border-top:2px solid var(--ink);
+    scroll-margin-top:12px;
+  }
+  .sample:first-of-type{margin-top:26px;}
+  .sample-title{
+    font-size:clamp(25.1px,2.8vw,30.4px);
+  }
+  .sample-scenario{
+    margin:6px 0 0;
+    color:var(--ink-soft);
+    font-size:19.2px;
+    font-style:italic;
+  }
+
+  /* choice (pick one of three) */
+  .c-row{align-items:flex-start;}
+  .c-wrap{flex:1;min-width:240px;}
+  .c-q{font-size:19.5px;font-weight:600;margin-bottom:8px;}
+  .c-opts{display:flex;flex-direction:column;gap:6px;}
+  .c-opt{
+    text-align:left;
+    font-family:'Times New Roman',Times,serif;
+    font-size:18.9px;
+    color:var(--ink);
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:8px 12px;
+    cursor:pointer;
+    transition:border-color .12s,background .12s;
+  }
+  .c-opt:hover{border-color:var(--ink-soft);}
+  .c-opt.selected{
+    border-color:var(--ink);
+    background:var(--paper-2);
+    box-shadow:inset 0 0 0 1px var(--ink);
+  }
+  .c-opt.correct{
+    border-color:var(--teal);
+    background:var(--teal-bg);
+    color:var(--teal);
+    font-weight:600;
+  }
+  .c-opt.wrong{
+    border-color:var(--red);
+    background:var(--red-bg);
+    color:var(--red);
+  }
+  .c-row.locked .c-opt{cursor:default;}
+
+  footer{
+    text-align:center;
+    padding:26px;
+    font-size:16.6px;
+    color:var(--ink-soft);
+  }
+
+  @media (max-width:820px){
+    .layout{grid-template-columns:1fr;}
+    .tabs{
+      position:static;
+      flex-direction:row;
+      overflow-x:auto;
+      padding:14px clamp(16px,4vw,44px);
+      gap:6px;
+      background:var(--paper-2);
+    }
+    .tab-btn{
+      white-space:nowrap;
+      border-left:none;
+      border-bottom:4px solid transparent;
+      border-radius:var(--radius) var(--radius) 0 0;
+    }
+    .tab-btn[data-section="email"].active{border-bottom-color:var(--teal);}
+    .tab-btn[data-section="phone"].active{border-bottom-color:var(--brick);}
+    .tab-btn[data-section="negotiations"].active{border-bottom-color:var(--red);}
+    .tab-btn[data-section="presentations"].active{border-bottom-color:var(--steel);}
+    .tab-btn[data-section="grammar"].active{border-bottom-color:var(--plum);}
+    .tab-btn[data-section="talking"].active{border-bottom-color:var(--gold);}
+    .tab-btn[data-section="emailsamples"].active{border-bottom-color:var(--teal);}
+    .tab-btn[data-section="negsamples"].active{border-bottom-color:var(--red);}
+    .content{border-left:none;border-top:1px solid var(--line);}
+    .match-grid{grid-template-columns:1fr;}
+    .dialogue-line{flex-direction:column;gap:2px;}
+    .dialogue-speaker{width:auto;}
+  }
+
+  /* ===== ШОКОЛАДНАЯ ЗАЛИВКА ===== */
+  :root{
+    --choc:#45301f;
+    --choc-deep:#3e2216;
+    --choc-light:#75482f;
+    --choc-cream:#fbeedd;
+  }
+  .letterhead{background:var(--choc);border-bottom-color:var(--choc-deep);}
+  .level-key span{border-color:#8a5c44;background:var(--choc-light);}
+  .tab-btn.active{background:var(--choc);color:var(--choc-cream);}
+  .tab-btn.active .lv{color:var(--choc-cream);opacity:.8;}
+  .tab-btn:hover:not(.active){background:#eadccb;}
+  .badge,.badge-b1,.badge-b2{background:var(--choc);color:var(--choc-cream);}
+  .section-head{border-bottom-color:var(--choc);}
+  .block-label{color:var(--choc);}
+  .ex-head{background:#f3e6d8;}
+  .ex-head:hover{background:#ecdac7;}
+  .ex-num{background:var(--choc);color:var(--choc-cream);}
+  .btn{background:var(--choc);color:var(--choc-cream);box-shadow:0 3px 0 var(--choc-deep);}
+  .btn:hover{background:var(--choc-light);}
+  .btn.secondary{background:var(--choc);color:var(--choc-cream);border:none;}
+  .btn.secondary:hover{background:var(--choc-light);}
+  .match-reset{background:var(--choc);color:var(--choc-cream);border:none;}
+  .match-reset:hover{background:var(--choc-light);}
+  .wb-chip{background:var(--choc);color:var(--choc-cream);border-color:var(--choc-deep);}
+  .wb-chip:hover{background:var(--choc-light);}
+  .wo-word{background:var(--choc);color:var(--choc-cream);border-color:var(--choc-deep);}
+  .match-item.selected,.c-opt.selected{background:var(--choc);color:var(--choc-cream);border-color:var(--choc-deep);box-shadow:none;}
+  .sample-chip{background:var(--choc);color:var(--choc-cream);border-color:var(--choc-deep);}
+  .sample-chip b{color:#e3c9ac;}
+  .sample-chip:hover{background:var(--choc-light);border-color:var(--choc-deep);}
+  .sample{border-top-color:var(--choc);}
+  .sample-title,.section-head h2{color:var(--choc);}
+  .g-dropzone.selected{background:#eadccb;}
+  /* ---------- MOBILE FIXES ---------- */
+  .content{min-width:0;}
+  .wb-chip.picked{outline:3px solid #e3a64a;outline-offset:2px;transform:translateY(-2px);}
+  @media (max-width:820px){
+    .match-grid{grid-template-columns:1fr 1fr;gap:8px;}
+    .match-item{font-size:17.1px;padding:8px 9px;line-height:1.3;}
+    .wb-chip,.g-dropzone,.wo-word,.match-item{-webkit-tap-highlight-color:transparent;}
+    .g-dropzone{min-height:1.9em;}
+  }
+  @media (hover:none){
+    .wb-chip:hover{background:var(--choc);}
+    .match-item:hover{border-color:var(--line);}
+  }
+  .g-select{max-width:100%;}
+  /* ---------- PROGRESS ---------- */
+  .progress-btn{
+    font-family:inherit;font-size:18.5px;font-weight:700;cursor:pointer;
+    background:var(--choc-cream,#fbeedd);color:var(--choc,#45301f);
+    border:none;border-radius:20px;padding:7px 16px;display:inline-flex;align-items:center;gap:8px;
+  }
+  .progress-btn:hover{background:#fff;}
+  .progress-btn{white-space:nowrap;}
+  .level-key{flex-wrap:wrap;align-items:center;}
+  @media (max-width:820px){ .level-key{width:100%;} .level-key span{display:none;} }
+  .progress-btn b{background:var(--choc,#45301f);color:var(--choc-cream,#fbeedd);border-radius:12px;padding:1px 8px;font-size:16.6px;}
+  .tab-progress{display:block;height:3px;background:rgba(90,52,34,.15);border-radius:2px;margin-top:6px;overflow:hidden;}
+  .tab-progress i{display:block;height:100%;background:var(--teal);transition:width .3s;}
+  .tab-btn.active .tab-progress{background:rgba(251,238,221,.25);}
+  .tab-btn.active .tab-progress i{background:#b9d69a;}
+  .ex-mark{font-size:15.9px;font-weight:700;white-space:nowrap;}
+  .ex-mark.done{color:var(--teal);}
+  .ex-mark.tried{color:var(--brick);}
+  .exercise.ex-done .ex-num{background:var(--teal-bg);color:var(--teal);}
+  .progress-modal{position:fixed;inset:0;background:rgba(45,31,19,.45);display:none;align-items:flex-start;justify-content:center;z-index:50;padding:5vh 16px;overflow-y:auto;}
+  .progress-modal.open{display:flex;}
+  .progress-panel{background:var(--paper);max-width:620px;width:100%;border-radius:6px;border-top:5px solid var(--choc,#45301f);box-shadow:0 20px 50px -20px rgba(0,0,0,.5);}
+  .progress-panel header{display:flex;justify-content:space-between;align-items:center;padding:18px 22px 10px;}
+  .progress-panel h2{font-size:29.1px;}
+  .pg-close{background:none;border:none;font-size:29.1px;cursor:pointer;color:var(--ink-soft);line-height:1;}
+  #progressBody{padding:0 22px 8px;}
+  .pg-overall{display:flex;align-items:center;gap:16px;padding:6px 0 16px;border-bottom:1px solid var(--line);margin-bottom:10px;}
+  .pg-big{font-size:58.2px;font-weight:700;color:var(--choc,#45301f);line-height:1;}
+  .pg-overall-text{color:var(--ink-soft);font-size:19.2px;}
+  .pg-section{border-bottom:1px dashed var(--line);}
+  .pg-section summary{display:grid;grid-template-columns:minmax(0,10.5em) 1fr auto;align-items:center;gap:12px;padding:11px 0;cursor:pointer;list-style:none;}
+  .pg-section summary::-webkit-details-marker{display:none;}
+  .pg-name{font-weight:600;}
+  .pg-name::before{content:"▸ ";color:var(--ink-soft);font-size:14.5px;}
+  .pg-section[open] .pg-name::before{content:"▾ ";}
+  .pg-bar{display:flex;height:8px;background:var(--paper-2);border-radius:5px;overflow:hidden;}
+  .pg-bar i{display:block;height:100%;}
+  .pg-bar i.d{background:var(--teal);}
+  .pg-bar i.t{background:#e0b07e;}
+  .pg-count{font-size:17.1px;color:var(--ink-soft);white-space:nowrap;}
+  .pg-section ul{list-style:none;margin:0 0 10px;padding:0;}
+  .pg-section li button{width:100%;display:flex;align-items:center;gap:10px;text-align:left;background:none;border:none;font-family:inherit;font-size:18.5px;color:var(--ink);padding:6px 4px;cursor:pointer;border-radius:3px;}
+  .pg-section li button:hover{background:var(--paper-2);}
+  .pg-ico{width:16px;height:16px;border-radius:50%;flex:none;border:2px solid var(--line);}
+  li.done .pg-ico{background:var(--teal);border-color:var(--teal);}
+  li.tried .pg-ico{background:linear-gradient(90deg,#e0b07e 50%,transparent 50%);border-color:#e0b07e;}
+  .pg-ex{flex:1;}
+  .pg-st{font-size:15.9px;color:var(--ink-soft);white-space:nowrap;}
+  li.done .pg-st{color:var(--teal);font-weight:700;}
+  li.tried .pg-st{color:var(--brick);}
+  .pg-note{font-size:16.6px;color:var(--ink-soft);font-style:italic;margin:12px 0 4px;}
+  .progress-panel footer{padding:10px 22px 18px;display:flex;justify-content:flex-end;}
+  @media (max-width:820px){
+    .tab-progress{margin-top:4px;}
+    .pg-section summary{grid-template-columns:1fr auto;}
+    .pg-bar{grid-column:1 / -1;grid-row:2;}
+  }
+
+/* ===== Тетрадь (общий слой) ===== */
+html{background:#f5efe8}
+body{font-family:'Inter','Segoe UI',system-ui,sans-serif!important;background-color:#f5efe8!important;
+  background-image:repeating-linear-gradient(to bottom,transparent 0 38px,#dccfc2 38px 39px)!important;background-attachment:local!important}
+h1,h2,h3{font-family:'Space Mono','Courier New',monospace!important;letter-spacing:.2px}
+button,input,select,textarea{font-family:inherit}
+
+/* Весь шрифт — Times New Roman */
+html body,html body *:not(.emoji){font-family:"Times New Roman",Times,serif!important}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style id="art-style">.unit-art{margin:0 0 18px;border-radius:12px;overflow:hidden;border:1px solid #C2A386;background:#F3E6D8;max-width:760px}.unit-art-svg{display:block;width:100%;height:auto}</style><style id="fs-scaled-132">html{font-size:132%}</style><style id="white-sheet">:root:not([data-theme="dark"]) body:not([data-theme="dark"]) #content{background:#fff!important;background-image:none!important;border:1px solid #e3d3c4!important;border-radius:14px!important;box-shadow:0 4px 18px rgba(90,60,40,.09)!important;padding:28px 30px 34px 34px!important;box-sizing:border-box}@media(max-width:520px){:root:not([data-theme="dark"]) body:not([data-theme="dark"]) #content{padding:18px 14px 22px 16px!important;border-radius:12px!important}}</style><style id="stripes-strong">:root:not([data-theme="dark"]) body:not([data-theme="dark"]){background-image:repeating-linear-gradient(to bottom,transparent 0 38px,#cdb7a3 38px 40px)!important}</style></head>
+<body>
+
+<div class="letterhead">
+  <div class="letterhead-inner">
+    <div>
+      <h1>Business English Toolkit</h1>
+      <p>Email · Phone calls · Negotiations · Presentations — vocabulary at B1, grammar at B2.</p>
+    </div>
+    <div class="level-key">
+      <button class="progress-btn" id="progressBtn" type="button">📊 My progress <b id="progressPct">0%</b></button>
+      <span><b>B1</b> — vocabulary blocks</span>
+      <span><b>B2</b> — grammar block</span>
+    </div>
+  </div>
+</div>
+
+<div class="layout">
+  <nav class="tabs" id="tabs">
+    <button class="tab-btn active" data-section="email">Email<span class="lv">Vocabulary · B1</span></button>
+    <button class="tab-btn" data-section="emailsamples">Email samples<span class="lv">Examples · B1–B2</span></button>
+    <button class="tab-btn" data-section="phone">Phone calls<span class="lv">Vocabulary · B1</span></button>
+    <button class="tab-btn" data-section="negotiations">Negotiations<span class="lv">Vocabulary · B1</span></button>
+    <button class="tab-btn" data-section="negsamples">Negotiation samples<span class="lv">Examples · B1–B2</span></button>
+    <button class="tab-btn" data-section="presentations">Presentations<span class="lv">Vocabulary · B1</span></button>
+    <button class="tab-btn" data-section="grammar">Grammar<span class="lv">Structures · B2</span></button>
+    <button class="tab-btn" data-section="talking">Talking<span class="lv">Discussion · B1–B2</span></button>
+  </nav>
+
+  <main class="content" id="content"></main>
+</div>
+
+<div class="progress-modal" id="progressModal" role="dialog" aria-modal="true" aria-labelledby="progressTitle">
+  <div class="progress-panel">
+    <header><h2 id="progressTitle">My progress</h2><button class="pg-close" id="progressClose" type="button" aria-label="Close">✕</button></header>
+    <div id="progressBody"></div>
+    <footer><button class="btn secondary" id="progressReset" type="button">Reset progress</button></footer>
+  </div>
+</div>
+
+<footer>Business English Toolkit — practice material for workplace communication.</footer>
+
+<script>
+/* =========================================================
+   ИЛЛЮСТРАЦИИ К ЮНИТАМ (встроенный SVG, работает офлайн)
+   ========================================================= */
+const ART_C = {
+  bg:'#F3E6D8', blob:'#EAD5C0', ink:'#2B1810', cocoa:'#3B1F14', milk:'#7B4A2E', caramel:'#A65A1E',
+  latte:'#D9BFA6', cream:'#FFFAF4', sage:'#7D9465', sageD:'#5F7A45', steel:'#8FA3AD', steelD:'#5E7480',
+  rose:'#C9846B', gold:'#D9A441', paper:'#FBF4EA', skin:'#E8B892', skin2:'#C98E68', skin3:'#F1C9A5'
+};
+function artSvg(label, body){
+  return `<svg class="unit-art-svg" viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${label}"><rect width="720" height="300" fill="${ART_C.bg}"/>${body}</svg>`;
+}
+function artBust(x, y, skin, cloth, hair, s = 1){
+  return `<g transform="translate(${x} ${y}) scale(${s})">
+    <path d="M-46 70 Q-46 18 0 18 Q46 18 46 70 Z" fill="${cloth}"/>
+    <rect x="-8" y="2" width="16" height="20" fill="${skin}"/>
+    <circle cx="0" cy="-16" r="24" fill="${skin}"/>
+    <path d="M-25 -14 Q-26 -44 0 -44 Q26 -44 25 -14 Q20 -30 0 -30 Q-18 -30 -25 -14 Z" fill="${hair}"/>
+  </g>`;
+}
+function artBubble(x, y, w, text, flip){
+  const tail = flip ? `M${x+w-30} ${y+34} L${x+w-14} ${y+54} L${x+w-50} ${y+34} Z` : `M${x+30} ${y+34} L${x+14} ${y+54} L${x+50} ${y+34} Z`;
+  return `<g><rect x="${x}" y="${y-6}" width="${w}" height="42" rx="21" fill="${ART_C.cream}" stroke="${ART_C.milk}" stroke-width="3"/><path d="${tail}" fill="${ART_C.cream}" stroke="${ART_C.milk}" stroke-width="3" stroke-linejoin="round"/><rect x="${x+8}" y="${y+28}" width="${w-16}" height="8" fill="${ART_C.cream}"/>
+    <text x="${x+w/2}" y="${y+22}" text-anchor="middle" font-family="Georgia,serif" font-size="22" font-weight="700" fill="${ART_C.cocoa}">${text}</text></g>`;
+}
+function artTree(x, y, s = 1){
+  return `<g transform="translate(${x} ${y}) scale(${s})"><rect x="-7" y="0" width="14" height="60" fill="${ART_C.milk}"/><circle cx="0" cy="-14" r="38" fill="${ART_C.sage}"/><circle cx="-24" cy="6" r="24" fill="${ART_C.sageD}"/><circle cx="24" cy="4" r="26" fill="${ART_C.sageD}"/></g>`;
+}
+function artGround(y){ return `<rect x="0" y="${y}" width="720" height="${300-y}" fill="${ART_C.latte}"/>`; }
+
+/* ---------- First Steps A1–A2 ---------- */
+const FS_ART = {
+  u1: artSvg('Two people meet and say hello', `
+    <circle cx="360" cy="160" r="140" fill="${ART_C.blob}"/>
+    ${artBust(250,190,ART_C.skin,ART_C.caramel,ART_C.cocoa,1.3)}
+    ${artBust(470,190,ART_C.skin2,ART_C.sageD,ART_C.ink,1.3)}
+    ${artBubble(150,52,130,'Hello!')}
+    ${artBubble(450,52,150,"Hi! I'm Ann",true)}
+    <g transform="translate(232 230)"><rect width="40" height="26" rx="4" fill="${ART_C.cream}"/><rect width="40" height="8" rx="3" fill="${ART_C.gold}"/></g>
+    <g fill="${ART_C.gold}">${[[80,90],[640,110],[90,230],[630,240]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="6"/>`).join('')}</g>`),
+  u2: artSvg('A daily routine: alarm clock, coffee and the sun', `
+    ${artGround(240)}
+    <circle cx="590" cy="90" r="46" fill="${ART_C.gold}"/><g stroke="${ART_C.gold}" stroke-width="6" stroke-linecap="round">${[0,45,90,135,180,225,270,315].map(a=>{const r=a*Math.PI/180;return `<line x1="${590+62*Math.cos(r)}" y1="${90+62*Math.sin(r)}" x2="${590+80*Math.cos(r)}" y2="${90+80*Math.sin(r)}"/>`}).join('')}</g>
+    <g transform="translate(190 150)"><circle r="78" fill="${ART_C.cream}" stroke="${ART_C.cocoa}" stroke-width="10"/><circle cx="-56" cy="-70" r="20" fill="${ART_C.caramel}"/><circle cx="56" cy="-70" r="20" fill="${ART_C.caramel}"/>
+      ${[0,1,2,3,4,5,6,7,8,9,10,11].map(i=>{const r=i*30*Math.PI/180;return `<circle cx="${60*Math.sin(r)}" cy="${-60*Math.cos(r)}" r="4" fill="${ART_C.milk}"/>`}).join('')}
+      <line x1="0" y1="0" x2="0" y2="-46" stroke="${ART_C.ink}" stroke-width="7" stroke-linecap="round"/><line x1="0" y1="0" x2="32" y2="10" stroke="${ART_C.ink}" stroke-width="7" stroke-linecap="round"/><circle r="7" fill="${ART_C.caramel}"/>
+      <rect x="-50" y="70" width="14" height="22" fill="${ART_C.cocoa}"/><rect x="36" y="70" width="14" height="22" fill="${ART_C.cocoa}"/></g>
+    <g transform="translate(390 170)"><path d="M0 0 H90 L82 70 Q80 80 70 80 H20 Q10 80 8 70 Z" fill="${ART_C.cream}" stroke="${ART_C.milk}" stroke-width="4"/><path d="M90 16 Q118 16 114 40 Q110 58 86 56" fill="none" stroke="${ART_C.milk}" stroke-width="7"/><ellipse cx="45" cy="4" rx="42" ry="7" fill="${ART_C.milk}"/>
+      <path d="M28 -14 Q20 -30 30 -44 M52 -14 Q44 -32 56 -48" fill="none" stroke="${ART_C.latte}" stroke-width="5" stroke-linecap="round"/></g>
+    <rect x="370" y="250" width="140" height="10" rx="5" fill="${ART_C.milk}"/>`),
+  u3: artSvg('A shopping basket with bread, apples and milk', `
+    ${artGround(250)}
+    <g transform="translate(60 40)"><rect width="200" height="210" fill="${ART_C.cream}" stroke="${ART_C.milk}" stroke-width="4"/>
+      ${[60,130].map(y=>`<rect x="0" y="${y}" width="200" height="8" fill="${ART_C.milk}"/>`).join('')}
+      ${[20,60,100,140].map(x=>`<rect x="${x}" y="18" width="30" height="42" rx="4" fill="${ART_C.caramel}"/>`).join('')}
+      ${[24,64,104,144].map(x=>`<circle cx="${x+12}" cy="112" r="16" fill="#B5402F"/>`).join('')}
+      ${[20,90,150].map(x=>`<rect x="${x}" y="150" width="34" height="52" rx="6" fill="${ART_C.steel}"/>`).join('')}</g>
+    <g transform="translate(400 120)">
+      <path d="M40 -10 Q120 -90 200 -10" fill="none" stroke="${ART_C.cocoa}" stroke-width="10"/>
+      <ellipse cx="110" cy="-8" rx="70" ry="22" fill="${ART_C.caramel}"/>
+      <rect x="70" y="-60" width="34" height="56" rx="6" fill="${ART_C.cream}" stroke="${ART_C.steelD}" stroke-width="3"/><rect x="70" y="-44" width="34" height="14" fill="${ART_C.steel}"/>
+      <circle cx="140" cy="-22" r="20" fill="#B5402F"/><circle cx="160" cy="-12" r="18" fill="${ART_C.sage}"/>
+      <path d="M0 0 H240 L216 120 H24 Z" fill="${ART_C.milk}"/>
+      ${[30,70,110,150,190].map(x=>`<line x1="${x}" y1="6" x2="${x+(x-120)*0.1}" y2="114" stroke="${ART_C.cocoa}" stroke-width="4"/>`).join('')}
+      <line x1="10" y1="40" x2="230" y2="40" stroke="${ART_C.cocoa}" stroke-width="4"/><line x1="18" y1="80" x2="222" y2="80" stroke="${ART_C.cocoa}" stroke-width="4"/></g>`),
+  u4: artSvg('A family in front of their house', `
+    ${artGround(250)}
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    <g transform="translate(420 70)"><path d="M-20 70 L110 -20 L240 70 Z" fill="${ART_C.caramel}"/><rect x="0" y="70" width="220" height="110" fill="${ART_C.cream}" stroke="${ART_C.milk}" stroke-width="4"/>
+      <rect x="90" y="110" width="44" height="70" fill="${ART_C.milk}"/><circle cx="124" cy="148" r="4" fill="${ART_C.gold}"/>
+      <rect x="20" y="96" width="50" height="44" fill="${ART_C.steel}" stroke="${ART_C.milk}" stroke-width="4"/><rect x="152" y="96" width="50" height="44" fill="${ART_C.steel}" stroke="${ART_C.milk}" stroke-width="4"/>
+      <rect x="160" y="6" width="24" height="40" fill="${ART_C.cocoa}"/></g>
+    ${artBust(130,196,ART_C.skin,ART_C.steelD,ART_C.cocoa,1.15)}
+    ${artBust(250,196,ART_C.skin3,ART_C.rose,ART_C.caramel,1.1)}
+    ${artBust(190,226,ART_C.skin,ART_C.gold,ART_C.milk,0.75)}
+    <path d="M190 120 Q178 104 190 96 Q202 104 190 120 Z" fill="#B5402F"/>`),
+  u5: artSvg('A town map with streets, a pin and a signpost', `
+    <rect x="40" y="30" width="420" height="240" rx="14" fill="${ART_C.paper}" stroke="${ART_C.milk}" stroke-width="4"/>
+    <g stroke="${ART_C.latte}" stroke-width="22" stroke-linecap="round"><line x1="60" y1="120" x2="440" y2="120"/><line x1="200" y1="50" x2="200" y2="250"/><line x1="340" y1="50" x2="340" y2="250"/><line x1="60" y1="210" x2="440" y2="210"/></g>
+    ${[[80,60,90,36],[230,60,80,36],[370,140,60,46],[80,140,90,46],[230,140,80,46],[370,60,60,36]].map(([x,y,w,h],i)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="4" fill="${[ART_C.caramel,ART_C.sage,ART_C.steel,ART_C.rose,ART_C.gold,ART_C.milk][i]}"/>`).join('')}
+    <path d="M200 210 L200 120 L340 120" fill="none" stroke="${ART_C.cocoa}" stroke-width="5" stroke-dasharray="10 8"/>
+    <g transform="translate(340 120)"><path d="M0 0 Q-26 -30 -26 -50 A26 26 0 0 1 26 -50 Q26 -30 0 0 Z" fill="#B5402F"/><circle cx="0" cy="-50" r="10" fill="${ART_C.cream}"/></g>
+    <g transform="translate(580 50)"><rect x="-6" y="0" width="12" height="210" fill="${ART_C.cocoa}"/>
+      <path d="M0 30 H96 L116 52 L96 74 H0 Z" fill="${ART_C.caramel}"/><text x="48" y="60" text-anchor="middle" font-family="Georgia,serif" font-size="18" font-weight="700" fill="${ART_C.cream}">Bank</text>
+      <path d="M0 96 H-96 L-116 118 L-96 140 H0 Z" fill="${ART_C.sageD}"/><text x="-50" y="126" text-anchor="middle" font-family="Georgia,serif" font-size="18" font-weight="700" fill="${ART_C.cream}">Park</text></g>
+    <rect x="520" y="256" width="120" height="10" rx="5" fill="${ART_C.milk}"/>`),
+  u6: artSvg('Last weekend: a picnic and a bike ride in the park', `
+    ${artGround(220)}
+    <circle cx="610" cy="70" r="36" fill="${ART_C.gold}"/>
+    ${artTree(110,160,1.2)}${artTree(640,170,0.9)}
+    <path d="M220 260 L380 230 L520 262 L360 292 Z" fill="#B5402F" opacity=".85"/><path d="M260 254 L380 232 M300 270 L460 245" stroke="${ART_C.cream}" stroke-width="5"/>
+    <g transform="translate(330 220)"><rect x="0" y="0" width="56" height="36" rx="6" fill="${ART_C.caramel}"/><path d="M8 0 Q28 -26 48 0" fill="none" stroke="${ART_C.cocoa}" stroke-width="5"/></g>
+    <circle cx="420" cy="244" r="12" fill="${ART_C.sage}"/><circle cx="440" cy="250" r="10" fill="#B5402F"/>
+    <g transform="translate(470 120)" stroke="${ART_C.cocoa}" stroke-width="6" fill="none"><circle cx="0" cy="60" r="36"/><circle cx="130" cy="60" r="36"/><path d="M0 60 L45 0 L105 0 L130 60 M45 0 L70 60 L105 0 M70 60 L0 60"/><path d="M38 -10 H58 M100 -14 L112 -14"/></g>
+    <g transform="translate(160 30)"><rect width="120" height="96" rx="8" fill="${ART_C.cream}" stroke="${ART_C.milk}" stroke-width="3"/><rect width="120" height="26" rx="8" fill="${ART_C.caramel}"/>
+      <text x="60" y="19" text-anchor="middle" font-family="Georgia,serif" font-size="15" font-weight="700" fill="${ART_C.cream}">Weekend</text>
+      <text x="32" y="70" text-anchor="middle" font-family="Georgia,serif" font-size="20" fill="${ART_C.cocoa}">Sat</text><text x="88" y="70" text-anchor="middle" font-family="Georgia,serif" font-size="20" fill="${ART_C.cocoa}">Sun</text>
+      <path d="M20 78 L28 86 L44 66 M76 78 L84 86 L100 66" fill="none" stroke="${ART_C.sageD}" stroke-width="4"/></g>`),
+  u7: artSvg('Plans and travel: a suitcase, a plane and a calendar', `
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    <path d="M60 230 Q240 120 520 70" fill="none" stroke="${ART_C.milk}" stroke-width="4" stroke-dasharray="10 10"/>
+    <g transform="translate(540 64) rotate(-18)"><path d="M-60 0 Q-60 -12 -40 -12 H50 Q70 -12 76 0 Q70 12 50 12 H-40 Q-60 12 -60 0 Z" fill="${ART_C.cream}" stroke="${ART_C.steelD}" stroke-width="3"/>
+      <path d="M-4 -10 L-30 -56 L-12 -56 L30 -10 Z M-4 10 L-30 56 L-12 56 L30 10 Z M-52 -6 L-66 -30 L-56 -30 L-38 -6 Z" fill="${ART_C.steelD}"/></g>
+    <g transform="translate(210 120)"><rect x="40" y="-30" width="60" height="30" rx="10" fill="none" stroke="${ART_C.cocoa}" stroke-width="10"/><rect x="0" y="0" width="140" height="150" rx="16" fill="${ART_C.caramel}"/>
+      <rect x="30" y="0" width="12" height="150" fill="${ART_C.milk}"/><rect x="98" y="0" width="12" height="150" fill="${ART_C.milk}"/>
+      <circle cx="30" cy="158" r="10" fill="${ART_C.cocoa}"/><circle cx="110" cy="158" r="10" fill="${ART_C.cocoa}"/><rect x="52" y="60" width="36" height="24" rx="4" fill="${ART_C.gold}"/></g>
+    <g transform="translate(430 140)"><rect width="130" height="110" rx="8" fill="${ART_C.cream}" stroke="${ART_C.milk}" stroke-width="3"/><rect width="130" height="26" rx="8" fill="${ART_C.cocoa}"/>
+      <g fill="${ART_C.latte}">${[0,1,2].map(r=>[0,1,2,3,4].map(c=>`<rect x="${12+c*23}" y="${38+r*22}" width="16" height="14"/>`).join('')).join('')}</g>
+      <circle cx="81" cy="67" r="13" fill="none" stroke="#B5402F" stroke-width="4"/></g>`),
+  u8: artSvg('Right now: a woman is talking on the phone and a man is cooking', `
+    ${artGround(250)}
+    <circle cx="200" cy="150" r="110" fill="${ART_C.blob}"/><circle cx="530" cy="150" r="110" fill="${ART_C.blob}"/>
+    ${artBust(200,190,ART_C.skin3,ART_C.rose,ART_C.milk,1.3)}
+    <rect x="224" y="148" width="22" height="40" rx="5" fill="${ART_C.ink}" transform="rotate(-14 235 168)"/>
+    <g stroke="${ART_C.caramel}" stroke-width="4" fill="none" stroke-linecap="round"><path d="M262 120 Q276 136 262 152"/><path d="M276 110 Q296 136 276 162"/></g>
+    ${artBust(510,190,ART_C.skin2,ART_C.cream,ART_C.ink,1.3)}
+    <path d="M484 130 Q484 96 510 100 Q536 96 536 130 Z" fill="${ART_C.cream}" stroke="${ART_C.latte}" stroke-width="3"/>
+    <g transform="translate(560 220)"><ellipse cx="40" cy="0" rx="50" ry="12" fill="${ART_C.cocoa}"/><rect x="88" y="-6" width="60" height="10" rx="5" fill="${ART_C.cocoa}"/>
+      <path d="M20 -20 Q12 -36 22 -50 M44 -20 Q36 -40 48 -56" fill="none" stroke="${ART_C.latte}" stroke-width="4" stroke-linecap="round"/></g>
+    <g transform="translate(330 30)"><rect width="70" height="34" rx="17" fill="${ART_C.cocoa}"/><text x="35" y="23" text-anchor="middle" font-family="Georgia,serif" font-size="17" font-weight="700" fill="${ART_C.cream}">NOW</text></g>`),
+  u9: artSvg('Abilities: playing the guitar, swimming and football', `
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    <g transform="translate(165 175) rotate(-30) scale(.78)"><ellipse cx="0" cy="40" rx="52" ry="58" fill="${ART_C.caramel}"/><ellipse cx="0" cy="-20" rx="40" ry="42" fill="${ART_C.caramel}"/><circle cx="0" cy="22" r="16" fill="${ART_C.cocoa}"/>
+      <rect x="-8" y="-150" width="16" height="140" fill="${ART_C.milk}"/><rect x="-14" y="-176" width="28" height="34" rx="6" fill="${ART_C.cocoa}"/>
+      ${[-4,0,4].map(x=>`<line x1="${x}" y1="-150" x2="${x}" y2="70" stroke="${ART_C.cream}" stroke-width="1.5"/>`).join('')}</g>
+    <g transform="translate(360 190)"><path d="M-110 30 Q-80 10 -50 30 T10 30 T70 30 T130 30" fill="none" stroke="${ART_C.steelD}" stroke-width="7"/><path d="M-110 56 Q-80 36 -50 56 T10 56 T70 56 T130 56" fill="none" stroke="${ART_C.steel}" stroke-width="7"/>
+      <circle cx="-10" cy="4" r="20" fill="${ART_C.skin}"/><path d="M-30 0 Q-10 -26 10 0" fill="${ART_C.steelD}"/><path d="M14 14 Q50 -20 80 6" fill="none" stroke="${ART_C.skin}" stroke-width="12" stroke-linecap="round"/></g>
+    <g transform="translate(580 160)"><circle r="56" fill="${ART_C.cream}" stroke="${ART_C.cocoa}" stroke-width="5"/><path d="M0 -20 L19 -6 L12 16 L-12 16 L-19 -6 Z" fill="${ART_C.cocoa}"/>
+      ${[[0,-20,0,-54],[19,-6,50,-18],[12,16,30,44],[-12,16,-30,44],[-19,-6,-50,-18]].map(([a,b,c,d])=>`<line x1="${a}" y1="${b}" x2="${c}" y2="${d}" stroke="${ART_C.cocoa}" stroke-width="4"/>`).join('')}</g>
+    ${artBubble(300,40,120,'I can!')}`),
+  u10: artSvg('Health: a doctor bag, medicine, fruit and a heart', `
+    ${artGround(250)}
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    <g transform="translate(110 120)"><path d="M30 0 V-24 Q30 -36 42 -36 H98 Q110 -36 110 -24 V0" fill="none" stroke="${ART_C.cocoa}" stroke-width="10"/><rect width="140" height="110" rx="14" fill="${ART_C.cocoa}"/>
+      <rect x="56" y="30" width="28" height="56" fill="${ART_C.cream}"/><rect x="42" y="44" width="56" height="28" fill="${ART_C.cream}"/></g>
+    <g transform="translate(330 70)"><path d="M50 30 Q50 0 80 0 Q110 0 110 30 Q110 70 50 110 Q-10 70 -10 30 Q-10 0 20 0 Q50 0 50 30 Z" fill="#B5402F"/>
+      <path d="M-20 60 H20 L34 34 L50 86 L64 50 H120" fill="none" stroke="${ART_C.cream}" stroke-width="6" stroke-linejoin="round"/></g>
+    <g transform="translate(330 205)"><rect width="40" height="56" rx="6" fill="${ART_C.steel}"/><rect x="-4" y="-12" width="48" height="16" rx="4" fill="${ART_C.cream}"/><rect x="6" y="18" width="28" height="20" fill="${ART_C.cream}"/></g>
+    <g transform="translate(420 236)"><rect x="-26" y="-8" width="52" height="18" rx="9" fill="${ART_C.gold}"/><rect x="-26" y="-8" width="26" height="18" rx="9" fill="${ART_C.cream}"/></g>
+    <g transform="translate(560 200)"><circle r="40" fill="#B5402F"/><circle cx="-12" cy="-12" r="9" fill="${ART_C.cream}" opacity=".5"/><path d="M0 -38 Q4 -58 18 -62" fill="none" stroke="${ART_C.milk}" stroke-width="5"/><ellipse cx="22" cy="-52" rx="16" ry="8" fill="${ART_C.sage}"/></g>
+    <g transform="translate(610 70)"><rect x="-8" y="0" width="16" height="110" rx="8" fill="${ART_C.cream}" stroke="${ART_C.milk}" stroke-width="3"/><circle cx="0" cy="116" r="16" fill="#B5402F"/><rect x="-4" y="40" width="8" height="70" fill="#B5402F"/></g>`),
+  u11: artSvg('Comparing: a tall building and a small house, a big and a small dog', `
+    ${artGround(250)}
+    <g transform="translate(90 40)"><rect width="110" height="210" fill="${ART_C.steelD}"/>${[0,1,2,3,4,5].map(r=>[0,1,2].map(c=>`<rect x="${14+c*32}" y="${16+r*32}" width="20" height="20" fill="${ART_C.gold}" opacity="${(r+c)%3?0.9:0.4}"/>`).join('')).join('')}</g>
+    <g transform="translate(220 170)"><path d="M-6 30 L50 -10 L106 30 Z" fill="${ART_C.caramel}"/><rect x="0" y="30" width="100" height="50" fill="${ART_C.cream}" stroke="${ART_C.milk}" stroke-width="3"/><rect x="40" y="48" width="22" height="32" fill="${ART_C.milk}"/></g>
+    <text x="232" y="110" font-family="Georgia,serif" font-size="30" font-weight="700" fill="${ART_C.cocoa}">taller</text>
+    <g transform="translate(420 150)"><ellipse cx="60" cy="50" rx="70" ry="36" fill="${ART_C.milk}"/><circle cx="130" cy="14" r="30" fill="${ART_C.milk}"/><ellipse cx="148" cy="-8" rx="10" ry="20" fill="${ART_C.cocoa}"/><circle cx="142" cy="10" r="4" fill="${ART_C.ink}"/>
+      ${[10,40,80,110].map(x=>`<rect x="${x}" y="70" width="14" height="30" fill="${ART_C.milk}"/>`).join('')}<path d="M-8 40 Q-30 20 -24 0" fill="none" stroke="${ART_C.milk}" stroke-width="10" stroke-linecap="round"/></g>
+    <g transform="translate(620 214)"><ellipse cx="20" cy="14" rx="26" ry="14" fill="${ART_C.gold}"/><circle cx="46" cy="0" r="13" fill="${ART_C.gold}"/><circle cx="50" cy="-2" r="2.5" fill="${ART_C.ink}"/>
+      ${[2,14,26,38].map(x=>`<rect x="${x}" y="22" width="6" height="14" fill="${ART_C.gold}"/>`).join('')}</g>
+    <text x="520" y="90" font-family="Georgia,serif" font-size="30" font-weight="700" fill="${ART_C.cocoa}">bigger</text>`)
+};
+
+/* ---------- Wayfinder B2 ---------- */
+const B2_ART = {
+  identity: artSvg('A person looks in a mirror and sees a different reflection', `
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    ${artBust(230,200,ART_C.skin,ART_C.caramel,ART_C.cocoa,1.4)}
+    <g transform="translate(400 40)"><ellipse cx="80" cy="110" rx="90" ry="112" fill="${ART_C.milk}"/><ellipse cx="80" cy="110" rx="76" ry="98" fill="${ART_C.steel}"/>
+      <path d="M30 60 L60 40 M40 100 L90 60" stroke="${ART_C.cream}" stroke-width="6" stroke-linecap="round" opacity=".6"/>
+      ${artBust(80,150,ART_C.skin,ART_C.sageD,ART_C.cocoa,1.05)}<rect x="66" y="214" width="28" height="40" fill="${ART_C.milk}"/></g>
+    <g font-family="Georgia,serif" font-weight="700" fill="${ART_C.caramel}"><text x="90" y="90" font-size="56">?</text><text x="320" y="70" font-size="40">?</text><text x="650" y="80" font-size="46">!</text></g>`),
+  wanderlust: artSvg('Mountains, a winding road, a backpack and a compass', `
+    <path d="M0 220 L140 80 L240 180 L360 50 L500 200 L600 110 L720 220 V300 H0 Z" fill="${ART_C.milk}"/>
+    <path d="M360 50 L400 96 L376 92 L360 110 L344 90 L322 96 Z M140 80 L168 108 L140 104 L122 112 Z" fill="${ART_C.cream}"/>
+    ${artGround(220)}
+    <path d="M360 300 Q300 260 380 240 Q460 224 400 220" fill="none" stroke="${ART_C.cream}" stroke-width="22" stroke-linecap="round"/>
+    <g transform="translate(120 170)"><rect x="0" y="0" width="80" height="100" rx="20" fill="${ART_C.sageD}"/><rect x="12" y="44" width="56" height="40" rx="8" fill="${ART_C.sage}"/><path d="M14 0 Q40 -30 66 0" fill="none" stroke="${ART_C.cocoa}" stroke-width="7"/><rect x="0" y="20" width="80" height="10" fill="${ART_C.cocoa}"/></g>
+    <g transform="translate(590 230)"><circle r="44" fill="${ART_C.cream}" stroke="${ART_C.cocoa}" stroke-width="7"/><path d="M0 -32 L10 0 L0 32 L-10 0 Z" fill="${ART_C.caramel}"/><path d="M0 0 L10 0 L0 32 L-10 0 Z" fill="${ART_C.steelD}"/><text x="0" y="-12" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="700" fill="${ART_C.cocoa}" dy="-26">N</text></g>
+    <circle cx="620" cy="60" r="30" fill="${ART_C.gold}"/>`),
+  career: artSvg('A career ladder with a briefcase and an arrow going up', `
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    ${[0,1,2,3,4].map(i=>`<rect x="${150+i*90}" y="${240-i*40}" width="90" height="${20+i*40}" fill="${[ART_C.latte,ART_C.rose,ART_C.caramel,ART_C.milk,ART_C.cocoa][i]}"/>`).join('')}
+    <path d="M170 220 L560 70" stroke="${ART_C.sageD}" stroke-width="10" stroke-linecap="round"/><path d="M560 70 L520 72 M560 70 L546 108" stroke="${ART_C.sageD}" stroke-width="10" stroke-linecap="round"/>
+    ${artBust(510,130,ART_C.skin2,ART_C.steelD,ART_C.ink,0.85)}
+    <g transform="translate(70 170)"><path d="M28 0 V-16 Q28 -24 36 -24 H64 Q72 -24 72 -16 V0" fill="none" stroke="${ART_C.cocoa}" stroke-width="7"/><rect width="100" height="70" rx="10" fill="${ART_C.cocoa}"/><rect x="0" y="26" width="100" height="6" fill="${ART_C.milk}"/><rect x="44" y="22" width="12" height="14" fill="${ART_C.gold}"/></g>
+    <g fill="${ART_C.gold}"><circle cx="620" cy="50" r="8"/><circle cx="650" cy="90" r="5"/><circle cx="600" cy="100" r="5"/></g>`),
+  digital: artSvg('A laptop and a phone with messages and Wi-Fi signals', `
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    <g transform="translate(150 90)"><rect width="260" height="160" rx="10" fill="${ART_C.cocoa}"/><rect x="12" y="12" width="236" height="136" fill="${ART_C.steel}"/>
+      <rect x="28" y="30" width="120" height="14" rx="7" fill="${ART_C.cream}"/><rect x="28" y="56" width="190" height="10" rx="5" fill="${ART_C.paper}" opacity=".8"/><rect x="28" y="76" width="160" height="10" rx="5" fill="${ART_C.paper}" opacity=".8"/><rect x="28" y="100" width="80" height="28" rx="6" fill="${ART_C.caramel}"/>
+      <path d="M-30 160 H290 L270 186 H-10 Z" fill="${ART_C.milk}"/></g>
+    <g transform="translate(470 80)"><rect width="100" height="180" rx="16" fill="${ART_C.ink}"/><rect x="8" y="16" width="84" height="146" rx="6" fill="${ART_C.cream}"/>
+      <rect x="16" y="30" width="54" height="22" rx="11" fill="${ART_C.latte}"/><rect x="30" y="62" width="54" height="22" rx="11" fill="${ART_C.caramel}"/><rect x="16" y="94" width="44" height="22" rx="11" fill="${ART_C.latte}"/></g>
+    <g transform="translate(620 90)" fill="none" stroke="${ART_C.caramel}" stroke-width="7" stroke-linecap="round"><path d="M-30 0 Q0 -26 30 0"/><path d="M-50 -20 Q0 -60 50 -20"/><circle cx="0" cy="18" r="6" fill="${ART_C.caramel}" stroke="none"/></g>
+    ${artBubble(60,40,100,'Hi!')}`),
+  planet: artSvg('The Earth with leaves, a wind turbine and the sun', `
+    ${artGround(250)}
+    <circle cx="300" cy="150" r="110" fill="${ART_C.steel}"/>
+    <path d="M230 80 Q270 60 300 90 Q320 120 290 140 Q260 150 250 180 Q220 160 220 120 Z M330 160 Q370 150 390 180 Q380 220 340 230 Q320 200 330 160 Z M320 60 Q350 50 370 70 Q350 90 330 80 Z" fill="${ART_C.sage}"/>
+    <path d="M380 70 Q450 40 470 100 Q420 120 380 70 Z" fill="${ART_C.sageD}"/><path d="M380 70 L460 96" stroke="${ART_C.cream}" stroke-width="3"/>
+    <g transform="translate(560 100)"><path d="M-6 0 L-12 150 H12 L6 0 Z" fill="${ART_C.cream}" stroke="${ART_C.milk}" stroke-width="2"/>
+      ${[0,120,240].map(a=>`<path d="M0 0 L-8 -6 L-6 -84 Q0 -90 6 -84 L8 -6 Z" fill="${ART_C.cream}" stroke="${ART_C.milk}" stroke-width="2" transform="rotate(${a+15})"/>`).join('')}<circle r="9" fill="${ART_C.milk}"/></g>
+    <circle cx="90" cy="70" r="36" fill="${ART_C.gold}"/>
+    ${artTree(660,200,0.6)}${artTree(110,210,0.7)}`),
+  news: artSvg('A newspaper, a microphone and a TV with breaking news', `
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    <g transform="translate(70 70) rotate(-6)"><rect width="200" height="170" fill="${ART_C.paper}" stroke="${ART_C.milk}" stroke-width="3"/><rect x="16" y="16" width="168" height="26" fill="${ART_C.cocoa}"/>
+      <text x="100" y="35" text-anchor="middle" font-family="Georgia,serif" font-size="17" font-weight="700" fill="${ART_C.cream}">THE NEWS</text>
+      <rect x="16" y="54" width="76" height="60" fill="${ART_C.steel}"/>${[54,68,82,96,110].map(y=>`<rect x="104" y="${y}" width="80" height="6" fill="${ART_C.latte}"/>`).join('')}${[126,140,154].map(y=>`<rect x="16" y="${y}" width="168" height="6" fill="${ART_C.latte}"/>`).join('')}</g>
+    <g transform="translate(330 80)"><rect width="250" height="160" rx="12" fill="${ART_C.cocoa}"/><rect x="14" y="14" width="222" height="132" fill="${ART_C.steelD}"/>
+      <rect x="14" y="110" width="222" height="26" fill="#B5402F"/><text x="125" y="129" text-anchor="middle" font-family="Georgia,serif" font-size="15" font-weight="700" fill="${ART_C.cream}">BREAKING NEWS</text>
+      ${artBust(125,70,ART_C.skin,ART_C.ink,ART_C.cocoa,0.7)}<path d="M100 160 L80 190 M150 160 L170 190" stroke="${ART_C.cocoa}" stroke-width="8"/></g>
+    <g transform="translate(640 130)"><rect x="-18" y="-50" width="36" height="64" rx="18" fill="${ART_C.ink}"/><path d="M-30 0 Q-30 34 0 34 Q30 34 30 0" fill="none" stroke="${ART_C.ink}" stroke-width="6"/><rect x="-4" y="34" width="8" height="40" fill="${ART_C.ink}"/><rect x="-24" y="74" width="48" height="8" rx="4" fill="${ART_C.ink}"/></g>`),
+  health: artSvg('Mind and body: meditation, a running shoe, water and fruit', `
+    ${artGround(250)}
+    <circle cx="300" cy="150" r="120" fill="${ART_C.blob}"/>
+    <g transform="translate(300 150)"><circle cx="0" cy="-54" r="26" fill="${ART_C.skin}"/><path d="M-26 -60 Q-26 -88 0 -86 Q26 -88 26 -60 Q18 -74 0 -74 Q-18 -74 -26 -60 Z" fill="${ART_C.cocoa}"/>
+      <path d="M-34 -20 Q0 -36 34 -20 L40 50 H-40 Z" fill="${ART_C.sageD}"/><path d="M-34 -14 Q-70 20 -40 44 M34 -14 Q70 20 40 44" fill="none" stroke="${ART_C.skin}" stroke-width="13" stroke-linecap="round"/>
+      <path d="M-90 80 Q-40 40 0 70 Q40 40 90 80 Q40 96 0 84 Q-40 96 -90 80 Z" fill="${ART_C.steelD}"/></g>
+    <g fill="${ART_C.gold}" opacity=".8">${[[230,60],[370,60],[300,30]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="6"/>`).join('')}</g>
+    <g transform="translate(470 200)"><path d="M0 40 V0 Q30 -6 50 18 L110 30 Q130 34 130 50 V56 H0 Z" fill="${ART_C.caramel}"/><rect x="0" y="50" width="130" height="10" rx="4" fill="${ART_C.cream}"/>${[30,46,62].map(x=>`<line x1="${x}" y1="10" x2="${x+10}" y2="24" stroke="${ART_C.cream}" stroke-width="3"/>`).join('')}</g>
+    <g transform="translate(110 150)"><path d="M0 0 H50 L44 100 H6 Z" fill="${ART_C.steel}" opacity=".7" stroke="${ART_C.steelD}" stroke-width="3"/><path d="M4 30 H46 L44 100 H6 Z" fill="${ART_C.steelD}" opacity=".45"/></g>
+    <g transform="translate(640 150)"><circle r="30" fill="${ART_C.sage}"/><path d="M0 -28 Q4 -44 16 -46" fill="none" stroke="${ART_C.milk}" stroke-width="4"/></g>`)
+};
+/* ---------- Business: сцены к юнитам ---------- */
+function bzDesk(x,y){ return `<g transform="translate(${x} ${y})"><rect x="0" y="0" width="240" height="14" rx="4" fill="${ART_C.milk}"/><rect x="14" y="14" width="12" height="70" fill="${ART_C.cocoa}"/><rect x="214" y="14" width="12" height="70" fill="${ART_C.cocoa}"/></g>`; }
+function bzLaptop(x,y,s=1){ return `<g transform="translate(${x} ${y}) scale(${s})"><rect x="0" y="-60" width="90" height="60" rx="5" fill="${ART_C.cocoa}"/><rect x="6" y="-54" width="78" height="48" fill="${ART_C.steel}"/><path d="M-12 0 H102 L96 8 H-6 Z" fill="${ART_C.milk}"/></g>`; }
+function bzChart(x,y,w,h,up=true){ const pts=up?[[0,.85],[.25,.6],[.5,.68],[.75,.35],[1,.12]]:[[0,.2],[.25,.4],[.5,.3],[.75,.65],[1,.85]];
+  return `<g transform="translate(${x} ${y})"><rect width="${w}" height="${h}" rx="8" fill="${ART_C.cream}" stroke="${ART_C.milk}" stroke-width="3"/>
+  ${[1,2,3].map(i=>`<line x1="14" y1="${h*i/4}" x2="${w-14}" y2="${h*i/4}" stroke="${ART_C.latte}" stroke-width="2"/>`).join('')}
+  <polyline points="${pts.map(([a,b])=>`${14+a*(w-28)},${10+b*(h-20)}`).join(' ')}" fill="none" stroke="${up?ART_C.sageD:'#B5402F'}" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/></g>`; }
+const BIZ_ART = {
+  office: artSvg('A modern office building with a worker at a desk', `
+    <g transform="translate(470 30)"><rect width="190" height="240" fill="${ART_C.steelD}"/>${[0,1,2,3,4,5].map(r=>[0,1,2,3].map(c=>`<rect x="${14+c*44}" y="${14+r*38}" width="30" height="24" fill="${ART_C.gold}" opacity="${(r*3+c)%4?0.85:0.35}"/>`).join('')).join('')}</g>
+    <circle cx="230" cy="160" r="130" fill="${ART_C.blob}"/>
+    ${artBust(200,150,ART_C.skin,ART_C.steelD,ART_C.cocoa,1.2)}${bzDesk(110,220)}${bzLaptop(240,220,0.9)}
+    <g transform="translate(130 200)"><rect width="28" height="20" rx="3" fill="${ART_C.cream}"/><path d="M28 6 Q38 6 36 14 Q34 20 28 18" fill="none" stroke="${ART_C.cream}" stroke-width="4"/></g>`),
+  team: artSvg('A team meeting around a table', `
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    ${artBust(220,150,ART_C.skin,ART_C.caramel,ART_C.cocoa,1)}${artBust(360,130,ART_C.skin2,ART_C.steelD,ART_C.ink,1)}${artBust(500,150,ART_C.skin3,ART_C.sageD,ART_C.milk,1)}
+    <ellipse cx="360" cy="235" rx="250" ry="38" fill="${ART_C.milk}"/><ellipse cx="360" cy="228" rx="250" ry="34" fill="${ART_C.caramel}"/>
+    <rect x="250" y="210" width="60" height="16" rx="3" fill="${ART_C.cream}"/><rect x="420" y="212" width="50" height="14" rx="3" fill="${ART_C.cream}"/>
+    <g transform="translate(600 50)"><rect width="90" height="66" rx="6" fill="${ART_C.cream}" stroke="${ART_C.milk}" stroke-width="3"/><rect x="12" y="14" width="40" height="8" fill="${ART_C.latte}"/><rect x="12" y="30" width="66" height="8" fill="${ART_C.latte}"/><rect x="12" y="46" width="50" height="8" fill="${ART_C.latte}"/></g>`),
+  deal: artSvg('Two business people shaking hands', `
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    ${artBust(200,160,ART_C.skin,ART_C.steelD,ART_C.cocoa,1.3)}${artBust(520,160,ART_C.skin2,ART_C.cocoa,ART_C.ink,1.3)}
+    <path d="M250 210 Q300 190 340 200" fill="none" stroke="${ART_C.steelD}" stroke-width="26" stroke-linecap="round"/>
+    <path d="M470 210 Q420 190 380 200" fill="none" stroke="${ART_C.cocoa}" stroke-width="26" stroke-linecap="round"/>
+    <ellipse cx="360" cy="200" rx="34" ry="20" fill="${ART_C.skin}"/><path d="M340 196 Q360 186 384 196" fill="none" stroke="${ART_C.skin2}" stroke-width="6"/>
+    <g fill="${ART_C.gold}">${[[330,90],[360,70],[390,90]].map(([x,y])=>`<path d="M${x} ${y-12} L${x+4} ${y-3} L${x+13} ${y} L${x+4} ${y+3} L${x} ${y+12} L${x-4} ${y+3} L${x-13} ${y} L${x-4} ${y-3} Z"/>`).join('')}</g>`),
+  money: artSvg('Coins, banknotes and a calculator', `
+    ${artGround(250)}<circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    ${[0,1,2,3,4].map(i=>`<ellipse cx="200" cy="${240-i*16}" rx="56" ry="14" fill="${ART_C.gold}" stroke="${ART_C.caramel}" stroke-width="3"/>`).join('')}
+    ${[0,1,2].map(i=>`<ellipse cx="290" cy="${244-i*16}" rx="46" ry="12" fill="${ART_C.gold}" stroke="${ART_C.caramel}" stroke-width="3"/>`).join('')}
+    <g transform="translate(370 120) rotate(-8)"><rect width="170" height="84" rx="8" fill="${ART_C.sage}"/><rect x="10" y="10" width="150" height="64" rx="5" fill="none" stroke="${ART_C.cream}" stroke-width="3"/><circle cx="85" cy="42" r="20" fill="${ART_C.sageD}"/><text x="85" y="50" text-anchor="middle" font-family="Georgia,serif" font-size="24" font-weight="700" fill="${ART_C.cream}">$</text></g>
+    <g transform="translate(570 120)"><rect width="100" height="140" rx="12" fill="${ART_C.cocoa}"/><rect x="12" y="12" width="76" height="30" rx="4" fill="${ART_C.steel}"/>${[0,1,2].map(r=>[0,1,2].map(c=>`<rect x="${12+c*27}" y="${54+r*27}" width="20" height="20" rx="4" fill="${c===2&&r===2?ART_C.caramel:ART_C.latte}"/>`).join('')).join('')}</g>`),
+  growth: artSvg('A growing chart and an upward arrow', `
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>${bzChart(150,60,300,190,true)}
+    ${[0,1,2,3].map(i=>`<rect x="${490+i*44}" y="${230-(i+1)*38}" width="32" height="${(i+1)*38}" fill="${[ART_C.latte,ART_C.rose,ART_C.caramel,ART_C.cocoa][i]}"/>`).join('')}
+    <path d="M480 120 L650 40" stroke="${ART_C.sageD}" stroke-width="8" stroke-linecap="round"/><path d="M650 40 L620 40 M650 40 L640 68" stroke="${ART_C.sageD}" stroke-width="8" stroke-linecap="round"/>`),
+  idea: artSvg('A bright idea: a light bulb and sticky notes', `
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    <g transform="translate(360 130)"><circle r="70" fill="${ART_C.gold}"/><circle r="70" fill="${ART_C.cream}" opacity=".25"/><rect x="-30" y="62" width="60" height="22" rx="4" fill="${ART_C.steelD}"/><rect x="-24" y="86" width="48" height="12" rx="4" fill="${ART_C.steelD}"/>
+      <path d="M-20 10 Q0 -30 20 10 M0 -6 V56" fill="none" stroke="${ART_C.caramel}" stroke-width="5"/>
+      ${[0,40,80,120,160,200,240,280,320].map(a=>{const r=a*Math.PI/180;return `<line x1="${92*Math.cos(r)}" y1="${92*Math.sin(r)}" x2="${112*Math.cos(r)}" y2="${112*Math.sin(r)}" stroke="${ART_C.gold}" stroke-width="6" stroke-linecap="round"/>`}).join('')}</g>
+    ${[[90,60,ART_C.gold],[130,170,ART_C.rose],[560,70,ART_C.sage],[590,180,ART_C.latte]].map(([x,y,c],i)=>`<g transform="translate(${x} ${y}) rotate(${i%2?6:-6})"><rect width="76" height="70" fill="${c}"/><rect x="10" y="16" width="50" height="6" fill="${ART_C.cream}" opacity=".7"/><rect x="10" y="30" width="40" height="6" fill="${ART_C.cream}" opacity=".7"/></g>`).join('')}`),
+  product: artSvg('A new product in a box with a price tag', `
+    ${artGround(250)}<circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    <g transform="translate(250 90)"><path d="M0 40 L110 0 L220 40 L110 80 Z" fill="${ART_C.latte}"/><path d="M0 40 L110 80 V180 L0 140 Z" fill="${ART_C.caramel}"/><path d="M220 40 L110 80 V180 L220 140 Z" fill="${ART_C.milk}"/>
+      <path d="M55 20 L165 60 V90" fill="none" stroke="${ART_C.gold}" stroke-width="14"/></g>
+    <g transform="translate(520 90) rotate(14)"><path d="M0 0 H90 L120 30 L90 60 H0 Z" fill="${ART_C.gold}"/><circle cx="96" cy="30" r="7" fill="${ART_C.bg}"/><text x="44" y="40" text-anchor="middle" font-family="Georgia,serif" font-size="26" font-weight="700" fill="${ART_C.cocoa}">NEW</text></g>
+    <g fill="${ART_C.gold}">${[[160,90],[190,60],[600,220]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="7"/>`).join('')}</g>`),
+  travel: artSvg('Business travel: a plane, a suitcase and a globe', `
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    <g transform="translate(470 160)"><circle r="80" fill="${ART_C.steel}"/><path d="M-60 -40 Q-20 -60 10 -40 Q20 -10 -10 0 Q-40 10 -50 40 Q-80 10 -60 -40 Z M20 20 Q50 10 66 30 Q56 60 20 66 Z" fill="${ART_C.sage}"/><ellipse rx="80" ry="30" fill="none" stroke="${ART_C.cream}" stroke-width="2" opacity=".6"/><line x1="0" y1="-80" x2="0" y2="80" stroke="${ART_C.cream}" stroke-width="2" opacity=".6"/></g>
+    <g transform="translate(200 140)"><rect x="40" y="-30" width="60" height="30" rx="10" fill="none" stroke="${ART_C.cocoa}" stroke-width="10"/><rect width="140" height="130" rx="14" fill="${ART_C.cocoa}"/><rect x="0" y="40" width="140" height="10" fill="${ART_C.milk}"/><circle cx="30" cy="138" r="10" fill="${ART_C.ink}"/><circle cx="110" cy="138" r="10" fill="${ART_C.ink}"/></g>
+    <g transform="translate(590 60) rotate(-20)"><path d="M-50 0 Q-50 -10 -34 -10 H40 Q58 -10 64 0 Q58 10 40 10 H-34 Q-50 10 -50 0 Z" fill="${ART_C.cream}" stroke="${ART_C.steelD}" stroke-width="3"/><path d="M-4 -8 L-26 -46 L-10 -46 L24 -8 Z M-4 8 L-26 46 L-10 46 L24 8 Z" fill="${ART_C.steelD}"/></g>`),
+  event: artSvg('A business event: a stage, a banner and a calendar', `
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    <rect x="140" y="50" width="300" height="70" rx="8" fill="${ART_C.caramel}"/><text x="290" y="96" text-anchor="middle" font-family="Georgia,serif" font-size="30" font-weight="700" fill="${ART_C.cream}">CONFERENCE</text>
+    <rect x="160" y="180" width="260" height="20" fill="${ART_C.milk}"/>${artBust(290,150,ART_C.skin,ART_C.steelD,ART_C.cocoa,0.9)}
+    ${[0,1,2,3,4].map(i=>`<circle cx="${180+i*55}" cy="250" r="20" fill="${ART_C.cocoa}" opacity=".8"/>`).join('')}
+    <g transform="translate(520 120)"><rect width="130" height="120" rx="8" fill="${ART_C.cream}" stroke="${ART_C.milk}" stroke-width="3"/><rect width="130" height="28" rx="8" fill="${ART_C.cocoa}"/><text x="65" y="92" text-anchor="middle" font-family="Georgia,serif" font-size="48" font-weight="700" fill="${ART_C.caramel}">15</text></g>`),
+  phone: artSvg('A phone call at work with a headset', `
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    ${artBust(300,170,ART_C.skin3,ART_C.rose,ART_C.milk,1.4)}
+    <path d="M262 140 Q262 92 300 92 Q338 92 338 140" fill="none" stroke="${ART_C.ink}" stroke-width="8"/><rect x="252" y="132" width="18" height="30" rx="6" fill="${ART_C.ink}"/><rect x="330" y="132" width="18" height="30" rx="6" fill="${ART_C.ink}"/><path d="M262 160 Q270 190 296 186" fill="none" stroke="${ART_C.ink}" stroke-width="4"/>
+    <g transform="translate(470 80)"><rect width="110" height="190" rx="18" fill="${ART_C.ink}"/><rect x="8" y="18" width="94" height="154" rx="8" fill="${ART_C.cream}"/><circle cx="55" cy="70" r="26" fill="${ART_C.latte}"/><circle cx="55" cy="140" r="16" fill="${ART_C.sageD}"/><path d="M47 136 Q55 130 63 136" fill="none" stroke="${ART_C.cream}" stroke-width="4"/></g>
+    <g stroke="${ART_C.caramel}" stroke-width="5" fill="none" stroke-linecap="round"><path d="M600 110 Q616 130 600 150"/><path d="M616 96 Q640 130 616 164"/></g>`),
+  email: artSvg('Business emails: an envelope and an inbox on a laptop', `
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    <g transform="translate(150 90)"><rect width="260" height="160" rx="10" fill="${ART_C.cocoa}"/><rect x="12" y="12" width="236" height="136" fill="${ART_C.paper}"/>
+      ${[0,1,2,3].map(i=>`<rect x="24" y="${26+i*30}" width="20" height="20" rx="4" fill="${i===0?ART_C.caramel:ART_C.latte}"/><rect x="54" y="${30+i*30}" width="${150-i*20}" height="10" rx="5" fill="${ART_C.latte}"/>`).join('')}
+      <path d="M-30 160 H290 L270 186 H-10 Z" fill="${ART_C.milk}"/></g>
+    <g transform="translate(470 70) rotate(8)"><rect width="190" height="120" rx="8" fill="${ART_C.cream}" stroke="${ART_C.milk}" stroke-width="4"/><path d="M0 4 L95 70 L190 4" fill="none" stroke="${ART_C.milk}" stroke-width="4"/><circle cx="170" cy="0" r="18" fill="#B5402F"/><text x="170" y="7" text-anchor="middle" font-family="Georgia,serif" font-size="18" font-weight="700" fill="${ART_C.cream}">1</text></g>`),
+  present: artSvg('A business presentation with a screen and a pointer', `
+    <rect x="200" y="30" width="360" height="200" rx="8" fill="${ART_C.cream}" stroke="${ART_C.milk}" stroke-width="4"/>${bzChart(230,56,180,130,true)}
+    <g transform="translate(440 70)">${[0,1,2].map(i=>`<circle cx="10" cy="${16+i*36}" r="7" fill="${ART_C.caramel}"/><rect x="26" y="${10+i*36}" width="70" height="12" rx="6" fill="${ART_C.latte}"/>`).join('')}</g>
+    <line x1="380" y1="230" x2="380" y2="290" stroke="${ART_C.cocoa}" stroke-width="6"/>
+    ${artBust(110,200,ART_C.skin2,ART_C.steelD,ART_C.ink,1.2)}<path d="M150 220 L250 150" stroke="${ART_C.cocoa}" stroke-width="5" stroke-linecap="round"/>
+    ${[0,1,2].map(i=>`<circle cx="${590+i*44}" cy="270" r="22" fill="${ART_C.cocoa}" opacity=".8"/>`).join('')}`),
+  compete: artSvg('Competition and strategy: a chess board', `
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    <g transform="translate(220 160) skewX(-20)">${[0,1,2,3].map(r=>[0,1,2,3,4,5].map(c=>`<rect x="${c*48}" y="${r*26}" width="48" height="26" fill="${(r+c)%2?ART_C.milk:ART_C.cream}"/>`).join('')).join('')}</g>
+    <g transform="translate(300 150)"><path d="M-22 0 H22 L16 -14 H-16 Z M-12 -14 L-8 -60 H8 L12 -14 Z" fill="${ART_C.cocoa}"/><circle cx="0" cy="-70" r="14" fill="${ART_C.cocoa}"/><path d="M-8 -86 H8 M0 -94 V-78" stroke="${ART_C.cocoa}" stroke-width="5"/></g>
+    <g transform="translate(450 160)"><path d="M-22 0 H22 L16 -14 H-16 Z M-12 -14 L-8 -46 H8 L12 -14 Z" fill="${ART_C.cream}" stroke="${ART_C.milk}" stroke-width="3"/><path d="M-14 -46 Q-20 -80 8 -86 Q24 -74 14 -46 Z" fill="${ART_C.cream}" stroke="${ART_C.milk}" stroke-width="3"/></g>
+    <g transform="translate(560 60)"><circle r="40" fill="none" stroke="#B5402F" stroke-width="8"/><circle r="24" fill="none" stroke="#B5402F" stroke-width="8"/><circle r="8" fill="#B5402F"/><line x1="-60" y1="40" x2="0" y2="0" stroke="${ART_C.cocoa}" stroke-width="5"/></g>`),
+  career: artSvg('Career and job seeking: a CV, a briefcase and steps up', `
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    ${[0,1,2,3].map(i=>`<rect x="${380+i*70}" y="${250-(i+1)*40}" width="70" height="${(i+1)*40}" fill="${[ART_C.latte,ART_C.rose,ART_C.caramel,ART_C.cocoa][i]}"/>`).join('')}
+    ${artBust(615,58,ART_C.skin2,ART_C.steelD,ART_C.ink,0.7)}
+    <g transform="translate(120 50) rotate(-5)"><rect width="170" height="210" rx="6" fill="${ART_C.paper}" stroke="${ART_C.milk}" stroke-width="3"/><text x="85" y="36" text-anchor="middle" font-family="Georgia,serif" font-size="24" font-weight="700" fill="${ART_C.cocoa}">CV</text>
+      <circle cx="40" cy="78" r="22" fill="${ART_C.latte}"/>${[64,82,100].map(y=>`<rect x="72" y="${y}" width="80" height="8" rx="4" fill="${ART_C.latte}"/>`).join('')}${[134,152,170,188].map(y=>`<rect x="20" y="${y}" width="130" height="8" rx="4" fill="${ART_C.latte}"/>`).join('')}</g>
+    <g transform="translate(300 190)"><path d="M28 0 V-16 Q28 -24 36 -24 H64 Q72 -24 72 -16 V0" fill="none" stroke="${ART_C.cocoa}" stroke-width="7"/><rect width="100" height="66" rx="10" fill="${ART_C.cocoa}"/><rect x="44" y="22" width="12" height="14" fill="${ART_C.gold}"/></g>`),
+  service: artSvg('Customer service: a happy customer and a smiling assistant', `
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    ${artBust(230,170,ART_C.skin,ART_C.caramel,ART_C.cocoa,1.3)}${artBust(490,170,ART_C.skin3,ART_C.sageD,ART_C.milk,1.3)}
+    <rect x="130" y="230" width="460" height="60" fill="${ART_C.milk}"/><rect x="130" y="226" width="460" height="10" fill="${ART_C.cocoa}"/>
+    ${artBubble(255,40,210,'How can I help?')}
+    <g transform="translate(600 60)">${[0,1,2,3,4].map(i=>`<path transform="translate(${i*22} 0)" d="M0 -10 L3 -3 L10 -3 L4 2 L6 10 L0 5 L-6 10 L-4 2 L-10 -3 L-3 -3 Z" fill="${ART_C.gold}"/>`).join('')}</g>`),
+  global: artSvg('A global company: a world map with connected offices', `
+    <ellipse cx="360" cy="150" rx="300" ry="120" fill="${ART_C.steel}" opacity=".5"/>
+    <path d="M120 100 Q170 70 220 90 Q240 130 200 150 Q160 170 130 150 Z M300 80 Q360 60 400 90 Q390 130 340 140 Q300 120 300 80 Z M450 110 Q520 80 590 110 Q600 160 530 180 Q470 170 450 110 Z M240 180 Q280 170 300 200 Q290 240 260 250 Q230 220 240 180 Z" fill="${ART_C.sage}"/>
+    ${[[180,115],[350,105],[530,140],[270,210]].map(([x,y])=>`<g transform="translate(${x} ${y})"><path d="M0 0 Q-16 -18 -16 -30 A16 16 0 0 1 16 -30 Q16 -18 0 0 Z" fill="${ART_C.caramel}"/><circle cx="0" cy="-30" r="6" fill="${ART_C.cream}"/></g>`).join('')}
+    <path d="M180 85 Q265 40 350 75 Q440 60 530 110 M350 75 Q300 140 270 180" fill="none" stroke="${ART_C.cocoa}" stroke-width="3" stroke-dasharray="8 7"/>`)
+};
+const BIZ_RULES = [
+  [/email/i,'email'],[/phone|call/i,'phone'],[/present/i,'present'],[/negotiat|contact|deal|agree/i,'deal'],
+  [/team|project|leader|etiquette|meeting|motivat/i,'team'],[/money|price|pay|insur|financ|cost|budget|salary/i,'money'],
+  [/trend|data|success|productiv|future|develop|result|growth/i,'growth'],[/idea|creativ|solution|innovat/i,'idea'],
+  [/product|market|image|brand|selling|sale/i,'product'],[/travel|trip/i,'travel'],[/event|activit|conference/i,'event'],
+  [/compet|strateg/i,'compete'],[/career|job|recruit|cv|interview/i,'career'],[/service|customer|client/i,'service'],
+  [/location|outsourc|global|international|world/i,'global'],[/compan|office|firm|business/i,'office']
+];
+function bizArtFor(title){ for(const [re,k] of BIZ_RULES){ if(re.test(title||'')) return BIZ_ART[k]; } return BIZ_ART.office; }
+
+</script>
+<script>
+/* ================= DATA ================= */
+
+const VOCAB = {
+  email: {
+    title: "Email",
+    intro: "Phrases and vocabulary for writing clear, professional emails: openings, structure, requests and closings.",
+    reading: {
+      type:"email",
+      label:"Reading — a real exchange",
+      messages:[
+        { from:"Anna Kowalski <a.kowalski@nordictex.com>", to:"Sales Team <sales@baltic-supplies.com>", subject:"Delay in Order #4521",
+          body:[
+            "Dear Sales Team,",
+            "I am writing to follow up on our order #4521, which was due to arrive on 3 June. Unfortunately, we still have not received the shipment, and this delay is starting to affect our production schedule.",
+            "Could you please provide an update on the current status of the order? We would appreciate it if you could expedite the delivery, given the impact this is having on our operations.",
+            "We look forward to hearing from you as soon as possible.",
+            "Kind regards,<br>Anna Kowalski<br>Procurement Manager, Nordic Tex"
+          ]},
+        { from:"Sales Team <sales@baltic-supplies.com>", to:"Anna Kowalski <a.kowalski@nordictex.com>", subject:"RE: Delay in Order #4521",
+          body:[
+            "Dear Ms Kowalski,",
+            "Thank you for your email, and please accept our apologies for the inconvenience caused by this delay.",
+            "We have looked into the matter and found a discrepancy in the shipping documents, which has now been resolved. Your order has been expedited and is scheduled to arrive within three working days.",
+            "We regret any disruption this may have caused to your production schedule. Please do not hesitate to contact us if you have any further questions.",
+            "Best regards,<br>Marek Nowak<br>Customer Service, Baltic Supplies"
+          ]}
+      ]
+    },
+    wordbank:{
+      words:["expedite","discrepancy","apologies","hesitate","regret","convenience","procurement","inconvenience"],
+      items:[
+        ["Could you please ___ the delivery, given the impact on our operations?", "expedite"],
+        ["We found a ___ in the shipping documents, which has now been resolved.", "discrepancy"],
+        ["Please accept our ___ for the delay.", "apologies"],
+        ["Please do not ___ to contact us if you have any questions.", "hesitate"],
+        ["We ___ any disruption this may have caused.", "regret"],
+        ["Please reply at your earliest ___.", "convenience"],
+        ["Anna Kowalski works in the ___ department.", "procurement"],
+        ["We are sorry for the ___ caused by this delay.", "inconvenience"],
+      ]
+    },
+    sets: [
+      { title:"Opening lines", pairs:[
+        ["Dear Mr Collins","Formal greeting to a named person"],
+        ["To whom it may concern","Formal greeting when you don't know the reader"],
+        ["Hi Tom,","Informal greeting to a colleague"],
+        ["I hope this email finds you well","Polite opening phrase before the main point"],
+        ["Thank you for your email of 10 May","Referring to an email you received"],
+        ["Further to our phone conversation","Referring to an earlier phone call"],
+      ]},
+      { title:"Email structure & parts", pairs:[
+        ["Subject line","A short summary of the email's topic"],
+        ["CC","A copy sent to someone who needs to see the email"],
+        ["BCC","A hidden copy — recipients can't see each other"],
+        ["Attachment","A file added to the email"],
+        ["Signature","Your name and contact details at the end"],
+        ["Reply all","Sending your answer to everyone on the thread"],
+      ]},
+      { title:"Making requests", pairs:[
+        ["Could you possibly send me the invoice?","A polite request"],
+        ["I would appreciate it if you could confirm.","A formal request"],
+        ["Please find attached the report.","Referring to a file you are sending"],
+        ["I look forward to hearing from you.","Polite closing, expecting a reply"],
+        ["Would you mind confirming the date?","A polite request for confirmation"],
+        ["Let me know if you have any questions.","Offering further help"],
+      ]},
+      { title:"Closing phrases", pairs:[
+        ["Best regards,","Common, neutral formal closing"],
+        ["Kind regards,","Common formal closing, slightly warmer"],
+        ["Yours sincerely,","Very formal closing when you know the name"],
+        ["Yours faithfully,","Very formal closing when you don't know the name"],
+        ["Looking forward to your reply.","Closing that shows you expect a response"],
+        ["Best wishes,","Semi-formal, friendly closing"],
+      ]},
+      { title:"Useful verbs & phrasal verbs", pairs:[
+        ["forward an email","Send an email you received on to someone else"],
+        ["attach a file","Add a file to an email"],
+        ["follow up","Send another email to check on something"],
+        ["CC someone in","Add someone as a copy recipient"],
+        ["get back to someone","Reply to someone after some time"],
+        ["flag an email","Mark an email as important"],
+      ]},
+      { title:"Advanced vocabulary I", pairs:[
+        ["We regret to inform you that...","Formal phrase for delivering bad news"],
+        ["Please do not hesitate to contact us.","Formal offer of further help"],
+        ["At your earliest convenience","As soon as possible (formal)"],
+        ["We would like to bring to your attention...","Formal way to point something out"],
+        ["In light of the recent delay...","Formal way to refer to a reason or cause"],
+        ["Please accept our apologies for any inconvenience caused.","Formal apology"],
+      ]},
+      { title:"Advanced vocabulary II", pairs:[
+        ["an outstanding balance","Money that is still owed"],
+        ["to expedite something","To make something happen faster"],
+        ["to reschedule","To arrange a new time for something"],
+        ["a discrepancy","A difference between things that should match"],
+        ["to escalate an issue","To pass a problem to someone more senior"],
+        ["a courtesy copy","Another way of describing a CC"],
+      ]},
+    ],
+    finalReview:{
+      reading:{
+        type:"dialogue",
+        label:"Dialogue — catching up on the order",
+        lines:[
+          ["Anna","Hi Tomasz, have you seen the reply from Baltic Supplies yet?"],
+          ["Tomasz","Not yet, I was just about to check. Did they get back to us?"],
+          ["Anna","Yes, they replied to my email this morning. They found a discrepancy in the shipping documents, but it's sorted now."],
+          ["Tomasz","Good. Did they say when the order will arrive?"],
+          ["Anna","They've expedited it — it should be dispatched within three working days."],
+          ["Tomasz","That's a relief. Could you forward me the email so I have it on file?"],
+          ["Anna","Sure, I'll CC you in on my reply as well, so you get the courtesy copy."],
+          ["Tomasz","Thanks. Did you flag it as urgent?"],
+          ["Anna","I did, and I attached the original invoice too, in case they need it."],
+          ["Tomasz","Perfect. Is there an outstanding balance we still need to settle?"],
+          ["Anna","No, that was cleared last month. I just need to follow up once more to get written confirmation."],
+          ["Tomasz","Good idea — better to have it in writing. What did you write in the subject line?"],
+          ["Anna","Just 'RE: Delay in Order #4521', so it's easy to find in the thread."],
+          ["Tomasz","Makes sense. And did you sign off formally, since you don't know the new contact well?"],
+          ["Anna","Yes — I used 'Kind regards' and mentioned we'd appreciate a reply at their earliest convenience."],
+          ["Tomasz","Sounds like you've covered everything. Let me know if you need to escalate it further."],
+          ["Anna","Will do. Thanks, Tomasz."],
+        ]
+      },
+      wordOrder:{
+        instr:"Put the words in the correct order to rebuild the sentence from the dialogue.",
+        items:[
+          "Have you seen the reply from Baltic Supplies yet?",
+          "They found a discrepancy in the shipping documents.",
+          "It should be dispatched within three working days.",
+          "Could you forward me the email?",
+          "I'll CC you in on my reply.",
+          "I attached the original invoice too.",
+          "I need to follow up once more.",
+          "Let me know if you need to escalate it further.",
+        ]
+      }
+    }
+  },
+  phone: {
+    title: "Phone calls",
+    intro: "Language for making and answering business calls, holding, clarifying, taking messages and ending a call politely.",
+    reading:{
+      type:"dialogue",
+      label:"Dialogue — a call about a delayed order",
+      lines:[
+        ["Sara","Good morning, Baltic Supplies, Sara speaking. How can I help you?"],
+        ["Tom","Hi, this is Tom Bakker from Rotterdam Logistics. Could I speak to someone in the shipping department, please?"],
+        ["Sara","Of course, Mr Bakker. Could you tell me what it's regarding?"],
+        ["Tom","I'm calling about a delayed shipment — order number 4521."],
+        ["Sara","I see. Let me put you through... I'm afraid the line is busy at the moment. Would you like to hold, or shall I take a message?"],
+        ["Tom","I'll hold, thanks."],
+        ["Sara","Sorry to keep you waiting. I'm connecting you now."],
+        ["Marek","Hello, this is Marek speaking."],
+        ["Tom","Hi Marek, this is Tom Bakker. I'm calling about order 4521 — we still haven't received it."],
+        ["Marek","I'm sorry about that. Could you give me a moment to check the system?"],
+        ["Tom","Sure, take your time."],
+        ["Marek","Thanks for holding. It looks like there was a discrepancy in the paperwork, but it's been sorted out. The order should be dispatched today."],
+        ["Tom","That's good to hear. Could you send me a confirmation once it's dispatched?"],
+        ["Marek","Of course, I'll email you as soon as it leaves the warehouse."],
+        ["Tom","Great, thanks for your help."],
+        ["Marek","You're welcome. Is there anything else I can help with?"],
+        ["Tom","No, that's all. Thanks again."],
+        ["Marek","Thanks for calling, have a good day."],
+      ]
+    },
+    wordbank:{
+      words:["put you through","hold the line","dispatched","discrepancy","connecting","confirmation","sorted out","paperwork"],
+      items:[
+        ["One moment, please. Let me ___ to the shipping department.", "put you through"],
+        ["Could you ___ for a moment?", "hold the line"],
+        ["The order should be ___ today.", "dispatched"],
+        ["There was a ___ in the paperwork.", "discrepancy"],
+        ["I'm ___ you now.", "connecting"],
+        ["Could you send me a ___ once it's dispatched?", "confirmation"],
+        ["It's been ___, don't worry.", "sorted out"],
+        ["There was a mistake in the ___.", "paperwork"],
+      ]
+    },
+    sets: [
+      { title:"Starting a call", pairs:[
+        ["Good morning, ABC Company, how can I help you?","Answering a call at work"],
+        ["Could I speak to Mr Jones, please?","Asking for a specific person"],
+        ["Who's calling, please?","Asking who is on the phone"],
+        ["Speaking.","Saying that you are the person being asked for"],
+        ["I'm calling about the March invoice.","Explaining the reason for your call"],
+        ["Is this a good time to talk?","Checking if the person is free"],
+      ]},
+      { title:"Connecting & holding", pairs:[
+        ["Please hold the line.","Asking someone to wait"],
+        ["I'll put you through.","Connecting the caller to another person"],
+        ["I'm afraid the line is busy.","The person is already on another call"],
+        ["Can you hold for a moment?","Asking someone to wait briefly"],
+        ["I'm transferring your call.","Sending the call to another extension"],
+        ["He's not at his desk right now.","The person is away from their phone"],
+      ]},
+      { title:"Understanding & clarifying", pairs:[
+        ["Could you repeat that, please?","Asking someone to say it again"],
+        ["Sorry, I didn't catch that.","You didn't hear or understand"],
+        ["Could you speak a little more slowly?","Asking for a slower pace"],
+        ["Let me just check that.","Confirming information"],
+        ["Could you spell that for me?","Asking for the spelling of a name"],
+        ["Did you say 15 or 50?","Clarifying a number you heard"],
+      ]},
+      { title:"Leaving & taking messages", pairs:[
+        ["Can I take a message?","Offering to note information for someone else"],
+        ["Could you ask her to call me back?","Requesting a return call"],
+        ["I'll pass on the message.","Promising to give the message to someone"],
+        ["Could I leave a message?","Asking to leave information"],
+        ["He's out of the office today.","The person is not available"],
+        ["What's the best number to reach you?","Asking for a contact number"],
+      ]},
+      { title:"Ending a call", pairs:[
+        ["Thanks for calling.","Polite closing when you receive a call"],
+        ["I'll get back to you by Friday.","Promising a follow-up"],
+        ["Is there anything else I can help with?","Checking before ending the call"],
+        ["Talk to you soon.","Informal closing"],
+        ["Thanks for your time.","Polite closing"],
+        ["I look forward to our next call.","Formal, positive closing"],
+      ]},
+      { title:"Advanced vocabulary I", pairs:[
+        ["to be put on hold","To wait on the phone while still connected"],
+        ["to get cut off","When a call suddenly ends unexpectedly"],
+        ["static on the line","Noise that makes it hard to hear"],
+        ["a landline","A traditional phone line, not a mobile"],
+        ["a conference call","A call with several people at once"],
+        ["to dial an extension","To call a specific internal number"],
+      ]},
+      { title:"Advanced vocabulary II", pairs:[
+        ["to screen calls","To check who is calling before answering"],
+        ["to patch someone through","To connect a caller to another person"],
+        ["a dropped call","A call that ends unexpectedly due to a technical problem"],
+        ["to leave a voicemail","To record a message when no one answers"],
+        ["an automated menu","A recorded system that gives phone options"],
+        ["to double-check","To confirm something again to be sure"],
+      ]},
+    ],
+    finalReview:{
+      reading:{
+        type:"dialogue",
+        label:"Dialogue — taking a message",
+        lines:[
+          ["Ivan","Good afternoon, Baltic Supplies, Ivan speaking. How can I help you?"],
+          ["Lena","Hi, this is Lena Moroz from Nordic Tex. Could I speak to Marek Nowak, please?"],
+          ["Ivan","I'm afraid he's not at his desk right now. Can I take a message?"],
+          ["Lena","Yes, please. Could you ask him to call me back about the June invoice?"],
+          ["Ivan","Of course. Sorry, I didn't catch your surname. Could you spell that for me?"],
+          ["Lena","Sure, it's M-O-R-O-Z. Moroz."],
+          ["Ivan","Thank you. And what's the best number to reach you?"],
+          ["Lena","My direct line is 022 415 8060... Sorry, can you hear me? I think I'm getting cut off."],
+          ["Ivan","Yes, there's some static on the line. Did you say 8060 or 8016?"],
+          ["Lena","8060. Or he can dial extension 15 from the main number."],
+          ["Ivan","Let me just double-check: 022 415 8060, extension 15."],
+          ["Lena","That's right. If I don't answer, he can leave a voicemail."],
+          ["Ivan","No problem. I'll pass on the message as soon as he's back."],
+          ["Lena","Thanks. It's quite urgent — we need to settle it before Friday's conference call."],
+          ["Ivan","I understand. I'm sure he'll get back to you this afternoon."],
+          ["Lena","Great. Thanks for your time."],
+          ["Ivan","You're welcome. Is there anything else I can help with?"],
+          ["Lena","No, that's all. Have a good day."],
+        ]
+      },
+      wordOrder:{
+        instr:"Put the words in the correct order to rebuild the sentence from the dialogue.",
+        items:[
+          "I'm afraid he's not at his desk right now.",
+          "Could you ask him to call me back?",
+          "Could you spell that for me?",
+          "What's the best number to reach you?",
+          "There's some static on the line.",
+          "He can dial extension 15 from the main number.",
+          "I'll pass on the message as soon as he's back.",
+          "I'm sure he'll get back to you this afternoon.",
+        ]
+      }
+    }
+  },
+  negotiations: {
+    title:"Negotiations",
+    intro: "Vocabulary and phrases for proposing terms, agreeing or disagreeing, bargaining and closing a deal.",
+    reading:{
+      type:"dialogue",
+      label:"Dialogue — negotiating a supply contract",
+      lines:[
+        ["Elena","Thank you for meeting with us today. We'd like to discuss the terms of the new contract."],
+        ["David","Of course. Our current offer is €18 per unit for an order of 5,000 units."],
+        ["Elena","That's a bit higher than we expected. If you could lower the price to €15, we'd be prepared to sign a two-year contract."],
+        ["David","€15 would be difficult for us, but we could offer €16.50, provided you commit to at least 8,000 units."],
+        ["Elena","Let's find a middle ground — what if we agree on €16 for 6,000 units, with a review after six months?"],
+        ["David","That sounds reasonable. We'd also need a 30% deposit upfront."],
+        ["Elena","We can agree to that, on condition that delivery is guaranteed within four weeks."],
+        ["David","Agreed. I think we have a deal."],
+        ["Elena","Excellent. Shall we put this in writing?"],
+        ["David","Absolutely, I'll have the contract drawn up by tomorrow."],
+      ]
+    },
+    wordbank:{
+      words:["deposit","provided","commit","guaranteed","drawn up","middle ground","reasonable","review"],
+      items:[
+        ["We'd need a 30% ___ upfront.", "deposit"],
+        ["We could offer a lower price, ___ you commit to a bigger order.", "provided"],
+        ["Would you ___ to at least 8,000 units?", "commit"],
+        ["Delivery must be ___ within four weeks.", "guaranteed"],
+        ["I'll have the contract ___ by tomorrow.", "drawn up"],
+        ["Let's find a ___ between our two positions.", "middle ground"],
+        ["That sounds ___ to me.", "reasonable"],
+        ["We agreed on a price ___ after six months.", "review"],
+      ]
+    },
+    sets: [
+      { title:"Key vocabulary", pairs:[
+        ["deal","An agreement, especially in business"],
+        ["offer","An amount of money or terms suggested for something"],
+        ["counter-offer","A different offer made in response to the first one"],
+        ["compromise","An agreement where both sides give something up"],
+        ["terms and conditions","The rules and details of an agreement"],
+        ["deadline","The latest time or date something must be done by"],
+      ]},
+      { title:"Making proposals", pairs:[
+        ["We'd like to propose a new schedule.","Introducing a suggestion"],
+        ["What if we split the cost 50/50?","Suggesting an idea"],
+        ["Our position is that the price is fixed.","Stating your side clearly"],
+        ["We're prepared to offer a 10% discount.","Making a concrete offer"],
+        ["Let's find a middle ground.","Suggesting a compromise"],
+        ["How about we meet halfway?","Suggesting a compromise"],
+      ]},
+      { title:"Agreeing & disagreeing", pairs:[
+        ["That sounds reasonable.","Agreeing with an idea"],
+        ["I see your point, but I have concerns.","Partly disagreeing"],
+        ["I'm afraid that doesn't work for us.","Polite disagreement"],
+        ["We can definitely agree to that.","Strong agreement"],
+        ["I'm not sure that's acceptable.","Polite disagreement"],
+        ["We're on the same page.","Both sides agree"],
+      ]},
+      { title:"Conditions & bargaining", pairs:[
+        ["If you can lower the price, we'll sign today.","A conditional offer"],
+        ["We'll agree to this, provided delivery is fast.","A conditional agreement"],
+        ["Unless we get a discount, we can't proceed.","A condition for moving forward"],
+        ["As long as delivery is on time, that's fine.","A condition for acceptance"],
+        ["In exchange for a longer contract, could you reduce the price?","A trade-off offer"],
+        ["We can agree, on condition that quality stays the same.","Setting a requirement"],
+      ]},
+      { title:"Closing a deal", pairs:[
+        ["Let's shake on it.","Confirming an agreement informally"],
+        ["We have a deal.","Confirming that both sides agree"],
+        ["I'll get the contract drawn up.","Preparing the paperwork"],
+        ["Shall we put this in writing?","Suggesting the agreement be formalised"],
+        ["We look forward to working with you.","A positive closing statement"],
+        ["Let's sign off on this.","Finalising the agreement"],
+      ]},
+      { title:"Advanced vocabulary I", pairs:[
+        ["leverage","Power or advantage used to influence a negotiation"],
+        ["a concession","Something you give up to reach an agreement"],
+        ["the bottom line","The minimum acceptable outcome"],
+        ["non-negotiable","Something that cannot be changed or discussed"],
+        ["a deadlock","A situation where neither side will move"],
+        ["an ultimatum","A final demand, with a threat if it's refused"],
+      ]},
+      { title:"Advanced vocabulary II", pairs:[
+        ["to walk away from a deal","To stop negotiating and leave without an agreement"],
+        ["a win-win situation","An outcome that benefits both sides"],
+        ["to stall","To delay deliberately to gain time or advantage"],
+        ["to escalate","To involve someone more senior in a dispute"],
+        ["to sweeten the deal","To make an offer more attractive"],
+        ["to be on the table","To be currently offered or open for discussion"],
+      ]},
+    ],
+    finalReview:{
+      reading:{
+        type:"dialogue",
+        label:"Dialogue — renegotiating the contract",
+        lines:[
+          ["Elena","David, thanks for making time for this call. We need to revisit some of the terms."],
+          ["David","Sure. What's on the table?"],
+          ["Elena","Raw material costs have gone up, so we'd like to propose a small increase in price."],
+          ["David","I understand, but a price increase wasn't part of our original deal."],
+          ["Elena","I know, but if we don't adjust it, we might reach a deadlock."],
+          ["David","Let's not get to that point. What figure did you have in mind?"],
+          ["Elena","We were thinking €17 per unit, up from €16."],
+          ["David","That's a big jump. Could you offer a concession on the deposit instead?"],
+          ["Elena","We could reduce the deposit to 20%, provided you commit to the increase."],
+          ["David","That sounds like a reasonable compromise. Let me check with my team before I confirm."],
+          ["Elena","Of course. Just let us know before the deadline on Friday."],
+          ["David","Will do. I don't want us to walk away from a deal that's worked well so far."],
+          ["Elena","Agreed — this should be a win-win for both sides."],
+          ["David","I'll get back to you tomorrow with our final answer."],
+        ]
+      },
+      wordOrder:{
+        instr:"Put the words in the correct order to rebuild the sentence from the dialogue.",
+        items:[
+          "Raw material costs have gone up.",
+          "We'd like to propose a small increase.",
+          "That wasn't part of our original deal.",
+          "We might reach a deadlock.",
+          "Could you offer a concession on the deposit?",
+          "We could reduce the deposit to 20%.",
+          "That sounds like a reasonable compromise.",
+          "This should be a win-win for both sides.",
+        ]
+      }
+    }
+  },
+  presentations: {
+    title:"Presentations",
+    intro: "Language for structuring a talk, guiding the audience through it, describing data and handling questions.",
+    reading:{
+      type:"transcript",
+      label:"Transcript — a quarterly results presentation",
+      paragraphs:[
+        "Good morning everyone, and thank you for joining today's presentation. My name is Lena Petrova, and I'll be giving you an overview of our performance in the last quarter.",
+        "Let's start with the agenda. First, I'll present the sales figures. Then, I'll move on to our market position, and finally, I'll outline our plans for the next quarter.",
+        "So, first of all, let's look at the numbers. As you can see from this graph, sales have shown a steady increase over the past three months, driven mainly by our expansion into new markets. However, we did see a slight dip in demand in April, which correlates with the seasonal slowdown we predicted.",
+        "Moving on to our market position — our benchmark data shows that we are now outperforming two of our three main competitors. This growth underpins our decision to diversify into the online segment next year.",
+        "To sum up, the key takeaway from today is that our strategy is working, but we need a contingency plan in case demand slows further. Thank you for your attention — I'll now open the floor for questions."
+      ]
+    },
+    wordbank:{
+      words:["overview","agenda","steady","dip","correlates","benchmark","underpins","contingency"],
+      items:[
+        ["I'll be giving you an ___ of our performance.", "overview"],
+        ["Let's start with the ___ for today's talk.", "agenda"],
+        ["Sales have shown a ___ increase over the past three months.", "steady"],
+        ["We saw a slight ___ in demand in April.", "dip"],
+        ["This ___ with the seasonal slowdown.", "correlates"],
+        ["Our ___ data shows we're outperforming two competitors.", "benchmark"],
+        ["This growth ___ our decision to diversify.", "underpins"],
+        ["We need a ___ plan in case demand slows further.", "contingency"],
+      ]
+    },
+    sets: [
+      { title:"Structure vocabulary", pairs:[
+        ["agenda","The list of topics to be covered"],
+        ["overview","A short summary given at the start"],
+        ["key point","The main idea you want people to remember"],
+        ["handout","Printed material given to the audience"],
+        ["summary","A short recap given at the end"],
+        ["Q&A session","Time set aside for questions and answers"],
+      ]},
+      { title:"Signposting language", pairs:[
+        ["First of all, let's look at the figures.","Introducing the first point"],
+        ["Moving on to the next slide...","Starting a new topic"],
+        ["As I mentioned earlier...","Referring back to an earlier point"],
+        ["To sum up...","Introducing a conclusion"],
+        ["Let's take a closer look at this.","Introducing more detail"],
+        ["That brings me to my next point.","A transition phrase"],
+      ]},
+      { title:"Describing data", pairs:[
+        ["The figures show a steady increase.","Describing a slow, rising trend"],
+        ["Sales dropped sharply in March.","Describing a sudden fall"],
+        ["The graph illustrates our growth.","Introducing a chart"],
+        ["Profits remained stable.","Describing no real change"],
+        ["There was a slight dip in demand.","Describing a small, short fall"],
+        ["The numbers peaked in June.","Describing the highest point"],
+      ]},
+      { title:"Audience interaction", pairs:[
+        ["Feel free to ask questions at any time.","Inviting questions"],
+        ["Does that make sense?","Checking understanding"],
+        ["I'll come back to that later.","Deferring a question"],
+        ["Any questions so far?","Checking for questions"],
+        ["Let's open the floor for discussion.","Inviting comments from everyone"],
+        ["Thank you for your attention.","Closing the talk politely"],
+      ]},
+      { title:"Useful verbs", pairs:[
+        ["highlight","To draw attention to something important"],
+        ["outline","To give a short general description"],
+        ["illustrate","To show or explain with an example"],
+        ["summarise","To give the main points briefly"],
+        ["emphasise","To stress the importance of something"],
+        ["address","To deal with or talk about an issue"],
+      ]},
+      { title:"Advanced vocabulary I", pairs:[
+        ["to underpin","To support or form the basis of something"],
+        ["to correlate","To have a mutual relationship or connection"],
+        ["to plateau","To stop increasing and remain at a stable level"],
+        ["to diversify","To vary or expand into new areas"],
+        ["a benchmark","A standard used for comparison"],
+        ["a forecast","A prediction about the future"],
+      ]},
+      { title:"Advanced vocabulary II", pairs:[
+        ["a contingency plan","A backup plan for unexpected problems"],
+        ["scalability","The ability to grow or expand easily"],
+        ["synergy","A combined effect greater than the individual parts"],
+        ["to streamline","To make a process simpler and more efficient"],
+        ["a takeaway","The main point the audience should remember"],
+        ["to substantiate","To provide evidence to support a claim"],
+      ]},
+    ],
+    finalReview:{
+      reading:{
+        type:"dialogue",
+        label:"Dialogue — after the presentation rehearsal",
+        lines:[
+          ["Mark","Olga, thanks for running through the presentation with me. How did it go?"],
+          ["Olga","Pretty well, I think. I started with a short overview and then outlined the agenda."],
+          ["Mark","Good. Did you have handouts ready for everyone?"],
+          ["Olga","Yes, and I emailed the slides too, so people can follow along."],
+          ["Mark","What about the figures? Sales peaked in June, didn't they?"],
+          ["Olga","They did, and then there was a slight dip in July. I explained that it correlates with the summer slowdown."],
+          ["Mark","Nice. Did anyone ask about the benchmark data?"],
+          ["Olga","Someone did. I said I'd come back to that later, and I addressed it in the Q&A session."],
+          ["Mark","Good move. How did you signpost the main sections?"],
+          ["Olga","I used phrases like 'Moving on to the next slide' and 'That brings me to my next point'."],
+          ["Mark","And what did you say about the forecast for next year?"],
+          ["Olga","I said growth might plateau next year, so we need a contingency plan."],
+          ["Mark","Did you substantiate that with numbers?"],
+          ["Olga","Yes, the graph illustrates it quite clearly."],
+          ["Mark","Perfect. So what was the main takeaway?"],
+          ["Olga","That we should streamline production and diversify our product range."],
+          ["Mark","That's a clear message. Well done, Olga."],
+          ["Olga","Thanks, Mark. I feel much more confident now."],
+        ]
+      },
+      wordOrder:{
+        instr:"Put the words in the correct order to rebuild the sentence from the dialogue.",
+        items:[
+          "I started with a short overview.",
+          "Did you have handouts ready for everyone?",
+          "There was a slight dip in July.",
+          "It correlates with the summer slowdown.",
+          "I said I'd come back to that later.",
+          "Growth might plateau next year.",
+          "The graph illustrates it quite clearly.",
+          "We should streamline production and diversify our product range.",
+        ]
+      }
+    }
+  }
+};
+
+// GRAMMAR: type "gap" = text input, type "choice" = multiple choice
+const GRAMMAR = [
+  {
+    title:"Present Simple vs Present Continuous",
+    instr:"Put the verb in brackets into the Present Simple or Present Continuous.",
+    type:"gap",
+    items:[
+      ["We usually ___ (meet) on Mondays.", ["meet"]],
+      ["Right now, the team ___ (discuss) the budget.", ["is discussing"]],
+      ["She ___ (not work) in Sales anymore; she moved to Marketing.", ["doesn't work","does not work"]],
+      ["Look! The client ___ (sign) the contract.", ["is signing"]],
+      ["Our company ___ (export) goods to over 20 countries.", ["exports"]],
+      ["I ___ (attend) a conference next week, so I can't come.", ["am attending"]],
+      ["He always ___ (arrive) late to meetings.", ["arrives"]],
+      ["At the moment, we ___ (negotiate) a new contract with them.", ["are negotiating"]],
+    ]
+  },
+  {
+    title:"Present Perfect vs Past Simple",
+    instr:"Put the verb in brackets into the Present Perfect or Past Simple.",
+    type:"gap",
+    items:[
+      ["We ___ (already / send) the invoice.", ["have already sent"]],
+      ["I ___ (call) him yesterday, but he didn't answer.", ["called"]],
+      ["She ___ (never / miss) a deadline.", ["has never missed"]],
+      ["They ___ (sign) the contract last Friday.", ["signed"]],
+      ["___ you ever ___ (negotiate) with a Japanese company?", ["have","have you"]],
+      ["The company ___ (open) its first office in 1998.", ["opened"]],
+      ["We ___ (not receive) your payment yet.", ["haven't received","have not received"]],
+      ["He ___ (just / finish) the report.", ["has just finished"]],
+    ]
+  },
+  {
+    title:"First & Second Conditionals",
+    instr:"Put the verb in brackets into the correct form (1st or 2nd conditional).",
+    type:"gap",
+    items:[
+      ["If we ___ (lower) the price, they will order more.", ["lower"]],
+      ["If I ___ (be) you, I would accept the offer.", ["were","was"]],
+      ["If we win the contract, we ___ (hire) more staff.", ["will hire"]],
+      ["If the client ___ (not pay) on time, we will charge interest.", ["doesn't pay","does not pay"]],
+      ["If we had a bigger budget, we ___ (invest) in new technology.", ["would invest"]],
+      ["Unless you ___ (confirm) by Friday, we will cancel the order.", ["confirm"]],
+      ["What would you do if the deal ___ (fall) through?", ["fell"]],
+      ["If they offer a discount, we ___ (consider) it.", ["will consider"]],
+    ]
+  },
+  {
+    title:"Third Conditional",
+    instr:"Put the verb in brackets into the Third Conditional.",
+    type:"gap",
+    items:[
+      ["If we had known about the delay, we ___ (change) suppliers.", ["would have changed"]],
+      ["She would have got the job if she ___ (prepare) better for the interview.", ["had prepared"]],
+      ["If they had lowered the price, we ___ (sign) the contract.", ["would have signed"]],
+      ["We wouldn't have lost the client if we ___ (reply) faster.", ["had replied"]],
+      ["If I ___ (know) about the meeting, I would have attended.", ["had known"]],
+      ["They would have expanded if the market ___ (be) stronger.", ["had been"]],
+      ["If we hadn't invested early, we ___ (miss) the opportunity.", ["would have missed"]],
+      ["She wouldn't have signed if she ___ (read) the small print.", ["hadn't read","had not read"]],
+    ]
+  },
+  {
+    title:"Passive Voice",
+    instr:"Put the verb in brackets into the correct passive form.",
+    type:"gap",
+    items:[
+      ["The contract ___ (sign) yesterday.", ["was signed"]],
+      ["New employees ___ (train) every month.", ["are trained"]],
+      ["The report ___ (write) by the finance team.", ["was written"]],
+      ["Decisions ___ (make) at the board meeting next week.", ["will be made"]],
+      ["The order ___ (already / dispatch).", ["has already been dispatched"]],
+      ["Our products ___ (sell) in over 30 countries.", ["are sold"]],
+      ["The proposal ___ (review) right now.", ["is being reviewed"]],
+      ["All invoices ___ (must / check) before payment.", ["must be checked"]],
+    ]
+  },
+  {
+    title:"Reported Speech",
+    instr:"Choose the correct reported version of each sentence.",
+    type:"choice",
+    items:[
+      ['"I will call you tomorrow," he said.', ["He said he would call me the next day.","He said he will call me tomorrow.","He says he would call me the next day."], 0],
+      ['"We have signed the contract," she said.', ["She said they have signed the contract.","She said they had signed the contract.","She said they sign the contract."], 1],
+      ['"I am working on the report," he said.', ["He said he is working on the report.","He said he works on the report.","He said he was working on the report."], 2],
+      ['"Can you send the invoice?" she asked.', ["She asked if I can send the invoice.","She asked if I could send the invoice.","She asked can I send the invoice."], 1],
+      ['"I saw the client yesterday," he said.', ["He said he had seen the client the day before.","He said he saw the client yesterday.","He said he has seen the client yesterday."], 0],
+      ['"We need more time," they said.', ["They said they need more time.","They said they needed more time.","They said they will need more time."], 1],
+      ['"I will finish it by Friday," she said.', ["She said she will finish it by Friday.","She said she finishes it by Friday.","She said she would finish it by Friday."], 2],
+      ['"Don\'t send the email yet," he told me.', ["He told me don't send the email yet.","He told me not to send the email yet.","He told me to not sending the email yet."], 1],
+    ]
+  },
+  {
+    title:"Modal Verbs: Obligation & Deduction",
+    instr:"Complete the sentence with a suitable modal verb.",
+    type:"gap",
+    items:[
+      ["You ___ submit the report by Friday — it's compulsory.", ["must","have to"]],
+      ["She's not at her desk — she ___ be in a meeting.", ["might","may","could"]],
+      ["We ___ get approval before signing.", ["have to","must"]],
+      ["You ___ come to the meeting if you're busy — it's optional.", ["don't have to","do not have to"]],
+      ["He ___ have missed the email — he never replied.", ["must"]],
+      ["Employees ___ wear ID badges at all times.", ["should","must"]],
+      ["They ___ be serious about that price — it's far too low.", ["can't","cannot"]],
+      ["You ___ share confidential information.", ["mustn't","must not"]],
+    ]
+  },
+  {
+    title:"Future Forms",
+    instr:"Put the verb in brackets into the most natural future form.",
+    type:"gap",
+    items:[
+      ["I think sales ___ (increase) next quarter.", ["will increase"]],
+      ["We ___ (meet) the client at 3pm tomorrow.", ["are meeting"]],
+      ["Look at those figures — profits ___ (fall).", ["are going to fall"]],
+      ["I promise I ___ (send) the file today.", ["will send"]],
+      ["The new office ___ (open) in March.", ["opens"]],
+      ["We ___ (launch) the product before the end of the year.", ["are going to launch"]],
+      ["By this time next year, we ___ (expand) into three new markets.", ["will have expanded"]],
+      ["This time next week, we ___ (negotiate) the final terms.", ["will be negotiating"]],
+    ]
+  },
+  {
+    title:"Relative Clauses",
+    instr:"Complete the sentence with the correct relative pronoun (who / which / that / whose / where / why).",
+    type:"gap",
+    items:[
+      ["The manager ___ hired me has left the company.", ["who","that"]],
+      ["This is the report ___ I mentioned earlier.", ["that","which"]],
+      ["The company, ___ profits doubled last year, is expanding fast.", ["whose"]],
+      ["That's the office ___ we signed the deal.", ["where"]],
+      ["The client, ___ is based in Berlin, wants a meeting next week.", ["who"]],
+      ["The reason ___ we lost the contract is unclear.", ["why"]],
+      ["2020, ___ was a difficult year for the company, saw record losses.", ["which"]],
+      ["The supplier ___ we usually work with has raised its prices.", ["that","who","whom"]],
+    ]
+  },
+  {
+    title:"Gerunds & Infinitives",
+    instr:"Put the verb in brackets into the gerund (-ing) or infinitive (to + verb) form.",
+    type:"gap",
+    items:[
+      ["We look forward to ___ (hear) from you.", ["hearing"]],
+      ["They agreed ___ (extend) the deadline.", ["to extend"]],
+      ["Would you mind ___ (send) the file again?", ["sending"]],
+      ["We decided ___ (postpone) the launch.", ["to postpone"]],
+      ["I suggest ___ (review) the contract again.", ["reviewing"]],
+      ["She refused ___ (sign) the agreement.", ["to sign"]],
+      ["It's worth ___ (double-check) the figures.", ["double-checking"]],
+      ["We plan ___ (open) a new office next year.", ["to open"]],
+    ]
+  },
+];
+
+/* ================= HELPERS ================= */
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+  return a;
+}
+
+function normalize(s){
+  return s.toLowerCase().replace(/[.!?,;:'"]/g,"").replace(/\s+/g," ").trim();
+}
+
+let lastFocusedInput = null;
+let selectedZone = null;
+let selectedChip = null;
+
+/* ---- drag & drop word-bank helpers (shared by wordbank + grammar gap exercises) ---- */
+
+function makeDragChip(word){
+  const chip = document.createElement("span");
+  chip.className = "wb-chip";
+  chip.textContent = word;
+  chip.draggable = true;
+  chip.dataset.word = word;
+
+  chip.addEventListener("dragstart", e => {
+    e.dataTransfer.setData("text/plain", word);
+    e.dataTransfer.effectAllowed = "move";
+    chip.classList.add("dragging");
+  });
+  chip.addEventListener("dragend", () => chip.classList.remove("dragging"));
+  chip.addEventListener("click", () => {
+    if(chip.classList.contains("used")) return;
+    if(selectedZone && !selectedZone.classList.contains("disabled-zone") && document.contains(selectedZone)){
+      fillDropZone(selectedZone, word, chip);
+      return;
+    }
+    // Сначала слово, потом пропуск (удобно на телефоне)
+    const already = chip.classList.contains("picked");
+    document.querySelectorAll(".wb-chip.picked").forEach(c => c.classList.remove("picked"));
+    selectedChip = already ? null : chip;
+    if(!already) chip.classList.add("picked");
+  });
+  return chip;
+}
+
+function makeDropZone(){
+  const zone = document.createElement("span");
+  zone.className = "g-input g-dropzone";
+  zone.tabIndex = 0;
+  zone.dataset.value = "";
+
+  zone.addEventListener("dragover", e => {
+    e.preventDefault();
+    if(!zone.classList.contains("disabled-zone")) zone.classList.add("dragover");
+  });
+  zone.addEventListener("dragleave", () => zone.classList.remove("dragover"));
+  zone.addEventListener("drop", e => {
+    e.preventDefault();
+    zone.classList.remove("dragover");
+    if(zone.classList.contains("disabled-zone")) return;
+    const word = e.dataTransfer.getData("text/plain");
+    if(!word) return;
+    const draggingChip = document.querySelector(".wb-chip.dragging");
+    fillDropZone(zone, word, draggingChip);
+  });
+  zone.addEventListener("click", () => {
+    if(zone.classList.contains("disabled-zone")) return;
+    if(selectedChip && !selectedChip.classList.contains("used") && document.contains(selectedChip)){
+      fillDropZone(zone, selectedChip.dataset.word, selectedChip);
+      return;
+    }
+    if(zone.dataset.value){
+      clearDropZone(zone);
+    } else {
+      document.querySelectorAll(".g-dropzone.selected").forEach(z => z.classList.remove("selected"));
+      zone.classList.add("selected");
+      selectedZone = zone;
+    }
+  });
+  return zone;
+}
+
+function fillDropZone(zone, word, chip){
+  if(zone.dataset.value) clearDropZone(zone);
+  zone.textContent = word;
+  zone.dataset.value = word;
+  zone.classList.remove("selected");
+  zone.classList.add("filled");
+  if(chip){
+    chip.classList.add("used");
+    chip.classList.remove("picked");
+    zone._chip = chip;
+  }
+  if(selectedChip === chip) selectedChip = null;
+  if(selectedZone === zone) selectedZone = null;
+}
+
+function clearDropZone(zone){
+  if(zone._chip){
+    zone._chip.classList.remove("used");
+    zone._chip = null;
+  }
+  zone.textContent = "";
+  zone.dataset.value = "";
+  zone.classList.remove("filled","selected");
+}
+
+function resetDropZone(zone){
+  clearDropZone(zone);
+  zone.classList.remove("correct","wrong","disabled-zone");
+}
+
+/* ================= READING RENDER ================= */
+
+function buildReading(parent, reading){
+  const label = document.createElement("div");
+  label.className = "block-label";
+  label.textContent = reading.label || "Reading";
+  parent.appendChild(label);
+
+  const wrap = document.createElement("div");
+  wrap.className = "reading-wrap";
+
+  if(reading.type === "email"){
+    reading.messages.forEach(m => {
+      const card = document.createElement("div");
+      card.className = "email-card";
+      const meta = document.createElement("div");
+      meta.className = "email-meta";
+      meta.innerHTML = `<b>From:</b> ${m.from}<br><b>To:</b> ${m.to}<br><b>Subject:</b> ${m.subject}`;
+      card.appendChild(meta);
+      const body = document.createElement("div");
+      body.className = "email-body";
+      m.body.forEach(p => {
+        const pEl = document.createElement("p");
+        pEl.innerHTML = p;
+        body.appendChild(pEl);
+      });
+      card.appendChild(body);
+      wrap.appendChild(card);
+    });
+  } else if(reading.type === "dialogue"){
+    const d = document.createElement("div");
+    d.className = "dialogue-wrap";
+    reading.lines.forEach(([speaker,text]) => {
+      const line = document.createElement("div");
+      line.className = "dialogue-line";
+      const sp = document.createElement("span");
+      sp.className = "dialogue-speaker";
+      sp.textContent = speaker + ":";
+      const tx = document.createElement("span");
+      tx.className = "dialogue-text";
+      tx.textContent = text;
+      line.appendChild(sp);
+      line.appendChild(tx);
+      d.appendChild(line);
+    });
+    wrap.appendChild(d);
+  } else if(reading.type === "transcript"){
+    const t = document.createElement("div");
+    t.className = "transcript-wrap";
+    const tag = document.createElement("span");
+    tag.className = "transcript-tag";
+    tag.textContent = "Presenter";
+    t.appendChild(tag);
+    reading.paragraphs.forEach(p => {
+      const pEl = document.createElement("p");
+      pEl.textContent = p;
+      t.appendChild(pEl);
+    });
+    wrap.appendChild(t);
+  }
+
+  parent.appendChild(wrap);
+}
+
+/* ================= WORD BANK EXERCISE ================= */
+
+function buildWordbankExercise(parent, wb, opts){
+  opts = opts || {};
+  if(opts.label !== null){
+    const label = document.createElement("div");
+    label.className = "block-label";
+    label.textContent = opts.label || "Vocabulary in context";
+    parent.appendChild(label);
+  }
+
+  const ex = document.createElement("div");
+  ex.className = "exercise" + (opts.open === false ? "" : " open");
+
+  const head = document.createElement("div");
+  head.className = "ex-head";
+  head.innerHTML = `
+    <span class="ex-title"><span class="ex-num">${opts.icon || "✎"}</span>${opts.title || "Complete the sentences from the text above"}</span>
+    <span style="display:flex;align-items:center;gap:12px;">
+      <span class="ex-status">${wb.items.length} blanks</span>
+      <span class="ex-caret">▸</span>
+    </span>`;
+  ex.appendChild(head);
+
+  const body = document.createElement("div");
+  body.className = "ex-body";
+
+  const instr = document.createElement("div");
+  instr.className = "g-instructions";
+  instr.textContent = "Drag each word from the bank into the correct blank (or tap a word, then tap a blank).";
+  body.appendChild(instr);
+
+  const bank = document.createElement("div");
+  bank.className = "wb-bank";
+  wb.words.forEach(w => bank.appendChild(makeDragChip(w)));
+  body.appendChild(bank);
+
+  const inputs = [];
+  wb.items.forEach(([sentence, answer], i) => {
+    const row = document.createElement("div");
+    row.className = "g-row";
+    const num = document.createElement("span");
+    num.className = "g-num";
+    num.textContent = (i+1)+".";
+    row.appendChild(num);
+
+    const parts = sentence.split("___");
+    const sEl = document.createElement("span");
+    sEl.className = "g-sentence";
+    sEl.appendChild(document.createTextNode(parts[0]));
+    const zone = makeDropZone();
+    sEl.appendChild(zone);
+    sEl.appendChild(document.createTextNode(parts[1] || ""));
+    row.appendChild(sEl);
+    inputs.push({el:zone, answer});
+    body.appendChild(row);
+  });
+
+  const footer = document.createElement("div");
+  footer.className = "g-footer";
+  const checkBtn = document.createElement("button");
+  checkBtn.className = "btn";
+  checkBtn.type = "button";
+  checkBtn.textContent = "Check answers";
+  const scoreEl = document.createElement("span");
+  scoreEl.className = "g-score";
+  const retryBtn = document.createElement("button");
+  retryBtn.className = "btn secondary";
+  retryBtn.type = "button";
+  retryBtn.textContent = "Try again";
+  retryBtn.style.display = "none";
+
+  checkBtn.addEventListener("click", () => {
+    let correct = 0;
+    inputs.forEach(inp => {
+      const ok = normalize(inp.el.dataset.value || "") === normalize(inp.answer);
+      inp.el.classList.remove("correct","wrong","selected");
+      inp.el.classList.add(ok ? "correct" : "wrong");
+      inp.el.classList.add("disabled-zone");
+      if(ok) correct++;
+      else {
+        const hint = document.createElement("span");
+        hint.className = "g-answer";
+        hint.textContent = " → " + inp.answer;
+        inp.el.insertAdjacentElement("afterend", hint);
+      }
+    });
+    selectedZone = null;
+    scoreEl.textContent = `Score: ${correct} / ${inputs.length}`;
+    scoreEl.classList.toggle("good", correct === inputs.length);
+    checkBtn.style.display = "none";
+    retryBtn.style.display = "inline-block";
+  });
+
+  retryBtn.addEventListener("click", () => {
+    inputs.forEach(inp => resetDropZone(inp.el));
+    body.querySelectorAll(".g-answer").forEach(a => a.remove());
+    scoreEl.textContent = "";
+    checkBtn.style.display = "inline-block";
+    retryBtn.style.display = "none";
+  });
+
+  footer.appendChild(checkBtn);
+  footer.appendChild(retryBtn);
+  footer.appendChild(scoreEl);
+  body.appendChild(footer);
+
+  ex.appendChild(body);
+  head.addEventListener("click", () => ex.classList.toggle("open"));
+  parent.appendChild(ex);
+}
+
+/* ================= WORD ORDER EXERCISE ================= */
+
+function buildWordOrderExercise(parent, wo){
+  const ex = document.createElement("div");
+  ex.className = "exercise open";
+
+  const head = document.createElement("div");
+  head.className = "ex-head";
+  head.innerHTML = `
+    <span class="ex-title"><span class="ex-num">★</span>Rebuild the sentences from the dialogue</span>
+    <span style="display:flex;align-items:center;gap:12px;">
+      <span class="ex-status">${wo.items.length} sentences</span>
+      <span class="ex-caret">▸</span>
+    </span>`;
+  ex.appendChild(head);
+
+  const body = document.createElement("div");
+  body.className = "ex-body";
+
+  const instr = document.createElement("div");
+  instr.className = "g-instructions";
+  instr.textContent = wo.instr + " Drag words into the box, or tap a word to add it. Tap a placed word to take it back out.";
+  body.appendChild(instr);
+
+  const rows = [];
+
+  wo.items.forEach((sentence, i) => {
+    const correctWords = sentence.split(" ");
+    const shuffled = shuffle(correctWords);
+
+    const row = document.createElement("div");
+    row.className = "wo-row";
+    const num = document.createElement("span");
+    num.className = "g-num";
+    num.textContent = (i+1)+".";
+    row.appendChild(num);
+
+    const col = document.createElement("div");
+    col.className = "wo-col";
+
+    const answer = document.createElement("div");
+    answer.className = "wo-answer";
+    const pool = document.createElement("div");
+    pool.className = "wo-pool";
+
+    function place(chip){
+      if(row.classList.contains("disabled")) return;
+      chip.classList.add("used");
+      const span = document.createElement("span");
+      span.className = "wo-word";
+      span.textContent = chip.textContent;
+      span.addEventListener("click", () => {
+        if(row.classList.contains("disabled")) return;
+        span.remove();
+        chip.classList.remove("used");
+      });
+      answer.appendChild(span);
+    }
+
+    shuffled.forEach(word => {
+      const chip = document.createElement("span");
+      chip.className = "wb-chip";
+      chip.textContent = word;
+      chip.draggable = true;
+      chip.addEventListener("dragstart", e => {
+        e.dataTransfer.setData("text/plain", word);
+        e.dataTransfer.effectAllowed = "move";
+        chip.classList.add("dragging");
+      });
+      chip.addEventListener("dragend", () => chip.classList.remove("dragging"));
+      chip.addEventListener("click", () => {
+        if(chip.classList.contains("used") || row.classList.contains("disabled")) return;
+        place(chip);
+      });
+      pool.appendChild(chip);
+    });
+
+    answer.addEventListener("dragover", e => {
+      e.preventDefault();
+      if(!row.classList.contains("disabled")) answer.classList.add("dragover");
+    });
+    answer.addEventListener("dragleave", () => answer.classList.remove("dragover"));
+    answer.addEventListener("drop", e => {
+      e.preventDefault();
+      answer.classList.remove("dragover");
+      if(row.classList.contains("disabled")) return;
+      const draggingChip = pool.querySelector(".wb-chip.dragging");
+      if(draggingChip && !draggingChip.classList.contains("used")) place(draggingChip);
+    });
+
+    col.appendChild(answer);
+    col.appendChild(pool);
+    row.appendChild(col);
+    body.appendChild(row);
+
+    rows.push({row, answer, correctWords});
+  });
+
+  const footer = document.createElement("div");
+  footer.className = "g-footer";
+  const checkBtn = document.createElement("button");
+  checkBtn.className = "btn";
+  checkBtn.type = "button";
+  checkBtn.textContent = "Check answers";
+  const scoreEl = document.createElement("span");
+  scoreEl.className = "g-score";
+  const retryBtn = document.createElement("button");
+  retryBtn.className = "btn secondary";
+  retryBtn.type = "button";
+  retryBtn.textContent = "Try again";
+  retryBtn.style.display = "none";
+
+  checkBtn.addEventListener("click", () => {
+    let correct = 0;
+    rows.forEach(r => {
+      const given = Array.from(r.answer.children).map(s => s.textContent);
+      const ok = given.length === r.correctWords.length && given.every((w,i) => w === r.correctWords[i]);
+      r.row.classList.remove("correct","wrong");
+      r.row.classList.add(ok ? "correct" : "wrong");
+      r.row.classList.add("disabled");
+      if(ok) correct++;
+      else {
+        const hint = document.createElement("div");
+        hint.className = "g-answer";
+        hint.textContent = "→ " + r.correctWords.join(" ");
+        r.answer.insertAdjacentElement("afterend", hint);
+      }
+    });
+    scoreEl.textContent = `Score: ${correct} / ${rows.length}`;
+    scoreEl.classList.toggle("good", correct === rows.length);
+    checkBtn.style.display = "none";
+    retryBtn.style.display = "inline-block";
+  });
+
+  retryBtn.addEventListener("click", () => {
+    rows.forEach(r => {
+      r.row.classList.remove("correct","wrong","disabled");
+      r.answer.innerHTML = "";
+      r.row.querySelectorAll(".wb-chip").forEach(c => c.classList.remove("used"));
+    });
+    body.querySelectorAll(".g-answer").forEach(a => a.remove());
+    scoreEl.textContent = "";
+    checkBtn.style.display = "inline-block";
+    retryBtn.style.display = "none";
+  });
+
+  footer.appendChild(checkBtn);
+  footer.appendChild(retryBtn);
+  footer.appendChild(scoreEl);
+  body.appendChild(footer);
+
+  ex.appendChild(body);
+  head.addEventListener("click", () => ex.classList.toggle("open"));
+  parent.appendChild(ex);
+}
+
+/* ================= VOCAB SECTION ================= */
+
+function buildVocabSection(key, data){
+  const wrap = document.createElement("div");
+  wrap.className = "section";
+  wrap.id = "sec-"+key;
+
+  const head = document.createElement("div");
+  head.className = "section-head";
+  head.innerHTML = `<h2>${data.title}</h2><span class="badge badge-b1">B1 · Vocabulary</span>`;
+  wrap.appendChild(head);
+
+  const intro = document.createElement("p");
+  intro.className = "section-intro";
+  intro.textContent = data.intro;
+  wrap.appendChild(intro);
+  { const f=document.createElement("figure"); f.className="unit-art"; f.innerHTML=bizArtFor((typeof key!=="undefined"?key:"")+" "+(data.title||"")); wrap.appendChild(f); }
+
+  if(data.reading) buildReading(wrap, data.reading);
+  if(data.wordbank) buildWordbankExercise(wrap, data.wordbank);
+
+  const label = document.createElement("div");
+  label.className = "block-label";
+  label.textContent = `Matching exercises — ${data.sets.length} sets`;
+  wrap.appendChild(label);
+
+  data.sets.forEach((set, idx) => buildMatchExercise(wrap, set, idx));
+
+  if(data.finalReview){
+    const frLabel = document.createElement("div");
+    frLabel.className = "block-label";
+    frLabel.textContent = "Final review — put it all together";
+    wrap.appendChild(frLabel);
+
+    if(data.finalReview.reading) buildReading(wrap, data.finalReview.reading);
+    if(data.finalReview.wordOrder) buildWordOrderExercise(wrap, data.finalReview.wordOrder);
+  }
+
+  return wrap;
+}
+
+function buildMatchExercise(parent, set, idx){
+  const ex = document.createElement("div");
+  ex.className = "exercise";
+
+  const numLabel = (typeof idx === "number") ? (idx+1) : "★";
+
+  const head = document.createElement("div");
+  head.className = "ex-head";
+  head.innerHTML = `
+    <span class="ex-title"><span class="ex-num">${numLabel}</span>${set.title}</span>
+    <span style="display:flex;align-items:center;gap:12px;">
+      <span class="ex-status">0 / ${set.pairs.length} matched</span>
+      <span class="ex-caret">▸</span>
+    </span>`;
+  ex.appendChild(head);
+
+  const body = document.createElement("div");
+  body.className = "ex-body";
+
+  const grid = document.createElement("div");
+  grid.className = "match-grid";
+  const leftCol = document.createElement("div");
+  const rightCol = document.createElement("div");
+  leftCol.style.display = "flex"; leftCol.style.flexDirection="column"; leftCol.style.gap="10px";
+  rightCol.style.display = "flex"; rightCol.style.flexDirection="column"; rightCol.style.gap="10px";
+
+  const terms = set.pairs.map((p,i)=>({text:p[0], id:i}));
+  const defs = set.pairs.map((p,i)=>({text:p[1], id:i}));
+  const leftShuffled = shuffle(terms);
+  const rightShuffled = shuffle(defs);
+
+  let matchedCount = 0;
+  let selectedLeft = null;
+  const statusEl = head.querySelector(".ex-status");
+
+  function makeBtn(item, side){
+    const btn = document.createElement("button");
+    btn.className = "match-item";
+    btn.type = "button";
+    btn.textContent = item.text;
+    btn.dataset.id = item.id;
+    btn.dataset.side = side;
+    btn.addEventListener("click", () => onPick(btn));
+    return btn;
+  }
+
+  leftShuffled.forEach(t => leftCol.appendChild(makeBtn(t,"left")));
+  rightShuffled.forEach(d => rightCol.appendChild(makeBtn(d,"right")));
+
+  function onPick(btn){
+    if(btn.classList.contains("correct") || btn.classList.contains("disabled")) return;
+    if(btn.dataset.side === "left"){
+      if(selectedLeft) selectedLeft.classList.remove("selected");
+      selectedLeft = btn;
+      btn.classList.add("selected");
+      return;
+    }
+    if(!selectedLeft) return;
+    if(selectedLeft.dataset.id === btn.dataset.id){
+      selectedLeft.classList.remove("selected");
+      selectedLeft.classList.add("correct");
+      btn.classList.add("correct");
+      selectedLeft = null;
+      matchedCount++;
+      statusEl.textContent = `${matchedCount} / ${set.pairs.length} matched`;
+      if(matchedCount === set.pairs.length){
+        statusEl.textContent = "Complete ✓";
+        statusEl.style.color = "var(--teal)";
+      }
+    } else {
+      btn.classList.add("wrong");
+      selectedLeft.classList.add("wrong");
+      setTimeout(()=>{
+        btn.classList.remove("wrong");
+        selectedLeft.classList.remove("wrong","selected");
+        selectedLeft = null;
+      },320);
+    }
+  }
+
+  grid.appendChild(leftCol);
+  grid.appendChild(rightCol);
+  body.appendChild(grid);
+
+  const resetBtn = document.createElement("button");
+  resetBtn.className = "match-reset";
+  resetBtn.type = "button";
+  resetBtn.textContent = "Reset exercise";
+  resetBtn.addEventListener("click", () => {
+    matchedCount = 0;
+    selectedLeft = null;
+    statusEl.style.color = "";
+    statusEl.textContent = `0 / ${set.pairs.length} matched`;
+    [...leftCol.children, ...rightCol.children].forEach(b => {
+      b.classList.remove("correct","selected","wrong","disabled");
+    });
+  });
+  body.appendChild(resetBtn);
+
+  ex.appendChild(body);
+  head.addEventListener("click", () => ex.classList.toggle("open"));
+  parent.appendChild(ex);
+}
+
+/* ================= GRAMMAR SECTION ================= */
+
+function buildGrammarSection(){
+  const wrap = document.createElement("div");
+  wrap.className = "section";
+  wrap.id = "sec-grammar";
+
+  const head = document.createElement("div");
+  head.className = "section-head";
+  head.innerHTML = `<h2>Grammar</h2><span class="badge badge-b2">B2 · Structures</span>`;
+  wrap.appendChild(head);
+
+  const intro = document.createElement("p");
+  intro.className = "section-intro";
+  intro.textContent = "Core B2 grammar structures used constantly in business communication: tenses, conditionals, passive voice, reported speech, modals, future forms, relative clauses, gerunds and infinitives.";
+  wrap.appendChild(intro);
+
+  const label = document.createElement("div");
+  label.className = "block-label";
+  label.textContent = "Grammar exercises — 10 sets";
+  wrap.appendChild(label);
+
+  GRAMMAR.forEach((g, idx) => buildGrammarExercise(wrap, g, idx));
+
+  return wrap;
+}
+
+function buildGrammarExercise(parent, g, idx){
+  const ex = document.createElement("div");
+  ex.className = "exercise";
+
+  const head = document.createElement("div");
+  head.className = "ex-head";
+  head.innerHTML = `
+    <span class="ex-title"><span class="ex-num">${idx+1}</span>${g.title}</span>
+    <span style="display:flex;align-items:center;gap:12px;">
+      <span class="ex-status">${g.items.length} questions</span>
+      <span class="ex-caret">▸</span>
+    </span>`;
+  ex.appendChild(head);
+
+  const body = document.createElement("div");
+  body.className = "ex-body";
+
+  const instr = document.createElement("div");
+  instr.className = "g-instructions";
+  instr.textContent = g.type === "gap"
+    ? g.instr + " Drag the correct word/phrase from the bank into each blank (or tap a chip, then tap a blank)."
+    : g.instr;
+  body.appendChild(instr);
+
+  if(g.type === "gap"){
+    const bank = document.createElement("div");
+    bank.className = "wb-bank";
+    const bankWords = shuffle(g.items.map(([,answers]) => answers[0]));
+    bankWords.forEach(w => bank.appendChild(makeDragChip(w)));
+    body.appendChild(bank);
+  }
+
+  const inputs = [];
+
+  g.items.forEach((item, i) => {
+    const row = document.createElement("div");
+    row.className = "g-row";
+    const num = document.createElement("span");
+    num.className = "g-num";
+    num.textContent = (i+1)+".";
+    row.appendChild(num);
+
+    if(g.type === "gap"){
+      const [sentence, answers] = item;
+      const parts = sentence.split("___");
+      const sEl = document.createElement("span");
+      sEl.className = "g-sentence";
+      sEl.appendChild(document.createTextNode(parts[0]));
+      const zone = makeDropZone();
+      sEl.appendChild(zone);
+      sEl.appendChild(document.createTextNode(parts[1] || ""));
+      row.appendChild(sEl);
+      inputs.push({type:"gap", el:zone, answers});
+    } else {
+      const [sentence, options, correctIdx] = item;
+      const sEl = document.createElement("span");
+      sEl.className = "g-sentence";
+      sEl.style.display="block";
+      sEl.textContent = sentence;
+      row.appendChild(sEl);
+      const select = document.createElement("select");
+      select.className = "g-select";
+      const placeholder = document.createElement("option");
+      placeholder.textContent = "Choose the correct version...";
+      placeholder.value = "";
+      placeholder.disabled = true;
+      placeholder.selected = true;
+      select.appendChild(placeholder);
+      options.forEach((opt,oi) => {
+        const o = document.createElement("option");
+        o.textContent = opt;
+        o.value = oi;
+        select.appendChild(o);
+      });
+      row.style.flexDirection = "column";
+      row.style.alignItems = "stretch";
+      const selWrap = document.createElement("div");
+      selWrap.style.marginTop = "6px";
+      selWrap.style.marginLeft = "26px";
+      selWrap.appendChild(select);
+      row.appendChild(selWrap);
+      inputs.push({type:"choice", el:select, correctIdx});
+    }
+    body.appendChild(row);
+  });
+
+  const footer = document.createElement("div");
+  footer.className = "g-footer";
+  const checkBtn = document.createElement("button");
+  checkBtn.className = "btn";
+  checkBtn.type = "button";
+  checkBtn.textContent = "Check answers";
+  const scoreEl = document.createElement("span");
+  scoreEl.className = "g-score";
+  const retryBtn = document.createElement("button");
+  retryBtn.className = "btn secondary";
+  retryBtn.type = "button";
+  retryBtn.textContent = "Try again";
+  retryBtn.style.display = "none";
+
+  checkBtn.addEventListener("click", () => {
+    let correct = 0;
+    inputs.forEach(inp => {
+      if(inp.type === "gap"){
+        const val = normalize(inp.el.dataset.value || "");
+        const ok = val !== "" && inp.answers.some(a => normalize(a) === val);
+        inp.el.classList.remove("correct","wrong","selected");
+        inp.el.classList.add(ok ? "correct" : "wrong");
+        inp.el.classList.add("disabled-zone");
+        if(ok) correct++;
+        else {
+          const hint = document.createElement("span");
+          hint.className = "g-answer";
+          hint.textContent = " → " + inp.answers[0];
+          inp.el.insertAdjacentElement("afterend", hint);
+        }
+      } else {
+        const val = inp.el.value;
+        const ok = val !== "" && parseInt(val,10) === inp.correctIdx;
+        inp.el.classList.remove("correct","wrong");
+        inp.el.classList.add(ok ? "correct" : "wrong");
+        inp.el.disabled = true;
+        if(ok) correct++;
+      }
+    });
+    selectedZone = null;
+    scoreEl.textContent = `Score: ${correct} / ${inputs.length}`;
+    scoreEl.classList.toggle("good", correct === inputs.length);
+    checkBtn.style.display = "none";
+    retryBtn.style.display = "inline-block";
+  });
+
+  retryBtn.addEventListener("click", () => {
+    inputs.forEach(inp => {
+      if(inp.type === "gap"){
+        resetDropZone(inp.el);
+      } else {
+        inp.el.disabled = false;
+        inp.el.classList.remove("correct","wrong");
+        inp.el.value = "";
+      }
+    });
+    body.querySelectorAll(".g-answer").forEach(a => a.remove());
+    scoreEl.textContent = "";
+    checkBtn.style.display = "inline-block";
+    retryBtn.style.display = "none";
+  });
+
+  footer.appendChild(checkBtn);
+  footer.appendChild(retryBtn);
+  footer.appendChild(scoreEl);
+  body.appendChild(footer);
+
+  ex.appendChild(body);
+  head.addEventListener("click", () => ex.classList.toggle("open"));
+  parent.appendChild(ex);
+}
+
+/* ================= CHOICE (pick 1 of 3) EXERCISE ================= */
+
+function buildChoiceExercise(parent, cfg){
+  const ex = document.createElement("div");
+  ex.className = "exercise" + (cfg.open ? " open" : "");
+
+  const head = document.createElement("div");
+  head.className = "ex-head";
+  head.innerHTML = `
+    <span class="ex-title"><span class="ex-num">${cfg.icon}</span>${cfg.title}</span>
+    <span style="display:flex;align-items:center;gap:12px;">
+      <span class="ex-status">${cfg.items.length} questions</span>
+      <span class="ex-caret">▸</span>
+    </span>`;
+  ex.appendChild(head);
+
+  const body = document.createElement("div");
+  body.className = "ex-body";
+
+  const instr = document.createElement("div");
+  instr.className = "g-instructions";
+  instr.textContent = cfg.instr + " Choose one of the three options for each question, then press Check answers.";
+  body.appendChild(instr);
+
+  const rows = [];
+  cfg.items.forEach(([q, options, correctIdx], i) => {
+    const row = document.createElement("div");
+    row.className = "g-row c-row";
+    const num = document.createElement("span");
+    num.className = "g-num";
+    num.textContent = (i+1)+".";
+    row.appendChild(num);
+
+    const wrap = document.createElement("div");
+    wrap.className = "c-wrap";
+    const qEl = document.createElement("div");
+    qEl.className = "c-q";
+    qEl.textContent = q;
+    wrap.appendChild(qEl);
+
+    const optsEl = document.createElement("div");
+    optsEl.className = "c-opts";
+    const order = shuffle(options.map((t,k) => ({t, ok: k === correctIdx})));
+    const state = {row, btns:[], chosen:null};
+    order.forEach(o => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "c-opt";
+      b.textContent = o.t;
+      b.dataset.ok = o.ok ? "1" : "0";
+      b.addEventListener("click", () => {
+        if(row.classList.contains("locked")) return;
+        state.btns.forEach(x => x.classList.remove("selected"));
+        b.classList.add("selected");
+        state.chosen = b;
+      });
+      state.btns.push(b);
+      optsEl.appendChild(b);
+    });
+    wrap.appendChild(optsEl);
+    row.appendChild(wrap);
+    body.appendChild(row);
+    rows.push(state);
+  });
+
+  const footer = document.createElement("div");
+  footer.className = "g-footer";
+  const checkBtn = document.createElement("button");
+  checkBtn.className = "btn";
+  checkBtn.type = "button";
+  checkBtn.textContent = "Check answers";
+  const scoreEl = document.createElement("span");
+  scoreEl.className = "g-score";
+  const retryBtn = document.createElement("button");
+  retryBtn.className = "btn secondary";
+  retryBtn.type = "button";
+  retryBtn.textContent = "Try again";
+  retryBtn.style.display = "none";
+
+  checkBtn.addEventListener("click", () => {
+    let correct = 0;
+    rows.forEach(s => {
+      s.row.classList.add("locked");
+      const ok = s.chosen && s.chosen.dataset.ok === "1";
+      if(ok) correct++;
+      s.btns.forEach(b => {
+        b.classList.remove("selected");
+        if(b.dataset.ok === "1") b.classList.add("correct");
+      });
+      if(s.chosen && !ok) s.chosen.classList.add("wrong");
+    });
+    scoreEl.textContent = `Score: ${correct} / ${rows.length}`;
+    scoreEl.classList.toggle("good", correct === rows.length);
+    checkBtn.style.display = "none";
+    retryBtn.style.display = "inline-block";
+  });
+
+  retryBtn.addEventListener("click", () => {
+    rows.forEach(s => {
+      s.row.classList.remove("locked");
+      s.chosen = null;
+      s.btns.forEach(b => b.classList.remove("selected","correct","wrong"));
+    });
+    scoreEl.textContent = "";
+    checkBtn.style.display = "inline-block";
+    retryBtn.style.display = "none";
+  });
+
+  footer.appendChild(checkBtn);
+  footer.appendChild(retryBtn);
+  footer.appendChild(scoreEl);
+  body.appendChild(footer);
+
+  ex.appendChild(body);
+  head.addEventListener("click", () => ex.classList.toggle("open"));
+  parent.appendChild(ex);
+}
+
+/* ================= SAMPLES SECTION (extra emails / negotiations) ================= */
+
+function buildSamplesSection(key, data){
+  const wrap = document.createElement("div");
+  wrap.className = "section";
+  wrap.id = "sec-"+key;
+
+  const head = document.createElement("div");
+  head.className = "section-head";
+  head.innerHTML = `<h2>${data.title}</h2><span class="badge badge-b1">B1–B2 · Examples</span>`;
+  wrap.appendChild(head);
+
+  const intro = document.createElement("p");
+  intro.className = "section-intro";
+  intro.textContent = data.intro;
+  wrap.appendChild(intro);
+  { const f=document.createElement("figure"); f.className="unit-art"; f.innerHTML=bizArtFor((typeof key!=="undefined"?key:"")+" "+(data.title||"")); wrap.appendChild(f); }
+
+  const nav = document.createElement("div");
+  nav.className = "sample-nav";
+  wrap.appendChild(nav);
+
+  data.examples.forEach((exm, i) => {
+    const box = document.createElement("div");
+    box.className = "sample";
+
+    const chip = document.createElement("button");
+    chip.type = "button";
+    chip.className = "sample-chip";
+    chip.innerHTML = `<b>${i+1}</b> ${exm.title}`;
+    chip.addEventListener("click", () => box.scrollIntoView({behavior:"smooth", block:"start"}));
+    nav.appendChild(chip);
+
+    const title = document.createElement("h3");
+    title.className = "sample-title";
+    title.textContent = `Example ${i+1} — ${exm.title}`;
+    box.appendChild(title);
+
+    const sc = document.createElement("p");
+    sc.className = "sample-scenario";
+    sc.textContent = exm.scenario;
+    box.appendChild(sc);
+
+    buildReading(box, exm.reading);
+
+    const exLabel = document.createElement("div");
+    exLabel.className = "block-label";
+    exLabel.textContent = "Exercises";
+    box.appendChild(exLabel);
+
+    buildChoiceExercise(box, {icon:"1", title:"Check your understanding", instr:"Read the text again if you need to.", items:exm.comprehension, open:true});
+    buildWordbankExercise(box, {words:shuffle(exm.wordbank.words), items:exm.wordbank.items}, {label:null, open:false, icon:"2", title:"Vocabulary in context"});
+    buildChoiceExercise(box, {icon:"3", title:exm.language.title, instr:exm.language.instr, items:exm.language.items, open:false});
+
+    wrap.appendChild(box);
+  });
+
+  return wrap;
+}
+
+/* ================= TALKING SECTION ================= */
+
+/* ================= SAMPLES DATA (extra emails & negotiations) ================= */
+
+const SAMPLES = {
+  emailsamples: {
+    title: "Email samples",
+    intro: "Four more real-life email exchanges — a complaint, a quotation request, a rescheduled meeting and a payment reminder. Read each one, then check your understanding, practise the vocabulary and choose the best phrases.",
+    examples: [
+      {
+        title: "Complaint about damaged goods",
+        scenario: "A customer reports a problem with a delivery, and the supplier answers.",
+        reading: { type:"email", label:"Reading — a complaint and a reply", messages:[
+          { from:"Laura Chen &lt;l.chen@brightoffice.com&gt;", to:"Customer Service &lt;service@northline-furniture.com&gt;", subject:"Order #7730 – damaged chairs",
+            body:[
+              "Dear Sir or Madam,",
+              "I am writing to complain about order #7730, which was delivered to our office on Tuesday. Of the 12 ergonomic chairs we ordered, three arrived damaged: two have broken armrests and one has a cracked base. I have attached photographs for your reference.",
+              "As our new office opens on 15 October, this is quite urgent. I would be grateful if you could send replacements as soon as possible. If that is not possible, we would like a full refund for the damaged items.",
+              "I look forward to your prompt response.",
+              "Yours faithfully,<br>Laura Chen<br>Office Manager, BrightOffice Ltd"
+            ]},
+          { from:"Daniel Ortiz &lt;d.ortiz@northline-furniture.com&gt;", to:"Laura Chen &lt;l.chen@brightoffice.com&gt;", subject:"RE: Order #7730 – damaged chairs",
+            body:[
+              "Dear Ms Chen,",
+              "Thank you for getting in touch, and please accept our sincere apologies for the damage to your order. We take quality very seriously, and we are sorry for the inconvenience.",
+              "We have arranged for the three damaged chairs to be collected on Thursday. Replacements will be dispatched tomorrow and should reach you by 10 October, at no extra cost.",
+              "As a gesture of goodwill, we would also like to offer you a 10% discount on your next order.",
+              "Please let me know if there is anything else I can do to help.",
+              "Kind regards,<br>Daniel Ortiz<br>Customer Care, Northline Furniture"
+            ]}
+        ]},
+        comprehension: [
+          ["Why is Laura writing?", ["To ask for a discount on a new order","To complain that some chairs were damaged","To cancel her order completely"], 1],
+          ["Why is the matter urgent for Laura?", ["Her company's new office opens on 15 October","The supplier has already sent a refund","She wants to change the colour of the chairs"], 0],
+          ["What will Northline do about the damaged chairs?", ["Ask Laura to return them by post","Collect them and send replacements at no extra cost","Repair them in Laura's office"], 1],
+          ["What extra offer does Daniel make?", ["A 10% discount on the next order","Free delivery for a year","A full refund for all 12 chairs"], 0],
+        ],
+        wordbank: {
+          words:["complain","refund","replacements","dispatched","goodwill","collected"],
+          items:[
+            ["I am writing to ___ about order #7730.","complain"],
+            ["We would like a full ___ for the damaged items.","refund"],
+            ["We would be grateful if you could send ___ as soon as possible.","replacements"],
+            ["The new chairs will be ___ tomorrow.","dispatched"],
+            ["As a gesture of ___, we offer you a 10% discount.","goodwill"],
+            ["The damaged chairs will be ___ on Thursday.","collected"],
+          ]
+        },
+        language: { title:"Choose the best phrase", instr:"Choose the most suitable sentence for a formal business email.", items:[
+          ["Which is the best way to start a formal complaint?", ["I am writing to complain about order #7730.","Your chairs are rubbish!","Hey, there's a problem with my order."], 0],
+          ["Which sentence politely asks for a replacement?", ["Send the new chairs now.","I would be grateful if you could send replacements.","You must send replacements today."], 1],
+          ["Which sentence apologises formally?", ["Sorry about that, mate.","Please accept our sincere apologies for the inconvenience.","It's not our fault, but sorry."], 1],
+          ["Which closing goes with \"Dear Sir or Madam\"?", ["Yours faithfully,","Yours sincerely,","Cheers,"], 0],
+        ]}
+      },
+      {
+        title: "Requesting a quotation",
+        scenario: "A company asks a supplier for prices and receives a detailed reply.",
+        reading: { type:"email", label:"Reading — a request and a quotation", messages:[
+          { from:"Peter Lindqvist &lt;p.lindqvist@fjordprint.com&gt;", to:"Sales Department &lt;sales@sunrise-packaging.com&gt;", subject:"Request for quotation – cardboard boxes",
+            body:[
+              "Dear Sir or Madam,",
+              "We are a printing company based in Gdańsk, and we are looking for a reliable supplier of cardboard boxes. Could you please send us a quotation for 20,000 boxes (40 × 30 × 20 cm), delivered to our warehouse?",
+              "We would also like to know your lead time, your payment terms and whether you offer a discount for bulk orders. We need the boxes by 20 November.",
+              "Thank you in advance for your help. I look forward to hearing from you.",
+              "Kind regards,<br>Peter Lindqvist<br>Purchasing Manager, Fjord Print"
+            ]},
+          { from:"Ingrid Solberg &lt;i.solberg@sunrise-packaging.com&gt;", to:"Peter Lindqvist &lt;p.lindqvist@fjordprint.com&gt;", subject:"RE: Request for quotation – cardboard boxes",
+            body:[
+              "Dear Mr Lindqvist,",
+              "Thank you for your enquiry. Please find attached our quotation for 20,000 boxes.",
+              "The unit price is €0.42, including delivery to Gdańsk. For orders above 25,000 boxes, we can offer a 5% discount. Our lead time is four weeks from order confirmation, and our payment terms are 30 days net.",
+              "The quotation is valid for 30 days. If you would like to go ahead, please confirm your order in writing and we will start production immediately.",
+              "Should you have any questions, please do not hesitate to contact me.",
+              "Best regards,<br>Ingrid Solberg<br>Sales Manager, Sunrise Packaging"
+            ]}
+        ]},
+        comprehension: [
+          ["What does Peter want to know?", ["The price, the lead time and the payment terms","The colour and weight of the boxes","Whether Sunrise can print his logo"], 0],
+          ["When does Peter need the boxes?", ["In four weeks' time","By 20 November","By the end of the year"], 1],
+          ["Who gets a 5% discount?", ["Anyone who pays in advance","Customers who pay within 30 days","Customers who order more than 25,000 boxes"], 2],
+          ["What must Peter do if he wants to go ahead?", ["Send a deposit of 30%","Visit the factory","Confirm the order in writing"], 2],
+        ],
+        wordbank: {
+          words:["quotation","bulk","lead time","enquiry","unit price","valid"],
+          items:[
+            ["Could you please send us a ___ for 20,000 boxes?","quotation"],
+            ["Do you offer a discount for ___ orders?","bulk"],
+            ["Our ___ is four weeks from order confirmation.","lead time"],
+            ["Thank you for your ___. Please find attached our prices.","enquiry"],
+            ["The ___ is €0.42, including delivery.","unit price"],
+            ["The offer is ___ for 30 days.","valid"],
+          ]
+        },
+        language: { title:"Choose the best phrase", instr:"Choose the most suitable sentence for a formal business email.", items:[
+          ["Which is the most polite request for a quotation?", ["Send me your prices.","I want a quotation now.","Could you please send us a quotation for 20,000 boxes?"], 2],
+          ["How do you refer to a file you are sending?", ["Please find attached our quotation.","I put the quotation inside.","The quotation is here, look."], 0],
+          ["Which sentence means the offer is available for a limited time?", ["The quotation is free for 30 days.","The quotation is valid for 30 days.","The quotation costs 30 days."], 1],
+          ["Which closing invites further questions?", ["That's all. Bye.","You must ask me questions.","Should you have any questions, please do not hesitate to contact me."], 2],
+        ]}
+      },
+      {
+        title: "Rescheduling a meeting",
+        scenario: "Two colleagues agree on a new date for a meeting.",
+        reading: { type:"email", label:"Reading — changing the date", messages:[
+          { from:"Sara Ahmed &lt;s.ahmed@corvexgroup.com&gt;", to:"Jonas Weber &lt;j.weber@helmutech.de&gt;", subject:"Request to reschedule Thursday's meeting",
+            body:[
+              "Dear Jonas,",
+              "I hope you are well. Unfortunately, a client visit has come up on Thursday afternoon, which clashes with our meeting at 3 p.m. I am very sorry for the short notice.",
+              "Would it be possible to reschedule? I am available on Monday after 2 p.m. or on Tuesday morning. Please let me know which of these suits you best.",
+              "Thank you for your understanding.",
+              "Best regards,<br>Sara Ahmed<br>Project Manager, Corvex Group"
+            ]},
+          { from:"Jonas Weber &lt;j.weber@helmutech.de&gt;", to:"Sara Ahmed &lt;s.ahmed@corvexgroup.com&gt;", subject:"RE: Request to reschedule Thursday's meeting",
+            body:[
+              "Dear Sara,",
+              "No problem at all — these things happen. Tuesday morning works well for me. Would 10 a.m. be convenient?",
+              "In the meantime, could you send me the agenda so that I can prepare? I would also like to invite our finance director, if that is all right with you.",
+              "I will send a new calendar invitation once you have confirmed.",
+              "Kind regards,<br>Jonas"
+            ]}
+        ]},
+        comprehension: [
+          ["Why does Sara want to change the meeting?", ["She is on holiday","She has a client visit at the same time","She has not prepared the agenda"], 1],
+          ["Which time does Jonas suggest?", ["Monday after 2 p.m.","Thursday at 3 p.m.","Tuesday at 10 a.m."], 2],
+          ["What does Jonas ask Sara to send?", ["The agenda","The contract","A list of participants"], 0],
+          ["What will Jonas do after Sara confirms?", ["Cancel the meeting","Ask Sara to call him","Send a new calendar invitation"], 2],
+        ],
+        wordbank: {
+          words:["short notice","reschedule","clashes","suits","agenda","convenient"],
+          items:[
+            ["I am very sorry for the ___.","short notice"],
+            ["Would it be possible to ___ the meeting?","reschedule"],
+            ["The client visit ___ with our meeting.","clashes"],
+            ["Please let me know which date ___ you best.","suits"],
+            ["Could you send me the ___ so that I can prepare?","agenda"],
+            ["Would 10 a.m. be ___ for you?","convenient"],
+          ]
+        },
+        language: { title:"Choose the best phrase", instr:"Choose the most suitable sentence for a business email.", items:[
+          ["Which sentence politely asks to change a meeting?", ["We are changing it, sorry.","Would it be possible to reschedule?","I can't come. Choose another time."], 1],
+          ["Which sentence accepts the new time politely?", ["Tuesday morning works well for me.","Tuesday is not my problem.","I suppose Tuesday is possible if I must."], 0],
+          ["Which sentence thanks someone for being flexible?", ["You must understand.","Thank you for nothing.","Thank you for your understanding."], 2],
+          ["Which sentence promises a follow-up action correctly?", ["I will send a new calendar invitation once you have confirmed.","I will send a new calendar invitation once you will confirm.","I send a new calendar invitation once you confirmed."], 0],
+        ]}
+      },
+      {
+        title: "Payment reminder",
+        scenario: "A supplier reminds a customer about an overdue invoice.",
+        reading: { type:"email", label:"Reading — a reminder and a reply", messages:[
+          { from:"Maria Lopez &lt;m.lopez@atlasparts.com&gt;", to:"Tom Reed &lt;t.reed@reedautomotive.com&gt;", subject:"Reminder: invoice INV-2087 overdue",
+            body:[
+              "Dear Mr Reed,",
+              "I am writing to remind you that invoice INV-2087 for €3,450, dated 15 September, was due for payment on 30 September. According to our records, it is still outstanding.",
+              "We would be grateful if you could settle the balance within seven days. If you have already made the payment, please disregard this reminder and send us the remittance advice.",
+              "Please do not hesitate to contact me if there is a problem with the invoice.",
+              "Yours sincerely,<br>Maria Lopez<br>Accounts Receivable, Atlas Parts"
+            ]},
+          { from:"Tom Reed &lt;t.reed@reedautomotive.com&gt;", to:"Maria Lopez &lt;m.lopez@atlasparts.com&gt;", subject:"RE: Reminder: invoice INV-2087 overdue",
+            body:[
+              "Dear Ms Lopez,",
+              "Thank you for your reminder, and I apologise for the oversight. The invoice was not passed on to our accounts department in time.",
+              "I have now arranged the payment, and the money should reach your account tomorrow. I have attached the remittance advice for your records.",
+              "I am sorry for any inconvenience this may have caused.",
+              "Kind regards,<br>Tom Reed<br>Operations Manager, Reed Automotive"
+            ]}
+        ]},
+        comprehension: [
+          ["What is the problem in the first email?", ["The invoice contains a mistake","The invoice has not been paid on time","The goods have not been delivered"], 1],
+          ["What does Maria ask Tom to do?", ["Pay within seven days","Cancel the invoice","Send a new order"], 0],
+          ["Why was the payment late?", ["Tom disagreed with the price","Tom lost the goods","The invoice did not reach the accounts department in time"], 2],
+          ["What does Tom attach to his reply?", ["A new invoice","A copy of the contract","The remittance advice"], 2],
+        ],
+        wordbank: {
+          words:["overdue","outstanding","settle","disregard","remittance advice","oversight"],
+          items:[
+            ["Invoice INV-2087 is ___; it was due on 30 September.","overdue"],
+            ["According to our records, the balance is still ___.","outstanding"],
+            ["We would be grateful if you could ___ the balance within seven days.","settle"],
+            ["If you have already paid, please ___ this reminder.","disregard"],
+            ["I have attached the ___ for your records.","remittance advice"],
+            ["I apologise for the ___; the invoice was not passed on in time.","oversight"],
+          ]
+        },
+        language: { title:"Choose the best phrase", instr:"Choose the most suitable sentence for a formal business email.", items:[
+          ["Which is the politest way to remind someone to pay?", ["Pay the invoice or else.","Why haven't you paid yet?","We would be grateful if you could settle the balance within seven days."], 2],
+          ["Which sentence apologises correctly?", ["I apologise for the oversight.","I am apologise for the oversight.","I apologise for oversight of the."], 0],
+          ["Which sentence means \"ignore this message if it does not apply to you\"?", ["Please regard this reminder.","Please disregard this reminder.","Please forget your reminder."], 1],
+          ["Which closing goes with \"Dear Mr Reed\"?", ["Yours faithfully,","Yours truly Mr,","Yours sincerely,"], 2],
+        ]}
+      },
+    ]
+  },
+
+  negsamples: {
+    title: "Negotiation samples",
+    intro: "Four more negotiation dialogues — a volume discount, delivery terms, payment terms and a deadlock. Read each dialogue, check your understanding, practise the key words and choose the best phrases for negotiating.",
+    examples: [
+      {
+        title: "Asking for a volume discount",
+        scenario: "A buyer wants a better price for a large software order.",
+        reading: { type:"dialogue", label:"Dialogue — a price negotiation", lines:[
+          ["Kevin","Thanks for coming in, Marta. As we discussed, our standard price is $95 per licence, per year."],
+          ["Marta","Thank you, Kevin. We're planning to buy 200 licences, so we were hoping for a discount."],
+          ["Kevin","For 200 licences, I could offer 5% off."],
+          ["Marta","I'm afraid that's not enough. Our budget is tight. Could you go to 15%?"],
+          ["Kevin","15% is more than I'm authorised to give. What if I offered 8%, and we included the premium support package for free?"],
+          ["Marta","The support package is attractive. But if we sign for two years instead of one, would you increase the discount?"],
+          ["Kevin","In that case, I could go up to 10% on the two-year contract."],
+          ["Marta","10% for two years, with premium support included. I think we can accept that."],
+          ["Kevin","Then we have a deal. I'll send you the contract this afternoon."],
+          ["Marta","Perfect. We'll aim to sign by Friday."],
+        ]},
+        comprehension: [
+          ["How many licences does Marta want to buy?", ["100","300","200"], 2],
+          ["What does Kevin offer first?", ["15% off","5% off","8% off and free support"], 1],
+          ["What does Marta offer in exchange for a bigger discount?", ["Payment in advance","A larger deposit","A two-year contract"], 2],
+          ["What is the final deal?", ["A 10% discount for two years, with premium support included","A 15% discount for one year","A 5% discount and free premium support"], 0],
+        ],
+        wordbank: {
+          words:["discount","authorised","budget","premium","two-year","aim"],
+          items:[
+            ["We're planning to buy 200 licences, so we were hoping for a ___.","discount"],
+            ["15% is more than I'm ___ to give.","authorised"],
+            ["Our ___ is tight this year.","budget"],
+            ["I'll include the ___ support package for free.","premium"],
+            ["I could go up to 10% on the ___ contract.","two-year"],
+            ["We'll ___ to sign by Friday.","aim"],
+          ]
+        },
+        language: { title:"Choose the best reply", instr:"Choose the most suitable sentence for a polite business negotiation.", items:[
+          ["The seller offers 5%. Which reply politely shows that this is not enough?", ["No. Too little.","I'm afraid that's not enough. Could you go to 15%?","5% is a joke."], 1],
+          ["Which sentence makes a counter-offer?", ["What if I offered 8%, and we included premium support for free?","I offer nothing.","You will accept 8%."], 0],
+          ["Which sentence asks for a better deal in return for a longer commitment?", ["We sign two years and you increase now.","If we will sign for two years, you increase discount.","If we sign for two years, would you increase the discount?"], 2],
+          ["Which sentence confirms the agreement?", ["Then we might have a deal, perhaps.","Then we have a deal.","Then we had a deal not."], 1],
+        ]}
+      },
+      {
+        title: "Delivery dates and penalties",
+        scenario: "A retailer and a manufacturer agree on shipments and late-delivery penalties.",
+        reading: { type:"dialogue", label:"Dialogue — negotiating delivery terms", lines:[
+          ["Hannah","Luis, our main concern is delivery. We need all 3,000 units in our warehouse within three weeks."],
+          ["Luis","Three weeks is very tight. Our production line is fully booked, so five weeks is more realistic."],
+          ["Hannah","Five weeks would be too late for the summer season. Could you deliver part of the order earlier?"],
+          ["Luis","We could ship 1,000 units in three weeks, and the remaining 2,000 in five weeks."],
+          ["Hannah","That could work, as long as the second shipment doesn't slip. What happens if you miss the deadline?"],
+          ["Luis","We'd rather not commit to a penalty. Late deliveries are usually beyond our control."],
+          ["Hannah","I understand, but we need some protection. How about 1% of the order value for every week of delay?"],
+          ["Luis","That's steep. Could we cap it at 5% in total?"],
+          ["Hannah","A cap of 5% is acceptable, provided the first shipment arrives on time."],
+          ["Luis","Agreed. I'll add both points to the contract."],
+        ]},
+        comprehension: [
+          ["What is Hannah's main concern?", ["The price per unit","Product quality","Delivery time"], 2],
+          ["Why can't Luis deliver everything in three weeks?", ["The production line is fully booked","The warehouse is closed","He does not have the raw materials"], 0],
+          ["What do they agree about the shipments?", ["All 3,000 units after five weeks","1,000 units after three weeks and 2,000 units after five weeks","2,000 units after three weeks and 1,000 units after five weeks"], 1],
+          ["What penalty do they agree on?", ["5% for each week of delay","No penalty at all","1% for each week of delay, up to a maximum of 5%"], 2],
+        ],
+        wordbank: {
+          words:["tight","realistic","shipment","deadline","penalty","cap"],
+          items:[
+            ["Three weeks is very ___ for us.","tight"],
+            ["Five weeks is more ___.","realistic"],
+            ["That could work, as long as the second ___ doesn't slip.","shipment"],
+            ["What happens if you miss the ___?","deadline"],
+            ["We'd rather not commit to a ___.","penalty"],
+            ["Could we ___ it at 5% in total?","cap"],
+          ]
+        },
+        language: { title:"Choose the best reply", instr:"Choose the most suitable sentence for a polite business negotiation.", items:[
+          ["Which sentence suggests a partial delivery?", ["Deliver everything or nothing.","Could you deliver part of the order earlier?","Part of the order is earlier."], 1],
+          ["Which sentence sets a condition for agreement?", ["A cap of 5% is acceptable, although the first shipment.","A cap of 5% is acceptable, so the first shipment arrives on time.","A cap of 5% is acceptable, provided the first shipment arrives on time."], 2],
+          ["Which reply politely says a proposal is too high?", ["That's steep. Could we cap it at 5% in total?","That's ridiculous. We won't discuss it.","Fine, whatever you want."], 0],
+          ["Which question asks about the consequence of a missed deadline?", ["What happened if you will miss the deadline?","What happens if you miss the deadline?","What does happen when you missed the deadline?"], 1],
+        ]}
+      },
+      {
+        title: "Agreeing payment terms",
+        scenario: "A supplier wants payment upfront, but the buyer needs more time to pay.",
+        reading: { type:"dialogue", label:"Dialogue — negotiating payment terms", lines:[
+          ["Oliver","Priya, let's talk about payment. Our usual terms are 100% payment in advance."],
+          ["Priya","That would be difficult for us. Our finance policy is to pay 60 days after receiving the invoice."],
+          ["Oliver","Sixty days is too long for a new customer. We'd be carrying the risk for two months."],
+          ["Priya","I see your point. Would you consider splitting the payment into instalments?"],
+          ["Oliver","That's possible. What did you have in mind?"],
+          ["Priya","30% when we place the order, 40% on delivery, and the final 30% within 30 days of the invoice."],
+          ["Oliver","I'd be more comfortable with 40% upfront. In return, I can offer a 2% discount if you pay the balance early."],
+          ["Priya","40% upfront is acceptable if the discount applies to the whole order."],
+          ["Oliver","It applies to the balance only, but I could raise it to 3%."],
+          ["Priya","That's fair. Let's go with that."],
+        ]},
+        comprehension: [
+          ["What payment terms does Oliver usually ask for?", ["30 days after delivery","50% upfront","100% in advance"], 2],
+          ["Why does Oliver refuse 60 days?", ["He would be carrying the risk for two months","He does not accept instalments","He wants cash only"], 0],
+          ["What does Priya propose first?", ["Paying everything after delivery","Splitting the payment into 30%, 40% and 30%","Paying 100% in 90 days"], 1],
+          ["What is the final agreement?", ["30% upfront and no discount","100% upfront with a 2% discount","40% upfront and a 3% discount on the balance if it is paid early"], 2],
+        ],
+        wordbank: {
+          words:["terms","invoice","instalments","upfront","balance","risk"],
+          items:[
+            ["Our usual payment ___ are 100% in advance.","terms"],
+            ["Our policy is to pay 60 days after receiving the ___.","invoice"],
+            ["Would you consider splitting the payment into ___?","instalments"],
+            ["I'd be more comfortable with 40% ___.","upfront"],
+            ["I can offer a 2% discount if you pay the ___ early.","balance"],
+            ["Sixty days is too long: we'd be carrying the ___ for two months.","risk"],
+          ]
+        },
+        language: { title:"Choose the best reply", instr:"Choose the most suitable sentence for a polite business negotiation.", items:[
+          ["Which sentence suggests splitting a payment?", ["Would you consider splitting the payment into instalments?","Would you consider to split payment instalment?","You split the payment now."], 0],
+          ["Which sentence offers something in return?", ["I return 2% discount pay early you.","In return, I can offering 2% if pay early.","In return, I can offer a 2% discount if you pay early."], 2],
+          ["Which sentence shows you understand the other side's concern?", ["I don't care about your point.","I see your point.","That is your problem."], 1],
+          ["Which sentence accepts a compromise?", ["That's fair. Let's go with that.","That's unfair. Let's forget it.","That's fair. Let's not going with that."], 0],
+        ]}
+      },
+      {
+        title: "Breaking a deadlock",
+        scenario: "Both sides refuse to move, until one of them suggests a new approach.",
+        reading: { type:"dialogue", label:"Dialogue — finding a way forward", lines:[
+          ["Claire","Anton, we've been discussing the monthly fee for two hours, and we're still not getting anywhere."],
+          ["Anton","I agree. Our long-term rate of €9,000 per month is non-negotiable. It's the bottom line for our team."],
+          ["Claire","And €7,000 is the most our board will approve. It seems we've reached a deadlock."],
+          ["Anton","Let's try to look at this differently. What if we start with a three-month trial period?"],
+          ["Claire","What would that involve?"],
+          ["Anton","We'd charge €7,500 a month during the trial. If you're happy with the results, the fee goes up to €9,000."],
+          ["Claire","So the higher fee would depend on performance?"],
+          ["Anton","Exactly. We'd agree on clear targets first, so both sides know what success looks like."],
+          ["Claire","That's a fair way forward. I'd need to check it with my board before I confirm."],
+          ["Anton","Of course. Shall we take a short break and meet again tomorrow?"],
+          ["Claire","Good idea. I'll get back to you by noon."],
+        ]},
+        comprehension: [
+          ["Why can't they agree at the start?", ["Claire wants a longer contract","The agency's rate is much higher than the client's limit","Anton has no authority to decide"], 1],
+          ["What is the most Claire's board will approve?", ["€9,000","€7,500","€7,000"], 2],
+          ["What does Anton suggest to break the deadlock?", ["A three-month trial period","A new agency","A permanently lower rate"], 0],
+          ["What will Claire do next?", ["Sign the contract today","Check the proposal with her board and reply by noon","Walk away from the deal"], 1],
+        ],
+        wordbank: {
+          words:["non-negotiable","deadlock","bottom line","trial period","targets","performance"],
+          items:[
+            ["Our long-term rate is ___.","non-negotiable"],
+            ["It seems we've reached a ___.","deadlock"],
+            ["That is the ___ for our team.","bottom line"],
+            ["What if we start with a three-month ___?","trial period"],
+            ["We'd agree on clear ___ first.","targets"],
+            ["The higher fee would depend on ___.","performance"],
+          ]
+        },
+        language: { title:"Choose the best reply", instr:"Choose the most suitable sentence for a polite business negotiation.", items:[
+          ["Which sentence helps to break a deadlock?", ["Let's keep repeating the same thing.","This is over.","Let's try to look at this differently."], 2],
+          ["Which sentence asks for more information politely?", ["What would that involve?","Tell me everything now.","That involves nothing."], 0],
+          ["Which sentence suggests a pause?", ["We break and meet yesterday.","Shall we take a short break and meet again tomorrow?","Let's never meet again."], 1],
+          ["Which sentence buys time before giving an answer?", ["I confirm nothing ever.","My board is confirmed.","I'd need to check it with my board before I confirm."], 2],
+        ]}
+      },
+    ]
+  }
+};
+
+const TALKING = [
+  { topic:"Business", questions:[
+    "What does your company do, and what makes it different from its competitors?",
+    "How has your industry changed over the last five years?",
+    "What's the biggest challenge your business is facing right now?",
+    "Do you think remote work has been good or bad for productivity?",
+    "If you started your own company, what would it do?",
+  ]},
+  { topic:"Partners", questions:[
+    "What qualities do you look for in a good business partner?",
+    "Have you ever worked with a partner from a different culture? What was it like?",
+    "How do you build trust with a new business partner?",
+    "What would you do if a partner missed an important deadline?",
+    "Is it better to have one long-term partner or several smaller ones? Why?",
+  ]},
+  { topic:"Selling", questions:[
+    "What's the most important skill a good salesperson needs?",
+    "How do you handle a customer who says your price is too high?",
+    "Do you prefer selling face-to-face or online? Why?",
+    "What's the best sales pitch you've ever heard, and why did it work?",
+    "How do you deal with rejection in sales?",
+  ]},
+];
+
+function buildTalkingSection(){
+  const wrap = document.createElement("div");
+  wrap.className = "section";
+  wrap.id = "sec-talking";
+
+  const head = document.createElement("div");
+  head.className = "section-head";
+  head.innerHTML = `<h2>Talking</h2><span class="badge badge-b1">B1–B2 · Discussion</span>`;
+  wrap.appendChild(head);
+
+  const intro = document.createElement("p");
+  intro.className = "section-intro";
+  intro.textContent = "15 questions for speaking practice — no right or wrong answers. Use them for conversation practice, one-to-one lessons, or as warm-up discussion topics.";
+  wrap.appendChild(intro);
+
+  let counter = 0;
+  TALKING.forEach(group => {
+    const label = document.createElement("div");
+    label.className = "block-label";
+    label.textContent = group.topic;
+    wrap.appendChild(label);
+
+    const list = document.createElement("div");
+    list.className = "talk-list";
+    group.questions.forEach(q => {
+      counter++;
+      const row = document.createElement("div");
+      row.className = "talk-q";
+      const num = document.createElement("span");
+      num.className = "g-num";
+      num.textContent = counter + ".";
+      const text = document.createElement("span");
+      text.className = "q-text";
+      text.textContent = q;
+      row.appendChild(num);
+      row.appendChild(text);
+      list.appendChild(row);
+    });
+    wrap.appendChild(list);
+  });
+
+  return wrap;
+}
+
+/* ================= INIT ================= */
+
+const content = document.getElementById("content");
+Object.keys(VOCAB).forEach(key => {
+  content.appendChild(buildVocabSection(key, VOCAB[key]));
+});
+content.appendChild(buildSamplesSection("emailsamples", SAMPLES.emailsamples));
+content.appendChild(buildSamplesSection("negsamples", SAMPLES.negsamples));
+content.appendChild(buildGrammarSection());
+content.appendChild(buildTalkingSection());
+
+document.getElementById("sec-email").classList.add("active");
+
+document.querySelectorAll(".tab-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+    btn.classList.add("active");
+    document.getElementById("sec-"+btn.dataset.section).classList.add("active");
+    window.scrollTo({top:0, behavior:"smooth"});
+  });
+});
+
+document.querySelector("#sec-email .exercise")?.classList.add("open");
+
+/* ================= PROGRESS ================= */
+const PROGRESS_KEY = "btkProgress";
+let progress = {};
+try { progress = JSON.parse(localStorage.getItem(PROGRESS_KEY) || "{}") || {}; } catch(e){ progress = {}; }
+function saveProgress(){ try { localStorage.setItem(PROGRESS_KEY, JSON.stringify(progress)); } catch(e){} }
+
+const progressIndex = []; // {id, sectionKey, sectionName, title, ex}
+function sectionName(key){
+  const b = document.querySelector(`.tab-btn[data-section="${key}"]`);
+  return b ? b.childNodes[0].textContent.trim() : key;
+}
+function exTitle(ex){
+  const t = ex.querySelector(".ex-title");
+  if(!t) return "Exercise";
+  const clone = t.cloneNode(true);
+  clone.querySelectorAll(".ex-num").forEach(n => n.remove());
+  let title = clone.textContent.trim();
+  const sample = ex.closest(".sample");
+  if(sample){
+    const st = sample.querySelector(".sample-title");
+    if(st) title = st.textContent.replace(/^Example\s+/, "Ex. ") + " — " + title;
+  }
+  return title;
+}
+function indexExercises(){
+  document.querySelectorAll(".section").forEach(sec => {
+    const key = sec.id.replace(/^sec-/, "");
+    sec.querySelectorAll(".exercise").forEach((ex, i) => {
+      const id = key + "#" + i;
+      ex.dataset.progressId = id;
+      const head = ex.querySelector(".ex-head");
+      if(head && !head.querySelector(".ex-mark")){
+        const mark = document.createElement("span");
+        mark.className = "ex-mark";
+        const right = head.lastElementChild;
+        if(right && right !== head.firstElementChild) right.insertBefore(mark, right.firstChild);
+        else head.appendChild(mark);
+      }
+      progressIndex.push({ id, sectionKey:key, sectionName:sectionName(key), title:exTitle(ex), ex });
+    });
+  });
+}
+function readExerciseResult(ex){
+  const status = ex.querySelector(".ex-head .ex-status");
+  if(status && /Complete/.test(status.textContent)) return { score:1, total:1 };
+  const m = status && status.textContent.match(/^(\d+)\s*\/\s*(\d+)\s*matched/);
+  if(m && +m[1] > 0) return { score:+m[1], total:+m[2], partial:true };
+  const sc = ex.querySelector(".g-score");
+  const g = sc && sc.textContent.match(/(\d+)\s*\/\s*(\d+)/);
+  if(g) return { score:+g[1], total:+g[2] };
+  return null;
+}
+function updateExerciseMark(item){
+  const p = progress[item.id];
+  const mark = item.ex.querySelector(".ex-mark");
+  item.ex.classList.toggle("ex-done", !!(p && p.done));
+  if(!mark) return;
+  if(!p){ mark.textContent = ""; mark.className = "ex-mark"; return; }
+  if(p.done){ mark.textContent = "✓ done"; mark.className = "ex-mark done"; }
+  else { mark.textContent = `best ${p.best}/${p.total}`; mark.className = "ex-mark tried"; }
+}
+let progressScanTimer = null;
+function scanProgress(){
+  let changed = false;
+  progressIndex.forEach(item => {
+    const r = readExerciseResult(item.ex);
+    if(!r) return;
+    const prev = progress[item.id] || { best:0, total:r.total, done:false };
+    const done = r.score === r.total;
+    if(r.partial && !prev.best && !done){
+      if(!progress[item.id]){ progress[item.id] = { best:r.score, total:r.total, done:false, at:Date.now() }; changed = true; }
+      else if(r.score > prev.best){ prev.best = r.score; prev.total = r.total; changed = true; }
+    } else if(!progress[item.id] || r.score > prev.best || r.total !== prev.total || (done && !prev.done)){
+      progress[item.id] = { best:Math.max(r.total === prev.total ? prev.best : 0, r.score), total:r.total, done:prev.done || done, at:Date.now() };
+      changed = true;
+    }
+  });
+  if(changed){ saveProgress(); renderProgressEverywhere(); }
+}
+function sectionStats(key){
+  const items = progressIndex.filter(i => i.sectionKey === key);
+  const done = items.filter(i => progress[i.id] && progress[i.id].done).length;
+  const tried = items.filter(i => progress[i.id] && !progress[i.id].done).length;
+  return { total:items.length, done, tried };
+}
+function overallStats(){
+  const total = progressIndex.length;
+  const done = progressIndex.filter(i => progress[i.id] && progress[i.id].done).length;
+  return { total, done, pct: total ? Math.round(done / total * 100) : 0 };
+}
+function renderProgressEverywhere(){
+  progressIndex.forEach(updateExerciseMark);
+  document.querySelectorAll(".tab-btn").forEach(btn => {
+    const st = sectionStats(btn.dataset.section);
+    let bar = btn.querySelector(".tab-progress");
+    if(!st.total){ if(bar) bar.remove(); return; }
+    if(!bar){ bar = document.createElement("span"); bar.className = "tab-progress"; bar.innerHTML = "<i></i>"; btn.appendChild(bar); }
+    bar.querySelector("i").style.width = (st.done / st.total * 100) + "%";
+    bar.title = `${st.done} of ${st.total} exercises done`;
+  });
+  const o = overallStats();
+  const pctEl = document.getElementById("progressPct");
+  if(pctEl) pctEl.textContent = o.pct + "%";
+  if(document.getElementById("progressModal").classList.contains("open")) renderProgressPanel();
+}
+function renderProgressPanel(){
+  const o = overallStats();
+  const keys = [...document.querySelectorAll(".tab-btn")].map(b => b.dataset.section).filter(k => sectionStats(k).total);
+  const body = document.getElementById("progressBody");
+  body.innerHTML = `
+    <div class="pg-overall">
+      <div class="pg-big">${o.pct}%</div>
+      <div class="pg-overall-text">${o.done} of ${o.total} exercises completed with a perfect score</div>
+    </div>
+    ${keys.map(k => {
+      const st = sectionStats(k);
+      const items = progressIndex.filter(i => i.sectionKey === k);
+      const w1 = st.done / st.total * 100, w2 = st.tried / st.total * 100;
+      return `<details class="pg-section">
+        <summary>
+          <span class="pg-name">${sectionName(k)}</span>
+          <span class="pg-bar"><i class="d" style="width:${w1}%"></i><i class="t" style="width:${w2}%"></i></span>
+          <span class="pg-count">${st.done} / ${st.total}</span>
+        </summary>
+        <ul>${items.map(i => {
+          const p = progress[i.id];
+          const cls = p ? (p.done ? "done" : "tried") : "todo";
+          const label = p ? (p.done ? "done" : `best ${p.best}/${p.total}`) : "not started";
+          return `<li class="${cls}"><button type="button" data-goto="${i.id}"><span class="pg-ico"></span><span class="pg-ex">${i.title}</span><span class="pg-st">${label}</span></button></li>`;
+        }).join("")}</ul>
+      </details>`;
+    }).join("")}
+    <p class="pg-note">An exercise counts as done when every answer is correct. If you score less, your best result is saved — try again any time. Progress is saved in this browser.</p>`;
+  body.querySelectorAll("[data-goto]").forEach(b => b.addEventListener("click", () => gotoExercise(b.dataset.goto)));
+}
+function gotoExercise(id){
+  const item = progressIndex.find(i => i.id === id);
+  if(!item) return;
+  closeProgress();
+  const tab = document.querySelector(`.tab-btn[data-section="${item.sectionKey}"]`);
+  if(tab && !tab.classList.contains("active")) tab.click();
+  item.ex.classList.add("open");
+  setTimeout(() => item.ex.scrollIntoView({ behavior:"smooth", block:"start" }), 80);
+}
+function openProgress(){
+  document.getElementById("progressModal").classList.add("open");
+  renderProgressPanel();
+  document.getElementById("progressClose").focus();
+}
+function closeProgress(){ document.getElementById("progressModal").classList.remove("open"); }
+
+indexExercises();
+renderProgressEverywhere();
+new MutationObserver(() => {
+  clearTimeout(progressScanTimer);
+  progressScanTimer = setTimeout(scanProgress, 60);
+}).observe(content, { subtree:true, childList:true, characterData:true });
+document.getElementById("progressBtn").addEventListener("click", openProgress);
+document.getElementById("progressClose").addEventListener("click", closeProgress);
+document.getElementById("progressModal").addEventListener("click", e => { if(e.target.id === "progressModal") closeProgress(); });
+document.addEventListener("keydown", e => { if(e.key === "Escape") closeProgress(); });
+document.getElementById("progressReset").addEventListener("click", () => {
+  if(!confirm("Reset all saved progress?")) return;
+  progress = {}; saveProgress(); renderProgressEverywhere();
+});
+
+</script>
+</body>
+</html>

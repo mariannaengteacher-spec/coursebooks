@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>English Grammar Workbooks · B1–B2 + B2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f8f0e8; --elev:#fbf8f3; --soft:#f5ede4; --text:#3d2b1a; --muted:#7a644f;
+  --border:#d4c0b0; --accent:#a67c6b; --accent-soft:#f5ede4;
+  --success:#7c9a6e; --success-soft:#eef1e4;
+  --warn:#f5a623; --warn-soft:#fdf1dc;
+  --purple:#7a5a4a; --purple-soft:#f0e4d8;
+  --error:#c1584e; --error-soft:#f9e4e0;
+  --choco:#5a3220; --choco-2:#7b4a2e; --choco-soft:#ecdccd; --on-choco:#f7e9da;
+  --sh-sm:0 1px 3px rgba(90,63,40,.08); --sh-md:0 8px 30px rgba(166,124,107,.1);
+  --sh-lg:0 14px 36px rgba(90,63,40,.16); --r:14px; --r-sm:10px;
+}
+[data-theme="dark"]{
+  --bg:#20150d; --elev:#2b1d12; --soft:#3a2818; --text:#f3e6d6; --muted:#cbae94;
+  --border:#4a3624; --accent:#c99b7f; --accent-soft:#3a2818;
+  --success:#9ab08a; --success-soft:#2a3324;
+  --warn:#f0b768; --warn-soft:#3d2f13;
+  --purple:#b08f74; --purple-soft:#3a2b1c;
+  --error:#d98d81; --error-soft:#3a2320;
+  --choco:#c58a63; --choco-2:#8a5233; --choco-soft:#4a2f1d; --on-choco:#f7e9da;
+  --sh-sm:0 1px 3px rgba(0,0,0,.3); --sh-md:0 4px 14px rgba(0,0,0,.4); --sh-lg:0 14px 36px rgba(0,0,0,.5);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Times New Roman',Times,'Liberation Serif',serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
+
+.topbar{position:sticky;top:0;z-index:100;background:linear-gradient(135deg,#3f2214,#6b3d25);color:var(--on-choco);border-bottom:2px solid #2d180d;box-shadow:0 4px 16px rgba(60,30,15,.35)}
+[data-theme="dark"] .topbar{background:linear-gradient(135deg,#1c0f08,#4a2a18);border-bottom-color:#0f0804}
+.tb-in{max-width:1240px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:12px 22px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:21.2px;letter-spacing:-.02em}
+.logo-mark{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#d9a684,#a0684a);display:grid;place-items:center;color:#fff;font-weight:800;font-size:18.5px;box-shadow:0 4px 12px color-mix(in srgb,var(--accent) 40%,transparent)}
+.logo small{display:block;font-size:14.5px;font-weight:500;color:#dcc3ab}
+.sp{flex:1}
+.pw{display:flex;align-items:center;gap:9px;font-size:16.6px;color:#e6d0ba;font-weight:500}
+.pbar{width:150px;height:7px;border-radius:99px;background:rgba(0,0,0,.35);overflow:hidden}
+.pfill{height:100%;width:0;background:linear-gradient(90deg,#e8c39f,#c58a63);border-radius:99px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.ibtn{width:38px;height:38px;border-radius:10px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.1);color:var(--on-choco);cursor:pointer;display:grid;place-items:center;font-size:19.8px;transition:.2s}
+.ibtn:hover{background:rgba(255,255,255,.2);transform:translateY(-1px);box-shadow:var(--sh-sm)}
+
+.layout{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:270px 1fr;gap:30px;padding:26px 22px 80px}
+.sidebar{position:sticky;top:138px;align-self:start;max-height:calc(100vh - 162px);overflow-y:auto;padding-right:4px}
+.sidebar::-webkit-scrollbar{width:6px}
+.sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:99px}
+.sidebar h3{font-size:14.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:700;margin-bottom:10px;padding-left:12px}
+.nav-list{display:none;flex-direction:column;gap:3px}
+.nav-list.active{display:flex}
+.nav-item{display:flex;align-items:center;gap:11px;padding:9px 12px;border-radius:var(--r-sm);cursor:pointer;font-size:17.8px;color:var(--muted);font-weight:500;border:1px solid transparent;transition:.18s;text-align:left;background:none;font-family:inherit;width:100%}
+.nav-item:hover{background:var(--elev);color:var(--text);border-color:var(--border)}
+.nav-item.active{background:var(--accent-soft);color:var(--accent);font-weight:600;border-color:color-mix(in srgb,var(--accent) 25%,transparent)}
+.nav-num{width:22px;height:22px;border-radius:6px;background:var(--soft);color:var(--muted);display:grid;place-items:center;font-size:14.5px;font-weight:700;flex-shrink:0;transition:.18s}
+.nav-item.active .nav-num{background:var(--choco);color:#fff}
+[data-theme="dark"] .nav-item.active .nav-num{color:#20150d}
+
+.content{min-width:0}
+.topic{display:none;animation:fadeUp .4s cubic-bezier(.4,0,.2,1)}
+.topic.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.topic-header{margin-bottom:20px;padding-bottom:18px;border-bottom:2px solid var(--choco)}
+.topic-tag{display:inline-block;font-size:14.5px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--on-choco);background:linear-gradient(135deg,var(--choco-2),var(--choco));padding:4px 12px;border-radius:99px;margin-bottom:10px}
+[data-theme="dark"] .topic-tag{color:#20150d;background:linear-gradient(135deg,#d9a684,var(--choco))}
+.topic-header h2{font-family:'Times New Roman',Times,'Liberation Serif',serif;font-size:clamp(31.7px,3.9vw,45px);font-weight:700;letter-spacing:-.02em;line-height:1.15}
+.topic-header p{color:var(--muted);font-size:19.2px;margin-top:6px}
+
+.rule{background:linear-gradient(135deg,var(--accent-soft),color-mix(in srgb,var(--purple-soft) 60%,var(--accent-soft)));border:1px solid color-mix(in srgb,var(--accent) 18%,transparent);border-radius:var(--r);padding:16px 20px;margin-bottom:24px;font-size:19.2px;position:relative;overflow:hidden}
+.rule::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,var(--choco-2),var(--choco))}
+.rule b{color:var(--choco);font-weight:700}
+.rule i{color:var(--muted);font-style:italic}
+.rule-title{display:flex;align-items:center;gap:8px;font-weight:700;font-size:15.2px;text-transform:uppercase;letter-spacing:.08em;color:var(--choco);margin-bottom:7px}
+
+.ex{background:var(--elev);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;margin-bottom:12px;box-shadow:var(--sh-sm);transition:.25s;position:relative;overflow:hidden}
+.ex:hover{box-shadow:var(--sh-md);transform:translateY(-1px)}
+.ex::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--tc,var(--accent))}
+.ex-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap}
+.ex-num{font-weight:700;font-size:15.9px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.ex-type{font-size:13.2px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:99px;background:var(--tb,var(--accent-soft));color:var(--tc,var(--accent))}
+.ex p{font-size:19.8px;margin:7px 0}
+.ex .task{font-size:17.8px;color:var(--muted);font-style:italic;margin-top:3px}
+
+.opts{list-style:none;margin-top:9px;display:flex;flex-direction:column;gap:5px}
+.opts li{padding:8px 13px;border-radius:var(--r-sm);background:var(--soft);border:1px solid transparent;font-size:18.5px;transition:.18s}
+.opts li:hover{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 25%,transparent)}
+
+.words{display:flex;flex-wrap:wrap;gap:6px;margin:9px 0}
+.word{background:var(--soft);border:1px solid var(--border);border-radius:8px;padding:5px 11px;font-size:17.8px;font-weight:500;transition:.18s}
+.word:hover{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+
+.match-table{width:100%;border-collapse:collapse;margin-top:9px;font-size:18.5px}
+.match-table td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:top}
+.match-table tr:last-child td{border-bottom:none}
+.match-table td:first-child{width:50%;font-weight:500}
+.match-table td:last-child{color:var(--muted)}
+.tf{font-weight:600;padding:9px 13px;background:var(--soft);border-radius:var(--r-sm);font-size:18.5px}
+
+.toggle{margin-top:12px;background:var(--elev);border:1px solid var(--border);color:var(--text);padding:7px 15px;border-radius:9px;cursor:pointer;font-size:16.6px;font-weight:600;font-family:inherit;display:inline-flex;align-items:center;gap:6px;transition:.2s}
+.toggle:hover{background:var(--accent-soft);color:var(--accent);border-color:var(--accent);transform:translateY(-1px)}
+.toggle::before{content:'👁';font-size:15.9px}
+
+.answers{max-height:0;overflow:hidden;opacity:0;transition:max-height .35s ease,opacity .25s,margin .25s,padding .25s;margin-top:0;padding:0 14px;border-radius:var(--r-sm);background:var(--success-soft);border-left:3px solid var(--success);font-size:18.5px}
+.answers.show{max-height:400px;opacity:1;margin-top:11px;padding:11px 14px}
+.answers div{font-weight:500}
+.answers i{color:var(--muted)}
+
+.ex[data-type="order"]{--tc:var(--accent);--tb:var(--accent-soft)}
+.ex[data-type="match"]{--tc:var(--purple);--tb:var(--purple-soft)}
+.ex[data-type="choice"]{--tc:var(--warn);--tb:var(--warn-soft)}
+.ex[data-type="tf"]{--tc:var(--success);--tb:var(--success-soft)}
+
+.ex.done{--tc:var(--success)}
+
+/* --- Order (word arrangement) --- */
+.slot{min-height:46px;display:flex;flex-wrap:wrap;align-content:flex-start;gap:6px;padding:9px 11px;margin:9px 0;border:1.5px dashed var(--border);border-radius:var(--r-sm);background:var(--soft);transition:.2s}
+.slot.correct{border-color:var(--success);border-style:solid;background:var(--success-soft)}
+.slot.incorrect{border-color:var(--error);border-style:solid;background:var(--error-soft)}
+.words .word{cursor:pointer;user-select:none}
+.words .word.placed{opacity:.3;pointer-events:none}
+.slot .word{cursor:pointer;background:var(--elev);border-color:var(--accent)}
+.ex-actions{margin-top:2px}
+
+/* --- Multiple choice --- */
+.opts li{cursor:pointer}
+.opts.answered li{pointer-events:none}
+.opts li.correct{background:var(--success-soft);border-color:var(--success);color:var(--success);font-weight:600}
+.opts li.incorrect{background:var(--error-soft);border-color:var(--error);color:var(--error)}
+
+/* --- True/False --- */
+.tf-btns{display:flex;gap:10px;margin-top:11px}
+.tf-btn{flex:1;padding:9px 0;border-radius:var(--r-sm);border:1px solid var(--border);background:var(--soft);color:var(--text);cursor:pointer;font-weight:700;font-size:17.8px;font-family:inherit;transition:.18s}
+.tf-btn:hover{border-color:var(--accent);background:var(--accent-soft)}
+.tf-btns.answered .tf-btn{pointer-events:none}
+.tf-btn.correct{background:var(--success-soft);border-color:var(--success);color:var(--success)}
+.tf-btn.incorrect{background:var(--error-soft);border-color:var(--error);color:var(--error)}
+
+/* --- Matching --- */
+.match-cols{display:flex;gap:12px;margin-top:9px}
+.match-col{flex:1;display:flex;flex-direction:column;gap:6px}
+.match-item{padding:8px 12px;border-radius:var(--r-sm);background:var(--soft);border:1px solid var(--border);font-size:17.8px;cursor:pointer;transition:.16s}
+.match-item:hover{border-color:var(--accent)}
+.match-item.selected{border-color:var(--accent);background:var(--accent-soft)}
+.match-item.matched{background:var(--success-soft);border-color:var(--success);color:var(--success);cursor:default}
+.match-item.wrong{background:var(--error-soft);border-color:var(--error)}
+
+
+/* --- Book tabs --- */
+.book-tabs{max-width:1240px;margin:0 auto;display:flex;gap:8px;padding:0 22px 10px}
+.book-tab{display:flex;align-items:center;gap:10px;padding:8px 16px;border-radius:10px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.08);color:var(--on-choco);cursor:pointer;font-family:inherit;font-size:19.8px;font-weight:700;transition:.2s;text-align:left}
+.book-tab:hover{background:rgba(255,255,255,.18);transform:translateY(-1px)}
+.book-tab.active{background:var(--on-choco);color:#3f2214;border-color:var(--on-choco);box-shadow:0 4px 12px rgba(0,0,0,.25)}
+.bt-sub{font-size:17.1px;font-weight:500;opacity:.85}
+.bt-count{font-size:15.2px;font-weight:700;padding:2px 9px;border-radius:99px;background:rgba(0,0,0,.28);color:var(--on-choco)}
+.book-tab.active .bt-count{background:rgba(90,50,32,.16);color:#3f2214}
+
+.menu-btn{display:none}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:90;backdrop-filter:blur(2px)}
+.overlay.show{display:block}
+
+@media(max-width:900px){
+  .layout{grid-template-columns:1fr;padding:18px 14px 60px;gap:16px}
+  .sidebar{position:fixed;top:0;left:-320px;bottom:0;width:300px;max-height:none;z-index:95;background:var(--elev);padding:132px 16px 20px;transition:left .3s cubic-bezier(.4,0,.2,1);box-shadow:var(--sh-lg);overflow-y:auto}
+  .sidebar.open{left:0}
+  .menu-btn{display:grid}
+  .pw span{display:none}
+  .pbar{width:100px}
+  .ex{padding:15px 17px}
+}
+@media(max-width:520px){
+  .tb-in{padding:11px 14px;gap:9px}
+  .book-tabs{padding:0 14px 10px;gap:6px}
+  .book-tab{padding:7px 11px;font-size:18.5px;gap:7px;flex:1;justify-content:space-between}
+  .bt-sub{display:none}
+  .logo .full{display:none}
+  .pbar{width:70px}
+}
+
+/* ===== честный прогресс и расширенные правила ===== */
+.ex-status{font-size:17.8px;font-weight:600;color:var(--success);margin:-2px 0 10px}
+.ex-status.bad{color:var(--error)}
+.ex.peeked{border-color:var(--warn)!important}
+.nav-item .nav-done{margin-left:auto;font-size:15.2px;font-weight:700;color:var(--muted);padding-left:6px;white-space:nowrap}
+.nav-item.topic-complete .nav-done{color:var(--success)}
+.gr-reset{padding:14px 12px 20px}
+.gr-reset button{font-family:inherit;font-size:17.1px;background:none;border:1px solid var(--border);border-radius:99px;padding:5px 14px;color:var(--muted);cursor:pointer}
+.gr-reset button:hover{border-color:var(--choco);color:var(--choco)}
+.rule-ext{margin-top:12px;border-top:1px dashed color-mix(in srgb,var(--choco) 30%,transparent);padding-top:10px}
+.rule-ext summary{cursor:pointer;font-weight:700;color:var(--choco);font-size:18.5px;list-style:none}
+.rule-ext summary::-webkit-details-marker{display:none}
+.rule-ext summary::after{content:" ▾";font-size:.85em}
+.rule-ext:not([open]) summary::after{content:" ▸"}
+.rx-block{margin-top:12px}
+.rx-title{font-size:15.2px;text-transform:uppercase;letter-spacing:.07em;font-weight:700;color:var(--choco-2);margin-bottom:6px}
+.rx-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.rx-table{border-collapse:collapse;width:100%;font-size:18.5px;background:var(--elev);border-radius:8px;overflow:hidden;min-width:520px}
+.rx-table th{background:var(--choco);color:var(--on-choco);font-weight:600;padding:6px 10px;text-align:left}
+.rx-table td{border-top:1px solid var(--border);padding:7px 10px;vertical-align:top;color:var(--text)}
+.rx-table td.rx-name{font-weight:700;color:var(--choco);white-space:nowrap}
+.rx-table b,.rx-use b,.rx-mist b{color:var(--choco)}
+.rx-use,.rx-mist{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.rx-use li{background:var(--elev);border:1px solid var(--border);border-radius:8px;padding:8px 12px;display:grid;gap:2px}
+.rx-when{font-size:17.1px;font-weight:700;color:var(--choco-2)}
+.rx-ex{font-size:19.8px;color:var(--text)}
+.rx-tr{font-size:17.1px;color:var(--muted);font-style:italic}
+.rx-markers{margin:0;font-size:18.5px;color:var(--text)}
+.rx-mist li{background:var(--elev);border:1px solid var(--border);border-radius:8px;padding:8px 12px;display:grid;gap:2px}
+.rx-bad{color:var(--error);font-size:19.2px}
+.rx-bad s{text-decoration-thickness:2px}
+.rx-good{color:var(--success);font-size:19.2px;font-weight:600}
+.rx-note{font-size:17.1px;color:var(--muted)}
+@media (max-width:640px){.rx-table{font-size:17.1px}.rx-ex{font-size:19.2px}}
+/* ===== Тетрадь: тёмно-коричневые акценты, кофейный фон, линованный лист ===== */
+:root,[data-theme="dark"]{
+  --ink:#2e241e; --ink-soft:#5a3f2a; --paper:#f5efe8; --paper-alt:#f1e7de; --card:#fffaf5;
+  --line:#dccfc2; --cover:#45301f; --cover-soft:#5a3f2a; --cover-text:#fcf5ed; --gold:#c3a06a;
+  --bg:#f5efe8; --elev:#fffaf5; --soft:#f1e7de; --text:#2e241e; --muted:#5a3f2a;
+  --border:#e5d6c8; --accent:#8a6246; --accent-soft:#f1e7de;
+  --success:#2d7a4a; --success-soft:#e3ecdd; --error:#b34a4a; --error-soft:#f3e0da;
+  --choco:#45301f; --choco-2:#5a3f2a; --choco-soft:#f1e7de; --on-choco:#fcf5ed;
+  --sh-sm:0 6px 16px rgba(46,36,30,.05); --sh-md:0 8px 20px rgba(46,36,30,.07); --sh-lg:0 14px 36px rgba(46,36,30,.2);
+  --r:10px; --r-sm:8px; --mono:'Space Mono','Courier New',monospace; --hand:'Caveat',cursive;
+  color-scheme:light;
+}
+html,body{background:var(--paper)}
+body{font-family:'Inter','Segoe UI',system-ui,sans-serif;color:var(--ink);
+  background-image:repeating-linear-gradient(to bottom,transparent 0 38px,var(--line) 38px 39px);background-attachment:local}
+#themeBtn{display:none}
+/* обложка: шапка */
+.topbar,[data-theme="dark"] .topbar{background:var(--cover);border-bottom:3px solid var(--accent);box-shadow:0 4px 14px rgba(46,36,30,.25)}
+body::before{background:var(--cover)!important}
+.logo .full{font-family:var(--mono);font-weight:700;letter-spacing:.2px;color:var(--cover-text)}
+.logo small{font-family:var(--hand);font-size:22.4px;color:var(--gold);font-weight:500}
+.logo-mark{background:var(--gold);color:var(--cover);box-shadow:none;font-family:var(--mono)}
+.pw{color:rgba(252,245,237,.75)}
+.pbar{background:rgba(0,0,0,.25)}
+.pfill{background:var(--gold)}
+.ibtn{background:var(--cover-soft);border-color:rgba(255,255,255,.12);color:var(--cover-text)}
+.book-tab{background:var(--cover-soft);color:var(--cover-text);border-color:rgba(255,255,255,.12)}
+.book-tab.active{background:var(--paper);color:var(--ink);border-color:var(--gold)}
+.book-tab .bt-name{font-family:var(--mono)}
+/* обложка: оглавление */
+.sidebar{background:var(--cover);border-radius:12px;padding:16px 10px 10px;border-left:3px solid var(--accent);box-shadow:var(--sh-md)}
+.sidebar h3{font-family:var(--hand);text-transform:none;letter-spacing:0;font-size:26.4px;color:var(--gold);font-weight:700;padding-left:10px}
+.sidebar::-webkit-scrollbar-thumb{background:var(--cover-soft)}
+.nav-group{font-family:var(--hand);text-transform:none;letter-spacing:0;font-size:23.8px;color:var(--gold)!important;font-weight:700}
+.nav-item{color:var(--cover-text);border-left:3px solid transparent;border-radius:8px}
+.nav-item:hover{background:var(--cover-soft);color:#fff;border-color:transparent;border-left-color:transparent}
+.nav-item.active{background:var(--cover-soft);color:#fff;font-weight:700;border-color:transparent;border-left:3px solid var(--gold)}
+.nav-num,.nav-item.active .nav-num{background:rgba(255,255,255,.12);color:var(--cover-text);font-family:var(--mono);font-size:13.9px}
+.nav-item.active .nav-num{background:var(--gold);color:var(--cover)}
+.nav-item .nav-done{color:rgba(252,245,237,.6)}
+.nav-item.topic-complete .nav-done{color:#b9dcb7}
+.gr-reset button{color:var(--cover-text);border-color:rgba(255,255,255,.25)}
+.gr-reset button:hover{color:#fff;border-color:var(--gold)}
+/* лист: поле слева */
+.content{border-left:2px solid var(--accent);padding-left:26px}
+.topic-header{border-bottom:none;margin-bottom:22px}
+.topic-header h2{display:inline-block;font-family:var(--mono);font-size:clamp(26.4px,3.4vw,35.6px);letter-spacing:.2px;color:var(--ink);
+  background:var(--card);border:2px dashed var(--accent);border-radius:10px;padding:10px 20px;transform:rotate(-1deg);box-shadow:var(--sh-md);margin-top:8px}
+.topic-tag,[data-theme="dark"] .topic-tag{background:var(--cover);color:var(--cover-text);font-family:var(--mono);letter-spacing:.06em}
+.rule{background:var(--card);border:1px solid var(--border);border-left:6px solid var(--gold);border-radius:0 10px 10px 0;box-shadow:var(--sh-sm)}
+.rule-title{font-family:var(--mono);color:var(--accent);font-size:18.5px;letter-spacing:.4px}
+.rule p{font-size:21.8px;line-height:1.6}
+.rule-ex span{font-style:normal;font-family:var(--mono);font-size:19.2px;background:var(--paper-alt);border-radius:8px;padding:3px 12px;align-self:flex-start}
+.rule-ex{gap:5px}
+.pic-cell{background:var(--paper-alt);border-color:var(--border)}
+.ex{background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:var(--sh-sm)}
+.ex::before{display:none}
+.ex-head{border-bottom:1px solid var(--border);padding-bottom:9px}
+.ex-num{font-family:var(--mono);font-size:19.8px;color:var(--ink);text-transform:none;letter-spacing:0}
+.ex-type{background:var(--paper-alt);color:var(--ink-soft);font-family:'Inter',sans-serif;text-transform:none;letter-spacing:0;font-size:16.6px;font-weight:500}
+.ex.done .ex-type{background:var(--success-soft);color:var(--success)}
+.ex .task{font-family:var(--hand);font-style:normal;font-size:25.1px;color:var(--ink-soft);line-height:1.3}
+.mc-q,.ex p.mc-q{font-size:21.2px}
+.opts li,.match-item,.word,button.word{font-family:var(--mono);font-size:18.5px;background:var(--paper-alt);border:1px solid var(--border);border-radius:30px;color:var(--ink)}
+.match-item{border-radius:20px}
+.opts li:hover,.match-item:hover,.words .word:hover{background:#ead9ca;border-color:var(--accent);color:var(--ink)}
+.match-item.selected{background:var(--cover);border-color:var(--cover);color:var(--cover-text)}
+.opts li.correct,.match-item.matched{background:var(--success-soft);border-color:var(--success);color:#1f5c34}
+.opts li.incorrect,.match-item.wrong{background:var(--error-soft);border-color:var(--error);color:#5c2a22}
+.slot{background:var(--paper);border:1.5px dashed var(--accent);border-radius:12px}
+.slot .word,.slot button.word{background:var(--card)}
+.ord-reset{border-radius:50%;background:var(--card)}
+.toggle,.unit-nav .toggle{background:var(--cover);color:var(--cover-text);border:none;border-radius:30px;font-family:var(--mono);font-size:17.1px}
+.toggle:hover,.unit-nav .toggle:hover{background:var(--cover-soft);color:#fff;transform:none}
+.q-pic{filter:none}
+@media(min-width:901px){
+  .layout{grid-template-columns:1fr 280px}
+  .sidebar{order:2}
+  .content{order:1}
+}
+@media(max-width:900px){
+  .sidebar{border-radius:0;border-left:none;border-right:3px solid var(--accent)}
+  .content{padding-left:16px}
+  .topic-header h2{font-size:25.1px;padding:8px 14px}
+}
+@media(max-width:520px){.logo small{font-size:19.8px;white-space:nowrap}}
+
+/* Весь шрифт — Times New Roman */
+html body,html body *:not(.emoji){font-family:"Times New Roman",Times,serif!important}
+
+.q-pic{font-size:1.3em;margin-right:4px;vertical-align:-2px}
+</style>
+<style id="fs-scaled-132">html{font-size:132%}</style><style id="mobile-fix">@media(max-width:520px){.tb-in .ibtn{flex:0 0 auto}.tb-in .logo{min-width:0;flex:0 1 auto}.tb-in .logo>div:last-child{min-width:0}.tb-in .logo small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tb-in .pw{flex:0 0 auto}.tb-in .pbar{display:none}}</style><style id="white-sheet">:root:not([data-theme="dark"]) body:not([data-theme="dark"]) #content{background:#fff!important;background-image:none!important;border:1px solid #e3d3c4!important;border-left:2px solid #8a6246!important;border-radius:14px!important;box-shadow:0 4px 18px rgba(90,60,40,.09)!important;padding:28px 30px 34px 34px!important;box-sizing:border-box}@media(max-width:520px){:root:not([data-theme="dark"]) body:not([data-theme="dark"]) #content{padding:18px 14px 22px 16px!important;border-radius:12px!important}}</style><style id="stripes-strong">:root:not([data-theme="dark"]) body:not([data-theme="dark"]){background-image:repeating-linear-gradient(to bottom,transparent 0 38px,#cdb7a3 38px 40px)!important}</style></head>
+<body>
+
+<div class="topbar">
+  <div class="tb-in">
+    <button class="ibtn menu-btn" onclick="toggleMenu()">☰</button>
+    <div class="logo">
+      <div class="logo-mark">EN</div>
+      <div><span class="full">English Grammar</span><small id="logoSub"></small></div>
+    </div>
+    <div class="sp"></div>
+    <div class="pw">
+      <span>Прогресс</span>
+      <div class="pbar"><div class="pfill" id="pfill"></div></div>
+      <span id="ptext">0/0</span>
+    </div>
+    <button class="ibtn" onclick="toggleTheme()" id="themeBtn" title="Тема">🌙</button>
+  </div>
+  <div class="book-tabs" id="bookTabs" role="tablist" aria-label="Учебники"></div>
+</div>
+
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <h3 id="sideTitle">Содержание</h3>
+    <div id="navHost"></div>
+  </aside>
+
+  <main class="content" id="content"></main>
+</div>
+
+<script>
+/* ============ ДАННЫЕ ============ */
+const BOOKS = [
+{key:"b1",tab:"B1–B2",sub:"Grammar Workbook",topics:[
+{title:"Present Simple vs Present Continuous",sub:"Регулярные действия против действий прямо сейчас.",rule:`<b>Present Simple</b> — регулярные действия, факты: <i>I work every day.</i><br><b>Present Continuous</b> — действие прямо сейчас: <i>I am working now.</i><br>Маркеры: <i>always, usually, often, never</i> → Simple; <i>now, at the moment, today</i> → Continuous.`,
+ex:[
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["usually","she","at 7","gets up"],a:"She usually gets up at 7."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["are","they","now","watching","TV"],a:"They are watching TV now."},
+{t:"choice",q:"Look! The baby ___ .",opts:["a) sleeps","b) is sleeping","c) sleep"],a:"b) is sleeping"},
+{t:"choice",q:"My brother ___ football every Saturday.",opts:["a) play","b) is playing","c) plays"],a:"c) plays"},
+{t:"match",task:"Соотнесите начало и окончание.",rows:[["1. I am reading","a. every morning."],["2. She goes to school","b. a book at the moment."],["3. We don't watch","c. TV in the evening."]],a:"1 — b, 2 — a, 3 — c"},
+{t:"match",task:"Соотнесите вопрос и ответ.",rows:[["1. What are you doing?","a. Yes, she does."],["2. Does she like coffee?","b. I'm writing an email."],["3. Do they live here?","c. No, they don't."]],a:"1 — b, 2 — a, 3 — c"},
+{t:"tf",q:"«She is knowing the answer» — правильное предложение.",a:"False. Глагол <i>know</i> не употребляется в Continuous. Правильно: <i>She knows the answer.</i>"},
+{t:"tf",q:"«I am liking this song» — грамматически верно.",a:"False. <i>Like</i> — глагол состояния. Правильно: <i>I like this song.</i>"},
+{t:"choice",q:"___ you always ___ breakfast?",opts:["a) Do / have","b) Are / having","c) Does / have"],a:"a) Do / have"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["doesn't","he","like","fish"],a:"He doesn't like fish."},
+{t:"choice",q:"Water ___ at 100 degrees.",opts:["a) is boiling","b) boils","c) boil"],a:"b) boils"},
+{t:"choice",q:"Why ___ you ___ that jacket today? It's so hot!",opts:["a) do / wear","b) are / wearing","c) does / wear"],a:"b) are / wearing"},
+{t:"choice",q:"He usually ___ to work by bus, but today he ___ his car.",opts:["a) goes / drives","b) is going / drives","c) goes / is driving"],a:"c) goes / is driving"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["does","what","your father","do"],a:"What does your father do?"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["is","the sun","shining","today"],a:"The sun is shining today."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["never","they","late","are"],a:"They are never late."},
+{t:"match",task:"Соотнесите предложение и его значение.",rows:[["1. I live in Kyiv.","a. Постоянная ситуация."],["2. I am living with friends this week.","b. Временная ситуация."],["3. I am meeting Ann at 6 tomorrow.","c. Запланированное будущее."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"match",task:"Соотнесите начало и окончание.",rows:[["1. She usually drinks tea,","a. but today she is drinking coffee."],["2. Listen! Someone","b. is playing the piano."],["3. My sister works","c. in a bank."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"tf",q:"«He is having a shower now» — правильное предложение.",a:"True. <i>Have</i> в значении «принимать душ» — действие, поэтому Continuous возможен."},
+{t:"tf",q:"«I am hating early mornings» — правильное предложение.",a:"False. <i>Hate</i> — глагол состояния. Правильно: <i>I hate early mornings.</i>"}
+]},
+
+{title:"Past Simple vs Past Continuous",sub:"Завершённое действие против процесса в прошлом.",rule:`<b>Past Simple</b> — завершённое действие: <i>I watched a film yesterday.</i><br><b>Past Continuous</b> — процесс в момент: <i>I was watching TV at 8 pm.</i><br>Часто вместе: <i>I was cooking when he came.</i>`,
+ex:[
+{t:"choice",q:"I ___ dinner when the phone rang.",opts:["a) cooked","b) was cooking","c) cook"],a:"b) was cooking"},
+{t:"choice",q:"They ___ to Paris last summer.",opts:["a) were going","b) went","c) go"],a:"b) went"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["was","she","reading","at 10 pm"],a:"She was reading at 10 pm."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["didn't","we","see","him","yesterday"],a:"We didn't see him yesterday."},
+{t:"match",task:"Соотнесите начало и конец.",rows:[["1. I was walking home","a. when I met Ann."],["2. She called me","b. while I was sleeping."],["3. They were playing","c. football at 5 pm."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"match",task:"Соотнесите вопрос и ответ.",rows:[["1. What were you doing at 8?","a. Yes, I did."],["2. Did you finish the task?","b. I was studying."],["3. Where did they go?","c. They went to Rome."]],a:"1 — b, 2 — a, 3 — c"},
+{t:"tf",q:"«While I was reading, he was cooking» — правильное предложение.",a:"True. Два одновременных процесса в прошлом."},
+{t:"tf",q:"«I was knowing him for years» — верно.",a:"False. <i>Know</i> — глагол состояния. Правильно: <i>I knew him for years.</i>"},
+{t:"choice",q:"While she ___ , the lights went out.",opts:["a) studied","b) was studying","c) studies"],a:"b) was studying"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["were","they","what","doing"],a:"What were they doing?"},
+{t:"choice",q:"I ___ TV when the lights went out.",opts:["a) watched","b) was watching","c) watch"],a:"b) was watching"},
+{t:"choice",q:"She ___ her keys yesterday morning.",opts:["a) was losing","b) lost","c) loses"],a:"b) lost"},
+{t:"choice",q:"What ___ you ___ at 9 o'clock last night?",opts:["a) did / do","b) were / doing","c) are / doing"],a:"b) were / doing"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["was","it","raining","when","we","left"],a:"It was raining when we left."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["did","where","you","go","yesterday"],a:"Where did you go yesterday?"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["weren't","they","listening","to the teacher"],a:"They weren't listening to the teacher."},
+{t:"match",task:"Соотнесите начало и конец.",rows:[["1. I was having lunch","a. when Tom arrived."],["2. The phone rang","b. while we were watching the film."],["3. It was snowing","c. when I woke up."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"match",task:"Соотнесите предложение и время.",rows:[["1. She wrote a letter.","a. Past Simple"],["2. She was writing a letter.","b. Past Continuous"],["3. She has written a letter.","c. Present Perfect"]],a:"1 — a, 2 — b, 3 — c"},
+{t:"tf",q:"«When I was walking home, I saw an accident» — правильное предложение.",a:"True. Процесс (<i>was walking</i>) прервало короткое действие (<i>saw</i>)."},
+{t:"tf",q:"«She was wanting a new phone» — правильное предложение.",a:"False. <i>Want</i> — глагол состояния. Правильно: <i>She wanted a new phone.</i>"}
+]},
+
+{title:"Present Perfect vs Past Simple",sub:"Результат сейчас против конкретного времени в прошлом.",rule:`<b>Present Perfect</b> — результат важен сейчас, время не указано: <i>I have lost my keys.</i><br><b>Past Simple</b> — конкретное время: <i>I lost my keys yesterday.</i><br>Маркеры Perfect: <i>already, yet, just, ever, never, since, for</i>.`,
+ex:[
+{t:"choice",q:"I ___ my homework already.",opts:["a) did","b) have done","c) do"],a:"b) have done"},
+{t:"choice",q:"She ___ to London in 2019.",opts:["a) has been","b) went","c) goes"],a:"b) went"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["have","you","ever","been","to Japan"],a:"Have you ever been to Japan?"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["has","she","just","arrived"],a:"She has just arrived."},
+{t:"match",task:"Соотнесите предложение и время.",rows:[["1. I have seen this film.","a. Past Simple"],["2. We visited Rome last year.","b. Present Perfect"],["3. He has never eaten sushi.","c. Present Perfect"]],a:"1 — b, 2 — a, 3 — c"},
+{t:"match",task:"Соотнесите вопрос и ответ.",rows:[["1. Have you finished?","a. Last Monday."],["2. When did you see him?","b. Yes, I have."],["3. How long have you lived here?","c. For five years."]],a:"1 — b, 2 — a, 3 — c"},
+{t:"tf",q:"«I have seen him yesterday» — правильно.",a:"False. С <i>yesterday</i> — Past Simple: <i>I saw him yesterday.</i>"},
+{t:"tf",q:"«She has already written the report» — правильно.",a:"True."},
+{t:"choice",q:"They ___ here since 2020.",opts:["a) live","b) lived","c) have lived"],a:"c) have lived"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["haven't","I","finished","yet"],a:"I haven't finished yet."},
+{t:"choice",q:"___ you ever ___ sushi?",opts:["a) Did / eat","b) Have / eaten","c) Do / eat"],a:"b) Have / eaten"},
+{t:"choice",q:"We ___ the museum last Sunday.",opts:["a) have visited","b) visited","c) visit"],a:"b) visited"},
+{t:"choice",q:"She ___ in London for three years, and she still lives there.",opts:["a) lived","b) has lived","c) was living"],a:"b) has lived"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["haven't","we","seen","her","since Monday"],a:"We haven't seen her since Monday."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["did","when","you","buy","this car"],a:"When did you buy this car?"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["has","he","never","been","abroad"],a:"He has never been abroad."},
+{t:"match",task:"Соотнесите вопрос и ответ.",rows:[["1. Have you seen my phone?","a. No, I haven't."],["2. When did you arrive?","b. Two hours ago."],["3. How many countries have you visited?","c. Fifteen so far."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"match",task:"Соотнесите начало и окончание.",rows:[["1. I have lived here","a. for ten years."],["2. I moved here","b. in 2015."],["3. I have already","c. finished my work."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"tf",q:"«I have finished it two days ago» — правильное предложение.",a:"False. С <i>ago</i> нужен Past Simple: <i>I finished it two days ago.</i>"},
+{t:"tf",q:"«Have you finished your homework yet?» — правильное предложение.",a:"True."}
+]},
+
+{title:"Present Perfect Continuous",sub:"Действие началось в прошлом и продолжается.",rule:`Форма: <b>have / has been + V-ing</b>.<br>Маркеры: <i>for, since, all day, how long</i>.<br>Пример: <i>I have been studying for two hours.</i>`,
+ex:[
+{t:"choice",q:"I ___ for two hours.",opts:["a) am studying","b) have been studying","c) studied"],a:"b) have been studying"},
+{t:"choice",q:"She ___ since morning.",opts:["a) is working","b) works","c) has been working"],a:"c) has been working"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["have","they","been","waiting","long"],a:"They have been waiting long."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["how long","have","you","been","learning English"],a:"How long have you been learning English?"},
+{t:"match",task:"Соотнесите предложение и маркер.",rows:[["1. I have been reading ___ .","a. since 2018."],["2. He has been living here ___ .","b. all morning."],["3. We have been friends ___ .","c. for ten years."]],a:"1 — b, 2 — a, 3 — c"},
+{t:"match",task:"Соотнесите вопрос и ответ.",rows:[["1. Why are you tired?","a. For three hours."],["2. How long have you been waiting?","b. Because I've been running."],["3. Has she been crying?","c. Yes, her eyes are red."]],a:"1 — b, 2 — a, 3 — c"},
+{t:"tf",q:"«I have been knowing her for years» — верно.",a:"False. <i>Know</i> не употребляется в Continuous. Правильно: <i>I have known her for years.</i>"},
+{t:"tf",q:"«It has been raining all day» — верно.",a:"True."},
+{t:"choice",q:"He ___ TV since 6 pm.",opts:["a) watches","b) has been watching","c) watched"],a:"b) has been watching"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["has","it","been","snowing"],a:"It has been snowing."},
+{t:"choice",q:"How long ___ you ___ for the bus?",opts:["a) are / waiting","b) have / been waiting","c) did / wait"],a:"b) have / been waiting"},
+{t:"choice",q:"Her hands are dirty. She ___ in the garden.",opts:["a) works","b) has been working","c) worked"],a:"b) has been working"},
+{t:"choice",q:"I ___ this book for a week, but I haven't finished it yet.",opts:["a) am reading","b) have been reading","c) read"],a:"b) have been reading"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["has","she","been","cooking","since noon"],a:"She has been cooking since noon."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["haven't","I","been","sleeping","well"],a:"I haven't been sleeping well."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["what","have","you","been","doing","lately"],a:"What have you been doing lately?"},
+{t:"match",task:"Соотнесите начало и конец.",rows:[["1. He is out of breath because","a. he has been running."],["2. The ground is wet because","b. it has been raining."],["3. My eyes hurt because","c. I have been reading all night."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"match",task:"Соотнесите начало и окончание.",rows:[["1. How long have you been","a. studying French?"],["2. She has been working here","b. for six months."],["3. It has been raining","c. since morning."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"tf",q:"«I have been owning a car for two years» — правильное предложение.",a:"False. <i>Own</i> — глагол состояния. Правильно: <i>I have owned a car for two years.</i>"},
+{t:"tf",q:"«He has been writing emails for an hour» — правильное предложение.",a:"True."}
+]},
+
+{title:"Past Perfect",sub:"Действие раньше другого действия в прошлом.",rule:`Форма: <b>had + V3</b>.<br>Пример: <i>When I arrived, they had already left.</i>`,
+ex:[
+{t:"choice",q:"When we got to the cinema, the film ___ .",opts:["a) started","b) had started","c) starts"],a:"b) had started"},
+{t:"choice",q:"She ___ the report before the meeting.",opts:["a) finished","b) had finished","c) finishes"],a:"b) had finished"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["had","they","already","eaten"],a:"They had already eaten."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["I","had","never","seen","such a thing"],a:"I had never seen such a thing."},
+{t:"match",task:"Соотнесите части предложения.",rows:[["1. By the time he came,","a. she had already gone."],["2. When I called her,","b. we had finished dinner."],["3. They were late because","c. they had missed the bus."]],a:"1 — b, 2 — a, 3 — c"},
+{t:"match",task:"Соотнесите предложение и перевод.",rows:[["1. I had read the book.","a. Я прочитал книгу до того момента."],["2. I read the book.","b. Я прочитал книгу (факт)."],["3. I have read the book.","c. Я прочитал книгу (результат сейчас)."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"tf",q:"«I had saw him before» — правильно.",a:"False. Правильно: <i>I had seen him before.</i>"},
+{t:"tf",q:"«She had left before I arrived» — правильно.",a:"True."},
+{t:"choice",q:"He told me he ___ that film twice.",opts:["a) saw","b) had seen","c) has seen"],a:"b) had seen"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["hadn't","we","met","before"],a:"We hadn't met before."},
+{t:"choice",q:"She was sad because she ___ her wallet.",opts:["a) lost","b) had lost","c) has lost"],a:"b) had lost"},
+{t:"choice",q:"After they ___ dinner, they went for a walk.",opts:["a) had eaten","b) have eaten","c) eat"],a:"a) had eaten"},
+{t:"choice",q:"I ___ never ___ snow before I went to Canada.",opts:["a) have / seen","b) had / seen","c) did / see"],a:"b) had / seen"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["had","the film","already","started"],a:"The film had already started."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["she","hadn't","finished","her homework"],a:"She hadn't finished her homework."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["had","you","met","him","before"],a:"Had you met him before?"},
+{t:"match",task:"Соотнесите начало и конец.",rows:[["1. When I got home,","a. my family had already gone to bed."],["2. He was angry because","b. someone had broken his laptop."],["3. She didn't come because","c. she had forgotten the address."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"match",task:"Соотнесите предложение и перевод.",rows:[["1. She had left when I arrived.","a. Сначала она ушла, потом я пришёл."],["2. She left when I arrived.","b. Она ушла в момент моего прихода."],["3. She was leaving when I arrived.","c. Она уходила, когда я пришёл."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"tf",q:"«I had went there before» — правильное предложение.",a:"False. После <i>had</i> нужна третья форма: <i>I had gone there before.</i>"},
+{t:"tf",q:"«By the time we arrived, the concert had started» — правильное предложение.",a:"True."}
+]},
+
+{title:"Future: will / going to / Present Continuous",sub:"Три способа говорить о будущем.",rule:`<b>will</b> — решение в момент речи, прогноз: <i>I'll help you.</i><br><b>going to</b> — план, намерение: <i>I'm going to visit my grandma.</i><br><b>Present Continuous</b> — договорённость: <i>I'm meeting Ann tomorrow.</i>`,
+ex:[
+{t:"choice",q:"Look at those clouds! It ___ rain.",opts:["a) will","b) is going to","c) is"],a:"b) is going to"},
+{t:"choice",q:"I ___ you tomorrow, I promise.",opts:["a) call","b) will call","c) am calling"],a:"b) will call"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["are","we","going to","buy","a car"],a:"We are going to buy a car."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["I","am","meeting","him","tomorrow"],a:"I am meeting him tomorrow."},
+{t:"match",task:"Соотнесите ситуацию и форму.",rows:[["1. Решение в момент речи","a. will"],["2. План на будущее","b. going to"],["3. Договорённость на время","c. Present Continuous"]],a:"1 — a, 2 — b, 3 — c"},
+{t:"match",task:"Соотнесите вопрос и ответ.",rows:[["1. What are you doing tonight?","a. I'm seeing a film."],["2. Will you help me?","b. Sure, I will."],["3. What are you going to do?","c. I'm going to study."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"tf",q:"«I will go to the party» — это всегда план, принятый заранее.",a:"False. <i>Will</i> часто выражает решение в момент речи."},
+{t:"tf",q:"«She is going to travel to Spain next month» — правильно.",a:"True."},
+{t:"choice",q:"The train ___ at 6 pm.",opts:["a) leaves","b) will leaving","c) is going to leave"],a:"a) leaves (расписание)"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["will","they","come","tomorrow"],a:"Will they come tomorrow?"},
+{t:"choice",q:"Watch out! That heavy box ___ fall on you!",opts:["a) will","b) is going to","c) falls"],a:"b) is going to"},
+{t:"choice",q:"— I'm cold. — I ___ close the window.",opts:["a) am going to","b) will","c) am closing"],a:"b) will"},
+{t:"choice",q:"I ___ the dentist at 4 tomorrow. I've made an appointment.",opts:["a) will see","b) am seeing","c) saw"],a:"b) am seeing"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["are","what","you","going to","do","tonight"],a:"What are you going to do tonight?"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["she","won't","be","late","tomorrow"],a:"She won't be late tomorrow."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["we","are","meeting","Tom","at 6"],a:"We are meeting Tom at 6."},
+{t:"match",task:"Соотнесите ситуацию и реакцию.",rows:[["1. I've decided:","a. I'm going to learn Spanish."],["2. The phone is ringing.","b. I'll answer it."],["3. We've bought the tickets.","c. We are flying to Rome on Friday."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"match",task:"Соотнесите начало и конец.",rows:[["1. In 2100,","a. people will live on the Moon."],["2. She has got a new job, so","b. she is going to move to Boston."],["3. Oh, there's no milk!","c. I'll go and buy some."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"tf",q:"«Look out! You will fall!» — самый естественный вариант.",a:"False. Есть очевидные признаки, поэтому нужен <i>going to</i>: <i>Look out! You're going to fall!</i>"},
+{t:"tf",q:"«I'm going to visit my aunt on Sunday; I've already bought the ticket» — правильное предложение.",a:"True."}
+]},
+
+{title:"First Conditional",sub:"Реальное условие в будущем.",rule:`Форма: <b>If + Present Simple, will + V</b>.<br>Пример: <i>If it rains, we will stay at home.</i>`,
+ex:[
+{t:"choice",q:"If it ___ tomorrow, we will cancel the picnic.",opts:["a) rains","b) will rain","c) rained"],a:"a) rains"},
+{t:"choice",q:"If you study hard, you ___ the exam.",opts:["a) pass","b) will pass","c) passed"],a:"b) will pass"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["if","you","help","me","I will finish faster"],a:"If you help me, I will finish faster."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["she","will","call","you","if she has time"],a:"She will call you if she has time."},
+{t:"match",task:"Соотнесите условие и результат.",rows:[["1. If I see him,","a. I will tell him the news."],["2. If you don't hurry,","b. you will miss the train."],["3. If we leave now,","c. we will arrive on time."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"match",task:"Соотнесите предложение и тип.",rows:[["1. If it rains, we'll stay home.","a. First Conditional"],["2. If I were you, I'd go.","b. Second Conditional"],["3. I will call you tomorrow.","c. Future Simple"]],a:"1 — a, 2 — b, 3 — c"},
+{t:"tf",q:"«If it will rain, we will stay home» — правильно.",a:"False. После <i>if</i> — Present Simple: <i>If it rains...</i>"},
+{t:"tf",q:"В First Conditional можно использовать «unless» вместо «if not».",a:"True. <i>Unless you hurry = If you don't hurry.</i>"},
+{t:"choice",q:"I ___ you if I ___ any news.",opts:["a) will tell / get","b) tell / will get","c) will tell / will get"],a:"a) will tell / get"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["unless","you","hurry","we will be late"],a:"Unless you hurry, we will be late."},
+{t:"choice",q:"If it ___ tomorrow, we'll stay at home.",opts:["a) will rain","b) rains","c) rained"],a:"b) rains"},
+{t:"choice",q:"She ___ angry if you don't call her.",opts:["a) will be","b) would be","c) is"],a:"a) will be"},
+{t:"choice",q:"We ___ the match if we don't play better.",opts:["a) don't win","b) won't win","c) wouldn't win"],a:"b) won't win"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["If","it","rains,","we","will","stay","home"],a:"If it rains, we will stay home."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["what","will","you","do","if","it","snows"],a:"What will you do if it snows?"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["she","won't","come","unless","you","invite","her"],a:"She won't come unless you invite her."},
+{t:"match",task:"Соотнесите начало и конец.",rows:[["1. If I see Tom,","a. I will tell him."],["2. If you don't hurry,","b. you will miss the train."],["3. If the weather is good,","c. we will go to the beach."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"match",task:"Соотнесите вопрос и ответ.",rows:[["1. What will happen if I press this button?","a. The door will open."],["2. What will you do if you lose your job?","b. I'll look for a new one."],["3. Will she come if I invite her?","c. Yes, she will."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"tf",q:"«If it will rain, we will stay at home» — правильное предложение.",a:"False. После <i>if</i> используется Present Simple: <i>If it rains, we will stay at home.</i>"},
+{t:"tf",q:"«I'll call you as soon as I arrive» — правильное предложение.",a:"True. После <i>as soon as</i> тоже Present Simple."}
+]},
+
+{title:"Second Conditional",sub:"Нереальное или маловероятное условие.",rule:`Форма: <b>If + Past Simple, would + V</b>.<br>Пример: <i>If I had a million, I would travel.</i>`,
+ex:[
+{t:"choice",q:"If I ___ rich, I would buy a yacht.",opts:["a) am","b) was","c) were"],a:"c) were (в условных)"},
+{t:"choice",q:"If she ___ harder, she would pass.",opts:["a) studies","b) studied","c) will study"],a:"b) studied"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["if","I","had","more time","I would learn Spanish"],a:"If I had more time, I would learn Spanish."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["what","would","you","do","if you won the lottery"],a:"What would you do if you won the lottery?"},
+{t:"match",task:"Соотнесите условие и результат.",rows:[["1. If I were you,","a. I would apologize."],["2. If we lived by the sea,","b. we would swim every day."],["3. If he spoke English,","c. he would get a better job."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"match",task:"Соотнесите предложение и тип.",rows:[["1. If it rains, we'll stay home.","a. First Conditional"],["2. If I had a car, I would drive.","b. Second Conditional"],["3. If I had known, I would have come.","c. Third Conditional"]],a:"1 — a, 2 — b, 3 — c"},
+{t:"tf",q:"«If I would have money, I would travel» — правильно.",a:"False. Правильно: <i>If I had money, I would travel.</i>"},
+{t:"tf",q:"«If I were you, I would take the job» — правильно.",a:"True. <i>Were</i> — стандартная форма для всех лиц."},
+{t:"choice",q:"She would be happier if she ___ her job.",opts:["a) changes","b) changed","c) will change"],a:"b) changed"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["I","wouldn't","do","that","if I were you"],a:"I wouldn't do that if I were you."},
+{t:"choice",q:"If I ___ rich, I would travel the world.",opts:["a) am","b) were","c) will be"],a:"b) were"},
+{t:"choice",q:"What ___ you do if you saw a ghost?",opts:["a) will","b) would","c) did"],a:"b) would"},
+{t:"choice",q:"She would buy that house if she ___ enough money.",opts:["a) has","b) had","c) would have"],a:"b) had"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["If","I","were","you,","I","would","apologise"],a:"If I were you, I would apologise."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["would","where","you","live","if","you","could","choose"],a:"Where would you live if you could choose?"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["he","wouldn't","say","that","if","he","knew","the truth"],a:"He wouldn't say that if he knew the truth."},
+{t:"match",task:"Соотнесите начало и конец.",rows:[["1. If I had a car,","a. I would drive to work."],["2. If she spoke French,","b. she would get that job."],["3. If we lived by the sea,","c. we would swim every day."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"match",task:"Соотнесите начало и окончание.",rows:[["1. I would help you","a. if I knew how."],["2. If I won the lottery,","b. I would buy a big house."],["3. What would you do","c. if you were president?"]],a:"1 — a, 2 — b, 3 — c"},
+{t:"tf",q:"«If I would know the answer, I would tell you» — правильное предложение.",a:"False. После <i>if</i> — Past Simple: <i>If I knew the answer, I would tell you.</i>"},
+{t:"tf",q:"«If I were you, I would take that job» — правильное предложение.",a:"True."}
+]},
+
+{title:"Third Conditional",sub:"Нереальное условие в прошлом.",rule:`Форма: <b>If + had + V3, would have + V3</b>.<br>Пример: <i>If I had studied, I would have passed.</i>`,
+ex:[
+{t:"choice",q:"If I ___ harder, I would have passed.",opts:["a) studied","b) had studied","c) have studied"],a:"b) had studied"},
+{t:"choice",q:"She would have come if you ___ her.",opts:["a) invited","b) had invited","c) invite"],a:"b) had invited"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["if","I","had known","I would have helped"],a:"If I had known, I would have helped."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["they","would have won","if they had trained more"],a:"They would have won if they had trained more."},
+{t:"match",task:"Соотнесите условие и результат.",rows:[["1. If I had left earlier,","a. I wouldn't have missed the train."],["2. If she had told me,","b. I would have helped her."],["3. If we had booked,","c. we would have got tickets."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"match",task:"Соотнесите предложение и тип.",rows:[["1. If I had time, I would help.","a. Second Conditional"],["2. If I had had time, I would have helped.","b. Third Conditional"],["3. If I have time, I will help.","c. First Conditional"]],a:"1 — a, 2 — b, 3 — c"},
+{t:"tf",q:"«If I would have known, I would have come» — правильно.",a:"False. Правильно: <i>If I had known, I would have come.</i>"},
+{t:"tf",q:"Third Conditional описывает нереальную ситуацию в прошлом.",a:"True."},
+{t:"choice",q:"If they ___ , they would have caught the bus.",opts:["a) hurried","b) had hurried","c) hurry"],a:"b) had hurried"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["I","wouldn't have","said","that","if I had known"],a:"I wouldn't have said that if I had known."},
+{t:"choice",q:"If we ___ earlier, we wouldn't have missed the train.",opts:["a) left","b) had left","c) would leave"],a:"b) had left"},
+{t:"choice",q:"She ___ the exam if she had studied more.",opts:["a) would pass","b) would have passed","c) passed"],a:"b) would have passed"},
+{t:"choice",q:"If he ___ the map, he wouldn't have got lost.",opts:["a) had taken","b) took","c) has taken"],a:"a) had taken"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["If","I","had","known,","I","would","have","told","you"],a:"If I had known, I would have told you."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["what","would","you","have","done","if","you","had","lost","your job"],a:"What would you have done if you had lost your job?"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["he","wouldn't","have","fallen","if","he","had","been","careful"],a:"He wouldn't have fallen if he had been careful."},
+{t:"match",task:"Соотнесите начало и конец.",rows:[["1. If I had seen you,","a. I would have said hello."],["2. If it hadn't been so cold,","b. we would have played outside."],["3. If they had invited me,","c. I would have come to the party."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"match",task:"Соотнесите факт и нереальное условие.",rows:[["1. I didn't know about the meeting.","a. If I had known, I would have come."],["2. She didn't study.","b. If she had studied, she would have passed."],["3. We missed the bus.","c. If we had left earlier, we wouldn't have missed it."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"tf",q:"«If I would have known, I would have helped» — правильное предложение.",a:"False. После <i>if</i> — Past Perfect: <i>If I had known, I would have helped.</i>"},
+{t:"tf",q:"«If she had left earlier, she wouldn't have been late» — правильное предложение.",a:"True."}
+]},
+
+{title:"Modal verbs",sub:"can, could, must, should, may, might.",rule:`<b>can / could</b> — способность, возможность, просьба.<br><b>must</b> — обязанность, сильная уверенность.<br><b>should</b> — совет.<br><b>may / might</b> — вероятность.<br>После модальных — инфинитив без <i>to</i>.`,
+ex:[
+{t:"choice",q:"You ___ see a doctor.",opts:["a) should","b) can","c) may"],a:"a) should (совет)"},
+{t:"choice",q:"She ___ speak three languages.",opts:["a) can","b) must","c) should"],a:"a) can (способность)"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["you","must","wear","a helmet"],a:"You must wear a helmet."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["could","you","help","me","please"],a:"Could you help me, please?"},
+{t:"match",task:"Соотнесите модальный глагол и значение.",rows:[["1. can","a. способность"],["2. must","b. обязанность"],["3. should","c. совет"]],a:"1 — a, 2 — b, 3 — c"},
+{t:"match",task:"Соотнесите предложение и значение.",rows:[["1. It may rain.","a. вероятность"],["2. You mustn't smoke here.","b. запрет"],["3. I can swim.","c. умение"]],a:"1 — a, 2 — b, 3 — c"},
+{t:"tf",q:"«You must to go now» — правильно.",a:"False. После модальных — без <i>to</i>: <i>You must go now.</i>"},
+{t:"tf",q:"«Should» используется для советов.",a:"True."},
+{t:"choice",q:"It's late. You ___ go to bed.",opts:["a) can","b) should","c) may"],a:"b) should"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["might","they","be","late"],a:"They might be late."},
+{t:"choice",q:"You ___ smoke here. It's forbidden.",opts:["a) mustn't","b) don't have to","c) needn't"],a:"a) mustn't"},
+{t:"choice",q:"You look tired. You ___ go to bed early.",opts:["a) must","b) should","c) can"],a:"b) should"},
+{t:"choice",q:"I don't know where he is. He ___ be at work.",opts:["a) might","b) can't","c) mustn't"],a:"a) might"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["you","should","see","a doctor"],a:"You should see a doctor."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["she","must","be","very","tired"],a:"She must be very tired."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["you","don't","have to","wear","a tie"],a:"You don't have to wear a tie."},
+{t:"match",task:"Соотнесите предложение и значение.",rows:[["1. You must wear a seat belt.","a. Обязанность."],["2. You should drink more water.","b. Совет."],["3. You may leave now.","c. Разрешение."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"match",task:"Соотнесите начало и конец.",rows:[["1. Tom has been working all day,","a. so he must be tired."],["2. When I was a child,","b. I could run very fast."],["3. It's late. You","c. should go to bed."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"tf",q:"«You must to see a doctor» — правильное предложение.",a:"False. После модального глагола <i>to</i> не нужно: <i>You must see a doctor.</i>"},
+{t:"tf",q:"«She can speaks three languages» — правильное предложение.",a:"False. После <i>can</i> — инфинитив без окончания: <i>She can speak three languages.</i>"}
+]},
+
+{title:"Passive Voice",sub:"Страдательный залог.",rule:`Форма: <b>be + V3</b>.<br>Present Simple: <i>The letter is written.</i><br>Past Simple: <i>The letter was written.</i><br>Present Perfect: <i>The letter has been written.</i>`,
+ex:[
+{t:"choice",q:"The book ___ by my friend.",opts:["a) wrote","b) was written","c) is wrote"],a:"b) was written"},
+{t:"choice",q:"These cars ___ in Germany.",opts:["a) are made","b) make","c) made"],a:"a) are made"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["the letter","was","sent","yesterday"],a:"The letter was sent yesterday."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["English","is","spoken","all over the world"],a:"English is spoken all over the world."},
+{t:"match",task:"Соотнесите актив и пассив.",rows:[["1. They built the house.","a. The house was built."],["2. Someone stole my bike.","b. My bike was stolen."],["3. People speak English.","c. English is spoken."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"match",task:"Соотнесите время и форму пассива.",rows:[["1. Present Simple","a. is done"],["2. Past Simple","b. was done"],["3. Present Perfect","c. has been done"]],a:"1 — a, 2 — b, 3 — c"},
+{t:"tf",q:"«The window was broke by the boy» — правильно.",a:"False. Правильно: <i>was broken</i> (V3)."},
+{t:"tf",q:"В пассиве исполнителя можно добавить через «by».",a:"True. <i>The book was written by Tolkien.</i>"},
+{t:"choice",q:"The report ___ already ___ .",opts:["a) has / been written","b) is / written","c) was / wrote"],a:"a) has / been written"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["these shoes","were","made","in Italy"],a:"These shoes were made in Italy."},
+{t:"choice",q:"This bridge ___ in 1990.",opts:["a) built","b) was built","c) is built"],a:"b) was built"},
+{t:"choice",q:"English ___ all over the world.",opts:["a) speaks","b) is spoken","c) was spoken"],a:"b) is spoken"},
+{t:"choice",q:"The report ___ by tomorrow.",opts:["a) will be finished","b) will finish","c) finished"],a:"a) will be finished"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["the letter","was","written","yesterday"],a:"The letter was written yesterday."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["these","cars","are","made","in Germany"],a:"These cars are made in Germany."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["has","the window","been","broken"],a:"The window has been broken."},
+{t:"match",task:"Соотнесите активное и пассивное предложение.",rows:[["1. Someone stole my bike.","a. My bike was stolen."],["2. People speak English here.","b. English is spoken here."],["3. They will finish the work soon.","c. The work will be finished soon."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"match",task:"Соотнесите предложение и время.",rows:[["1. The room is cleaned every day.","a. Present Simple Passive"],["2. The room was cleaned yesterday.","b. Past Simple Passive"],["3. The room has been cleaned.","c. Present Perfect Passive"]],a:"1 — a, 2 — b, 3 — c"},
+{t:"tf",q:"«The cake was ate by the children» — правильное предложение.",a:"False. Нужна третья форма глагола: <i>The cake was eaten by the children.</i>"},
+{t:"tf",q:"«The house is being painted now» — правильное предложение.",a:"True. Present Continuous Passive: <i>is being + V3</i>."}
+]},
+
+{title:"Reported Speech",sub:"Косвенная речь.",rule:`Прямая → косвенная: сдвиг времён на шаг назад.<br>Present Simple → Past Simple; Past Simple → Past Perfect; will → would; can → could.<br><i>"I am tired," he said. → He said he was tired.</i>`,
+ex:[
+{t:"choice",q:"He said he ___ busy.",opts:["a) is","b) was","c) will be"],a:"b) was"},
+{t:"choice",q:"She said she ___ come later.",opts:["a) will","b) would","c) can"],a:"b) would"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["he","said","that","he was tired"],a:"He said that he was tired."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["she","told","me","she would help"],a:"She told me she would help."},
+{t:"match",task:"Соотнесите прямую и косвенную речь.",rows:[["1. \"I am happy.\"","a. He said he was happy."],["2. \"I will call you.\"","b. He said he would call me."],["3. \"I can swim.\"","c. He said he could swim."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"match",task:"Соотнесите время и его сдвиг.",rows:[["1. Present Simple","a. Past Simple"],["2. Past Simple","b. Past Perfect"],["3. will","c. would"]],a:"1 — a, 2 — b, 3 — c"},
+{t:"tf",q:"«He said he is tired» — правильное косвенное предложение.",a:"False. Нужен сдвиг: <i>He said he was tired.</i>"},
+{t:"tf",q:"«Tell» требует объект (tell somebody), а «say» — нет.",a:"True. <i>He told me... / He said...</i>"},
+{t:"choice",q:"They said they ___ the film already.",opts:["a) saw","b) had seen","c) have seen"],a:"b) had seen"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["she","asked","me","where I lived"],a:"She asked me where I lived."},
+{t:"choice",q:"She said, «I am tired.» → She said that she ___ tired.",opts:["a) is","b) was","c) will be"],a:"b) was"},
+{t:"choice",q:"He said, «I will call you.» → He said that he ___ call me.",opts:["a) will","b) would","c) can"],a:"b) would"},
+{t:"choice",q:"«Do you like coffee?» → He asked me if I ___ coffee.",opts:["a) like","b) liked","c) do like"],a:"b) liked"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["she","said","that","she","was","busy"],a:"She said that she was busy."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["he","asked","me","where","I","lived"],a:"He asked me where I lived."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["they","told","us","to","wait"],a:"They told us to wait."},
+{t:"match",task:"Соотнесите прямую и косвенную речь.",rows:[["1. «I am hungry.»","a. He said he was hungry."],["2. «I have finished.»","b. He said he had finished."],["3. «I will help you.»","c. He said he would help me."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"match",task:"Соотнесите прямую и косвенную речь.",rows:[["1. «Where do you live?»","a. She asked where I lived."],["2. «Are you ready?»","b. She asked if I was ready."],["3. «Close the door.»","c. She told me to close the door."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"tf",q:"«He asked me where did I live» — правильное предложение.",a:"False. В косвенном вопросе прямой порядок слов: <i>He asked me where I lived.</i>"},
+{t:"tf",q:"«She told me that she was leaving the next day» — правильное предложение.",a:"True. <i>Tomorrow</i> в косвенной речи меняется на <i>the next day</i>."}
+]}
+]},
+{key:"b2",tab:"B2",sub:"Upper-Intermediate",topics:[
+{title:"Passive Voice",sub:"Все времена в пассиве, пассив с модальными глаголами и конструкция have something done.",rule:`Пассив образуется: <b>be + V3</b>, форма be меняется в зависимости от времени: <i>is done, was done, has been done, will be done.</i><br>С модальными глаголами: <b>modal + be + V3</b>: <i>The work must be finished today.</i><br>Каузатив <b>have/get + object + V3</b> — заказать/поручить действие: <i>I had my car repaired.</i>`,
+ex:[
+{t:"choice",q:"This bridge ___ in 1990.",opts:["a) built","b) was built","c) has built"],a:"b) was built"},
+{t:"choice",q:"The report ___ by Friday.",opts:["a) must finish","b) must be finished","c) must finished"],a:"b) must be finished"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["the","letter","has","already","been sent"],a:"The letter has already been sent."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["she","had","her","car","repaired yesterday"],a:"She had her car repaired yesterday."},
+{t:"match",task:"Соотнесите время и форму пассива.",rows:[["1. Present Simple Passive","a. is made"],["2. Past Simple Passive","b. was made"],["3. Present Perfect Passive","c. has been made"]],a:"1 — a, 2 — b, 3 — c"},
+{t:"match",task:"Соотнесите модальный пассив и значение.",rows:[["1. must be done","a. обязательство"],["2. can be seen","b. возможность"],["3. should be checked","c. рекомендация"]],a:"1 — a, 2 — b, 3 — c"},
+{t:"tf",q:"«The house is being build» — грамматически верно.",a:"False. Правильно: <i>The house is being built.</i> (V3, а не V1)"},
+{t:"tf",q:"«I had my hair cut yesterday» означает, что вам подстригли волосы (не вы сами).",a:"True."},
+{t:"choice",q:"The windows ___ next week.",opts:["a) will clean","b) will be cleaned","c) will being cleaned"],a:"b) will be cleaned"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["a","new","policy","will be","introduced next month"],a:"A new policy will be introduced next month."}
+]},
+
+{title:"Reported Speech",sub:"Утверждения, вопросы, приказы и просьбы в косвенной речи.",rule:`Утверждения — сдвиг времени назад: <i>"I am tired." → She said she was tired.</i><br>Вопросы — прямой порядок слов, без вспомогательного глагола: <i>He asked where I lived.</i><br>Приказы/просьбы: <b>tell/ask + object + to + V</b>: <i>She told him to wait.</i>`,
+ex:[
+{t:"choice",q:"She said she ___ tired.",opts:["a) is","b) was","c) has been"],a:"b) was"},
+{t:"choice",q:"He asked me ___ I was coming to the party.",opts:["a) that","b) if","c) what"],a:"b) if"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["he","said","he","would","call me later"],a:"He said he would call me later."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["she","told","him","to","close the door"],a:"She told him to close the door."},
+{t:"match",task:"Соотнесите прямую и косвенную речь.",rows:[["1. \"I am busy.\"","a. He said he was busy."],["2. \"Where do you live?\"","b. He asked where I lived."],["3. \"Close the window.\"","c. She told me to close the window."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"match",task:"Соотнесите прямую и косвенную форму модального глагола.",rows:[["1. Direct: will","a. Reported: would"],["2. Direct: can","b. Reported: could"],["3. Direct: must","c. Reported: had to"]],a:"1 — a, 2 — b, 3 — c"},
+{t:"tf",q:"«He asked me where did I live» — правильно.",a:"False. В косвенном вопросе прямой порядок слов: <i>He asked me where I lived.</i>"},
+{t:"tf",q:"В косвенной речи 'tomorrow' обычно меняется на 'the next day'.",a:"True."},
+{t:"choice",q:"They said they ___ the film before.",opts:["a) saw","b) had seen","c) see"],a:"b) had seen"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["she","warned","us","not","to be late"],a:"She warned us not to be late."}
+]},
+
+{title:"Relative Clauses",sub:"Defining и non-defining придаточные: who/which/whose/where/when.",rule:`<b>Defining clause</b> — без запятых, важна для смысла: <i>The man who called is my boss.</i><br><b>Non-defining clause</b> — с запятыми, дополнительная информация: <i>My boss, who is very strict, called me.</i><br><i>whose</i> — принадлежность, <i>where</i> — место, <i>when</i> — время.`,
+ex:[
+{t:"choice",q:"This is the woman ___ helped me yesterday.",opts:["a) which","b) who","c) whose"],a:"b) who"},
+{t:"choice",q:"That's the house ___ I grew up.",opts:["a) where","b) which","c) who"],a:"a) where"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["the","man","whose","car","was stolen called the police"],a:"The man whose car was stolen called the police."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["my","brother,","who","lives","in Spain, is visiting us"],a:"My brother, who lives in Spain, is visiting us."},
+{t:"match",task:"Соотнесите термин и описание.",rows:[["1. Defining clause","a. без запятых, важна для смысла"],["2. Non-defining clause","b. с запятыми, доп. информация"],["3. whose","c. показывает принадлежность"]],a:"1 — a, 2 — b, 3 — c"},
+{t:"match",task:"Соотнесите начало и окончание.",rows:[["1. The book which I bought","a. is very interesting."],["2. The day when we met","b. was sunny."],["3. The reason why she left","c. is still unclear."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"tf",q:"«The man, that called, is my brother» — правильное использование запятых с that.",a:"False. С <i>that</i> запятые не ставятся."},
+{t:"tf",q:"В non-defining clause всегда используются запятые.",a:"True."},
+{t:"choice",q:"The film, ___ was very long, was still enjoyable.",opts:["a) that","b) which","c) who"],a:"b) which"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["this","is","the","restaurant","where we had dinner"],a:"This is the restaurant where we had dinner."}
+]},
+
+{title:"Wish / If only",sub:"Сожаление о настоящем, прошлом и раздражение чужим поведением.",rule:`<b>wish/if only + Past Simple</b> — сожаление о настоящем: <i>I wish I had more time.</i><br><b>wish/if only + Past Perfect</b> — сожаление о прошлом: <i>I wish I had studied harder.</i><br><b>wish/if only + would</b> — раздражение чужим действием: <i>I wish you would stop shouting.</i>`,
+ex:[
+{t:"choice",q:"I wish I ___ more free time.",opts:["a) have","b) had","c) will have"],a:"b) had"},
+{t:"choice",q:"I wish I ___ so rude to her yesterday.",opts:["a) wasn't","b) hadn't been","c) am not"],a:"b) hadn't been"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["I","wish","I","could speak","French"],a:"I wish I could speak French."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["if","only","I","had listened","to your advice"],a:"If only I had listened to your advice."},
+{t:"match",task:"Соотнесите начало и окончание.",rows:[["1. I wish I ___ taller.","a. were"],["2. I wish you ___ smoking.","b. would stop"],["3. I wish I ___ that mistake.","c. hadn't made"]],a:"1 — a, 2 — b, 3 — c"},
+{t:"match",task:"Соотнесите функцию и форму.",rows:[["1. Сожаление о настоящем","a. wish + Past Simple"],["2. Сожаление о прошлом","b. wish + Past Perfect"],["3. Раздражение чужим действием","c. wish + would"]],a:"1 — a, 2 — b, 3 — c"},
+{t:"tf",q:"«I wish I am rich» — правильно.",a:"False. Нужен Past Simple: <i>I wish I were rich.</i>"},
+{t:"tf",q:"«I wish you would stop interrupting me» — выражает раздражение чужим действием.",a:"True."},
+{t:"choice",q:"I wish it ___ raining — I want to go outside.",opts:["a) stops","b) would stop","c) stop"],a:"b) would stop"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["she","wishes","she","had taken","that job"],a:"She wishes she had taken that job."}
+]},
+
+{title:"Modals of Deduction",sub:"Предположения о настоящем и прошлом: must/might/can't (have).",rule:`<b>must have + V3</b> — уверенное предположение о прошлом: <i>He must have left already.</i><br><b>can't/couldn't have + V3</b> — уверенность в обратном: <i>She can't have forgotten.</i><br><b>might/could have + V3</b> — возможность в прошлом: <i>They might have missed the bus.</i>`,
+ex:[
+{t:"choice",q:"The lights are off — they ___ gone out.",opts:["a) must have","b) must","c) have"],a:"a) must have"},
+{t:"choice",q:"She's not answering — she ___ be asleep.",opts:["a) might","b) might have","c) must"],a:"b) might have"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["he","must have","forgotten","about","the meeting"],a:"He must have forgotten about the meeting."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["she","can't have","seen","us,","she didn't wave"],a:"She can't have seen us, she didn't wave."},
+{t:"match",task:"Соотнесите модальный глагол и значение.",rows:[["1. must have","a. уверенное предположение"],["2. can't have","b. уверенность в обратном"],["3. might have","c. возможность"]],a:"1 — a, 2 — b, 3 — c"},
+{t:"match",task:"Соотнесите ситуацию и вывод.",rows:[["1. The ground is wet.","a. It must have rained."],["2. He looks surprised.","b. He can't have known about the party."],["3. She's not here.","c. She might have left early."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"tf",q:"«She must has left» — правильно.",a:"False. Правильно: <i>She must have left.</i>"},
+{t:"tf",q:"«He can't have finished already, it's only been five minutes» — логично и грамматически верно.",a:"True."},
+{t:"choice",q:"They ___ have missed the train — it left ten minutes early.",opts:["a) must","b) might","c) can't"],a:"b) might"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["it","couldn't have","been","him,","he was with me all evening"],a:"It couldn't have been him, he was with me all evening."}
+]},
+
+{title:"used to / would",sub:"Привычки и состояния в прошлом, привыкание к ситуации.",rule:`<b>used to + V</b> — регулярное действие или состояние в прошлом, которого больше нет: <i>I used to smoke.</i><br><b>would + V</b> — повторяющееся действие в прошлом (не для состояний): <i>Every summer we would visit our grandparents.</i><br><b>be used to + V-ing</b> — привык к чему-то сейчас: <i>I'm used to working late.</i><br><b>get used to + V-ing</b> — процесс привыкания: <i>I'm getting used to the new job.</i>`,
+ex:[
+{t:"choice",q:"I ___ live in London, but now I live in Paris.",opts:["a) use to","b) used to","c) am used to"],a:"b) used to"},
+{t:"choice",q:"She's not used ___ so early.",opts:["a) to get up","b) to getting up","c) get up"],a:"b) to getting up"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["we","used","to","play","football every weekend"],a:"We used to play football every weekend."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["he","is","getting","used","to the new schedule"],a:"He is getting used to the new schedule."},
+{t:"match",task:"Соотнесите конструкцию и значение.",rows:[["1. used to","a. привычка в прошлом, которой больше нет"],["2. be used to","b. привык к чему-то сейчас"],["3. get used to","c. процесс привыкания"]],a:"1 — a, 2 — b, 3 — c"},
+{t:"match",task:"Соотнесите пример и функцию.",rows:[["1. I used to hate coffee.","a. прошлая привычка/состояние"],["2. I'm used to the noise now.","b. привык сейчас"],["3. I'm getting used to the climate.","c. процесс привыкания"]],a:"1 — a, 2 — b, 3 — c"},
+{t:"tf",q:"«I used to having long hair» — грамматически верно.",a:"False. Правильно: <i>I used to have long hair.</i> (used to + инфинитив, без -ing)"},
+{t:"tf",q:"«Would» можно использовать для описания состояний в прошлом, например «I would have a red bike».",a:"False. <i>Would</i> используется только для повторяющихся действий, не для состояний. Для состояний — <i>used to</i>: <i>I used to have a red bike.</i>"},
+{t:"choice",q:"When I was a child, we ___ visit my grandparents every Sunday.",opts:["a) would","b) use","c) are used to"],a:"a) would"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["I'm","not","used","to","such spicy food"],a:"I'm not used to such spicy food."}
+]},
+
+{title:"Question Tags",sub:"Разделительные вопросы: образование и особые случаи.",rule:`Утвердительное предложение → отрицательный tag; отрицательное → утвердительный: <i>You live here, don't you? / She isn't coming, is she?</i><br>Особые случаи: <i>I am → aren't I?; Let's... → shall we?; imperative → will you?</i>`,
+ex:[
+{t:"choice",q:"You're coming to the party, ___?",opts:["a) aren't you","b) don't you","c) are you"],a:"a) aren't you"},
+{t:"choice",q:"She doesn't like coffee, ___?",opts:["a) doesn't she","b) does she","c) isn't she"],a:"b) does she"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["let's","go","to","the","cinema, shall we?"],a:"Let's go to the cinema, shall we?"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["close","the","door,","will","you?"],a:"Close the door, will you?"},
+{t:"match",task:"Соотнесите начало и tag.",rows:[["1. You are tired,","a. aren't you?"],["2. He can swim,","b. can't he?"],["3. They didn't call,","c. did they?"]],a:"1 — a, 2 — b, 3 — c"},
+{t:"match",task:"Соотнесите тип предложения и tag.",rows:[["1. Positive statement","a. negative tag"],["2. Negative statement","b. positive tag"],["3. I am...","c. aren't I?"]],a:"1 — a, 2 — b, 3 — c"},
+{t:"tf",q:"«I'm right, amn't I?» — стандартная форма в английском языке.",a:"False. Правильно: <i>I'm right, aren't I?</i>"},
+{t:"tf",q:"После Let's используется tag «shall we?».",a:"True."},
+{t:"choice",q:"Nothing happened, ___?",opts:["a) did it","b) didn't it","c) wasn't it"],a:"a) did it"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["you've","never","been","to","Japan, have you?"],a:"You've never been to Japan, have you?"}
+]},
+
+{title:"Comparatives & Superlatives",sub:"Продвинутые конструкции сравнения: much/far + comparative, the...the..., (not) as...as.",rule:`Усиление сравнения: <i>far/much/a lot + comparative</i>: <i>This is much better.</i><br>Параллельное увеличение: <b>the + comparative..., the + comparative...</b>: <i>The more you practice, the better you get.</i><br>Равенство/неравенство: <i>as...as / not as...as</i>: <i>She's not as tall as her sister.</i>`,
+ex:[
+{t:"choice",q:"This exam is ___ than the last one.",opts:["a) much difficult","b) much more difficult","c) more much difficult"],a:"b) much more difficult"},
+{t:"choice",q:"The ___ you study, the ___ you'll do.",opts:["a) more / better","b) most / best","c) more / good"],a:"a) more / better"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["she's","not","as","tall","as her sister"],a:"She's not as tall as her sister."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["the","sooner","we","leave,","the sooner we'll arrive"],a:"The sooner we leave, the sooner we'll arrive."},
+{t:"match",task:"Соотнесите конструкцию и функцию.",rows:[["1. much better","a. усиление сравнения"],["2. the more... the more","b. параллельное увеличение"],["3. not as... as","c. неравенство"]],a:"1 — a, 2 — b, 3 — c"},
+{t:"match",task:"Соотнесите начало и окончание.",rows:[["1. This is far more interesting","a. than I expected."],["2. The older he gets,","b. the wiser he becomes."],["3. It's not as expensive","c. as I thought."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"tf",q:"«This is more better» — грамматически верно.",a:"False. Нельзя добавлять more к форме на -er: правильно <i>much better</i> или просто <i>better</i>."},
+{t:"tf",q:"«The more you earn, the more you spend» — правильная структура.",a:"True."},
+{t:"choice",q:"He's ___ as clever as his sister.",opts:["a) not as","b) not so much","c) not much"],a:"a) not as"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["this","phone","is","a","lot cheaper than that one"],a:"This phone is a lot cheaper than that one."}
+]},
+
+{title:"Quantifiers",sub:"Few/a few, little/a little, most of, the majority of, plenty of.",rule:`<b>a few / a little</b> — немного, положительный оттенок: <i>I have a few friends.</i><br><b>few / little</b> — почти нет, отрицательный оттенок: <i>I have few friends.</i><br><b>most of / the majority of</b> — большинство: <i>Most of the students passed.</i><br><b>plenty of</b> — достаточно, много: <i>We have plenty of time.</i>`,
+ex:[
+{t:"choice",q:"I have ___ friends here, so I feel lonely.",opts:["a) a few","b) few","c) a little"],a:"b) few"},
+{t:"choice",q:"___ of the students passed the exam.",opts:["a) Most","b) Much","c) Little"],a:"a) Most"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["we","have","plenty","of","time before the meeting"],a:"We have plenty of time before the meeting."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["there's","a","little","milk","left in the fridge"],a:"There's a little milk left in the fridge."},
+{t:"match",task:"Соотнесите слово и значение.",rows:[["1. a few","a. немного (положительно)"],["2. few","b. почти нет (отрицательно)"],["3. plenty of","c. достаточно, много"]],a:"1 — a, 2 — b, 3 — c"},
+{t:"match",task:"Соотнесите начало и окончание.",rows:[["1. Most of the population","a. lives in cities."],["2. The majority of voters","b. supported the plan."],["3. A few colleagues","c. helped with the project."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"tf",q:"«Few people came to the party, so it was fun» — логично сочетается по смыслу.",a:"False. <i>Few</i> имеет отрицательный оттенок (почти никто), что противоречит «it was fun». Лучше: <i>A few people came...</i>"},
+{t:"tf",q:"«Most of my friends live abroad» — грамматически верно.",a:"True."},
+{t:"choice",q:"There's ___ point in arguing about it.",opts:["a) little","b) a little","c) few"],a:"a) little"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["the","majority","of","employees","support the new policy"],a:"The majority of employees support the new policy."}
+]},
+
+{title:"Gerunds & Infinitives",sub:"Основные модели: verb + -ing, verb + to + V, verb + object + to + V.",rule:`После некоторых глаголов — только герундий: <i>enjoy, avoid, finish, suggest, mind + V-ing.</i><br>После других — только инфинитив с to: <i>want, decide, promise, hope, plan + to V.</i><br>После некоторых — object + to V: <i>want/ask/tell + someone + to V.</i>`,
+ex:[
+{t:"choice",q:"I really enjoy ___ new places.",opts:["a) to visit","b) visiting","c) visit"],a:"b) visiting"},
+{t:"choice",q:"She decided ___ her job.",opts:["a) leaving","b) to leave","c) leave"],a:"b) to leave"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["he","promised","to","help","us with the move"],a:"He promised to help us with the move."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["they","want","me","to","join the team"],a:"They want me to join the team."},
+{t:"match",task:"Соотнесите глагол и модель.",rows:[["1. enjoy","a. + V-ing"],["2. decide","b. + to V"],["3. want someone","c. + to V"]],a:"1 — a, 2 — b, 3 — c"},
+{t:"match",task:"Соотнесите начало и окончание.",rows:[["1. I avoid","a. eating late at night."],["2. We plan","b. to travel next summer."],["3. She asked him","c. to close the window."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"tf",q:"«I enjoy to read books» — грамматически верно.",a:"False. После <i>enjoy</i> — герундий: <i>I enjoy reading books.</i>"},
+{t:"tf",q:"После <i>want someone</i> используется инфинитив с to: <i>I want you to come.</i>",a:"True."},
+{t:"choice",q:"Would you mind ___ the window?",opts:["a) to close","b) closing","c) close"],a:"b) closing"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["we","hope","to","see","you soon"],a:"We hope to see you soon."}
+]},
+
+{title:"Future Forms",sub:"Will, going to, Present Continuous, Future Continuous и Future Perfect для будущих действий.",rule:`<b>will</b> — решение в момент речи, предсказание: <i>I think it will rain.</i><br><b>going to</b> — намерение, план: <i>We're going to move house.</i><br><b>Present Continuous</b> — договорённость: <i>I'm meeting him at 5.</i><br><b>Future Continuous</b> — действие в процессе в будущем: <i>This time tomorrow, I'll be flying to Rome.</i><br><b>Future Perfect</b> — действие завершится к моменту: <i>By 2030, I will have finished my degree.</i>`,
+ex:[
+{t:"choice",q:"I ___ you later — I promise.",opts:["a) call","b) will call","c) am calling"],a:"b) will call"},
+{t:"choice",q:"We ___ to Italy next month — the tickets are already booked.",opts:["a) will go","b) are going","c) go"],a:"b) are going"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["this","time","tomorrow,","I'll","be lying on a beach"],a:"This time tomorrow, I'll be lying on a beach."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["by","next","year,","she","will have graduated"],a:"By next year, she will have graduated."},
+{t:"match",task:"Соотнесите форму будущего и значение.",rows:[["1. will","a. решение в момент речи"],["2. going to","b. заранее спланированное намерение"],["3. Present Continuous","c. договорённость"]],a:"1 — a, 2 — b, 3 — c"},
+{t:"match",task:"Соотнесите начало и окончание.",rows:[["1. By 8 pm,","a. we will have finished dinner."],["2. At 8 pm,","b. we will be having dinner."],["3. Tomorrow at 8 pm,","c. we are having dinner with friends."]],a:"1 — a, 2 — b, 3 — c"},
+{t:"tf",q:"«I'm meeting Tom at 6» может использоваться для запланированной встречи в будущем.",a:"True."},
+{t:"tf",q:"«By the time you arrive, we will finish dinner» — правильная форма Future Perfect.",a:"False. Правильно: <i>we will have finished dinner.</i>"},
+{t:"choice",q:"Look at those clouds! It ___ rain.",opts:["a) is going to","b) will","c) is"],a:"a) is going to"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["by","the","end","of","the year, we will have completed the project"],a:"By the end of the year, we will have completed the project."}
+]},
+
+{title:"Modals of Obligation & Permission",sub:"must, have to, should, needn't, needn't have, didn't need to.",rule:`<b>must</b> — личное обязательство/сильная рекомендация: <i>I must call my mother.</i><br><b>have to</b> — внешнее обязательство: <i>I have to wear a uniform at work.</i><br><b>needn't / don't need to</b> — отсутствие необходимости сейчас: <i>You needn't come if you're busy.</i><br><b>needn't have + V3</b> — сделал, хотя не нужно было: <i>I needn't have bought so much food.</i><br><b>didn't need to + V</b> — не нужно было (и не сделали): <i>I didn't need to go, so I stayed home.</i>`,
+ex:[
+{t:"choice",q:"You ___ smoke here — it's forbidden.",opts:["a) mustn't","b) don't have to","c) needn't"],a:"a) mustn't"},
+{t:"choice",q:"I ___ finish this report by tomorrow — my boss said so.",opts:["a) must","b) needn't","c) can"],a:"a) must"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["you","needn't","bring","anything,","we have everything"],a:"You needn't bring anything, we have everything."},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["I","didn't","need","to","queue, I had a ticket"],a:"I didn't need to queue, I had a ticket."},
+{t:"match",task:"Соотнесите модальный глагол и значение.",rows:[["1. must","a. личное обязательство"],["2. have to","b. внешнее обязательство"],["3. needn't","c. отсутствие необходимости"]],a:"1 — a, 2 — b, 3 — c"},
+{t:"match",task:"Соотнесите форму и функцию.",rows:[["1. mustn't","a. запрет"],["2. don't have to","b. нет необходимости"],["3. needn't have done","c. сделал зря"]],a:"1 — a, 2 — b, 3 — c"},
+{t:"tf",q:"«Mustn't» и «don't have to» означают одно и то же.",a:"False. <i>Mustn't</i> — запрет, <i>don't have to</i> — отсутствие необходимости."},
+{t:"tf",q:"«I needn't have bought so much food» означает, что вы купили еду, хотя это было не нужно.",a:"True."},
+{t:"choice",q:"You ___ worry — everything is under control.",opts:["a) mustn't","b) needn't","c) shouldn't"],a:"b) needn't"},
+{t:"order",task:"Расставьте слова в правильном порядке.",words:["we","didn't","need","to","wait long"],a:"We didn't need to wait long."}
+]}
+]}
+];
+
+/* ============ ИСПРАВЛЕНИЯ И ЗАМЕНА ПОВТОРОВ ============ */
+(function(){
+  const C = (q, opts, a) => ({ t: "choice", q, opts, a });
+  const TF = (q, a) => ({ t: "tf", q, a });
+  const O = (words, a) => ({ t: "order", task: "Расставьте слова в правильном порядке.", words, a });
+  const fix = (b, t, e, item) => { BOOKS[b].topics[t - 1].ex[e - 1] = item; };
+  // B1–B2
+  fix(0, 1, 20, TF("«She is working from home this week» — правильное предложение.", "True. Временная ситуация — Present Continuous."));
+  fix(0, 2, 11, C("She ___ when I came into the room.", ["a) slept", "b) was sleeping", "c) sleeps"], "b) was sleeping"));
+  fix(0, 5, 19, TF("«When I arrived, the train had left» означает, что поезд ушёл ещё до моего прихода.", "True. Past Perfect — действие раньше другого действия в прошлом."));
+  fix(0, 7, 11, C("If you ___ the bus, call me and I'll pick you up.", ["a) will miss", "b) miss", "c) missed"], "b) miss"));
+  fix(0, 7, 14, O(["If you", "don't", "hurry,", "you will", "miss", "the train"], "If you don't hurry, you will miss the train."));
+  fix(0, 7, 19, TF("«Unless you don't hurry, you'll miss the bus» — правильное предложение.", "False. Unless уже содержит отрицание: <i>Unless you hurry, you'll miss the bus.</i>"));
+  fix(0, 8, 11, C("If he ___ the answer, he would tell us.", ["a) knows", "b) knew", "c) would know"], "b) knew"));
+  fix(0, 8, 14, O(["If I", "had", "a garden,", "I would", "grow", "vegetables"], "If I had a garden, I would grow vegetables."));
+  fix(0, 8, 19, TF("Second Conditional описывает реальные, уже решённые планы на будущее.", "False. Second Conditional — для нереальных или маловероятных ситуаций."));
+  fix(0, 8, 20, TF("«If I had more time, I would learn to play the guitar» — правильное предложение.", "True. If + Past Simple, would + глагол."));
+  fix(0, 9, 14, O(["If she", "had asked", "me,", "I would", "have helped", "her"], "If she had asked me, I would have helped her."));
+  fix(0, 9, 19, TF("Third Conditional часто используют, чтобы выразить сожаление о прошлом.", "True. <i>If I had studied, I would have passed.</i> — но я не учился и не сдал."));
+  fix(0, 10, 12, C("You ___ eat so much sugar — it's bad for you.", ["a) shouldn't", "b) don't have to", "c) can't"], "a) shouldn't"));
+  fix(0, 10, 19, TF("«You don't have to come» означает «тебе запрещено приходить».", "False. <i>Don't have to</i> — нет необходимости; запрет — <i>mustn't</i>."));
+  fix(0, 11, 12, C("The thieves ___ by the police last night.", ["a) caught", "b) were caught", "c) are caught"], "b) were caught"));
+  fix(0, 11, 14, O(["The museum", "was", "opened", "in 1995"], "The museum was opened in 1995."));
+  fix(0, 11, 15, O(["Coffee", "is", "grown", "in Brazil"], "Coffee is grown in Brazil."));
+  fix(0, 12, 11, C("«I can swim.» → He said that he ___ swim.", ["a) can", "b) could", "c) will"], "b) could"));
+  fix(0, 12, 12, C("She asked me ___ I had finished the report.", ["a) that", "b) if", "c) what"], "b) if"));
+  fix(0, 12, 15, O(["He", "asked me", "if", "I was", "ready"], "He asked me if I was ready."));
+  // B2
+  fix(1, 1, 1, C("The thief ___ as he was leaving the bank.", ["a) was caught", "b) was catching", "c) caught"], "a) was caught"));
+  fix(1, 2, 7, TF("«She told that she was tired» — правильное предложение.", "False. После <i>told</i> нужен объект: <i>She told me that…</i> или <i>She said that…</i>"));
+  fix(1, 5, 2, C("She's not answering — she ___ be asleep.", ["a) might", "b) might have", "c) can"], "a) might"));
+  fix(1, 5, 9, C("They ___ have missed the train — it left ten minutes before they got to the station.", ["a) must", "b) might", "c) can't"], "a) must"));
+  fix(1, 11, 1, C("This time next week, I ___ on a beach in Spain.", ["a) will lie", "b) will be lying", "c) lie"], "b) will be lying"));
+  fix(1, 11, 9, C("According to the schedule, the match ___ at 8 pm tonight.", ["a) starts", "b) will starting", "c) is start"], "a) starts"));
+  fix(1, 12, 1, C("We ___ wear a suit at work — it's optional.", ["a) mustn't", "b) don't have to", "c) can't"], "b) don't have to"));
+})();
+
+/* ============ РАСШИРЕННЫЕ ПРАВИЛА ============ */
+const RULES_EXT = {
+"b1-1": {
+  form: [["Present Simple", "I/you/we/they <b>work</b> · he/she/it <b>works</b>", "I <b>don't</b> work · he <b>doesn't</b> work", "<b>Do</b> you work? · <b>Does</b> he work?"],
+         ["Present Continuous", "I <b>am</b> working · he <b>is</b> working · they <b>are</b> working", "I'm <b>not</b> working · he <b>isn't</b> working", "<b>Are</b> you working? · <b>Is</b> he working?"]],
+  use: [["Привычки, регулярные действия", "She <b>drinks</b> coffee every morning.", "Она пьёт кофе каждое утро."],
+        ["Факты и законы природы", "Water <b>boils</b> at 100°C.", "Вода кипит при 100°C."],
+        ["Действие прямо сейчас", "Look! It<b>'s raining</b>.", "Смотри! Идёт дождь."],
+        ["Временная ситуация", "I<b>'m living</b> with my parents this month.", "В этом месяце я живу у родителей."]],
+  markers: "Simple: <i>always, usually, often, sometimes, never, every day</i> · Continuous: <i>now, right now, at the moment, today, this week, Look! Listen!</i>",
+  mistakes: [["She <s>work</s> in a bank.", "She <b>works</b> in a bank.", "he/she/it — окончание -s"],
+             ["I <s>am knowing</s> the answer.", "I <b>know</b> the answer.", "глаголы состояния (know, like, want, need, believe) не ставим в Continuous"],
+             ["<s>Does</s> she <s>likes</s> tea?", "<b>Does</b> she <b>like</b> tea?", "после does — глагол без -s"]]
+},
+"b1-2": {
+  form: [["Past Simple", "I <b>worked</b> · I <b>went</b> (неправильный глагол)", "I <b>didn't</b> work / go", "<b>Did</b> you work / go?"],
+         ["Past Continuous", "I/he <b>was</b> working · we/they <b>were</b> working", "I <b>wasn't</b> working", "<b>Were</b> you working?"]],
+  use: [["Законченное действие в прошлом", "We <b>visited</b> Rome last year.", "Мы были в Риме в прошлом году."],
+        ["Цепочка действий", "He <b>got up</b>, <b>had</b> breakfast and <b>left</b>.", "Он встал, позавтракал и ушёл."],
+        ["Процесс в момент в прошлом", "At 8 pm I <b>was cooking</b>.", "В 8 вечера я готовил(а)."],
+        ["Процесс, который прервали", "I <b>was reading</b> when the phone <b>rang</b>.", "Я читал(а), когда зазвонил телефон."]],
+  markers: "Simple: <i>yesterday, last week, ago, in 2020, when</i> · Continuous: <i>while, at 5 o'clock yesterday, all evening</i>",
+  mistakes: [["I <s>was went</s> to the shop.", "I <b>went</b> to the shop.", "was + V-ing, а не was + V2"],
+             ["<s>Did</s> you <s>saw</s> him?", "<b>Did</b> you <b>see</b> him?", "после did — первая форма"],
+             ["When I <s>was arriving</s>, they were eating.", "When I <b>arrived</b>, they were eating.", "короткое действие — Past Simple"]]
+},
+"b1-3": {
+  form: [["Present Perfect", "I/you/we/they <b>have</b> + V3 · he/she <b>has</b> + V3", "I <b>haven't</b> seen · she <b>hasn't</b> seen", "<b>Have</b> you seen? · <b>Has</b> she seen?"],
+         ["Past Simple", "I <b>saw</b> · I <b>worked</b>", "I <b>didn't</b> see", "<b>Did</b> you see?"]],
+  use: [["Опыт без указания времени", "I<b>'ve been</b> to Poland twice.", "Я был(а) в Польше дважды."],
+        ["Результат важен сейчас", "I<b>'ve lost</b> my keys — I can't get in.", "Я потерял(а) ключи — не могу войти."],
+        ["Действие продолжается до сих пор", "We<b>'ve lived</b> here since 2020.", "Мы живём здесь с 2020 года."],
+        ["Past Simple: конкретное время", "I <b>saw</b> him <b>yesterday</b>.", "Я видел(а) его вчера."]],
+  markers: "Perfect: <i>ever, never, already, just, yet, since, for, so far, this week</i> · Past Simple: <i>yesterday, ago, last year, in 2019, when?</i>",
+  mistakes: [["I <s>have seen</s> him yesterday.", "I <b>saw</b> him yesterday.", "с yesterday / ago / last — только Past Simple"],
+             ["<s>When have</s> you arrived?", "<b>When did</b> you arrive?", "вопрос when — Past Simple"],
+             ["I live here <s>since</s> five years.", "I<b>'ve lived</b> here <b>for</b> five years.", "for + период, since + точка отсчёта"]]
+},
+"b1-4": {
+  form: [["Present Perfect Continuous", "I/you/we/they <b>have been</b> + V-ing · he/she <b>has been</b> + V-ing", "I <b>haven't been</b> working", "<b>Have</b> you <b>been</b> working? · <b>How long</b> have you been…?"]],
+  use: [["Процесс начался в прошлом и продолжается", "I<b>'ve been learning</b> English for three years.", "Я учу английский уже три года."],
+        ["Виден результат процесса", "You're wet! <b>Have</b> you <b>been running</b>?", "Ты мокрый! Ты бегал?"],
+        ["Акцент на длительности", "She<b>'s been talking</b> on the phone all morning.", "Она всё утро разговаривает по телефону."],
+        ["Сравните: результат — Present Perfect", "I<b>'ve written</b> three emails. / I<b>'ve been writing</b> emails all day.", "Написал(а) три письма. / Весь день пишу письма."]],
+  markers: "<i>for, since, all day, all morning, lately, recently, How long…?</i>",
+  mistakes: [["I <s>am waiting</s> here for an hour.", "I<b>'ve been waiting</b> here for an hour.", "с for/since — Perfect Continuous, а не Present Continuous"],
+             ["I <s>have been knowing</s> her for years.", "I <b>have known</b> her for years.", "глаголы состояния — только Present Perfect"],
+             ["She <s>has been</s> work…", "She <b>has been working</b>…", "не забывайте -ing"]]
+},
+"b1-5": {
+  form: [["Past Perfect", "I/you/he/they <b>had</b> + V3", "I <b>hadn't</b> seen", "<b>Had</b> you seen…?"]],
+  use: [["Что было раньше другого события в прошлом", "When we arrived, the film <b>had</b> already <b>started</b>.", "Когда мы пришли, фильм уже начался."],
+        ["Причина в прошлом", "She was upset because she <b>had lost</b> her phone.", "Она расстроилась, потому что потеряла телефон."],
+        ["Опыт до момента в прошлом", "I <b>had never seen</b> snow before I went to Canada.", "Я никогда не видел(а) снега, пока не поехал(а) в Канаду."]],
+  markers: "<i>already, just, never, before, after, by the time, when, by 2010</i>",
+  mistakes: [["I <s>had saw</s> it before.", "I <b>had seen</b> it before.", "после had — третья форма (V3)"],
+             ["When I came, she <s>left</s>. (если ушла раньше)", "When I came, she <b>had left</b>.", "без had смысл меняется: «ушла, когда я пришёл»"]]
+},
+"b1-6": {
+  form: [["will", "I <b>will</b> ('ll) help", "I <b>won't</b> help", "<b>Will</b> you help?"],
+         ["be going to", "I<b>'m going to</b> buy a car", "I<b>'m not going to</b> buy", "<b>Are</b> you <b>going to</b> buy?"],
+         ["Present Continuous", "I<b>'m meeting</b> Tom at 6", "I<b>'m not meeting</b>…", "<b>Are</b> you <b>meeting</b>…?"]],
+  use: [["will: решение в момент речи, обещание", "It's cold. — I<b>'ll close</b> the window.", "Холодно. — Сейчас закрою окно."],
+        ["will: предсказание-мнение", "I think it <b>will be</b> a great year.", "Думаю, это будет отличный год."],
+        ["going to: план, намерение", "I<b>'m going to</b> learn Spanish next year.", "Я собираюсь учить испанский."],
+        ["going to: есть явные признаки", "Look at the clouds! It<b>'s going to</b> rain.", "Посмотри на тучи! Будет дождь."],
+        ["Present Continuous: договорённость", "I<b>'m seeing</b> the dentist at 4.", "В 4 я иду к стоматологу (записан)."],
+        ["Present Simple: расписание", "The train <b>leaves</b> at 6 pm.", "Поезд отправляется в 18:00."]],
+  markers: "will: <i>I think, probably, I promise, maybe</i> · going to: <i>Look! plans, intentions</i> · Continuous: <i>tonight, tomorrow at…, договорённости</i>",
+  mistakes: [["I <s>will meet</s> my boss at 3 — we arranged it.", "I<b>'m meeting</b> my boss at 3.", "договорённость — Present Continuous"],
+             ["She <s>will to come</s>.", "She <b>will come</b>.", "после will — без to"]]
+},
+"b1-7": {
+  form: [["First Conditional", "<b>If</b> + Present Simple, <b>will</b> + V", "If it <b>doesn't</b> rain, we <b>won't</b>…", "What <b>will</b> you do if…?"]],
+  use: [["Реальное условие в будущем", "If it <b>rains</b>, we<b>'ll stay</b> at home.", "Если пойдёт дождь, мы останемся дома."],
+        ["Предупреждение, обещание", "If you <b>touch</b> it, you<b>'ll burn</b> yourself.", "Если тронешь, обожжёшься."],
+        ["unless = if … not", "<b>Unless</b> you hurry, you<b>'ll miss</b> the bus.", "Если не поспешишь, опоздаешь на автобус."],
+        ["Так же после when, as soon as, before, after", "I<b>'ll call</b> you <b>when</b> I <b>arrive</b>.", "Позвоню, когда приеду."]],
+  markers: "<i>if, unless, when, as soon as, before, after, until</i>",
+  mistakes: [["If it <s>will rain</s>, we'll stay home.", "If it <b>rains</b>, we'll stay home.", "после if — Present Simple, не will"],
+             ["<s>Unless</s> you <s>don't</s> hurry…", "<b>Unless</b> you hurry…", "unless уже содержит отрицание"]]
+},
+"b1-8": {
+  form: [["Second Conditional", "<b>If</b> + Past Simple, <b>would</b> + V", "If I <b>didn't</b> work, I <b>wouldn't</b>…", "What <b>would</b> you do if…?"]],
+  use: [["Нереальная ситуация сейчас", "If I <b>had</b> more time, I <b>would learn</b> Spanish.", "Если бы у меня было больше времени, я бы учил(а) испанский."],
+        ["Маловероятное будущее", "If I <b>won</b> the lottery, I<b>'d travel</b> the world.", "Если бы я выиграл(а) в лотерею, я бы путешествовал(а)."],
+        ["Совет: If I were you…", "If I <b>were</b> you, I<b>'d take</b> the job.", "На твоём месте я бы согласился на работу."]],
+  markers: "<i>If I were you, I wish…, imagine…</i> · were — для всех лиц (If he <b>were</b>…)",
+  mistakes: [["If I <s>would have</s> money, I would travel.", "If I <b>had</b> money, I would travel.", "would не ставится после if"],
+             ["If I <s>am</s> you, I would…", "If I <b>were</b> you, I would…", "нереальность — прошедшая форма"],
+             ["If it <s>rained</s> tomorrow, we <s>will</s> stay home.", "If it <b>rained</b>, we <b>would</b> stay home. / If it <b>rains</b>, we <b>will</b> stay home.", "Past Simple в if сочетается с would, Present Simple — с will"]]
+},
+"b1-9": {
+  form: [["Third Conditional", "<b>If</b> + had + V3, <b>would have</b> + V3", "If I <b>hadn't</b> left, I <b>wouldn't have</b>…", "What <b>would</b> you <b>have done</b> if…?"]],
+  use: [["Нереальное прошлое (уже не изменить)", "If I <b>had studied</b>, I <b>would have passed</b>.", "Если бы я учился, я бы сдал (но не сдал)."],
+        ["Сожаление", "If we <b>had left</b> earlier, we <b>wouldn't have missed</b> the train.", "Если бы мы вышли раньше, мы бы не опоздали на поезд."],
+        ["Упрёк, критика", "If you <b>had told</b> me, I <b>would have helped</b>.", "Если бы ты сказал, я бы помог."]],
+  markers: "<i>had + V3 в части с if · would / could / might have + V3 в главной части</i>",
+  mistakes: [["If I <s>would have known</s>, I would have come.", "If I <b>had known</b>, I would have come.", "после if — Past Perfect"],
+             ["I would <s>have came</s>.", "I would <b>have come</b>.", "после have — V3"]]
+},
+"b1-10": {
+  form: [["Модальные глаголы", "can / could / must / should / might / may + <b>V</b> (без to)", "can't, couldn't, mustn't, shouldn't", "<b>Can</b> you…? <b>Should</b> I…?"],
+         ["have to (не модальный)", "I <b>have to</b> / she <b>has to</b> + V", "I <b>don't have to</b>", "<b>Do</b> I <b>have to</b>…?"]],
+  use: [["can — умение, возможность", "She <b>can</b> speak three languages.", "Она говорит на трёх языках."],
+        ["could — вежливая просьба", "<b>Could</b> you help me, please?", "Не могли бы вы помочь?"],
+        ["should — совет", "You <b>should</b> see a doctor.", "Тебе стоит сходить к врачу."],
+        ["must / have to — обязанность", "You <b>must</b> wear a helmet. / I <b>have to</b> work on Saturday.", "Нужно носить шлем. / Я вынужден(а) работать в субботу."],
+        ["mustn't — запрет; don't have to — нет необходимости", "You <b>mustn't</b> smoke. / You <b>don't have to</b> come.", "Курить нельзя. / Можешь не приходить."],
+        ["might / may — возможность", "They <b>might</b> be late.", "Они, возможно, опоздают."]],
+  markers: "",
+  mistakes: [["You must <s>to</s> go.", "You must <b>go</b>.", "после модальных — без to"],
+             ["She can <s>speaks</s>.", "She can <b>speak</b>.", "после модальных — без -s"],
+             ["You <s>mustn't</s> come — it's optional.", "You <b>don't have to</b> come.", "mustn't = запрещено"]]
+},
+"b1-11": {
+  form: [["Present Simple Passive", "It <b>is made</b> · They <b>are made</b>", "It <b>isn't made</b>", "<b>Is</b> it <b>made</b>…?"],
+         ["Past Simple Passive", "It <b>was built</b> · They <b>were built</b>", "It <b>wasn't built</b>", "<b>Was</b> it <b>built</b>…?"],
+         ["Другие времена", "has been done · will be done · is being done", "", ""]],
+  use: [["Важно действие, а не кто его делает", "English <b>is spoken</b> all over the world.", "На английском говорят по всему миру."],
+        ["Исполнитель неизвестен", "My bike <b>was stolen</b> last night.", "Вчера ночью украли мой велосипед."],
+        ["Исполнитель через by", "The book <b>was written by</b> Tolkien.", "Книга написана Толкином."]],
+  markers: "Формула: <b>be</b> (в нужном времени) + <b>V3</b>",
+  mistakes: [["The window was <s>broke</s>.", "The window was <b>broken</b>.", "нужна третья форма"],
+             ["The book <s>wrote</s> in 1950.", "The book <b>was written</b> in 1950.", "не забывайте be"]]
+},
+"b1-12": {
+  form: [["Сдвиг времён", "am/is → <b>was</b> · do → <b>did</b> · will → <b>would</b> · can → <b>could</b>", "have done / did → <b>had done</b>", "Вопрос: asked <b>if/where</b> + прямой порядок"]],
+  use: [["Утверждения: say / tell somebody", "«I'm tired.» → He <b>said</b> (that) he <b>was</b> tired.", "Он сказал, что устал."],
+        ["Вопросы: ask if / wh-", "«Where do you live?» → She asked me where I <b>lived</b>.", "Она спросила, где я живу."],
+        ["Просьбы и приказы: tell / ask + to", "«Wait!» → He <b>told us to wait</b>.", "Он велел нам подождать."],
+        ["Слова времени и места", "today → that day · tomorrow → the next day · here → there", ""]],
+  markers: "<i>say (that), tell + кого-то, ask if/whether, ask + wh-word</i>",
+  mistakes: [["He asked me where <s>did I live</s>.", "He asked me where <b>I lived</b>.", "в косвенном вопросе — прямой порядок слов"],
+             ["She <s>said me</s> that…", "She <b>told me</b> that… / She <b>said</b> that…", "tell + кому, say — без кому"]]
+},
+"b2-1": {
+  form: [["Пассив во всех временах", "is done · was done · has been done · will be done · is being done", "Модальные: <b>must / can / should be done</b>", "Have something done: <b>I had my car repaired</b>"]],
+  use: [["Формальный стиль, новости, наука", "A new law <b>has been introduced</b>.", "Был принят новый закон."],
+        ["Модальные + пассив", "The report <b>must be finished</b> by Friday.", "Отчёт должен быть закончен к пятнице."],
+        ["have/get something done — услуга", "I <b>had my hair cut</b> yesterday.", "Вчера я подстриглась (в парикмахерской)."],
+        ["Безличные конструкции", "<b>It is said that</b>… / He <b>is believed to be</b>…", "Говорят, что… / Считается, что он…"]],
+  markers: "",
+  mistakes: [["The house is being <s>build</s>.", "The house is being <b>built</b>.", "being + V3"],
+             ["I <s>cut my hair</s> at the hairdresser's.", "I <b>had my hair cut</b>.", "если делали не вы — have something done"]]
+},
+"b2-2": {
+  form: [["Глаголы-вводы", "say, tell, ask, explain, suggest, warn, advise, promise, refuse", "warn / advise somebody <b>(not) to</b> do", "suggest <b>doing</b> / suggest that…"]],
+  use: [["Сдвиг времён (backshift)", "«I've finished.» → She said she <b>had finished</b>.", "Она сказала, что закончила."],
+        ["Без сдвига: факт всё ещё верен", "He said the Earth <b>is</b> round.", "Он сказал, что Земля круглая."],
+        ["Глаголы с инфинитивом", "She <b>warned us not to be</b> late.", "Она предупредила нас не опаздывать."],
+        ["Косвенные вопросы", "He asked <b>whether</b> I <b>was coming</b>.", "Он спросил, приду ли я."]],
+  markers: "<i>yesterday → the day before · next week → the following week · ago → before · this → that</i>",
+  mistakes: [["He suggested <s>to go</s> out.", "He suggested <b>going</b> out.", "suggest + -ing"],
+             ["She asked <s>that</s> I was coming.", "She asked <b>if</b> I was coming.", "в вопросах — if/whether"]]
+},
+"b2-3": {
+  form: [["Относительные слова", "<b>who</b> — люди · <b>which</b> — вещи · <b>that</b> — люди и вещи", "<b>whose</b> — чей · <b>where</b> — место · <b>when</b> — время", ""]],
+  use: [["Defining — без запятых, нужна для смысла", "The woman <b>who</b> helped me is a doctor.", "Женщина, которая мне помогла, — врач."],
+        ["Non-defining — с запятыми, доп. информация", "My brother, <b>who</b> lives in Spain, is visiting us.", "Мой брат, который живёт в Испании, приехал к нам."],
+        ["Можно опустить who/that, если это дополнение", "The book (<b>that</b>) I bought is great.", "Книга, которую я купил(а), отличная."],
+        ["whose — принадлежность", "The man <b>whose</b> car was stolen called the police.", "Человек, у которого украли машину, вызвал полицию."]],
+  markers: "",
+  mistakes: [["My car, <s>that</s> is red, is old.", "My car, <b>which</b> is red, is old.", "после запятой that не используется"],
+             ["The house <s>which</s> I grew up.", "The house <b>where</b> I grew up.", "место — where (или which … in)"]]
+},
+"b2-4": {
+  form: [["wish / if only", "+ <b>Past Simple</b> — о настоящем", "+ <b>Past Perfect</b> — о прошлом", "+ <b>would</b> — о чужом поведении"]],
+  use: [["Сожаление о настоящем", "I wish I <b>had</b> more free time.", "Жаль, что у меня мало свободного времени."],
+        ["Сожаление о прошлом", "I wish I <b>hadn't said</b> that.", "Зря я это сказал(а)."],
+        ["Раздражение от чужих действий", "I wish you <b>would stop</b> interrupting!", "Да перестань же ты перебивать!"],
+        ["could — желаемое умение", "I wish I <b>could</b> speak French.", "Жаль, что я не говорю по-французски."]],
+  markers: "If only = сильнее, чем I wish",
+  mistakes: [["I wish I <s>am</s> rich.", "I wish I <b>were</b> rich.", "о настоящем — прошедшая форма"],
+             ["I wish I <s>would</s> be taller.", "I wish I <b>were</b> taller.", "would — только о других людях / ситуациях"]]
+},
+"b2-5": {
+  form: [["О настоящем", "<b>must</b> / <b>might</b> / <b>can't</b> + V (be, have, know…)", "", ""],
+         ["О прошлом", "<b>must have</b> / <b>might have</b> / <b>can't have</b> + V3", "", ""]],
+  use: [["must — почти уверен(а), что да", "The lights are off — they <b>must be</b> out. / They <b>must have gone</b> out.", "Свет выключен — наверное, их нет дома / ушли."],
+        ["might / could / may — возможно", "She <b>might be</b> asleep. / He <b>might have missed</b> the bus.", "Может быть, она спит. / Возможно, он опоздал на автобус."],
+        ["can't — почти уверен(а), что нет", "That <b>can't be</b> true. / She <b>can't have seen</b> us.", "Не может быть. / Она не могла нас видеть."]],
+  markers: "",
+  mistakes: [["She must <s>has</s> left.", "She must <b>have</b> left.", "после модального — have, не has"],
+             ["She <s>mustn't</s> be at home — the lights are off.", "She <b>can't</b> be at home.", "уверенность «нет» — can't, а не mustn't"]]
+},
+"b2-6": {
+  form: [["used to", "I <b>used to</b> + V", "I <b>didn't use to</b> + V", "<b>Did</b> you <b>use to</b>…?"],
+         ["be / get used to", "I'm <b>used to</b> + V-ing / noun", "I'm <b>not used to</b> getting up early", "I'm <b>getting used to</b> it"]],
+  use: [["used to — привычки и состояния в прошлом", "I <b>used to</b> live in Kyiv.", "Раньше я жил(а) в Киеве."],
+        ["would — повторяющиеся действия в прошлом", "Every summer we <b>would</b> go to the sea.", "Каждое лето мы ездили на море."],
+        ["be used to — привык(ла)", "I'<b>m used to</b> working late.", "Я привык(ла) работать допоздна."],
+        ["get used to — привыкаю", "She's <b>getting used to</b> the new job.", "Она привыкает к новой работе."]],
+  markers: "",
+  mistakes: [["I used to <s>having</s> long hair.", "I used to <b>have</b> long hair.", "used to + инфинитив"],
+             ["I <s>would have</s> a red bike. (состояние)", "I <b>used to have</b> a red bike.", "would — только действия, не состояния"],
+             ["I'm used to <s>get up</s> early.", "I'm used to <b>getting up</b> early.", "be used to + -ing"]]
+},
+"b2-7": {
+  form: [["Утверждение → отрицательный хвостик", "You're coming, <b>aren't you</b>?", "She works here, <b>doesn't she</b>?", "They've finished, <b>haven't they</b>?"],
+         ["Отрицание → положительный хвостик", "You aren't busy, <b>are you</b>?", "He didn't call, <b>did he</b>?", "Nothing happened, <b>did it</b>?"]],
+  use: [["Уточнить / попросить согласия", "It's cold today, <b>isn't it</b>?", "Сегодня холодно, правда?"],
+        ["Особые случаи", "I'm right, <b>aren't I</b>? · Let's go, <b>shall we</b>? · Close the door, <b>will you</b>?", ""],
+        ["Отрицательные слова", "Nobody called, <b>did they</b>? · She never eats meat, <b>does she</b>?", ""]],
+  markers: "Хвостик повторяет вспомогательный глагол: be / do / have / модальный",
+  mistakes: [["I'm late, <s>amn't I</s>?", "I'm late, <b>aren't I</b>?", ""],
+             ["She likes tea, <s>isn't she</s>?", "She likes tea, <b>doesn't she</b>?", "Present Simple — do/does"]]
+},
+"b2-8": {
+  form: [["Сравнительная", "short: cheap<b>er</b> · big<b>ger</b> · happ<b>ier</b>", "long: <b>more</b> expensive", "good → better · bad → worse · far → further"],
+         ["Превосходная", "the cheap<b>est</b> · the <b>most</b> expensive", "the best · the worst", ""]],
+  use: [["Усиление разницы", "This exam is <b>much / far / a lot</b> more difficult.", "Этот экзамен намного сложнее."],
+        ["Небольшая разница", "It's <b>a bit / slightly</b> cheaper.", "Чуть дешевле."],
+        ["as … as / not as … as", "She's <b>not as tall as</b> her sister.", "Она не такая высокая, как сестра."],
+        ["the …er, the …er", "<b>The more</b> you practise, <b>the better</b> you get.", "Чем больше практикуешься, тем лучше."]],
+  markers: "",
+  mistakes: [["This is <s>more better</s>.", "This is <b>much better</b>.", "не сочетаем more и -er"],
+             ["She is taller <s>then</s> me.", "She is taller <b>than</b> me.", "than, не then"]]
+},
+"b2-9": {
+  form: [["Исчисляемые", "<b>many</b>, <b>a few</b>, <b>few</b>, a number of", "", ""],
+         ["Неисчисляемые", "<b>much</b>, <b>a little</b>, <b>little</b>, a great deal of", "", ""],
+         ["И те, и другие", "<b>a lot of / lots of / plenty of / some / any / most / all / no</b>", "", ""]],
+  use: [["a few / a little — немного (положительно)", "I have <b>a few</b> friends here. / There's <b>a little</b> milk.", "У меня здесь есть несколько друзей. / Есть немного молока."],
+        ["few / little — мало (отрицательно)", "<b>Few</b> people came. / There's <b>little</b> point.", "Пришло мало людей. / Мало смысла."],
+        ["most / most of", "<b>Most</b> people… / <b>Most of</b> the students…", "Большинство людей… / Большинство студентов…"]],
+  markers: "",
+  mistakes: [["I don't have <s>many</s> time.", "I don't have <b>much</b> time.", "time — неисчисляемое"],
+             ["<s>Most of</s> people agree.", "<b>Most</b> people agree.", "most of + the/my/these…"]]
+},
+"b2-10": {
+  form: [["Глагол + -ing", "enjoy, avoid, finish, mind, suggest, keep, consider, practise", "", ""],
+         ["Глагол + to", "want, decide, hope, plan, promise, refuse, agree, manage", "want / ask / tell <b>someone to</b> do", ""],
+         ["Меняется смысл", "<b>stop / remember / forget / try</b> + -ing или to", "", ""]],
+  use: [["-ing после предлогов", "I'm interested <b>in learning</b> Polish.", "Мне интересно учить польский."],
+        ["remember doing / remember to do", "I <b>remember meeting</b> him. / <b>Remember to call</b> me.", "Помню, как встретил его. / Не забудь позвонить."],
+        ["stop doing / stop to do", "He <b>stopped smoking</b>. / He <b>stopped to smoke</b>.", "Бросил курить. / Остановился, чтобы покурить."]],
+  markers: "",
+  mistakes: [["I enjoy <s>to read</s>.", "I enjoy <b>reading</b>.", ""],
+             ["I want <s>that you come</s>.", "I want <b>you to come</b>.", "want somebody to do"],
+             ["I look forward to <s>see</s> you.", "I look forward to <b>seeing</b> you.", "to здесь — предлог"]]
+},
+"b2-11": {
+  form: [["Future Continuous", "<b>will be</b> + V-ing", "This time tomorrow I<b>'ll be flying</b>.", ""],
+         ["Future Perfect", "<b>will have</b> + V3", "By 2027 I<b>'ll have graduated</b>.", ""],
+         ["Базовые формы", "will · be going to · Present Continuous · Present Simple (расписание)", "", ""]],
+  use: [["Процесс в момент в будущем", "At 9 tomorrow I<b>'ll be sitting</b> in a meeting.", "Завтра в 9 я буду сидеть на совещании."],
+        ["Завершится к моменту в будущем", "<b>By the time</b> you arrive, we<b>'ll have finished</b>.", "К твоему приходу мы уже закончим."],
+        ["Договорённость и план", "We<b>'re flying</b> to Italy next month.", "В следующем месяце мы летим в Италию."]],
+  markers: "Continuous: <i>this time tomorrow, at 5 pm next Monday</i> · Perfect: <i>by, by the time, by the end of</i>",
+  mistakes: [["By Friday I <s>will finish</s> the project.", "By Friday I <b>will have finished</b>…", "by + срок — Future Perfect"],
+             ["When I <s>will arrive</s>, I'll call.", "When I <b>arrive</b>, I'll call.", "после when — Present Simple"]]
+},
+"b2-12": {
+  form: [["Обязанность", "<b>must</b> (внутреннее) · <b>have to</b> (внешнее)", "Прошедшее: <b>had to</b>", ""],
+         ["Нет необходимости", "<b>don't have to</b> · <b>needn't</b>", "Прошлое: <b>didn't need to</b> / <b>needn't have</b> + V3", ""],
+         ["Разрешение / запрет", "<b>can / may / be allowed to</b>", "<b>mustn't / can't / not allowed to</b>", ""]],
+  use: [["mustn't — нельзя", "You <b>mustn't</b> park here.", "Здесь парковаться нельзя."],
+        ["don't have to / needn't — не обязательно", "You <b>needn't</b> bring anything.", "Можно ничего не приносить."],
+        ["didn't need to — не было нужды (и не сделал)", "I <b>didn't need to</b> queue.", "Мне не пришлось стоять в очереди."],
+        ["needn't have — сделал, но зря", "I <b>needn't have bought</b> so much food.", "Зря я купил(а) столько еды."]],
+  markers: "",
+  mistakes: [["You <s>mustn't</s> come if you're busy.", "You <b>don't have to</b> come…", "mustn't — запрет"],
+             ["Yesterday I <s>must</s> work late.", "Yesterday I <b>had to</b> work late.", "у must нет прошедшей формы"]]
+}
+};
+function renderRuleExt(key){
+  const r = RULES_EXT[key]; if (!r) return "";
+  let h = '<details class="rule-ext"><summary>📖 Подробное правило</summary>';
+  if (r.form && r.form.length) {
+    h += '<div class="rx-block"><div class="rx-title">Как образуется</div><div class="rx-scroll"><table class="rx-table">';
+    const hasCols = r.form.some(f => f[2] || f[3]);
+    if (hasCols) h += '<tr><th></th><th>+</th><th>−</th><th>?</th></tr>';
+    r.form.forEach(f => {
+      h += hasCols ? `<tr><td class="rx-name">${f[0]}</td><td>${f[1]}</td><td>${f[2]||""}</td><td>${f[3]||""}</td></tr>`
+                   : `<tr><td class="rx-name">${f[0]}</td><td colspan="3">${f[1]}</td></tr>`;
+    });
+    h += '</table></div></div>';
+  }
+  if (r.use && r.use.length) {
+    h += '<div class="rx-block"><div class="rx-title">Когда используется</div><ul class="rx-use">';
+    r.use.forEach(u => { h += `<li><span class="rx-when">${u[0]}</span><span class="rx-ex">${u[1]}</span>${u[2] ? `<span class="rx-tr">${u[2]}</span>` : ""}</li>`; });
+    h += '</ul></div>';
+  }
+  if (r.markers) h += `<div class="rx-block"><div class="rx-title">Слова-подсказки</div><p class="rx-markers">${r.markers}</p></div>`;
+  if (r.mistakes && r.mistakes.length) {
+    h += '<div class="rx-block"><div class="rx-title">Типичные ошибки</div><ul class="rx-mist">';
+    r.mistakes.forEach(m => { h += `<li><span class="rx-bad">✗ ${m[0]}</span><span class="rx-good">✓ ${m[1]}</span>${m[2] ? `<span class="rx-note">${m[2]}</span>` : ""}</li>`; });
+    h += '</ul></div>';
+  }
+  return h + '</details>';
+}
+
+/* ============ РЕНДЕР ============ */
+/* ============ Картинки-эмодзи к словам (словарь) ============ */
+const GF_EMOJI = {
+house:'🏠',home:'🏠',park:'🌳',parks:'🌳',school:'🏫',classroom:'🏫',class:'🏫',dinner:'🍽️',lunch:'🥪',breakfast:'🥣',hair:'💇',mum:'👩',mother:'👩',dad:'👨',
+tennis:'🎾',horse:'🐴',swim:'🏊',swimming:'🏊',music:'🎵',clock:'🕐',water:'💧',homework:'📝',book:'📖',books:'📚',reading:'📖',read:'📖',tv:'📺',television:'📺',
+car:'🚗',bike:'🚲',bed:'🛏️',rain:'🌧️',rains:'🌧️',rained:'🌧️',raining:'🌧️',rainy:'🌧️',run:'🏃',runs:'🏃',running:'🏃',buy:'🛒',boy:'👦',apple:'🍎',apples:'🍎',drink:'🥤',drinks:'🥤',
+cake:'🎂',bus:'🚌',ball:'⚽',coat:'🧥',english:'🇬🇧',cinema:'🎬',cinemas:'🎬',present:'🎁',pizza:'🍕',watch:'⌚',fire:'🔥',australia:'🇦🇺',eyes:'👀',eye:'👁️',football:'⚽',friends:'🧑‍🤝‍🧑',
+sweets:'🍬',sunny:'☀️',sleeping:'😴',fish:'🐟',money:'💰',films:'🎬',film:'🎬',hospital:'🏥',donkey:'🫏',egypt:'🇪🇬',ticket:'🎫',girl:'👧',lions:'🦁',lion:'🦁',healthy:'🥗',aeroplane:'✈️',
+teddy:'🧸',banana:'🍌',dolls:'🪆',doll:'🪆',ride:'🚴',riding:'🚴',zoo:'🦓',umbrella:'☂️',grapes:'🍇',leg:'🦵',legs:'🦵',brother:'👦',sea:'🌊',sad:'😢',morning:'🌅',weather:'🌦️',piano:'🎹',
+usa:'🇺🇸',comic:'📰',dishes:'🍽️',cook:'🧑‍🍳',cooked:'🧑‍🍳',cooking:'🧑‍🍳',holiday:'🏖️',food:'🍲',london:'🇬🇧',turtle:'🐢',italy:'🇮🇹',train:'🚂',dress:'👗',dresses:'👗',sandwich:'🥪',
+elephants:'🐘',elephant:'🐘',monkey:'🐒',monkeys:'🐒',chairs:'🪑',cold:'🥶',skateboard:'🛹',computer:'💻',computers:'💻',milkshake:'🥤',fries:'🍟',maths:'➗',station:'🚉',hot:'🥵',jeans:'👖',
+cow:'🐄',goose:'🪿',hen:'🐔',brazil:'🇧🇷',trams:'🚋',meat:'🥩',doctor:'👩‍⚕️',nurse:'👩‍⚕️',swing:'🛝',swings:'🛝',shoes:'👟',hat:'👒',hats:'👒',garden:'🏡',snakes:'🐍',snake:'🐍',rice:'🍚',
+bird:'🐦',fly:'🪰',flying:'🕊️',table:'🍽️',cat:'🐱',poster:'🖼️',thirsty:'🥤',tired:'🥱',science:'🔬',chocolate:'🍫',nuts:'🥜',fruit:'🍉',door:'🚪',sheep:'🐑',windsurfing:'🏄',parrots:'🦜',parrot:'🦜',
+playground:'🛝',hotel:'🏨',tourists:'📸',volcano:'🌋',red:'🔴',skirt:'👗',email:'📧',bag:'👜',bags:'👜',dolphin:'🐬',dolphins:'🐬',biscuits:'🍪',biscuit:'🍪',coffee:'☕',kite:'🪁',arm:'💪',arms:'💪',
+pool:'🏊',slide:'🛝',seesaw:'🛝',sister:'👧',grandma:'👵',socks:'🧦',bathroom:'🛁',kitchen:'🍳',yogurt:'🥛',box:'📦',sandcastle:'🏰',chicken:'🍗',balloons:'🎈',child:'🧒',children:'👧',prize:'🏆',prizes:'🏆',
+teachers:'👩‍🏫',teacher:'👩‍🏫',uk:'🇬🇧',sugar:'🍬',chess:'♟️',cereal:'🥣',library:'📚',animals:'🐾',guitar:'🎸',shark:'🦈',postcard:'💌',souvenir:'🎁',news:'📰',diver:'🤿',paris:'🇫🇷',flowers:'🌸',
+decorations:'🎉',streets:'🏙️',britain:'🇬🇧',racket:'🏸',telephone:'☎️',phone:'📱',exam:'📝',trainers:'👟',germany:'🇩🇪',map:'🗺️',hello:'👋',ear:'👂',ears:'👂',fingers:'🖐️',finger:'☝️',pilot:'🧑‍✈️',
+vet:'🐶',policeman:'👮',tree:'🌳',zebra:'🦓',zebras:'🦓',tiger:'🐯',bread:'🍞',toy:'🧸',shells:'🐚',pencils:'✏️',pencil:'✏️',angry:'😠',salad:'🥗',blue:'🔵',juice:'🧃',supermarket:'🛒',bank:'🏦',
+shirts:'👕',shirt:'👕',brushing:'🪥',families:'👨‍👩‍👧',family:'👨‍👩‍👧',russia:'🇷🇺',canada:'🇨🇦',spain:'🇪🇸',beach:'🏖️',climbing:'🧗',climb:'🧗',climbed:'🧗',grandpa:'👴',museum:'🏛️',
+rucksack:'🎒',trophy:'🏆',traffic:'🚦',keys:'🔑',party:'🥳',recycle:'♻️',race:'🏁',stamps:'📮',post:'📮',fine:'🙂',eight:'8️⃣',nose:'👃',hall:'🏛️',funny:'😂',carrots:'🥕',cupboard:'🗄️',pillow:'🛏️',
+blanket:'🛏️',boat:'⛵',skate:'⛸️',art:'🎨',pastries:'🥐',evening:'🌆',snowy:'❄️',windy:'💨',cloudy:'☁️',photos:'📷',washing:'🧼',fireman:'🧑‍🚒',man:'👨',men:'👨',woman:'👩',women:'👩',lolly:'🍭',lollies:'🍭',
+seven:'7️⃣',games:'🎲',game:'🎲',drawing:'🖍️',radio:'📻',dog:'🐶',pen:'🖊️',kangaroos:'🦘',brush:'🪥',teeth:'🦷',laugh:'😂',laughed:'😂',pasta:'🍝',bridge:'🌉',aquarium:'🐠',village:'🏘️',mountain:'⛰️',
+exercise:'🤸',throat:'🤒',sore:'🤒',diary:'📔',baking:'🧁',sold:'🏷️',happy:'😊',walking:'🚶',walk:'🚶',walks:'🚶',sleeping2:'😴',green:'🟢',black:'⚫',brown:'🟤',orange:'🍊',lemons:'🍋',sun:'☀️',
+moon:'🌙',snow:'❄️',tea:'🍵',milk:'🥛',egg:'🥚',eggs:'🥚',cheese:'🧀',ice:'🧊',birthday:'🎂',letter:'✉️',window:'🪟',chair:'🪑',plane:'✈️',star:'⭐',duck:'🦆',rabbit:'🐰',mouse:'🐭',spider:'🕷️',
+frog:'🐸',bear:'🐻',lemonade:'🍋',lake:'🏞️',river:'🏞️',city:'🏙️',town:'🏘️',shop:'🏪',shops:'🏪',cafe:'☕',restaurant:'🍽️',bedroom:'🛏️',sofa:'🛋️',clothes:'👕',swimsuit:'🩱',cap:'🧢',glasses:'👓',
+song:'🎵',sing:'🎤',singing:'🎤',dance:'💃',dancing:'💃',painting:'🎨',paint:'🎨',camera:'📷',watching:'📺',sleep:'😴',eat:'🍽️',eating:'🍽️',eats:'🍽️',ate:'🍽️',drunk:'🥤',study:'📚',learn:'📚',
+week:'📅',monday:'📅',tuesday:'📅',wednesday:'📅',saturday:'📅',february:'📅',november:'📅',tomorrow:'📅',yesterday:'📅',today:'📅',birthday2:'🎂',time:'⏰',hours:'⏳',late:'⏰',early:'⏰',
+fast:'💨',slowly:'🐢',slower:'🐢',big:'🐘',bigger:'🐘',small:'🐭',smaller:'🐭',tall:'🦒',taller:'🦒',tallest:'🦒',strong:'💪',hurt:'🤕',ill:'🤒',excited:'🤩',shy:'🙈',famous:'🌟',beautiful:'🌸',
+expensive:'💎',young:'🧒',old:'👴',older:'👴',lost:'🔍',win:'🏆',won:'🏆',music2:'🎶',films2:'🎞️',dessert:'🍨',cards:'🃏',robot:'🤖',sports:'🏅',helped:'🤝',help:'🤝',invited:'💌',invite:'💌',
+letters:'✉️',gift:'🎁',parents:'👨‍👩‍👧',baby:'👶',cousin:'🧒',uncle:'👨',aunt:'👩',friend:'🧑‍🤝‍🧑',boat2:'🚤',island:'🏝️',castle:'🏰',ship:'🚢',taxi:'🚕',lorry:'🚚',bicycle:'🚲',helicopter:'🚁',
+};
+function gfPics(text, max, exclude){
+  const seen = new Set(exclude||[]), out = [];
+  (text.toLowerCase().match(/[a-z]+/g)||[]).forEach(w=>{
+    const e = GF_EMOJI[w];
+    if(e && !seen.has(e)){ seen.add(e); out.push({w, e}); }
+  });
+  return out.slice(0, max);
+}
+
+function wbPic(t,ex){const p=gfPics(String(t).replace(/<[^>]+>/g," ").replace(/\(.*?\)/g,""),2,(ex||[]).map(o=>GF_EMOJI[String(o).replace(/^[a-d][).]\s*/i,"").toLowerCase()]).filter(Boolean)).map(x=>x.e).join("");return p?`<span class="q-pic" aria-hidden="true">${p}</span> `:"";}
+const labels={order:"Word order",match:"Matching",choice:"Multiple choice",tf:"True / False"};
+const exData={}; // id -> исходные данные упражнения, чтобы проверять ответы без хранения их в DOM
+
+function shuffle(arr){
+  const a=arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+function normalize(s){
+  return s.toLowerCase().replace(/[.,;:!?]+/g," ").replace(/\s+/g," ").trim();
+}
+function extractLetter(text){
+  const m=text.trim().match(/^([a-zA-Z])\)/);
+  return m?m[1].toLowerCase():null;
+}
+function parseMatchAnswer(a,n){
+  const map=new Array(n).fill(null);
+  const re=/(\d+)\s*[—-]\s*([a-zA-Zа-яА-Я]+)/g;
+  let m;
+  while((m=re.exec(a))!==null){
+    const li=parseInt(m[1],10)-1;
+    const ri=m[2].trim().toLowerCase().charCodeAt(0)-97;
+    if(li>=0&&li<n&&ri>=0&&ri<n)map[li]=ri;
+  }
+  for(let i=0;i<n;i++){if(map[i]===null)map[i]=i;}
+  return map;
+}
+/* прогресс: засчитывается только правильное решение без подсмотренного ответа */
+const GR_KEY="grammarB1B2_progress";
+let grSolved={}, grPeeked={};
+try{const d=JSON.parse(localStorage.getItem(GR_KEY)||"{}");grSolved=d.solved||{};}catch(e){}
+function grSave(){try{localStorage.setItem(GR_KEY,JSON.stringify({solved:grSolved}));}catch(e){}}
+function markDone(id){
+  const exEl=document.getElementById("ex-"+id);
+  if(!exEl)return;
+  if(grPeeked[id] && !grSolved[id]){ exEl.classList.add("peeked"); setExStatus(id,"Решено с подсказкой — пока не засчитано. Вернитесь к этому заданию позже (после перезагрузки) и решите сами."); return; }
+  if(!grSolved[id]){ grSolved[id]=1; grSave(); }
+  exEl.classList.add("done");
+  setExStatus(id,"✓ Верно!");
+  updateProgress();
+}
+function setExStatus(id,text,bad){
+  const exEl=document.getElementById("ex-"+id); if(!exEl)return;
+  let st=exEl.querySelector(".ex-status");
+  if(!st){st=document.createElement("div");st.className="ex-status";exEl.querySelector(".ex-head").after(st);}
+  st.textContent=text; st.classList.toggle("bad",!!bad);
+}
+function wrongTry(id){
+  const exEl=document.getElementById("ex-"+id); if(!exEl)return;
+  setExStatus(id,"✗ Неверно. Попробуйте ещё раз.",true);
+  let rb=exEl.querySelector(".retry-btn");
+  if(!rb){rb=document.createElement("button");rb.className="toggle retry-btn";rb.textContent="↻ Попробовать ещё";rb.onclick=()=>retryEx(id);exEl.querySelector(".toggle").before(rb);}
+}
+function retryEx(id){
+  const exEl=document.getElementById("ex-"+id); const ex=exData[id];
+  const ul=document.getElementById("opts-"+id);
+  if(ul){ul.classList.remove("answered");Array.from(ul.children).forEach(li=>li.classList.remove("correct","incorrect"));}
+  const tf=document.getElementById("tfb-"+id);
+  if(tf){tf.classList.remove("answered");Array.from(tf.children).forEach(b=>b.classList.remove("correct","incorrect"));}
+  if(ex.t==="order") resetOrder(id);
+  const rb=exEl.querySelector(".retry-btn"); if(rb)rb.remove();
+  const st=exEl.querySelector(".ex-status"); if(st && !grSolved[id]) st.remove();
+  exEl.classList.remove("peeked");
+}
+
+function renderExercise(ex,i,tid){
+  const id=`${tid}-e${i}`;
+  exData[id]=ex;
+  const head=`<div class="ex-head"><span class="ex-num">Exercise ${i+1}</span><span class="ex-type">${labels[ex.t]}</span></div>`;
+  let body="";
+  if(ex.t==="order"){
+    const shuffled=shuffle(ex.words);
+    body=`<p class="task">${wbPic(ex.a)}${ex.task}</p>
+      <div class="slot" id="slot-${id}"></div>
+      <div class="words" id="pool-${id}">${shuffled.map(w=>`<span class="word" onclick="pickWord('${id}',this)">${w}</span>`).join("")}</div>
+      <div class="ex-actions"><button class="toggle" onclick="resetOrder('${id}')">Сбросить</button></div>`;
+  } else if(ex.t==="choice"){
+    body=`<p>${wbPic(ex.q,ex.opts)}${ex.q}</p><ul class="opts" id="opts-${id}">${ex.opts.map((o,oi)=>`<li onclick="selectChoice('${id}',${oi},this)">${o}</li>`).join("")}</ul>`;
+  } else if(ex.t==="match"){
+    const n=ex.rows.length;
+    exData[id].correctMap=parseMatchAnswer(ex.a,n);
+    const perm=shuffle(ex.rows.map((_,ri)=>ri));
+    const leftCol=ex.rows.map((r,ri)=>`<div class="match-item" onclick="clickMatch('${id}','left',${ri},this)">${r[0]}</div>`).join("");
+    const rightCol=perm.map((origIdx,pos)=>{
+      const pure=ex.rows[origIdx][1].replace(/^[^.]*\.\s*/,"");
+      const letter=String.fromCharCode(97+pos);
+      return `<div class="match-item" onclick="clickMatch('${id}','right',${origIdx},this)">${letter}. ${pure}</div>`;
+    }).join("");
+    body=`<p class="task">${ex.task}</p><div class="match-cols" id="match-${id}"><div class="match-col">${leftCol}</div><div class="match-col">${rightCol}</div></div>`;
+  } else {
+    body=`<p class="tf">${ex.q}</p>
+      <div class="tf-btns" id="tfb-${id}">
+        <button class="tf-btn" onclick="selectTF('${id}',true,this)">True</button>
+        <button class="tf-btn" onclick="selectTF('${id}',false,this)">False</button>
+      </div>`;
+  }
+  return `<div class="ex" id="ex-${id}" data-type="${ex.t}">${head}${body}<button class="toggle" onclick="toggleAns(this,'${id}')">Показать ответ</button><div class="answers"><div>${ex.a}</div></div></div>`;
+}
+
+/* --- Word order --- */
+function pickWord(id,el){
+  if(el.classList.contains("placed"))return;
+  const slot=document.getElementById("slot-"+id);
+  if(slot.classList.contains("correct")||slot.classList.contains("incorrect"))return;
+  el.classList.add("placed");
+  const span=document.createElement("span");
+  span.className="word";
+  span.textContent=el.textContent;
+  span.onclick=()=>{
+    if(slot.classList.contains("correct")||slot.classList.contains("incorrect"))return;
+    span.remove();
+    el.classList.remove("placed");
+  };
+  slot.appendChild(span);
+  checkOrderComplete(id);
+}
+function checkOrderComplete(id){
+  const pool=document.getElementById("pool-"+id);
+  const slot=document.getElementById("slot-"+id);
+  if(pool.querySelectorAll(".word:not(.placed)").length>0)return;
+  const built=Array.from(slot.children).map(c=>c.textContent).join(" ");
+  const ok=normalize(built)===normalize(exData[id].a);
+  slot.classList.add(ok?"correct":"incorrect");
+  if(ok) markDone(id); else setExStatus(id,"✗ Порядок неверный. Нажмите «Сбросить» и попробуйте ещё раз.",true);
+}
+function resetOrder(id){
+  const pool=document.getElementById("pool-"+id);
+  const slot=document.getElementById("slot-"+id);
+  slot.innerHTML="";
+  slot.classList.remove("correct","incorrect");
+  pool.querySelectorAll(".word").forEach(w=>w.classList.remove("placed"));
+  const exEl=document.getElementById("ex-"+id); const st=exEl&&exEl.querySelector(".ex-status");
+  if(st && !grSolved[id]) st.remove();
+}
+
+/* --- Multiple choice --- */
+function selectChoice(id,idx,el){
+  const ul=document.getElementById("opts-"+id);
+  if(ul.classList.contains("answered"))return;
+  ul.classList.add("answered");
+  const answerRaw=exData[id].a.trim();
+  const answerLetter=extractLetter(answerRaw);
+  const items=Array.from(ul.children);
+  const clickedLetter=extractLetter(el.textContent);
+  const isCorrect = answerLetter && clickedLetter
+    ? clickedLetter===answerLetter
+    : el.textContent.trim()===answerRaw;
+  if(isCorrect){
+    el.classList.add("correct");
+    markDone(id);
+  } else {
+    el.classList.add("incorrect");
+    wrongTry(id);
+  }
+}
+
+/* --- True / False --- */
+function selectTF(id,val,el){
+  const box=document.getElementById("tfb-"+id);
+  if(box.classList.contains("answered"))return;
+  box.classList.add("answered");
+  const correct=exData[id].a.trim().toLowerCase().startsWith("true");
+  if(val===correct){ el.classList.add("correct"); markDone(id); }
+  else { el.classList.add("incorrect"); wrongTry(id); }
+}
+
+/* --- Matching --- */
+const matchState={};
+function clickMatch(id,side,idx,el){
+  if(el.classList.contains("matched"))return;
+  const state=matchState[id]||(matchState[id]={selIdx:null,selEl:null});
+  if(side==="left"){
+    if(state.selEl)state.selEl.classList.remove("selected");
+    state.selIdx=idx;state.selEl=el;el.classList.add("selected");
+  } else {
+    if(state.selIdx===null)return;
+    const correctRight=exData[id].correctMap[state.selIdx];
+    if(idx===correctRight){
+      el.classList.add("matched");el.classList.remove("selected");
+      state.selEl.classList.add("matched");state.selEl.classList.remove("selected");
+      state.selIdx=null;state.selEl=null;
+      const container=document.getElementById("match-"+id);
+      if(container.querySelectorAll(".match-item:not(.matched)").length===0)markDone(id);
+    } else {
+      el.classList.add("wrong");
+      const selEl=state.selEl;
+      setTimeout(()=>{
+        el.classList.remove("wrong");
+        if(selEl)selEl.classList.remove("selected");
+      },450);
+      state.selIdx=null;state.selEl=null;
+    }
+  }
+}
+
+function renderTopic(topic,idx,tid){
+  const sec=document.createElement("section");
+  sec.className="topic"; sec.id=tid;
+  sec.innerHTML=`
+    <div class="topic-header">
+      <span class="topic-tag">Topic ${idx}</span>
+      <h2>${topic.title}</h2>
+      <p>${topic.sub}</p>
+    </div>
+    <div class="rule"><div class="rule-title">📘 Правило</div>${topic.rule}${renderRuleExt(tid.replace("-t","-"))}</div>
+    ${topic.ex.map((e,i)=>renderExercise(e,i,tid)).join("")}
+  `;
+  return sec;
+}
+
+/* ============ True / False убраны: фильтр + перенос прогресса на новые номера ============ */
+(function(){
+  const maps={};
+  BOOKS.forEach(bk=>bk.topics.forEach((t,ti)=>{
+    const tid=bk.key+"-t"+(ti+1), m={}; let n=0;
+    t.ex.forEach((e,i)=>{ if(e.t!=="tf") m[i]=n++; });
+    maps[tid]=m; t.ex=t.ex.filter(e=>e.t!=="tf");
+  }));
+  let done=false; try{done=localStorage.getItem(GR_KEY+":noTF")==="1";}catch(e){}
+  if(!done){
+    const ns={};
+    Object.keys(grSolved).forEach(k=>{
+      const mm=k.match(/^(.*-t\d+)-e(\d+)$/); if(!mm) return;
+      const nw=maps[mm[1]] && maps[mm[1]][+mm[2]];
+      if(nw!==undefined) ns[mm[1]+"-e"+nw]=1;
+    });
+    grSolved=ns; grSave();
+    try{localStorage.setItem(GR_KEY+":noTF","1");}catch(e){}
+  }
+})();
+
+const content=document.getElementById("content");
+const navHost=document.getElementById("navHost");
+const tabsEl=document.getElementById("bookTabs");
+let curBook=null;
+BOOKS.forEach(bk=>{
+  bk.total=bk.topics.reduce((s,t)=>s+t.ex.length,0);
+  bk.last=bk.key+"-t1";
+  const nav=document.createElement("div");
+  nav.className="nav-list"; nav.id="nav-"+bk.key;
+  bk.topics.forEach((t,i)=>{
+    const tid=bk.key+"-t"+(i+1);
+    content.appendChild(renderTopic(t,i+1,tid));
+    const btn=document.createElement("button");
+    btn.className="nav-item"; btn.dataset.id=tid;
+    btn.innerHTML=`<span class="nav-num">${i+1}</span><span>${t.title}</span>`;
+    btn.onclick=()=>showTopic(tid);
+    nav.appendChild(btn);
+  });
+  navHost.appendChild(nav);
+  const tab=document.createElement("button");
+  tab.className="book-tab"; tab.dataset.key=bk.key;
+  tab.setAttribute("role","tab");
+  tab.innerHTML=`<span class="bt-name">${bk.tab}</span><span class="bt-sub">${bk.sub}</span><span class="bt-count" id="bc-${bk.key}">0/${bk.total}</span>`;
+  tab.onclick=()=>switchBook(bk.key);
+  tabsEl.appendChild(tab);
+});
+document.getElementById("logoSub").textContent=
+  BOOKS.length+" workbooks · "+BOOKS.reduce((s,b)=>s+b.total,0)+" exercises";
+
+/* ============ НАВИГАЦИЯ ============ */
+function bookOf(id){return BOOKS.find(b=>id.startsWith(b.key+"-t"));}
+function setBook(key){
+  curBook=key;
+  const bk=BOOKS.find(b=>b.key===key);
+  document.querySelectorAll(".book-tab").forEach(t=>{
+    const on=t.dataset.key===key;
+    t.classList.toggle("active",on);
+    t.setAttribute("aria-selected",on?"true":"false");
+  });
+  document.querySelectorAll(".nav-list").forEach(n=>n.classList.toggle("active",n.id==="nav-"+key));
+  document.getElementById("sideTitle").textContent="Содержание · "+bk.tab;
+  updateProgress();
+}
+function showTopic(id){
+  const bk=bookOf(id);
+  if(curBook!==bk.key)setBook(bk.key);
+  bk.last=id;
+  document.querySelectorAll(".topic").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  try{localStorage.setItem(GR_KEY+":last",id);}catch(e){}
+  document.querySelectorAll(".nav-item").forEach(b=>b.classList.toggle("active",b.dataset.id===id));
+  document.getElementById("sidebar").classList.remove("open");
+  document.getElementById("overlay").classList.remove("show");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function switchBook(key){
+  if(curBook===key)return;
+  showTopic(BOOKS.find(b=>b.key===key).last);
+}
+function toggleMenu(){
+  document.getElementById("sidebar").classList.toggle("open");
+  document.getElementById("overlay").classList.toggle("show");
+}
+function toggleAns(btn,id){
+  const a=btn.nextElementSibling;
+  a.classList.toggle("show");
+  btn.textContent=a.classList.contains("show")?"Скрыть ответ":"Показать ответ";
+  if(a.classList.contains("show") && !grSolved[id]){ grPeeked[id]=1; }
+}
+
+/* ============ ПРОГРЕСС ============ */
+function updateProgress(){
+  document.querySelectorAll(".nav-item").forEach(b=>{
+    const tid=b.dataset.id; const n=document.querySelectorAll("#"+tid+" .ex").length;
+    const d=Object.keys(grSolved).filter(k=>k.startsWith(tid+"-e")).length;
+    let c=b.querySelector(".nav-done"); if(!c){c=document.createElement("span");c.className="nav-done";b.appendChild(c);}
+    c.textContent=d===n?"✓":(d?d+"/"+n:"");
+    b.classList.toggle("topic-complete",d===n);
+  });
+  BOOKS.forEach(bk=>{
+    bk.done=Object.keys(grSolved).filter(k=>k.startsWith(bk.key+"-t")).length;
+    const c=document.getElementById("bc-"+bk.key);
+    if(c)c.textContent=bk.done+"/"+bk.total;
+  });
+  const bk=BOOKS.find(b=>b.key===curBook);
+  if(!bk)return;
+  const pct=Math.round(bk.done/bk.total*100);
+  document.getElementById("pfill").style.width=pct+"%";
+  document.getElementById("ptext").textContent=bk.done+"/"+bk.total;
+}
+
+/* ============ ТЕМА ============ */
+function toggleTheme(){
+  const html=document.documentElement;
+  const cur=html.getAttribute("data-theme");
+  const next=cur==="light"?"dark":"light";
+  html.setAttribute("data-theme",next);
+  document.getElementById("themeBtn").textContent=next==="dark"?"☀️":"🌙";
+}
+if(false){
+  document.documentElement.setAttribute("data-theme","dark");
+  document.getElementById("themeBtn").textContent="☀️";
+}
+
+/* старт */
+Object.keys(grSolved).forEach(id=>{const e=document.getElementById("ex-"+id); if(e){e.classList.add("done"); setExStatus(id,"✓ Решено");}});
+let grLast="b1-t1"; try{grLast=localStorage.getItem(GR_KEY+":last")||"b1-t1";}catch(e){}
+if(!document.getElementById(grLast)) grLast="b1-t1";
+BOOKS.forEach(bk=>{ if(grLast.startsWith(bk.key+"-t")) bk.last=grLast; });
+showTopic(grLast);
+(function(){
+  const side=document.getElementById("sidebar"); if(!side)return;
+  const w=document.createElement("div"); w.className="gr-reset";
+  w.innerHTML='<button type="button">Сбросить прогресс</button>';
+  w.querySelector("button").onclick=()=>{ if(!confirm("Сбросить весь прогресс?"))return; grSolved={};grPeeked={};grSave();location.reload(); };
+  side.appendChild(w);
+})();
+</script>
+</body>
+</html>

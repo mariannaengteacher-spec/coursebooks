@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>English B2 — интерактивный курс</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --font:"Times New Roman", Times, "Liberation Serif", serif;
+    --bg:#EFE1D3;            /* latte */
+    --bg-panel:#F9F1E8;      /* cream */
+    --bg-sunken:#E2CDB8;
+    --ink:#2B1810;           /* dark cocoa */
+    --ink-soft:#6B4A37;      /* roasted brown */
+    --choc-deep:#3B1F14;     /* dark chocolate */
+    --accent:#A65A1E;        /* caramel */
+    --accent-soft:#EBD3B9;
+    --calm:#7B4A2E;          /* milk chocolate */
+    --calm-soft:#EBD3B9;
+    --gold:#3B1F14;
+    --gold-soft:#3B1F14;
+    --good:#5F7A45;
+    --good-soft:#E6EBD6;
+    --bad:#A63D2F;
+    --bad-soft:#F3DAD2;
+    --cream-text:#F6E9DA;
+    --border:#D3B9A3;
+    --white:#FFFAF4;
+    --radius:10px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font);
+    font-size:21.2px;
+    line-height:1.6;
+  }
+  h1,h2,h3{
+    font-family:var(--font);
+    font-weight:500;
+    margin:0;
+    line-height:1.15;
+  }
+  a{color:var(--accent);}
+  .layout{
+    display:grid;
+    grid-template-columns:220px minmax(0,760px);
+    gap:56px;
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 24px 120px;
+    justify-content:center;
+  }
+  .topbar{
+    position:sticky; top:0; z-index:30;
+    background:var(--choc-deep);
+    border-bottom:1px solid var(--choc-deep);
+  }
+  .topbar-inner{
+    max-width:1080px; margin:0 auto; padding:16px 24px;
+    display:flex; align-items:center; justify-content:space-between; gap:20px;
+    flex-wrap:wrap;
+  }
+  .brand{
+    font-family:var(--font); font-weight:500; font-size:25.1px; letter-spacing:.2px;
+  }
+  .brand{ color:var(--cream-text); }
+  .brand span{color:#E3A868;}
+  .progress-wrap{
+    display:flex; align-items:center; gap:10px; min-width:160px;
+  }
+  .progress-track{
+    flex:1; height:6px; background:#5A3A2A; border-radius:99px; overflow:hidden;
+  }
+  .progress-fill{
+    height:100%; width:0%; background:#E3A868; transition:width .5s ease;
+  }
+  .progress-label{ font-size:17.1px; color:#D6BBA3; white-space:nowrap;}
+
+  /* unit tabs */
+  .unit-tabs{
+    max-width:1080px; margin:0 auto; padding:0 24px 14px;
+    display:flex; gap:8px; flex-wrap:wrap;
+  }
+  .unit-tab{
+    font-family:inherit; font-size:17.1px; font-weight:600; color:var(--ink-soft);
+    background:var(--bg-panel); border:1px solid var(--border); border-radius:99px;
+    padding:7px 14px; cursor:pointer; white-space:nowrap;
+  }
+  .unit-tab:hover{ border-color:var(--calm); background:var(--accent-soft); color:var(--ink); }
+  .unit-tab.active{ background:var(--choc-deep); color:var(--cream-text); border-color:var(--choc-deep); }
+  .unit-tab .u-num{ opacity:.6; margin-right:5px; }
+
+  /* side nav */
+  .side-nav{ padding-top:40px; }
+  .side-nav ol{ list-style:none; margin:0; padding:0; border-left:1px solid var(--border);}
+  .side-nav li{ margin:0; }
+  .side-nav a{
+    display:flex; gap:10px; align-items:baseline;
+    text-decoration:none; color:var(--ink-soft);
+    padding:10px 0 10px 16px;
+    margin-left:-1px;
+    border-left:2px solid transparent;
+    font-size:18.5px;
+    transition:color .2s, border-color .2s;
+  }
+  .side-nav a .num{ font-family:var(--font); font-size:17.1px; color:var(--ink-soft); }
+  .side-nav a.active{ color:var(--ink); border-left:2px solid var(--accent); font-weight:600;}
+  .side-nav a.active .num{ color:var(--accent);}
+  .side-nav a.done::after{ content:"✓"; margin-left:auto; color:var(--good); font-size:15.9px;}
+
+  main{ padding-top:40px; min-width:0; }
+  section{ padding:64px 0; border-bottom:1px solid var(--border); scroll-margin-top:90px; }
+  section:last-of-type{ border-bottom:none; }
+
+  .sec-head{ display:flex; gap:18px; align-items:flex-start; margin-bottom:22px;}
+  .sec-num{ font-family:var(--font); font-size:19.8px; color:var(--accent); padding-top:6px; min-width:22px;}
+  .sec-title h2{ font-size:37px; }
+  .sec-title h2::after{ content:""; display:block; width:56px; height:3px; margin-top:12px; border-radius:2px; background:var(--accent); }
+  .sec-title .sub{ color:var(--ink-soft); font-size:19.8px; margin-top:6px; max-width:56ch;}
+
+  .card{
+    background:var(--bg-panel);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:24px 26px;
+  }
+  .card + .card{ margin-top:14px; }
+
+  .qlist{ list-style:none; margin:0; padding:0; }
+  .qlist li{
+    padding:16px 0; border-top:1px solid var(--border);
+    font-size:22.4px;
+  }
+  .qlist li:first-child{ border-top:none; }
+
+  .vocab-grid{ display:flex; flex-direction:column; }
+  .vocab-row{
+    display:grid; grid-template-columns:160px 1fr 150px;
+    gap:16px; padding:14px 0; border-top:1px solid var(--border);
+    align-items:baseline;
+  }
+  .vocab-row:first-child{ border-top:none; }
+  .vocab-word{ font-weight:600; }
+  .vocab-word small{ display:block; font-weight:400; color:var(--ink-soft); font-size:16.6px; margin-top:2px;}
+  .vocab-def{ color:var(--ink-soft); font-size:19.2px; }
+  .vocab-ru{ color:var(--accent); font-size:19.2px; text-align:right;}
+
+  .match-wrap{ display:grid; grid-template-columns:1fr 1fr; gap:0 28px; }
+  .match-col{ display:flex; flex-direction:column; gap:10px; }
+  .match-item{
+    text-align:left; padding:12px 14px; border:1px solid var(--border);
+    background:var(--white); border-radius:var(--radius); cursor:pointer;
+    font-size:19.2px; font-family:inherit; color:var(--ink);
+    transition:border-color .15s, background .15s;
+  }
+  .match-item:hover{ border-color:var(--calm); }
+  .match-item.selected{ border-color:var(--choc-deep); background:var(--choc-deep); color:var(--cream-text); }
+  .match-item.correct{ border-color:var(--good); background:var(--good-soft); cursor:default; }
+  .match-item.wrong{ border-color:var(--bad); background:var(--bad-soft); animation:shake .3s; }
+  @keyframes shake{ 25%{transform:translateX(-4px);} 75%{transform:translateX(4px);} }
+  .match-status{ font-size:17.1px; color:var(--ink-soft); margin-top:14px; min-height:18px;}
+
+  .reading{ font-size:23.1px; }
+  .reading p{ margin:0 0 16px; }
+  .reading b{ color:var(--accent); font-weight:600; }
+
+  .mcq{ margin-bottom:22px; }
+  .mcq:last-child{ margin-bottom:0; }
+  .mcq p.stem{ font-weight:600; margin:0 0 10px; }
+  .mcq .opts{ display:flex; flex-direction:column; gap:8px; }
+  .opt-btn{
+    text-align:left; padding:10px 14px; border:1px solid var(--border);
+    background:var(--white); border-radius:var(--radius); cursor:pointer;
+    font-family:inherit; font-size:19.2px; color:var(--ink);
+  }
+  .opt-btn:hover{ border-color:var(--calm); }
+  .opt-btn.correct{ border-color:var(--good); background:var(--good-soft); }
+  .opt-btn.wrong{ border-color:var(--bad); background:var(--bad-soft); }
+  .opt-btn:disabled{ cursor:default; }
+
+  .bank{
+    display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px; padding-bottom:20px;
+    border-bottom:1px dashed var(--border);
+  }
+  .bank-word{
+    padding:6px 12px; border:1px solid var(--border); border-radius:99px;
+    font-size:17.8px; color:var(--ink-soft); background:var(--white);
+  }
+  .bank-word.used{ opacity:.35; text-decoration:line-through; }
+  .gap-item{ margin-bottom:14px; font-size:20.5px; }
+  .gap-item input{
+    font-family:inherit; font-size:19.2px; border:none; border-bottom:2px solid var(--border);
+    background:transparent; padding:2px 4px; width:160px; color:var(--ink); text-align:center;
+  }
+  .gap-item input:focus{ outline:none; border-color:var(--calm); }
+  .gap-item input.correct{ border-color:var(--good); color:var(--good); font-weight:600; }
+  .gap-item input.wrong{ border-color:var(--bad); color:var(--bad); }
+  .check-row{ display:flex; align-items:center; gap:14px; margin-top:18px; }
+  .btn{
+    font-family:inherit; font-weight:600; font-size:18.5px; letter-spacing:.2px;
+    background:var(--choc-deep); color:var(--cream-text); border:none; padding:11px 24px;
+    border-radius:99px; cursor:pointer; box-shadow:0 3px 0 var(--accent); transition:all .15s;
+  }
+  .btn:hover{ background:var(--calm); }
+  .btn:active{ transform:translateY(2px); box-shadow:0 1px 0 var(--accent); }
+  .fb{ font-size:18.5px; color:var(--ink-soft); }
+
+  .g-note{ font-size:19.8px; color:var(--ink-soft); margin-bottom:20px; }
+  .g-note strong{ color:var(--ink); }
+  table.verbs{ border-collapse:collapse; width:100%; margin:14px 0 22px; font-size:18.5px; }
+  table.verbs th, table.verbs td{ text-align:left; padding:8px 10px; border-bottom:1px solid var(--border); }
+  table.verbs th{ color:var(--ink-soft); font-weight:600; font-size:16.6px; text-transform:none; }
+
+  footer{ text-align:center; color:var(--ink-soft); font-size:17.1px; padding:40px 24px 10px; }
+
+  @media (max-width: 860px){
+    .layout{ grid-template-columns:1fr; gap:0; padding:0 18px 100px;}
+    .side-nav{ display:none; }
+    .vocab-row{ grid-template-columns:1fr; gap:4px; }
+    .vocab-ru{ text-align:left; }
+    .match-wrap{ grid-template-columns:1fr; gap:10px;}
+  }
+:root{--bg:#F5ECE1;--bg-panel:#FCF8F2;--bg-sunken:#E8D6C2;--border:#DCC8B5}
+.topbar-inner,.unit-tabs{max-width:820px}
+.unit-tabs{justify-content:center}
+.layout{grid-template-columns:minmax(0,760px);gap:0;justify-content:center;padding:0 20px 100px}
+.side-nav{display:block!important;padding:20px 0 0}
+.side-nav ol{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--bg-panel);border:1px solid var(--border);border-radius:12px;padding:12px}
+.side-nav a{padding:6px 14px;margin:0;border:1px solid var(--border);border-radius:99px;font-size:17.8px}
+.side-nav a.active{background:var(--choc-deep);color:var(--cream-text);border-color:var(--choc-deep)}
+.side-nav a.active .num{color:#E3A868}
+.side-nav a.done::after{margin-left:8px}
+main{padding-top:8px}
+</style>
+<style>
+/* ===== UNIFIED LAYER (shared by all three books) ===== */
+:root{--u-font:"Times New Roman",Times,"Liberation Serif",serif;--u-bg:#F5ECE1;--u-panel:#FCF8F2;--u-field:#FFFAF4;--u-line:#DCC8B5;--u-ink:#2B1810;--u-soft:#6B4A37;--u-choc:#3B1F14;--u-cocoa:#7B4A2E;--u-caramel:#A65A1E;--u-cream:#F6E9DA;--u-good:#5F7A45;--u-good-soft:#E6EBD6;--u-bad:#A63D2F;--u-bad-soft:#F3DAD2;--u-r:10px}
+html{scroll-behavior:smooth}
+body{font-family:var(--u-font);font-size:21.2px;line-height:1.6;color:var(--u-ink);background:var(--u-bg)}
+button,input,select,textarea{font-family:var(--u-font)}
+
+/* unit heading */
+.unit-head h1,.unit-head h2{font-family:var(--u-font);font-size:42.3px;font-weight:500;font-style:normal;line-height:1.15;margin:4px 0 10px;color:var(--u-choc)}
+.unit-head h1::after,.unit-head h2::after{content:"";display:block;width:56px;height:3px;margin-top:12px;border-radius:2px;background:var(--u-caramel)}
+.unit-head p{font-size:20.5px;color:var(--u-soft);max-width:60ch;margin:0 0 18px}
+.unit-head .kicker,.unit-head .unum{font-size:17.8px;font-style:italic;color:var(--u-caramel);margin:0}
+
+/* section heading: caramel bar */
+section h3,.block h2,.sec-title h2{font-family:var(--u-font);font-size:29.1px;font-weight:500;line-height:1.25;color:var(--u-choc);margin:0 0 14px;padding-left:14px;border-left:4px solid var(--u-caramel)}
+.sec-title h2::after{display:none}
+.sec-num{display:none}
+.sec-head{display:block;margin:0 0 18px}
+.sec-head .sec-title h2{margin-bottom:6px}
+section > p.lede{margin:-8px 0 16px}
+section > p.lede,.block-sub,.sec-title .sub{font-size:19.2px;color:var(--u-soft);max-width:none;padding-left:0}
+.block-sub{margin:-8px 0 16px}
+.sec-title .sub{margin:0}
+section{padding:0;margin:0 0 52px;border:0;scroll-margin-top:90px}
+.block{margin-bottom:52px}
+
+/* cards */
+.card,.explainer,.passage,.route-card,.grammar-box .panel{background:var(--u-panel);border:1px solid var(--u-line);border-radius:var(--u-r)}
+.card{padding:22px 26px}
+.passage{padding:22px 26px;max-width:none}
+.explainer{border-left:3px solid var(--u-cocoa);padding:16px 20px;font-size:20.5px}
+.reading,.passage{font-family:var(--u-font);font-size:22.4px;line-height:1.75}
+.reading p,.passage p{margin:0 0 16px}
+
+/* buttons */
+button.check,.btn{font-family:var(--u-font);font-size:19.8px;font-weight:600;letter-spacing:0;background:var(--u-choc);color:var(--u-cream);border:0;padding:10px 24px;border-radius:999px;cursor:pointer;box-shadow:0 3px 0 var(--u-caramel);transition:all .15s}
+button.check:hover,.btn:hover{background:var(--u-cocoa)}
+button.check:active,.btn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--u-caramel)}
+.score,.fb,.score-badge,.match-status,.word-count,.save-note{font-size:18.5px;color:var(--u-soft)}
+
+/* text fields */
+textarea{width:100%;font-family:var(--u-font);font-size:20.5px;line-height:1.5;color:var(--u-ink);background:var(--u-field);border:1px solid var(--u-line);border-radius:6px;padding:10px 12px;resize:vertical}
+.exercise-row select,.exercise-row input[type=text]{font-family:var(--u-font);font-size:20.5px;padding:6px 10px;border:1px solid var(--u-line);border-radius:6px;background:var(--u-field);color:var(--u-ink)}
+.exercise-row{font-size:21.2px}
+.comp-q p.q,.mcq p.stem,.q-text,.prompt-title{font-size:21.2px;font-weight:600;color:var(--u-ink)}
+.gap-item{font-size:21.2px}
+
+/* options / mcq */
+.opt-btn,.opt,.pill{font-family:var(--u-font);font-size:20.5px;padding:10px 14px;border:1px solid var(--u-line);border-radius:8px;background:var(--u-field);color:var(--u-ink);cursor:pointer}
+.pill{border-radius:999px;padding:7px 16px}
+.opt-btn:hover,.opt:hover,.pill:hover{border-color:var(--u-cocoa)}
+.opt-btn.correct,.opt.correct{border-color:var(--u-good);background:var(--u-good-soft);color:var(--u-ink)}
+.opt-btn.wrong,.opt.wrong{border-color:var(--u-bad);background:var(--u-bad-soft);color:var(--u-ink)}
+.pill.correct{border-color:var(--u-good);background:var(--u-good-soft);color:var(--u-good);font-weight:600}
+.pill.incorrect{border-color:var(--u-bad);background:var(--u-bad-soft);color:var(--u-bad)}
+
+/* matching */
+.match-col{gap:8px}
+.match-item{font-family:var(--u-font);font-size:20.5px;padding:10px 14px;border:1px solid var(--u-line);border-radius:8px;background:var(--u-field);color:var(--u-ink);cursor:pointer;text-align:left}
+.match-item:hover{border-color:var(--u-cocoa)}
+.match-item.selected{border-color:var(--u-choc);background:var(--u-choc);color:var(--u-cream)}
+.match-item.matched,.match-item.correct,.match-item.solved{border-color:var(--u-good);background:var(--u-good-soft);color:var(--u-ink);cursor:default;opacity:1}
+.match-item.wrong{border-color:var(--u-bad);background:var(--u-bad-soft);color:var(--u-ink)}
+
+/* word bank chips */
+.word-chip,.bank-word,.chip{font-family:var(--u-font);font-size:19.8px;font-weight:400;padding:6px 14px;border:1px solid var(--u-line);border-radius:999px;background:var(--u-field);color:var(--u-ink)}
+.word-chip:hover,.chip:hover{border-color:var(--u-cocoa);background:#EBD3B9}
+.word-chip.selected{border-color:var(--u-choc);background:var(--u-choc);color:var(--u-cream)}
+.word-chip.used,.chip.used,.bank-word.used{opacity:.3}
+.word-bank,.bank{display:flex;flex-wrap:wrap;gap:8px}
+
+/* blanks */
+.blank{font-family:var(--u-font);font-size:21.2px;font-weight:600;color:var(--u-choc);min-width:120px;text-align:center}
+.blank.filled{border-radius:3px}
+
+/* vocab */
+.vocab-term{font-size:20.5px;border-radius:var(--u-r)}
+.vocab-term .def{font-size:19.2px}
+.flash-face{border-radius:var(--u-r)}
+.flash-term{font-size:23.8px}
+
+/* grammar */
+.grammar-box li{font-size:19.2px}
+.grammar-box .formula,.ex-title{font-size:18.5px}
+.g-note{font-size:20.5px}
+table.verbs{font-size:19.8px}
+
+/* level-2 pill navigation (jump-to sections / tabs) */
+.unit-toc button,.unit-tab,.side-nav a,.tab-btn{font-family:var(--u-font);font-size:19.2px;font-weight:500}
+
+.topbar{position:sticky;top:0;z-index:30;background:var(--u-choc);border-bottom:1px solid var(--u-choc)}
+.topbar-inner{max-width:1180px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.brand{font-family:var(--u-font);font-size:26.4px;font-weight:500;font-style:normal;letter-spacing:.2px;color:var(--u-cream);margin:0}
+.brand span{color:#E3A868}
+.progress-wrap{display:flex;align-items:center;gap:10px;min-width:160px}
+.progress-track{flex:1;height:6px;min-width:80px;background:#5A3A2A;border-radius:99px;overflow:hidden}
+.progress-fill{height:100%;width:0;background:#E3A868;transition:width .5s ease}
+.progress-label{font-size:17.1px;color:#D6BBA3;white-space:nowrap}
+.unit-tabs{max-width:1124px;width:calc(100% - 56px);margin:20px auto 0;padding:14px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--u-panel);border:1px solid var(--u-line);border-radius:12px}
+.unit-tab{font-family:var(--u-font);font-size:19.2px;font-weight:500;color:var(--u-soft);background:transparent;border:1px solid var(--u-line);border-radius:99px;padding:6px 14px;cursor:pointer;white-space:nowrap}
+.unit-tab:hover{background:#EBD3B9;color:var(--u-ink);border-color:var(--u-cocoa)}
+.unit-tab.active{background:var(--u-choc);color:var(--u-cream);border-color:var(--u-choc)}
+.unit-tab .u-num{opacity:.6;margin-right:5px}
+.layout{display:block;max-width:1180px;margin:0 auto;padding:0 28px 100px}
+.side-nav{display:block!important;padding:18px 0 0}
+.side-nav ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;border:0;background:transparent}
+.side-nav a{display:inline-flex;gap:8px;align-items:baseline;text-decoration:none;color:var(--u-soft);background:var(--u-panel);border:1px solid var(--u-line);border-radius:99px;padding:6px 14px;margin:0;font-size:19.2px;transition:all .15s}
+.side-nav a .num{font-size:17.1px;color:var(--u-soft)}
+.side-nav a:hover{background:#EBD3B9;border-color:var(--u-cocoa)}
+.side-nav a.active{background:var(--u-choc);color:var(--u-cream);border-color:var(--u-choc)}
+.side-nav a.active .num{color:#E3A868}
+.side-nav a.done::after{content:"\2713";margin:0 0 0 2px;color:var(--u-good);font-size:15.9px}
+.side-nav a.active.done::after{color:#BFD7A0}
+main{padding-top:28px;min-width:0}
+main section{padding:0 0 52px;margin:0 0 52px;border:0;border-bottom:1px solid var(--u-line)}
+main section:last-of-type{border-bottom:0;margin-bottom:0;padding-bottom:0}
+footer{text-align:center;color:var(--u-soft);font-size:18.5px;padding:40px 24px 10px}
+.match-wrap{max-width:none;gap:0 32px}
+.card{padding:24px 30px}
+
+.qlist li{font-size:23.8px}
+.vocab-row{font-size:21.2px}
+.vocab-def,.vocab-ru{font-size:19.8px}
+.sec-head .sub{margin-top:0}
+
+
+.unit-art{margin:0 0 16px;border-radius:12px;overflow:hidden;border:1px solid #D3B9A3;background:#F3E6D8;}
+.unit-art-svg{display:block;width:100%;height:auto;}
+.unit-art figcaption{padding:10px 18px 12px;font-style:italic;color:#6B4A37;font-size:19.8px;background:#F9F1E8;border-top:1px solid #D3B9A3;}
+/* ---------- прогресс и удобство ---------- */
+main section{scroll-margin-top:calc(var(--topbar-h, 70px) + 16px)!important;}
+.progress-label b{font-weight:600;color:#F6E9DA;}
+.unit-tab .u-pct{margin-left:6px;font-size:15.2px;opacity:.75;}
+.unit-tab.unit-complete:not(.active){border-color:#5F7A45;color:#4b6236;}
+.unit-tab.unit-complete .u-pct{color:#5F7A45;opacity:1;font-weight:700;}
+.unit-tab.active .u-pct{color:#E3A868;}
+section.sec-done .sec-title h2::after{content:" ✓";color:#5F7A45;font-size:.8em;}
+.mcq-result:empty{display:none;}
+.fb-good{color:#5F7A45;font-weight:600;}
+.reset-progress{margin-top:10px;background:none;border:1px solid #D3B9A3;border-radius:99px;padding:5px 14px;font-family:inherit;font-size:17.1px;color:#6B4A37;cursor:pointer;}
+.reset-progress:hover{border-color:#6B4A37;}
+@media (max-width:640px){
+  .topbar-inner{padding:10px 16px!important;flex-wrap:nowrap!important;gap:12px!important;}
+  .brand{font-size:22.4px!important;white-space:nowrap;}
+  .progress-wrap{min-width:0!important;gap:8px!important;}
+  .progress-track{min-width:40px!important;}
+  .progress-label{font-size:15.9px!important;}
+  .progress-label .course-pct{display:none;}
+  .unit-tabs{flex-wrap:nowrap!important;overflow-x:auto;justify-content:flex-start!important;width:auto!important;margin:10px 0 0!important;padding:8px 16px!important;border-radius:0!important;border-left:0!important;border-right:0!important;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+  .unit-tabs::-webkit-scrollbar,.side-nav ol::-webkit-scrollbar{display:none;}
+  .unit-tab{flex:none;padding:5px 12px!important;font-size:18.5px!important;}
+  .layout{padding:0 16px 80px!important;}
+  .side-nav{padding:10px 0 0!important;margin:0 -16px;}
+  .side-nav ol{flex-wrap:nowrap!important;overflow-x:auto;justify-content:flex-start!important;padding:0 16px 6px!important;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+  .side-nav li{flex:none;}
+  .side-nav a{white-space:nowrap;padding:5px 12px!important;font-size:17.8px!important;}
+  .match-wrap{grid-template-columns:1fr 1fr!important;gap:0 8px!important;}
+  .match-item{font-size:17.8px!important;padding:8px 9px!important;line-height:1.3;}
+}
+
+/* ---------- компактнее ---------- */
+main section{padding-bottom:36px!important;margin-bottom:36px!important;}
+main section:last-of-type{padding-bottom:0!important;margin-bottom:0!important;}
+.card{padding:20px 24px;}
+.qlist li{padding:13px 0;}
+.preview-row.has-art{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:16px;align-items:start;}
+.preview-row .unit-art{margin:0;}
+.preview-row.has-art .card{padding:6px 20px;}
+.preview-row.has-art .qlist li{font-size:21.2px;line-height:1.45;padding:11px 0;}
+.unit-art figcaption{padding:8px 14px 10px!important;font-size:18.5px!important;line-height:1.4;}
+.mcq{margin-bottom:18px!important;}
+.mcq .opts{flex-direction:row!important;flex-wrap:wrap;}
+.mcq .opt-btn{flex:0 1 auto;text-align:left;padding:8px 14px;}
+@media (max-width:760px){
+  .preview-row.has-art{grid-template-columns:1fr;gap:12px;}
+}
+@media (max-width:640px){
+  main section{padding-bottom:28px!important;margin-bottom:28px!important;}
+  .card{padding:16px 18px!important;}
+  .preview-row.has-art .card{padding:4px 18px!important;}
+  .qlist li{font-size:21.2px!important;line-height:1.45;padding:11px 0;}
+  .sec-head{margin-bottom:12px!important;}
+}
+
+/* ---------- карточки слов ---------- */
+.flip-tools{display:flex;justify-content:flex-end;margin:-4px 0 10px;}
+.flip-all{font-family:inherit;font-size:18.5px;background:none;border:1px solid #D3B9A3;border-radius:99px;padding:5px 14px;color:#6B4A37;cursor:pointer;}
+.flip-all:hover{border-color:#6B4A37;}
+.flip-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;}
+.flip-card{font-family:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;perspective:800px;text-align:center;}
+.flip-inner{display:grid;height:100%;min-height:104px;transition:transform .45s ease;transform-style:preserve-3d;}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+.flip-face{grid-area:1/1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:12px 10px;border-radius:10px;border:1px solid #D3B9A3;backface-visibility:hidden;-webkit-backface-visibility:hidden;}
+.flip-front{background:#F9F1E8;box-shadow:0 2px 0 #E2CDB8;}
+.flip-card:hover .flip-front{border-color:#7B4A2E;}
+.flip-card:focus-visible .flip-face{outline:3px solid #E3A868;outline-offset:2px;}
+.flip-back{background:#3B1F14;border-color:#3B1F14;transform:rotateY(180deg);}
+.fc-w{font-size:23.8px;font-weight:600;color:#2B1810;line-height:1.25;}
+.fc-pos{font-size:16.6px;color:#6B4A37;font-style:italic;}
+.fc-ru{font-size:22.4px;font-weight:600;color:#F6E9DA;line-height:1.25;}
+.fc-def{font-size:16.6px;color:#D6BBA3;line-height:1.35;}
+@media (max-width:860px){ .flip-grid{grid-template-columns:repeat(3,minmax(0,1fr));} }
+@media (max-width:560px){ .flip-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;} .fc-w{font-size:21.8px;} .fc-ru{font-size:20.5px;} .flip-inner{min-height:96px;} }
+@media (prefers-reduced-motion:reduce){ .flip-inner{transition:none;} }
+
+/* ---------- B2: дополнения ---------- */
+:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);}
+html{scroll-padding-top:env(safe-area-inset-top,0px);background:#F5ECE1;}
+body{background:#F5ECE1;}
+.topbar{top:env(safe-area-inset-top,0px)!important;}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:31;background:#3B1F14;}
+main{max-width:820px;margin:0 auto;}
+.unit-head{margin:4px 0 26px;}
+.sub-h{font-size:23.8px;font-weight:600;color:#3B1F14;margin:26px 0 4px;}
+.hint{font-size:19.2px;color:#6B4A37;margin:0 0 10px;}
+.explainer{margin:0 0 6px;}
+.explainer b{color:#2B1810;}
+.mcq p.stem:empty{display:none;}
+.gap-line{margin:0 0 12px;font-size:21.2px;line-height:2;}
+.blank{display:inline-block;min-width:110px;margin:0 4px;padding:0 10px;border:0;border-bottom:2px solid #D3B9A3;background:#FFFAF4;border-radius:4px 4px 0 0;cursor:pointer;line-height:1.6;vertical-align:baseline;}
+.blank:hover{border-bottom-color:#7B4A2E;}
+.blank.filled{border-bottom-color:#5F7A45;background:#E6EBD6;color:#2B1810;cursor:default;}
+.blank.wrong{border-bottom-color:#A63D2F;background:#F3DAD2;animation:shake .3s;}
+.bank{margin-bottom:16px;padding-bottom:16px;border-bottom:1px dashed #D3B9A3;}
+.chip{cursor:pointer;}
+.chip.selected{border-color:#3B1F14;background:#3B1F14;color:#F6E9DA;}
+.chip:disabled{cursor:default;}
+.match-status{margin-top:12px;}
+.match-item:disabled{cursor:default;}
+.read-title{font-size:26.4px;font-weight:600;color:#3B1F14;margin:0 0 10px;}
+.reading p{margin:0;}
+.fc-ex{font-size:15.9px;font-style:italic;color:#C9AE95;line-height:1.35;margin-top:2px;}
+.flip-inner{min-height:120px;}
+.write-item{margin-bottom:22px;}
+.write-item .prompt-title{margin:0 0 8px;}
+.word-count{margin-top:4px;font-size:17.1px;}
+@keyframes shake{25%{transform:translateX(-4px);}75%{transform:translateX(4px);}}
+@media (max-width:640px){
+  .unit-head h1{font-size:35.6px;}
+  .gap-line{font-size:20.5px;}
+  .blank{min-width:90px;}
+  .explainer{padding:14px 16px;font-size:19.8px;}
+  .reading{font-size:21.8px;}
+}
+/* ===== Тетрадь (семейство English B1/B2 / Next Steps) ===== */
+:root{
+  --font:'Inter','Segoe UI',system-ui,sans-serif; --u-font:'Inter','Segoe UI',system-ui,sans-serif;
+  --mono:'Space Mono','Courier New',monospace; --hand:'Caveat',cursive;
+  --bg:#f5efe8; --bg-panel:#fffaf5; --bg-sunken:#f1e7de; --ink:#2e241e; --ink-soft:#5a3f2a;
+  --choc-deep:#45301f; --accent:#8a6246; --accent-soft:#f1e7de; --calm:#5a3f2a; --calm-soft:#f1e7de;
+  --gold:#45301f; --gold-soft:#45301f; --good:#2d7a4a; --good-soft:#e3ecdd; --bad:#b34a4a; --bad-soft:#f3e0da;
+  --cream-text:#fcf5ed; --border:#e5d6c8; --white:#fffaf5;
+  --u-bg:#f5efe8; --u-panel:#fffaf5; --u-field:#fffaf5; --u-line:#e5d6c8; --u-ink:#2e241e; --u-soft:#5a3f2a;
+  --u-choc:#45301f; --u-cocoa:#5a3f2a; --u-caramel:#8a6246; --u-cream:#fcf5ed; --u-good:#2d7a4a; --u-good-soft:#e3ecdd;
+  --u-bad:#b34a4a; --u-bad-soft:#f3e0da; --nb-gold:#c3a06a; --nb-line:#dccfc2;
+}
+html,body{background:#f5efe8}
+body{font-family:var(--font);color:var(--ink);
+  background-image:repeating-linear-gradient(to bottom,transparent 0 38px,var(--nb-line) 38px 39px);background-attachment:local}
+body::before{background:#45301f!important}
+h1,h2,h3,.sec-title h2,.unit-head h1,.unit-head h2{font-family:var(--mono);font-weight:700;letter-spacing:.2px}
+.topbar{background:#45301f!important;border-bottom:3px solid var(--accent)!important}
+.brand{font-family:var(--mono);font-weight:700;color:#fcf5ed!important}
+.brand span{color:var(--nb-gold)!important;font-family:var(--hand);font-size:1.15em;font-weight:700}
+.progress-track{background:rgba(0,0,0,.28)!important}
+.progress-fill{background:var(--nb-gold)!important}
+.progress-label{color:rgba(252,245,237,.8)!important}
+.unit-tabs{background:transparent}
+.unit-tab{font-family:var(--mono);font-weight:700;background:#fffaf5;border-color:var(--border);color:var(--ink-soft)}
+.unit-tab.active{background:#45301f!important;border-color:#45301f!important;color:#fcf5ed!important}
+.unit-tab:hover{background:#f1e7de;border-color:var(--accent)}
+main{border-left:2px solid var(--accent);padding-left:26px}
+.unit-head h1,.unit-head h2{display:inline-block;font-size:clamp(29.1px,3.7vw,37px);color:#2e241e;background:#fffaf5;
+  border:2px dashed var(--accent);border-radius:10px;padding:10px 20px;transform:rotate(-1deg);box-shadow:0 8px 20px rgba(46,36,30,.07)}
+.unit-head h1::after,.unit-head h2::after{display:none}
+.unit-head .unum,.unit-head p:first-child{font-family:var(--hand);font-size:26.4px;font-style:normal;color:var(--accent)}
+.sec-title h2{font-size:29.1px;color:#2e241e}
+.sec-title h2::after{background:var(--nb-gold)}
+.sec-title .sub,.hint,.sub{font-family:var(--hand);font-size:25.1px;color:var(--ink-soft);font-style:normal}
+.side-nav a{font-family:'Inter',sans-serif}
+.side-nav a.active,.side-nav a:hover{color:#45301f}
+.side-nav .num{font-family:var(--mono)}
+.card,.explainer,.passage,.route-card,.grammar-box .panel,.reading{background:#fffaf5;border:1px solid var(--border);border-radius:10px;box-shadow:0 6px 16px rgba(46,36,30,.05)}
+.explainer{border-left:6px solid var(--nb-gold)!important;border-radius:0 10px 10px 0}
+.opt-btn,.match-item,.chip,.word-chip{font-family:var(--mono);font-size:18.5px;background:#f1e7de;border:1px solid var(--border);border-radius:30px;color:#2e241e}
+.match-item{border-radius:20px}
+.opt-btn:hover,.match-item:hover,.chip:hover{background:#ead9ca;border-color:var(--accent)}
+.match-item.selected,.chip.selected{background:#45301f!important;border-color:#45301f!important;color:#fcf5ed!important}
+.btn,.flip-all{background:#45301f;color:#fcf5ed;border-radius:30px;font-family:var(--mono)}
+.btn:hover,.flip-all:hover{background:#5a3f2a}
+.flip-front{background:#fffaf5!important;border-color:var(--accent)!important;box-shadow:0 2px 0 #e5d6c8!important}
+.flip-back{background:#45301f!important;border-color:#45301f!important}
+.flip-front .fc-w,.fc-w{font-family:var(--mono)}
+.blank{background:#f5efe8;border-bottom-color:var(--accent)}
+textarea{background:#fffaf5;border-color:var(--border);font-family:'Inter',sans-serif}
+input[type=text]{font-family:'Inter',sans-serif}
+.reset-progress{border-color:var(--border);color:var(--ink-soft)}
+footer{font-family:var(--hand);font-size:23.8px}
+@media(max-width:640px){main{padding-left:14px}.unit-head h1,.unit-head h2{font-size:26.4px;padding:8px 14px}}
+
+/* Весь шрифт — Times New Roman */
+html body,html body *:not(.emoji){font-family:"Times New Roman",Times,serif!important}
+
+/* Иллюстрации к юнитам */
+.warm-row.has-art{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:18px;align-items:start}
+.unit-art{margin:0;border-radius:12px;overflow:hidden;border:1px solid #C2A386;background:#F3E6D8}
+.unit-art-svg{display:block;width:100%;height:auto}
+.unit-art figcaption{padding:8px 14px 10px;font-style:italic;color:#5E3E2C;font-size:18.5px;line-height:1.4;background:#EFDFCB;border-top:1px solid #C2A386}
+@media(max-width:760px){.warm-row.has-art{grid-template-columns:1fr;gap:12px}}
+</style>
+<style id="fs-scaled-132">html{font-size:132%}</style><style id="mobile-fix">@media(max-width:520px){.flip-face{min-width:0;padding:10px 6px}.fc-w{font-size:19px!important;overflow-wrap:break-word}.fc-ru{font-size:18px!important;overflow-wrap:break-word}}</style><style id="white-sheet">:root:not([data-theme="dark"]) body:not([data-theme="dark"]) #mainContent{background:#fff!important;background-image:none!important;border:1px solid #e3d3c4!important;border-left:2px solid #8a6246!important;border-radius:14px!important;box-shadow:0 4px 18px rgba(90,60,40,.09)!important;padding:28px 30px 34px 34px!important;box-sizing:border-box}@media(max-width:520px){:root:not([data-theme="dark"]) body:not([data-theme="dark"]) #mainContent{padding:18px 14px 22px 16px!important;border-radius:12px!important}}</style><style id="stripes-strong">:root:not([data-theme="dark"]) body:not([data-theme="dark"]){background-image:repeating-linear-gradient(to bottom,transparent 0 38px,#cdb7a3 38px 40px)!important}</style></head>
+<body>
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">English <span>B2 course</span></div>
+    <div class="progress-wrap">
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-label" id="progressLabel">0%</div>
+    </div>
+  </div>
+</div>
+<div class="unit-tabs" id="unitTabs"></div>
+<div class="layout">
+  <nav class="side-nav"><ol id="sideNav"></ol></nav>
+  <main id="mainContent"></main>
+</div>
+<footer>English B2 course · interactive lessons<br><button type="button" class="reset-progress" id="resetProgressBtn">Сбросить прогресс</button></footer>
+<script>
+const UNITS = [
+{
+  id:"identity", title:"First Impressions", theme:"Identity & perception",
+  preview:[
+    "Think of someone you met recently. What was your first impression of them, and has it changed?",
+    "How long does it usually take you to decide whether you like someone new?"
+  ],
+  grammar:{
+    point:"Present Perfect Simple vs. Continuous",
+    explain:"Use the <b>present perfect simple</b> for completed actions and their result — often with a number or a sense of 'how much/many'. Use the <b>present perfect continuous</b> to emphasise the duration of an activity, or when the activity itself (not the result) is the point — often visible in its evidence.",
+    mcq:[
+      {q:"I ___ three cups of coffee already this morning.", options:["have drunk","have been drinking","drink"], a:0},
+      {q:"My hands are covered in paint because I ___ the fence.", options:["have painted","have been painting","paint"], a:1},
+      {q:"He ___ his motorbike for three hours — no wonder he's exhausted.", options:["has ridden","has been riding","rides"], a:1},
+      {q:"They ___ the bridge; it opens next week.", options:["have finished","have been finishing","finish"], a:0},
+      {q:"Why are you out of breath? ___ you ___?", options:["Have / run","Have / been running","Do / run"], a:1}
+    ],
+    fill:[
+      {text:"We ___ here for over a decade.", answer:"have lived"},
+      {text:"She ___ Japanese for six months, but she still can't hold a conversation.", answer:"has been studying"},
+      {text:"I ___ lunch already, so I'm not hungry.", answer:"have eaten"},
+      {text:"Look! Someone ___ the window.", answer:"has broken"},
+      {text:"We ___ for the bus for twenty minutes.", answer:"have been waiting"}
+    ],
+    correct:[
+      {options:["She has live here for five years.","She has lived here for five years.","She have lived here for five years."], a:1},
+      {options:["I've been knowing him since school.","I've been know him since school.","I've known him since school."], a:2},
+      {options:["He has been fixing the car for hours.","He has been fix the car for hours.","He have been fixing the car for hours."], a:0},
+      {options:["We haven't seen you in ages.","We haven't been see you in ages.","We haven't saw you in ages."], a:0},
+      {options:["Has she ever been meet him?","Has she ever met him?","Has she ever meeting him?"], a:1}
+    ]
+  },
+  vocab:{
+    words:[
+      {term:"approachable", ru:"приветливый, открытый", def:"easy to talk to; friendly and welcoming", ex:"Her approachable manner put everyone at ease."},
+      {term:"aloof", ru:"отстранённый", def:"distant and not friendly; keeping apart from others", ex:"He seemed aloof at the party, standing alone by the window."},
+      {term:"candid", ru:"откровенный", def:"honest and direct, even about difficult things", ex:"I appreciated her candid feedback on my proposal."},
+      {term:"perceptive", ru:"проницательный", def:"quick to notice or understand things", ex:"He made a perceptive comment about the team's mood."},
+      {term:"self-effacing", ru:"скромный, держится в тени", def:"modest; reluctant to draw attention to oneself", ex:"Despite her success, she remained refreshingly self-effacing."},
+      {term:"tactless", ru:"бестактный", def:"saying things without considering others' feelings", ex:"That was a tactless remark to make at dinner."},
+      {term:"charismatic", ru:"харизматичный", def:"having a compelling charm that inspires others", ex:"The new manager is charismatic and motivates the whole team."},
+      {term:"reserved", ru:"сдержанный", def:"slow to reveal thoughts or feelings; quiet", ex:"He's quite reserved until you get to know him."}
+    ],
+    matchPairs:[0,1,2,4,5,6],
+    cloze:[
+      {q:"Despite winning the award, she stayed remarkably ___, insisting the whole team deserved credit.", options:["self-effacing","tactless","charismatic"], a:0},
+      {q:"He gave me some ___ feedback — blunt, but exactly what I needed to hear.", options:["aloof","candid","reserved"], a:1},
+      {q:"The new teacher is so ___; students feel comfortable asking her anything.", options:["approachable","aloof","tactless"], a:0},
+      {q:"It was a bit ___ of him to mention her divorce in front of everyone.", options:["perceptive","tactless","charismatic"], a:1},
+      {q:"He's naturally ___ — within minutes of meeting him, the whole room wanted to listen.", options:["reserved","aloof","charismatic"], a:2}
+    ]
+  },
+  reading:{
+    title:"The Seven-Second Verdict",
+    text:"Psychologists have long been fascinated by how quickly people form opinions of strangers. Research on 'thin-slicing' suggests that we judge trustworthiness, competence and even likeability within seconds of meeting someone — often before a single word is exchanged. Facial expression, posture and tone of voice do most of the work.<br><br>What's striking is how stable these snap judgements turn out to be. In one well-known study, participants who watched silent video clips of teachers for just a few seconds rated them almost identically to students who had spent an entire semester with the same teachers. The first impression, it seems, rarely gets revised — it gets confirmed.<br><br>This has practical consequences. Job interviewers, for instance, often decide within the first minute whether they like a candidate, then spend the rest of the interview unconsciously looking for evidence to support that initial feeling. Being aware of this bias won't eliminate it, but it can make us pause before trusting our gut completely.",
+    q:[
+      {q:"What is 'thin-slicing'?", options:["A cooking technique","Forming judgements from very brief observations","A method of teaching"], a:1},
+      {q:"What did the teacher study find?", options:["Longer exposure changed opinions completely","Brief and long observations produced similar ratings","Students disliked their teachers"], a:1},
+      {q:"What tends to happen after an interviewer forms an initial impression?", options:["They actively look for reasons to change their mind","They ignore the rest of the interview","They unconsciously seek evidence that confirms it"], a:2},
+      {q:"According to the text, awareness of this bias will...", options:["completely remove it","make no difference at all","help us pause before trusting it fully"], a:2}
+    ]
+  },
+  writing:{
+    prompts:[
+      "Describe someone who made a strong first impression on you, and explain why.",
+      "Do you think first impressions are usually accurate? Give reasons and examples."
+    ]
+  }
+},
+{
+  id:"wanderlust", title:"Wanderlust", theme:"Travel & adventure",
+  preview:[
+    "What's the most disorganised trip you've ever taken — and how did it turn out?",
+    "Would you rather follow a detailed itinerary or travel without much of a plan? Why?"
+  ],
+  grammar:{
+    point:"Narrative tenses: Past Simple, Past Continuous, Past Perfect",
+    explain:"Use the <b>past simple</b> for the main sequence of completed events in a story. Use the <b>past continuous</b> for background action or something interrupted. Use the <b>past perfect</b> for an earlier event that's relevant to the main story timeline.",
+    mcq:[
+      {q:"When the alarm went off, I ___ deeply.", options:["slept","was sleeping","had slept"], a:1},
+      {q:"By the time we arrived at the airport, the flight ___.", options:["already left","was already leaving","had already left"], a:2},
+      {q:"She ___ her camera while she was climbing the rock face.", options:["dropped","was dropping","had dropped"], a:0},
+      {q:"We ___ along the beach when we saw the dolphins.", options:["walked","were walking","had walked"], a:1},
+      {q:"He couldn't get into his room because he ___ his key.", options:["lost","was losing","had lost"], a:2}
+    ],
+    fill:[
+      {text:"It ___ heavily when we left the hostel that morning.", answer:"was raining"},
+      {text:"I ___ the train because the taxi got stuck in traffic.", answer:"missed"},
+      {text:"She ___ such a beautiful sunset before.", answer:"had never seen"},
+      {text:"We ___ the plane when they announced the delay.", answer:"had already boarded"},
+      {text:"As we walked through the market, I ___ a strange smell.", answer:"noticed"}
+    ],
+    correct:[
+      {options:["It was raining hard when we leave the hostel.","It rained hard when we leaving the hostel.","It was raining hard when we left the hostel."], a:2},
+      {options:["By the time we arrived, they had already left.","By the time we arrived, they have already left.","By the time we arrived, they already leaving."], a:0},
+      {options:["She was drop her camera while climbing.","She dropped her camera while she was climbing.","She had dropping her camera while climbing."], a:1},
+      {options:["We walking along the beach when we saw dolphins.","We were walking along the beach when we saw dolphins.","We have walked along the beach when we saw dolphins."], a:1},
+      {options:["He couldn't get in because he lost his key.","He couldn't get in because he had lost his key.","He couldn't get in because he has lost his key."], a:1}
+    ]
+  },
+  vocab:{
+    words:[
+      {term:"itinerary", ru:"маршрут, план поездки", def:"a planned route or schedule for a journey", ex:"Our itinerary included three days in the mountains."},
+      {term:"detour", ru:"объезд, крюк", def:"an indirect route taken to avoid something or see more", ex:"We took a detour through the old town."},
+      {term:"hospitality", ru:"гостеприимство", def:"friendly, generous treatment of guests or strangers", ex:"We were amazed by the hospitality of the local families."},
+      {term:"off the beaten track", ru:"вдали от туристических троп", def:"far from usual tourist routes; not well known", ex:"The guesthouse was off the beaten track, up a dirt road."},
+      {term:"jet lag", ru:"джетлаг, усталость от смены поясов", def:"tiredness caused by crossing time zones quickly", ex:"It took days to recover from the jet lag."},
+      {term:"culture shock", ru:"культурный шок", def:"disorientation from being in an unfamiliar culture", ex:"The noise and crowds gave her a real culture shock."},
+      {term:"layover", ru:"пересадка", def:"a stop between flights on a journey", ex:"We had a six-hour layover in Istanbul."},
+      {term:"backpacker", ru:"путешественник с рюкзаком", def:"someone who travels cheaply, carrying belongings in a backpack", ex:"The hostel was full of backpackers swapping stories."}
+    ],
+    matchPairs:[0,2,3,4,6,7],
+    cloze:[
+      {q:"We took a ___ through the hills to avoid the motorway traffic.", options:["detour","layover","itinerary"], a:0},
+      {q:"After three flights and a nine-hour ___, I could barely remember what country I was in.", options:["jet lag","layover","culture shock"], a:1},
+      {q:"The village was completely ___ — no buses, no signs in English, just a dirt road.", options:["off the beaten track","hospitality","itinerary"], a:0},
+      {q:"Moving to a country with such different customs gave her a real ___.", options:["jet lag","culture shock","hospitality"], a:1},
+      {q:"The hostel was full of ___ trading stories about the best cheap eats in town.", options:["backpackers","itineraries","hospitality"], a:0}
+    ]
+  },
+  reading:{
+    title:"The Wrong Bus",
+    text:"We had planned everything: the route, the border crossing, even where we'd sleep on night three. What we hadn't planned for was boarding the wrong bus out of Kutaisi.<br><br>By the time we noticed, we had been travelling for nearly two hours in completely the wrong direction, deeper into hills neither of us recognised from the map. The driver didn't speak English, and our Georgian consisted of exactly four words. We got off at the next stop, unsure whether to laugh or panic.<br><br>What followed was the best afternoon of the whole trip. A shepherd who had been watching us with quiet amusement invited us to share bread and cheese while his dog inspected our backpacks. He drew us a new route on a scrap of paper, refusing any payment, and pointed us toward a village that wasn't in any guidebook.<br><br>We arrived at our actual destination a day late and slightly muddy. Looking back, the detour is the only part of that trip either of us can describe in real detail.",
+    q:[
+      {q:"What went wrong at the start of the story?", options:["They missed their flight","They boarded the wrong bus","Their bags were stolen"], a:1},
+      {q:"How much Georgian did the travellers know?", options:["Enough to chat fluently","Only a few words","None at all"], a:1},
+      {q:"What did the shepherd do?", options:["Charged them for a meal","Called the police","Helped them and refused payment"], a:2},
+      {q:"What is the writer's overall attitude to the detour?", options:["Regretful","It became the most memorable part of the trip","Indifferent"], a:1}
+    ]
+  },
+  writing:{
+    prompts:[
+      "Write about a journey that didn't go as planned.",
+      "What's the difference between being a 'tourist' and a 'traveller'? Give your opinion."
+    ]
+  }
+},
+{
+  id:"career", title:"Career Paths", theme:"Work & ambition",
+  preview:[
+    "If money weren't a factor, what job would you choose?",
+    "What's one skill from your current job or studies that you think will still matter in twenty years?"
+  ],
+  grammar:{
+    point:"Future forms & used to / would for past habits",
+    explain:"Use <b>present continuous</b> for fixed arrangements, <b>going to</b> for plans/predictions with evidence, and <b>will</b> for spontaneous decisions or general predictions. Use <b>used to</b> for past states or habits that no longer exist, and <b>would</b> for repeated past actions (not states).",
+    mcq:[
+      {q:"I ___ my mentor at 3pm tomorrow — it's already in my calendar.", options:["will meet","am meeting","meet"], a:1},
+      {q:"Look at those clouds — it ___ soon.", options:["will rain","is going to rain","rains"], a:1},
+      {q:"Don't worry, I ___ you carry those boxes.", options:["will help","am helping","am going to help"], a:0},
+      {q:"When I was a student, I ___ part-time in a café.", options:["would work","was working","used to work"], a:2},
+      {q:"She's already found an office — she ___ her own business next year.", options:["will start","is going to start","starts"], a:1}
+    ],
+    fill:[
+      {text:"The company ___ its new product next month.", answer:"is launching"},
+      {text:"I've made up my mind — I ___ for the manager's job.", answer:"am going to apply"},
+      {text:"As a teenager, I ___ Monday mornings.", answer:"used to dread"},
+      {text:"At university, we ___ hours debating which career path to choose.", answer:"would spend"},
+      {text:"If the project succeeds, we ___ to a bigger office.", answer:"will probably move"}
+    ],
+    correct:[
+      {options:["I meeting my mentor at 3pm tomorrow.","I am meeting my mentor at 3pm tomorrow.","I will meeting my mentor at 3pm tomorrow."], a:1},
+      {options:["It's going to rain soon.","It's go to rain soon.","It will to rain soon."], a:0},
+      {options:["When I was a student, I used to working part-time.","When I was a student, I used to work part-time.","When I was a student, I use to work part-time."], a:1},
+      {options:["She is going to starts her own business next year.","She is going to start her own business next year.","She going to start her own business next year."], a:1},
+      {options:["Don't worry, I help you carry those boxes.","Don't worry, I'll help you carry those boxes.","Don't worry, I'm help you carry those boxes."], a:1}
+    ]
+  },
+  vocab:{
+    words:[
+      {term:"to headhunt", ru:"переманивать специалиста", def:"to seek out and recruit skilled professionals", ex:"She was headhunted by a rival company."},
+      {term:"burnout", ru:"выгорание", def:"exhaustion from prolonged stress at work", ex:"He took a month off to recover from burnout."},
+      {term:"a steep learning curve", ru:"много нового за короткий срок", def:"a process of learning a lot in a short time", ex:"The first month here was a steep learning curve."},
+      {term:"to climb the ladder", ru:"расти по карьерной лестнице", def:"to advance in one's career, step by step", ex:"She's been climbing the ladder since her first internship."},
+      {term:"redundancy", ru:"сокращение (штата)", def:"loss of a job because it's no longer needed", ex:"The factory announced fifty redundancies."},
+      {term:"networking", ru:"нетворкинг, полезные связи", def:"building professional relationships and contacts", ex:"He got the job through networking, not applications."},
+      {term:"a career break", ru:"перерыв в карьере", def:"a planned period away from work", ex:"She took a career break to travel and study."},
+      {term:"to freelance", ru:"работать фрилансером", def:"to work independently for different clients", ex:"He freelances as a translator between two agencies."}
+    ],
+    matchPairs:[0,1,2,3,4,7],
+    cloze:[
+      {q:"After years of ___, she finally left the corporate world to work for herself.", options:["burnout","networking","a career break"], a:0},
+      {q:"He was ___ by a competitor after his talk at the conference.", options:["headhunted","freelanced","networked"], a:0},
+      {q:"The first few weeks in this job were a ___ — I barely understood half the software.", options:["steep learning curve","career break","redundancy"], a:0},
+      {q:"Rather than staying employed, she decided to ___ as a graphic designer.", options:["freelance","headhunt","network"], a:0},
+      {q:"The factory closures led to hundreds of ___ across the region.", options:["redundancies","career breaks","learning curves"], a:0}
+    ]
+  },
+  reading:{
+    title:"Starting Over at Forty",
+    text:"When Mira told her colleagues she was leaving law to train as a carpenter, most assumed it was a phase. Fifteen years into a career she'd once wanted badly, she felt she was simply going through the motions — competent, well paid, and quietly miserable.<br><br>The transition wasn't glamorous. She spent her first year as an apprentice earning a fraction of her old salary, sanding table legs under the supervision of someone twenty years younger. 'The hardest part wasn't the sawdust,' she says, 'it was admitting I was a beginner again, in public, at forty-one.'<br><br>Three years on, she runs a small workshop making custom furniture. The income is unpredictable and the hours are long, but she describes the change as the first genuinely deliberate decision she's made about her working life. Career advisers increasingly report that Mira's story isn't unusual: more people in their forties and fifties are choosing to retrain, driven less by dissatisfaction with money and more by a search for meaning in daily work.",
+    q:[
+      {q:"How did Mira feel about her law career before leaving?", options:["Excited and fulfilled","Competent but unhappy","Underpaid and overworked"], a:1},
+      {q:"What was hardest for Mira during the transition?", options:["The physical work","Accepting she was a beginner again","Losing contact with old colleagues"], a:1},
+      {q:"How is Mira's situation now, three years on?", options:["Financially stable and predictable","Unpredictable income but personally meaningful","She returned to law part-time"], a:1},
+      {q:"According to career advisers, why do many people retrain later in life?", options:["Mainly for higher pay","Mainly to search for meaning in their work","Because they are forced to by redundancy"], a:1}
+    ]
+  },
+  writing:{
+    prompts:[
+      "Describe your ideal job and why it appeals to you.",
+      "Do you think people should change careers several times in their life? Why or why not?"
+    ]
+  }
+},
+{
+  id:"digital", title:"Digital Life", theme:"Technology & connection",
+  preview:[
+    "How many hours a day do you think you spend on your phone — and does that number surprise you?",
+    "Name one app or platform you couldn't imagine giving up. Why?"
+  ],
+  grammar:{
+    point:"The Passive Voice",
+    explain:"Use the passive when the action or the object matters more than who did it, or when the agent is unknown, obvious, or unimportant. Form it with a form of <b>be</b> + past participle, keeping the same tense as the active sentence.",
+    mcq:[
+      {q:"This app ___ over a million times.", options:["has downloaded","has been downloaded","downloaded"], a:1},
+      {q:"The meeting ___ because of a technical issue.", options:["postponed","was postponed","has postpone"], a:1},
+      {q:"Your data ___ securely on our servers.", options:["stores","is stored","is storing"], a:1},
+      {q:"The new update ___ next week.", options:["will release","will be released","releases"], a:1},
+      {q:"My phone ___ while I was on the train.", options:["stole","was stolen","has stolen"], a:1}
+    ],
+    fill:[
+      {text:"Several accounts ___ last month.", answer:"were hacked"},
+      {text:"Your feedback ___ by our team right now.", answer:"is being reviewed"},
+      {text:"This software ___ to work offline.", answer:"is designed"},
+      {text:"The old server ___ with a faster one.", answer:"has been replaced"},
+      {text:"This report ___ with the whole team tomorrow.", answer:"will be shared"}
+    ],
+    correct:[
+      {options:["This app has downloaded over a million times.","This app has been downloaded over a million times.","This app has being downloaded over a million times."], a:1},
+      {options:["The meeting was postpone because of an issue.","The meeting was postponed because of an issue.","The meeting has postponed because of an issue."], a:1},
+      {options:["Your data is store securely.","Your data is stored securely.","Your data stored securely."], a:1},
+      {options:["The update will release next week.","The update will be released next week.","The update will released next week."], a:1},
+      {options:["My phone was steal on the train.","My phone was stolen on the train.","My phone has steal on the train."], a:1}
+    ]
+  },
+  vocab:{
+    words:[
+      {term:"to go viral", ru:"стать вирусным", def:"to spread very quickly online", ex:"The video went viral within hours."},
+      {term:"a glitch", ru:"сбой", def:"a small, temporary technical fault", ex:"A glitch in the app deleted my draft."},
+      {term:"to back up", ru:"делать резервную копию", def:"to make a copy of data for safety", ex:"Always back up your files before an update."},
+      {term:"bandwidth", ru:"пропускная способность", def:"the capacity for data transfer on a network", ex:"Video calls use a lot of bandwidth."},
+      {term:"to troubleshoot", ru:"искать и устранять неполадки", def:"to identify and fix a problem", ex:"IT spent an hour troubleshooting the printer."},
+      {term:"encryption", ru:"шифрование", def:"converting data into a secure, coded form", ex:"The messages use end-to-end encryption."},
+      {term:"a firmware update", ru:"обновление прошивки", def:"a software update for a device's internal system", ex:"The router needs a firmware update."},
+      {term:"to streamline", ru:"упрощать, оптимизировать", def:"to make a process simpler and more efficient", ex:"The new system streamlines the whole workflow."}
+    ],
+    matchPairs:[0,1,2,4,5,7],
+    cloze:[
+      {q:"The video ___ within hours, reaching millions of views overnight.", options:["went viral","backed up","streamlined"], a:0},
+      {q:"A small ___ in the app kept crashing the login screen.", options:["glitch","bandwidth","encryption"], a:0},
+      {q:"Make sure you ___ your files before installing the new update.", options:["back up","troubleshoot","streamline"], a:0},
+      {q:"Video calls use a lot of ___, especially with several people on the line.", options:["bandwidth","encryption","a glitch"], a:0},
+      {q:"The messages are protected with end-to-end ___, so no one else can read them.", options:["encryption","a firmware update","bandwidth"], a:0}
+    ]
+  },
+  reading:{
+    title:"The Feed That Knows You",
+    text:"Every time you skip a video, linger on a photo, or pause before scrolling past a headline, you're feeding a system designed to learn exactly what keeps you watching. Recommendation algorithms don't need to understand your interests in any human sense — they simply need enough behavioural data to predict, with increasing accuracy, what you'll interact with next.<br><br>The result is a feed that feels almost telepathic, and this is precisely the problem critics point to. When a system optimises purely for attention, it tends to favour content that provokes strong emotion — outrage, anxiety, or fascination — over content that is simply useful or true. Engagement and wellbeing are not the same thing, but algorithms have historically been measured by the former.<br><br>Some platforms have begun experimenting with 'friction' — small delays or prompts that ask users to reconsider before sharing something. Early data suggests these tiny interruptions can meaningfully reduce the spread of misleading content, though they do little to change the underlying incentive: attention is still the currency being optimised for.",
+    q:[
+      {q:"What do recommendation algorithms primarily rely on?", options:["Understanding users' true interests","Behavioural data about what users interact with","Random selection of content"], a:1},
+      {q:"What do critics say systems optimised for attention tend to favour?", options:["Useful, accurate content","Emotionally provocative content","Content chosen by human editors"], a:1},
+      {q:"What is 'friction' in this context?", options:["A technical glitch","A small delay designed to encourage reconsideration","A type of encryption"], a:1},
+      {q:"According to the text, has friction solved the underlying problem?", options:["Yes, completely","No — attention is still the main incentive","It has made the problem worse"], a:1}
+    ]
+  },
+  writing:{
+    prompts:[
+      "How has technology changed the way you communicate with friends and family?",
+      "Should social media platforms be responsible for the content people post? Discuss."
+    ]
+  }
+},
+{
+  id:"planet", title:"Our Planet", theme:"Environment & nature",
+  preview:[
+    "What's one environmental issue that worries you most right now?",
+    "Do individual actions like recycling or cycling actually make a difference, or is it mainly down to governments and companies?"
+  ],
+  grammar:{
+    point:"Conditionals: 1st, 2nd, 3rd & mixed",
+    explain:"1st conditional: real future possibility (<b>if + present, will + verb</b>). 2nd: unreal present/future (<b>if + past, would + verb</b>). 3rd: unreal past (<b>if + had + past participle, would have + past participle</b>). Mixed conditionals connect a past condition to a present result, or vice versa.",
+    mcq:[
+      {q:"If we ___ emissions, temperatures will keep rising.", options:["don't reduce","won't reduce","didn't reduce"], a:0},
+      {q:"If I ___ in charge, I would ban single-use plastic.", options:["am","was","were"], a:2},
+      {q:"If they ___ more trees years ago, the soil wouldn't be so dry now.", options:["planted","had planted","would plant"], a:1},
+      {q:"Ice caps ___ faster if the ocean continues to warm.", options:["melt","will melt","would melt"], a:1},
+      {q:"If she hadn't grown up on a farm, she ___ so much about nature now.", options:["won't care","wouldn't care","didn't care"], a:1}
+    ],
+    fill:[
+      {text:"If sea levels keep rising, many coastal cities ___ underwater.", answer:"will disappear"},
+      {text:"If the government ___ in clean energy sooner, the air would be cleaner today.", answer:"had invested"},
+      {text:"Future generations ___ if we don't act now.", answer:"will suffer"},
+      {text:"If it ___ for local activists, this forest would already be gone.", answer:"weren't"},
+      {text:"If scientists ___ us earlier, we could have prepared better.", answer:"had warned"}
+    ],
+    correct:[
+      {options:["If we don't reduce emissions, temperatures will keep rising.","If we won't reduce emissions, temperatures will keep rising.","If we didn't reduce emissions, temperatures will keep rising."], a:0},
+      {options:["If I was in charge, I would ban plastic.","If I were in charge, I would ban plastic.","If I am in charge, I would ban plastic."], a:1},
+      {options:["If they planted more trees years ago, the soil wouldn't be dry now.","If they had planted more trees years ago, the soil wouldn't be dry now.","If they would plant more trees years ago, the soil wouldn't be dry now."], a:1},
+      {options:["Ice caps will melt faster if the ocean continues to warm.","Ice caps would melt faster if the ocean continues to warm.","Ice caps melt faster if the ocean continue to warm."], a:0},
+      {options:["If she hadn't grown up on a farm, she wouldn't care so much about nature now.","If she didn't grew up on a farm, she wouldn't care so much about nature now.","If she hasn't grown up on a farm, she wouldn't care so much about nature now."], a:0}
+    ]
+  },
+  vocab:{
+    words:[
+      {term:"to offset (carbon)", ru:"компенсировать (выбросы)", def:"to balance emissions by funding equivalent reductions", ex:"The airline lets passengers offset their flights."},
+      {term:"biodiversity", ru:"биоразнообразие", def:"the variety of life in a given habitat", ex:"The reef supports remarkable biodiversity."},
+      {term:"a drought", ru:"засуха", def:"a long period of abnormally low rainfall", ex:"The region is facing its worst drought in decades."},
+      {term:"renewable", ru:"возобновляемый", def:"describing energy sources that naturally replenish", ex:"Renewable sources now supply a third of the grid."},
+      {term:"to deplete", ru:"истощать", def:"to reduce the quantity of a resource significantly", ex:"Overfishing has depleted local fish stocks."},
+      {term:"an ecosystem", ru:"экосистема", def:"a community of living things and their environment", ex:"Wetlands are a fragile but vital ecosystem."},
+      {term:"sustainable", ru:"экологичный, устойчивый", def:"able to continue without depleting resources", ex:"They switched to more sustainable packaging."},
+      {term:"a heatwave", ru:"аномальная жара", def:"a prolonged period of excessively hot weather", ex:"The heatwave broke records across the country."}
+    ],
+    matchPairs:[1,2,3,4,6,7],
+    cloze:[
+      {q:"The airline lets passengers pay extra to ___ the carbon emissions from their flight.", options:["offset","deplete","sustain"], a:0},
+      {q:"The coral reef supports incredible ___, from tiny fish to sea turtles.", options:["biodiversity","a drought","an ecosystem"], a:0},
+      {q:"Years of overfishing have ___ local fish stocks almost to nothing.", options:["depleted","offset","sustained"], a:0},
+      {q:"The region is facing its worst ___ in fifty years, with reservoirs running dry.", options:["drought","heatwave","ecosystem"], a:0},
+      {q:"They switched to ___ packaging to reduce their environmental footprint.", options:["sustainable","renewable","biodiversity"], a:0}
+    ]
+  },
+  reading:{
+    title:"The River That Came Back",
+    text:"Thirty years ago, the Aire ran the colour of rust, and locals joked that nothing could survive in it. Decades of industrial discharge had stripped it of almost all life. Today, otters have returned, salmon swim upstream to spawn, and a community group runs guided walks along banks that were once fenced off and avoided.<br><br>The turnaround didn't happen by accident. Stricter regulations on industrial waste, combined with a decade-long volunteer effort to remove invasive plants and restore natural riverbanks, slowly rebuilt the conditions species needed. Local schools now run river-monitoring programmes, testing water quality as part of their science curriculum.<br><br>Project leaders are careful not to call the river 'fixed'. Pollution from road run-off remains a persistent problem, and a single upstream incident could undo years of work. Still, the Aire is held up nationally as proof that ecosystems considered beyond saving can, with sustained effort, be coaxed back to life — a slow process measured in decades rather than headlines.",
+    q:[
+      {q:"What was the river like thirty years ago?", options:["Clean and full of wildlife","Polluted and largely lifeless","Used for tourism"], a:1},
+      {q:"What two things contributed to the river's recovery?", options:["New bridges and roads","Stricter regulations and volunteer restoration work","Government funding for tourism"], a:1},
+      {q:"What do local schools now do?", options:["Avoid the river for safety reasons","Run river-monitoring programmes","Organise fishing competitions"], a:1},
+      {q:"How do project leaders describe the river's condition now?", options:["Completely fixed and safe forever","Still fragile, with ongoing challenges","Worse than thirty years ago"], a:1}
+    ]
+  },
+  writing:{
+    prompts:[
+      "What is one environmental change you've made in your own life? What effect has it had?",
+      "If you were a city mayor, what's the first environmental policy you would introduce?"
+    ]
+  }
+},
+{
+  id:"news", title:"Breaking News", theme:"Media & information",
+  preview:[
+    "Where do you usually get your news from, and how much do you trust it?",
+    "Can you think of a piece of news that turned out to be exaggerated or wrong? What happened?"
+  ],
+  grammar:{
+    point:"Reported Speech",
+    explain:"When reporting speech, pronouns, time expressions and (usually) tenses shift back: 'I'll call tomorrow' becomes <b>she said she would call the next day</b>. Reported questions use statement word order without an auxiliary at the start, and reported commands use <b>tell/ask + object + (not) to + infinitive</b>.",
+    mcq:[
+      {q:"\"I'll call you tomorrow,\" she said. →", options:["She said she will call me tomorrow.","She said she would call me the next day.","She said she would call me tomorrow."], a:1},
+      {q:"\"Where were you last night?\" he asked me. →", options:["He asked me where I had been the night before.","He asked where was I the night before.","He asked me where I was last night."], a:0},
+      {q:"\"Don't touch that wire!\" the electrician warned us. →", options:["The electrician warned us don't touch that wire.","The electrician warned us not to touch that wire.","The electrician warned that we not touch the wire."], a:1},
+      {q:"\"We have finished the report,\" they announced. →", options:["They announced they have finished the report.","They announced that they had finished the report.","They announced they finished the report already."], a:1},
+      {q:"\"Can you help me?\" she asked. →", options:["She asked if I could help her.","She asked can I help her.","She asked if I can help her."], a:0}
+    ],
+    fill:[
+      {text:"He told me the flight ___ at midnight.", answer:"would arrive"},
+      {text:"She asked me ___ the accident.", answer:"if I had seen"},
+      {text:"The captain told the passengers ___.", answer:"not to worry"},
+      {text:"My colleague mentioned that it ___ heavily back home.", answer:"was raining"},
+      {text:"He said his manager ___ the office already.", answer:"had left"}
+    ],
+    correct:[
+      {options:["She said she will call me the next day.","She said she would call me the next day.","She said she would call me tomorrow."], a:1},
+      {options:["He asked me where I had been the night before.","He asked me where had I been the night before.","He asked where was I the night before."], a:0},
+      {options:["The electrician warned us don't touch the wire.","The electrician warned us not to touch the wire.","The electrician warned that we not touch the wire."], a:1},
+      {options:["They announced that they have finished the report.","They announced that they had finished the report.","They announced they finished the report already."], a:1},
+      {options:["She asked if I could help her.","She asked can I help her.","She asked if I can help her."], a:0}
+    ]
+  },
+  vocab:{
+    words:[
+      {term:"to break (a story)", ru:"первым сообщить новость", def:"to be the first to report news publicly", ex:"A local reporter broke the story before anyone else."},
+      {term:"a source", ru:"источник", def:"a person or place providing information", ex:"The article cites an anonymous source close to the deal."},
+      {term:"biased", ru:"предвзятый", def:"unfairly favouring one side over another", ex:"Critics say the coverage was heavily biased."},
+      {term:"to fact-check", ru:"проверять факты", def:"to verify the accuracy of a claim", ex:"The claim was fact-checked before publication."},
+      {term:"a headline", ru:"заголовок", def:"the title of a news article, usually eye-catching", ex:"The headline exaggerated what the study actually found."},
+      {term:"credible", ru:"заслуживающий доверия", def:"believable; able to be trusted", ex:"They only quote credible, verified sources."},
+      {term:"sensationalist", ru:"сенсационный, раздутый", def:"presenting facts in an exaggerated, shocking way", ex:"The tabloid's sensationalist tone drew criticism."},
+      {term:"to go public", ru:"предать огласке", def:"to reveal something to the public for the first time", ex:"The whistleblower decided to go public with the documents."}
+    ],
+    matchPairs:[0,1,2,3,4,5],
+    cloze:[
+      {q:"A local reporter managed to ___ the story before any national outlet picked it up.", options:["break","fact-check","go public with"], a:0},
+      {q:"The article relies on a single anonymous ___, which makes some readers sceptical.", options:["source","headline","sensationalist"], a:0},
+      {q:"Critics accused the channel of being ___ toward one political party.", options:["biased","credible","sensationalist"], a:0},
+      {q:"Editors always ___ a claim before allowing it into print.", options:["fact-check","go public with","break"], a:0},
+      {q:"The whistleblower finally decided to ___ with the leaked documents.", options:["go public","fact-check","break"], a:0}
+    ]
+  },
+  reading:{
+    title:"Faster Than the Facts",
+    text:"A false claim, researchers have found, typically spreads faster and reaches more people online than its later correction ever does. By the time a fact-check appears, the original post has often already been shared thousands of times, while the correction reaches a fraction of that audience — those who happen to still be paying attention.<br><br>Part of the explanation lies in emotion. Studies analysing large samples of shared content found that posts provoking surprise or outrage were significantly more likely to be reshared than neutral, accurate ones. Corrections, by their nature, are rarely as emotionally charged as the claims they're correcting.<br><br>Newsrooms have responded in different ways. Some now publish corrections with the same prominence as the original error, rather than as small addenda. Others have begun labelling unverified claims at the moment they start trending, before a full fact-check is even possible. Neither approach has solved the underlying speed problem, but both aim to narrow the gap between when misinformation lands and when a more accurate picture catches up.",
+    q:[
+      {q:"According to research, what usually travels faster online?", options:["Corrections","False claims","Neutral, factual posts"], a:1},
+      {q:"Why do false or outrageous claims spread more widely?", options:["They are usually shorter","They provoke stronger emotional reactions","They are always posted by verified accounts"], a:1},
+      {q:"What is one strategy some newsrooms now use?", options:["Ignoring unverified claims entirely","Giving corrections the same prominence as the original error","Removing all comments sections"], a:1},
+      {q:"Has either newsroom strategy fully solved the speed problem?", options:["Yes, completely","No, but they aim to narrow the gap","No, and they made things worse"], a:1}
+    ]
+  },
+  writing:{
+    prompts:[
+      "Tell a friend about an interesting piece of news you read recently, writing it as reported speech (e.g. 'I read that...', 'It said that...').",
+      "How do you decide whether a news source is trustworthy?"
+    ]
+  }
+},
+{
+  id:"health", title:"Mind & Body", theme:"Health & habits",
+  preview:[
+    "What does a genuinely relaxing evening look like for you?",
+    "Is there a health habit you know you should change but haven't? What's stopping you?"
+  ],
+  grammar:{
+    point:"Modal verbs: obligation & speculation",
+    explain:"Use <b>must / have to</b> for strong obligation, <b>should</b> for advice, and <b>don't have to</b> for lack of obligation. For speculation about the present, use <b>might/could</b> (possible), <b>must</b> (near-certain), or <b>can't</b> (near-certain it's false). For the past, add <b>have + past participle</b>.",
+    mcq:[
+      {q:"You ___ see a doctor about that cough.", options:["should","ought","need"], a:0},
+      {q:"She's not answering. I'm not sure, but she ___ be asleep already.", options:["must","might","can't"], a:1},
+      {q:"Employees ___ wear safety goggles in this lab.", options:["have to","should to","must to"], a:0},
+      {q:"That ___ be true — I saw him yesterday, alive and well!", options:["mustn't","can't","shouldn't"], a:1},
+      {q:"You ___ attend, but it would help if you did.", options:["mustn't","don't have to","can't"], a:1}
+    ],
+    fill:[
+      {text:"He ___ on caffeine if he wants to sleep better.", answer:"should cut down"},
+      {text:"She ___ about the meeting — she never misses one.", answer:"can't have forgotten"},
+      {text:"He ___ come in on Saturday if he doesn't want to.", answer:"doesn't have to"},
+      {text:"They ___ that the road would be closed.", answer:"couldn't have known"},
+      {text:"That noise ___ the neighbour's cat again.", answer:"might be"}
+    ],
+    correct:[
+      {options:["You must to see a doctor about that cough.","You should see a doctor about that cough.","You should to see a doctor about that cough."], a:1},
+      {options:["She might be asleep already.","She might being asleep already.","She might to be asleep already."], a:0},
+      {options:["Employees have to wear safety goggles.","Employees has to wear safety goggles.","Employees must to wear safety goggles."], a:0},
+      {options:["That can't be true — I saw him yesterday!","That mustn't be true — I saw him yesterday!","That not can be true — I saw him yesterday!"], a:0},
+      {options:["He must have forgotten about the meeting.","He must forgot about the meeting.","He must having forgotten about the meeting."], a:0}
+    ]
+  },
+  vocab:{
+    words:[
+      {term:"to recover", ru:"выздороветь, восстановиться", def:"to return to a normal state after illness or hardship", ex:"It took weeks to fully recover from the flu."},
+      {term:"a symptom", ru:"симптом", def:"a sign that indicates a condition or illness", ex:"Fatigue is a common symptom of the condition."},
+      {term:"to burn out", ru:"выгореть", def:"to become exhausted from prolonged stress", ex:"She burned out after months of overtime."},
+      {term:"willpower", ru:"сила воли", def:"the ability to control one's impulses and actions", ex:"It takes real willpower to skip dessert every night."},
+      {term:"a relapse", ru:"рецидив", def:"a return of symptoms after a period of improvement", ex:"He suffered a relapse after stopping the medication early."},
+      {term:"resilience", ru:"стойкость", def:"the ability to recover quickly from difficulty", ex:"Her resilience helped her bounce back after the setback."},
+      {term:"to unwind", ru:"расслабиться, отдохнуть", def:"to relax after a period of work or stress", ex:"I like to unwind with a walk after dinner."},
+      {term:"chronic", ru:"хронический", def:"persisting for a long time; long-lasting (of a condition)", ex:"He manages a chronic back condition with regular exercise."}
+    ],
+    matchPairs:[0,1,2,3,5,6],
+    cloze:[
+      {q:"It took him weeks to fully ___ after the surgery.", options:["recover","relapse","burn out"], a:0},
+      {q:"Fatigue and joint pain were the first ___ she noticed.", options:["symptoms","relapses","chronic signs"], a:0},
+      {q:"After months of overtime, she finally ___ and had to take leave.", options:["burned out","recovered","unwound"], a:0},
+      {q:"It takes real ___ to skip dessert every single night.", options:["willpower","resilience","a relapse"], a:0},
+      {q:"He manages a ___ back condition with daily stretching.", options:["chronic","recovering","resilient"], a:0}
+    ]
+  },
+  reading:{
+    title:"The Case for Boring Evenings",
+    text:"Sleep researchers have a term for what happens to most of us between finishing dinner and going to bed: 'the wind-down that never happens'. Instead of gradually lowering arousal, many people spend the final hour before bed on a bright screen, half-working, half-scrolling, and wonder the next morning why sleep felt so thin.<br><br>The biology is fairly simple. Bright light, particularly blue-spectrum light from phones and laptops, suppresses the release of melatonin, the hormone that signals to the body that it's time to sleep. Mentally stimulating content — an argument on social media, an unfinished work email — does something similar, keeping the nervous system in a state of low-grade alertness exactly when it should be powering down.<br><br>Sleep specialists increasingly recommend something almost embarrassingly simple: a genuinely boring last hour. Dim lighting, a paper book, a repetitive task like folding laundry. It sounds too basic to matter, but in trials, participants who replaced screen time with low-stimulation activities before bed consistently fell asleep faster and reported feeling more rested — evidence, perhaps, that the cure for a modern problem doesn't need to be complicated.",
+    q:[
+      {q:"What is 'the wind-down that never happens'?", options:["A type of exercise routine","The failure to gradually relax before bed","A sleep disorder diagnosis"], a:1},
+      {q:"How does blue-spectrum light affect sleep?", options:["It has no effect on sleep","It suppresses melatonin release","It increases melatonin release"], a:1},
+      {q:"What do sleep specialists increasingly recommend?", options:["More screen time before bed","A genuinely boring, low-stimulation last hour","Skipping sleep entirely on weekends"], a:1},
+      {q:"What did trial participants who reduced screen time report?", options:["No noticeable difference","Falling asleep faster and feeling more rested","More difficulty falling asleep"], a:1}
+    ]
+  },
+  writing:{
+    prompts:[
+      "Describe a habit you'd like to change, and what's stopping you.",
+      "What's your personal strategy for managing stress? Would you recommend it to others?"
+    ]
+  }
+}
+];
+/* =========================================================
+   STATE
+   ========================================================= */
+/* =========================================================
+   ИЛЛЮСТРАЦИИ К ЮНИТАМ (встроенный SVG, работает офлайн)
+   ========================================================= */
+const ART_C = {
+  bg:'#F3E6D8', blob:'#EAD5C0', ink:'#2B1810', cocoa:'#3B1F14', milk:'#7B4A2E', caramel:'#A65A1E',
+  latte:'#D9BFA6', cream:'#FFFAF4', sage:'#7D9465', sageD:'#5F7A45', steel:'#8FA3AD', steelD:'#5E7480',
+  rose:'#C9846B', gold:'#D9A441', paper:'#FBF4EA', skin:'#E8B892', skin2:'#C98E68', skin3:'#F1C9A5'
+};
+function artSvg(label, body){
+  return `<svg class="unit-art-svg" viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${label}"><rect width="720" height="300" fill="${ART_C.bg}"/>${body}</svg>`;
+}
+function artBust(x, y, skin, cloth, hair, s = 1){
+  return `<g transform="translate(${x} ${y}) scale(${s})">
+    <path d="M-46 70 Q-46 18 0 18 Q46 18 46 70 Z" fill="${cloth}"/>
+    <rect x="-8" y="2" width="16" height="20" fill="${skin}"/>
+    <circle cx="0" cy="-16" r="24" fill="${skin}"/>
+    <path d="M-25 -14 Q-26 -44 0 -44 Q26 -44 25 -14 Q20 -30 0 -30 Q-18 -30 -25 -14 Z" fill="${hair}"/>
+  </g>`;
+}
+function artBubble(x, y, w, text, flip){
+  const tail = flip ? `M${x+w-30} ${y+34} L${x+w-14} ${y+54} L${x+w-50} ${y+34} Z` : `M${x+30} ${y+34} L${x+14} ${y+54} L${x+50} ${y+34} Z`;
+  return `<g><rect x="${x}" y="${y-6}" width="${w}" height="42" rx="21" fill="${ART_C.cream}" stroke="${ART_C.milk}" stroke-width="3"/><path d="${tail}" fill="${ART_C.cream}" stroke="${ART_C.milk}" stroke-width="3" stroke-linejoin="round"/><rect x="${x+8}" y="${y+28}" width="${w-16}" height="8" fill="${ART_C.cream}"/>
+    <text x="${x+w/2}" y="${y+22}" text-anchor="middle" font-family="Georgia,serif" font-size="22" font-weight="700" fill="${ART_C.cocoa}">${text}</text></g>`;
+}
+function artTree(x, y, s = 1){
+  return `<g transform="translate(${x} ${y}) scale(${s})"><rect x="-7" y="0" width="14" height="60" fill="${ART_C.milk}"/><circle cx="0" cy="-14" r="38" fill="${ART_C.sage}"/><circle cx="-24" cy="6" r="24" fill="${ART_C.sageD}"/><circle cx="24" cy="4" r="26" fill="${ART_C.sageD}"/></g>`;
+}
+function artGround(y){ return `<rect x="0" y="${y}" width="720" height="${300-y}" fill="${ART_C.latte}"/>`; }
+
+/* ---------- First Steps A1–A2 ---------- */
+const _FS_UNUSED = {
+  u1: artSvg('Two people meet and say hello', `
+    <circle cx="360" cy="160" r="140" fill="${ART_C.blob}"/>
+    ${artBust(250,190,ART_C.skin,ART_C.caramel,ART_C.cocoa,1.3)}
+    ${artBust(470,190,ART_C.skin2,ART_C.sageD,ART_C.ink,1.3)}
+    ${artBubble(150,52,130,'Hello!')}
+    ${artBubble(450,52,150,"Hi! I'm Ann",true)}
+    <g transform="translate(232 230)"><rect width="40" height="26" rx="4" fill="${ART_C.cream}"/><rect width="40" height="8" rx="3" fill="${ART_C.gold}"/></g>
+    <g fill="${ART_C.gold}">${[[80,90],[640,110],[90,230],[630,240]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="6"/>`).join('')}</g>`),
+  u2: artSvg('A daily routine: alarm clock, coffee and the sun', `
+    ${artGround(240)}
+    <circle cx="590" cy="90" r="46" fill="${ART_C.gold}"/><g stroke="${ART_C.gold}" stroke-width="6" stroke-linecap="round">${[0,45,90,135,180,225,270,315].map(a=>{const r=a*Math.PI/180;return `<line x1="${590+62*Math.cos(r)}" y1="${90+62*Math.sin(r)}" x2="${590+80*Math.cos(r)}" y2="${90+80*Math.sin(r)}"/>`}).join('')}</g>
+    <g transform="translate(190 150)"><circle r="78" fill="${ART_C.cream}" stroke="${ART_C.cocoa}" stroke-width="10"/><circle cx="-56" cy="-70" r="20" fill="${ART_C.caramel}"/><circle cx="56" cy="-70" r="20" fill="${ART_C.caramel}"/>
+      ${[0,1,2,3,4,5,6,7,8,9,10,11].map(i=>{const r=i*30*Math.PI/180;return `<circle cx="${60*Math.sin(r)}" cy="${-60*Math.cos(r)}" r="4" fill="${ART_C.milk}"/>`}).join('')}
+      <line x1="0" y1="0" x2="0" y2="-46" stroke="${ART_C.ink}" stroke-width="7" stroke-linecap="round"/><line x1="0" y1="0" x2="32" y2="10" stroke="${ART_C.ink}" stroke-width="7" stroke-linecap="round"/><circle r="7" fill="${ART_C.caramel}"/>
+      <rect x="-50" y="70" width="14" height="22" fill="${ART_C.cocoa}"/><rect x="36" y="70" width="14" height="22" fill="${ART_C.cocoa}"/></g>
+    <g transform="translate(390 170)"><path d="M0 0 H90 L82 70 Q80 80 70 80 H20 Q10 80 8 70 Z" fill="${ART_C.cream}" stroke="${ART_C.milk}" stroke-width="4"/><path d="M90 16 Q118 16 114 40 Q110 58 86 56" fill="none" stroke="${ART_C.milk}" stroke-width="7"/><ellipse cx="45" cy="4" rx="42" ry="7" fill="${ART_C.milk}"/>
+      <path d="M28 -14 Q20 -30 30 -44 M52 -14 Q44 -32 56 -48" fill="none" stroke="${ART_C.latte}" stroke-width="5" stroke-linecap="round"/></g>
+    <rect x="370" y="250" width="140" height="10" rx="5" fill="${ART_C.milk}"/>`),
+  u3: artSvg('A shopping basket with bread, apples and milk', `
+    ${artGround(250)}
+    <g transform="translate(60 40)"><rect width="200" height="210" fill="${ART_C.cream}" stroke="${ART_C.milk}" stroke-width="4"/>
+      ${[60,130].map(y=>`<rect x="0" y="${y}" width="200" height="8" fill="${ART_C.milk}"/>`).join('')}
+      ${[20,60,100,140].map(x=>`<rect x="${x}" y="18" width="30" height="42" rx="4" fill="${ART_C.caramel}"/>`).join('')}
+      ${[24,64,104,144].map(x=>`<circle cx="${x+12}" cy="112" r="16" fill="#B5402F"/>`).join('')}
+      ${[20,90,150].map(x=>`<rect x="${x}" y="150" width="34" height="52" rx="6" fill="${ART_C.steel}"/>`).join('')}</g>
+    <g transform="translate(400 120)">
+      <path d="M40 -10 Q120 -90 200 -10" fill="none" stroke="${ART_C.cocoa}" stroke-width="10"/>
+      <ellipse cx="110" cy="-8" rx="70" ry="22" fill="${ART_C.caramel}"/>
+      <rect x="70" y="-60" width="34" height="56" rx="6" fill="${ART_C.cream}" stroke="${ART_C.steelD}" stroke-width="3"/><rect x="70" y="-44" width="34" height="14" fill="${ART_C.steel}"/>
+      <circle cx="140" cy="-22" r="20" fill="#B5402F"/><circle cx="160" cy="-12" r="18" fill="${ART_C.sage}"/>
+      <path d="M0 0 H240 L216 120 H24 Z" fill="${ART_C.milk}"/>
+      ${[30,70,110,150,190].map(x=>`<line x1="${x}" y1="6" x2="${x+(x-120)*0.1}" y2="114" stroke="${ART_C.cocoa}" stroke-width="4"/>`).join('')}
+      <line x1="10" y1="40" x2="230" y2="40" stroke="${ART_C.cocoa}" stroke-width="4"/><line x1="18" y1="80" x2="222" y2="80" stroke="${ART_C.cocoa}" stroke-width="4"/></g>`),
+  u4: artSvg('A family in front of their house', `
+    ${artGround(250)}
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    <g transform="translate(420 70)"><path d="M-20 70 L110 -20 L240 70 Z" fill="${ART_C.caramel}"/><rect x="0" y="70" width="220" height="110" fill="${ART_C.cream}" stroke="${ART_C.milk}" stroke-width="4"/>
+      <rect x="90" y="110" width="44" height="70" fill="${ART_C.milk}"/><circle cx="124" cy="148" r="4" fill="${ART_C.gold}"/>
+      <rect x="20" y="96" width="50" height="44" fill="${ART_C.steel}" stroke="${ART_C.milk}" stroke-width="4"/><rect x="152" y="96" width="50" height="44" fill="${ART_C.steel}" stroke="${ART_C.milk}" stroke-width="4"/>
+      <rect x="160" y="6" width="24" height="40" fill="${ART_C.cocoa}"/></g>
+    ${artBust(130,196,ART_C.skin,ART_C.steelD,ART_C.cocoa,1.15)}
+    ${artBust(250,196,ART_C.skin3,ART_C.rose,ART_C.caramel,1.1)}
+    ${artBust(190,226,ART_C.skin,ART_C.gold,ART_C.milk,0.75)}
+    <path d="M190 120 Q178 104 190 96 Q202 104 190 120 Z" fill="#B5402F"/>`),
+  u5: artSvg('A town map with streets, a pin and a signpost', `
+    <rect x="40" y="30" width="420" height="240" rx="14" fill="${ART_C.paper}" stroke="${ART_C.milk}" stroke-width="4"/>
+    <g stroke="${ART_C.latte}" stroke-width="22" stroke-linecap="round"><line x1="60" y1="120" x2="440" y2="120"/><line x1="200" y1="50" x2="200" y2="250"/><line x1="340" y1="50" x2="340" y2="250"/><line x1="60" y1="210" x2="440" y2="210"/></g>
+    ${[[80,60,90,36],[230,60,80,36],[370,140,60,46],[80,140,90,46],[230,140,80,46],[370,60,60,36]].map(([x,y,w,h],i)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="4" fill="${[ART_C.caramel,ART_C.sage,ART_C.steel,ART_C.rose,ART_C.gold,ART_C.milk][i]}"/>`).join('')}
+    <path d="M200 210 L200 120 L340 120" fill="none" stroke="${ART_C.cocoa}" stroke-width="5" stroke-dasharray="10 8"/>
+    <g transform="translate(340 120)"><path d="M0 0 Q-26 -30 -26 -50 A26 26 0 0 1 26 -50 Q26 -30 0 0 Z" fill="#B5402F"/><circle cx="0" cy="-50" r="10" fill="${ART_C.cream}"/></g>
+    <g transform="translate(580 50)"><rect x="-6" y="0" width="12" height="210" fill="${ART_C.cocoa}"/>
+      <path d="M0 30 H96 L116 52 L96 74 H0 Z" fill="${ART_C.caramel}"/><text x="48" y="60" text-anchor="middle" font-family="Georgia,serif" font-size="18" font-weight="700" fill="${ART_C.cream}">Bank</text>
+      <path d="M0 96 H-96 L-116 118 L-96 140 H0 Z" fill="${ART_C.sageD}"/><text x="-50" y="126" text-anchor="middle" font-family="Georgia,serif" font-size="18" font-weight="700" fill="${ART_C.cream}">Park</text></g>
+    <rect x="520" y="256" width="120" height="10" rx="5" fill="${ART_C.milk}"/>`),
+  u6: artSvg('Last weekend: a picnic and a bike ride in the park', `
+    ${artGround(220)}
+    <circle cx="610" cy="70" r="36" fill="${ART_C.gold}"/>
+    ${artTree(110,160,1.2)}${artTree(640,170,0.9)}
+    <path d="M220 260 L380 230 L520 262 L360 292 Z" fill="#B5402F" opacity=".85"/><path d="M260 254 L380 232 M300 270 L460 245" stroke="${ART_C.cream}" stroke-width="5"/>
+    <g transform="translate(330 220)"><rect x="0" y="0" width="56" height="36" rx="6" fill="${ART_C.caramel}"/><path d="M8 0 Q28 -26 48 0" fill="none" stroke="${ART_C.cocoa}" stroke-width="5"/></g>
+    <circle cx="420" cy="244" r="12" fill="${ART_C.sage}"/><circle cx="440" cy="250" r="10" fill="#B5402F"/>
+    <g transform="translate(470 120)" stroke="${ART_C.cocoa}" stroke-width="6" fill="none"><circle cx="0" cy="60" r="36"/><circle cx="130" cy="60" r="36"/><path d="M0 60 L45 0 L105 0 L130 60 M45 0 L70 60 L105 0 M70 60 L0 60"/><path d="M38 -10 H58 M100 -14 L112 -14"/></g>
+    <g transform="translate(160 30)"><rect width="120" height="96" rx="8" fill="${ART_C.cream}" stroke="${ART_C.milk}" stroke-width="3"/><rect width="120" height="26" rx="8" fill="${ART_C.caramel}"/>
+      <text x="60" y="19" text-anchor="middle" font-family="Georgia,serif" font-size="15" font-weight="700" fill="${ART_C.cream}">Weekend</text>
+      <text x="32" y="70" text-anchor="middle" font-family="Georgia,serif" font-size="20" fill="${ART_C.cocoa}">Sat</text><text x="88" y="70" text-anchor="middle" font-family="Georgia,serif" font-size="20" fill="${ART_C.cocoa}">Sun</text>
+      <path d="M20 78 L28 86 L44 66 M76 78 L84 86 L100 66" fill="none" stroke="${ART_C.sageD}" stroke-width="4"/></g>`),
+  u7: artSvg('Plans and travel: a suitcase, a plane and a calendar', `
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    <path d="M60 230 Q240 120 520 70" fill="none" stroke="${ART_C.milk}" stroke-width="4" stroke-dasharray="10 10"/>
+    <g transform="translate(540 64) rotate(-18)"><path d="M-60 0 Q-60 -12 -40 -12 H50 Q70 -12 76 0 Q70 12 50 12 H-40 Q-60 12 -60 0 Z" fill="${ART_C.cream}" stroke="${ART_C.steelD}" stroke-width="3"/>
+      <path d="M-4 -10 L-30 -56 L-12 -56 L30 -10 Z M-4 10 L-30 56 L-12 56 L30 10 Z M-52 -6 L-66 -30 L-56 -30 L-38 -6 Z" fill="${ART_C.steelD}"/></g>
+    <g transform="translate(210 120)"><rect x="40" y="-30" width="60" height="30" rx="10" fill="none" stroke="${ART_C.cocoa}" stroke-width="10"/><rect x="0" y="0" width="140" height="150" rx="16" fill="${ART_C.caramel}"/>
+      <rect x="30" y="0" width="12" height="150" fill="${ART_C.milk}"/><rect x="98" y="0" width="12" height="150" fill="${ART_C.milk}"/>
+      <circle cx="30" cy="158" r="10" fill="${ART_C.cocoa}"/><circle cx="110" cy="158" r="10" fill="${ART_C.cocoa}"/><rect x="52" y="60" width="36" height="24" rx="4" fill="${ART_C.gold}"/></g>
+    <g transform="translate(430 140)"><rect width="130" height="110" rx="8" fill="${ART_C.cream}" stroke="${ART_C.milk}" stroke-width="3"/><rect width="130" height="26" rx="8" fill="${ART_C.cocoa}"/>
+      <g fill="${ART_C.latte}">${[0,1,2].map(r=>[0,1,2,3,4].map(c=>`<rect x="${12+c*23}" y="${38+r*22}" width="16" height="14"/>`).join('')).join('')}</g>
+      <circle cx="81" cy="67" r="13" fill="none" stroke="#B5402F" stroke-width="4"/></g>`),
+  u8: artSvg('Right now: a woman is talking on the phone and a man is cooking', `
+    ${artGround(250)}
+    <circle cx="200" cy="150" r="110" fill="${ART_C.blob}"/><circle cx="530" cy="150" r="110" fill="${ART_C.blob}"/>
+    ${artBust(200,190,ART_C.skin3,ART_C.rose,ART_C.milk,1.3)}
+    <rect x="224" y="148" width="22" height="40" rx="5" fill="${ART_C.ink}" transform="rotate(-14 235 168)"/>
+    <g stroke="${ART_C.caramel}" stroke-width="4" fill="none" stroke-linecap="round"><path d="M262 120 Q276 136 262 152"/><path d="M276 110 Q296 136 276 162"/></g>
+    ${artBust(510,190,ART_C.skin2,ART_C.cream,ART_C.ink,1.3)}
+    <path d="M484 130 Q484 96 510 100 Q536 96 536 130 Z" fill="${ART_C.cream}" stroke="${ART_C.latte}" stroke-width="3"/>
+    <g transform="translate(560 220)"><ellipse cx="40" cy="0" rx="50" ry="12" fill="${ART_C.cocoa}"/><rect x="88" y="-6" width="60" height="10" rx="5" fill="${ART_C.cocoa}"/>
+      <path d="M20 -20 Q12 -36 22 -50 M44 -20 Q36 -40 48 -56" fill="none" stroke="${ART_C.latte}" stroke-width="4" stroke-linecap="round"/></g>
+    <g transform="translate(330 30)"><rect width="70" height="34" rx="17" fill="${ART_C.cocoa}"/><text x="35" y="23" text-anchor="middle" font-family="Georgia,serif" font-size="17" font-weight="700" fill="${ART_C.cream}">NOW</text></g>`),
+  u9: artSvg('Abilities: playing the guitar, swimming and football', `
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    <g transform="translate(165 175) rotate(-30) scale(.78)"><ellipse cx="0" cy="40" rx="52" ry="58" fill="${ART_C.caramel}"/><ellipse cx="0" cy="-20" rx="40" ry="42" fill="${ART_C.caramel}"/><circle cx="0" cy="22" r="16" fill="${ART_C.cocoa}"/>
+      <rect x="-8" y="-150" width="16" height="140" fill="${ART_C.milk}"/><rect x="-14" y="-176" width="28" height="34" rx="6" fill="${ART_C.cocoa}"/>
+      ${[-4,0,4].map(x=>`<line x1="${x}" y1="-150" x2="${x}" y2="70" stroke="${ART_C.cream}" stroke-width="1.5"/>`).join('')}</g>
+    <g transform="translate(360 190)"><path d="M-110 30 Q-80 10 -50 30 T10 30 T70 30 T130 30" fill="none" stroke="${ART_C.steelD}" stroke-width="7"/><path d="M-110 56 Q-80 36 -50 56 T10 56 T70 56 T130 56" fill="none" stroke="${ART_C.steel}" stroke-width="7"/>
+      <circle cx="-10" cy="4" r="20" fill="${ART_C.skin}"/><path d="M-30 0 Q-10 -26 10 0" fill="${ART_C.steelD}"/><path d="M14 14 Q50 -20 80 6" fill="none" stroke="${ART_C.skin}" stroke-width="12" stroke-linecap="round"/></g>
+    <g transform="translate(580 160)"><circle r="56" fill="${ART_C.cream}" stroke="${ART_C.cocoa}" stroke-width="5"/><path d="M0 -20 L19 -6 L12 16 L-12 16 L-19 -6 Z" fill="${ART_C.cocoa}"/>
+      ${[[0,-20,0,-54],[19,-6,50,-18],[12,16,30,44],[-12,16,-30,44],[-19,-6,-50,-18]].map(([a,b,c,d])=>`<line x1="${a}" y1="${b}" x2="${c}" y2="${d}" stroke="${ART_C.cocoa}" stroke-width="4"/>`).join('')}</g>
+    ${artBubble(300,40,120,'I can!')}`),
+  u10: artSvg('Health: a doctor bag, medicine, fruit and a heart', `
+    ${artGround(250)}
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    <g transform="translate(110 120)"><path d="M30 0 V-24 Q30 -36 42 -36 H98 Q110 -36 110 -24 V0" fill="none" stroke="${ART_C.cocoa}" stroke-width="10"/><rect width="140" height="110" rx="14" fill="${ART_C.cocoa}"/>
+      <rect x="56" y="30" width="28" height="56" fill="${ART_C.cream}"/><rect x="42" y="44" width="56" height="28" fill="${ART_C.cream}"/></g>
+    <g transform="translate(330 70)"><path d="M50 30 Q50 0 80 0 Q110 0 110 30 Q110 70 50 110 Q-10 70 -10 30 Q-10 0 20 0 Q50 0 50 30 Z" fill="#B5402F"/>
+      <path d="M-20 60 H20 L34 34 L50 86 L64 50 H120" fill="none" stroke="${ART_C.cream}" stroke-width="6" stroke-linejoin="round"/></g>
+    <g transform="translate(330 205)"><rect width="40" height="56" rx="6" fill="${ART_C.steel}"/><rect x="-4" y="-12" width="48" height="16" rx="4" fill="${ART_C.cream}"/><rect x="6" y="18" width="28" height="20" fill="${ART_C.cream}"/></g>
+    <g transform="translate(420 236)"><rect x="-26" y="-8" width="52" height="18" rx="9" fill="${ART_C.gold}"/><rect x="-26" y="-8" width="26" height="18" rx="9" fill="${ART_C.cream}"/></g>
+    <g transform="translate(560 200)"><circle r="40" fill="#B5402F"/><circle cx="-12" cy="-12" r="9" fill="${ART_C.cream}" opacity=".5"/><path d="M0 -38 Q4 -58 18 -62" fill="none" stroke="${ART_C.milk}" stroke-width="5"/><ellipse cx="22" cy="-52" rx="16" ry="8" fill="${ART_C.sage}"/></g>
+    <g transform="translate(610 70)"><rect x="-8" y="0" width="16" height="110" rx="8" fill="${ART_C.cream}" stroke="${ART_C.milk}" stroke-width="3"/><circle cx="0" cy="116" r="16" fill="#B5402F"/><rect x="-4" y="40" width="8" height="70" fill="#B5402F"/></g>`),
+  u11: artSvg('Comparing: a tall building and a small house, a big and a small dog', `
+    ${artGround(250)}
+    <g transform="translate(90 40)"><rect width="110" height="210" fill="${ART_C.steelD}"/>${[0,1,2,3,4,5].map(r=>[0,1,2].map(c=>`<rect x="${14+c*32}" y="${16+r*32}" width="20" height="20" fill="${ART_C.gold}" opacity="${(r+c)%3?0.9:0.4}"/>`).join('')).join('')}</g>
+    <g transform="translate(220 170)"><path d="M-6 30 L50 -10 L106 30 Z" fill="${ART_C.caramel}"/><rect x="0" y="30" width="100" height="50" fill="${ART_C.cream}" stroke="${ART_C.milk}" stroke-width="3"/><rect x="40" y="48" width="22" height="32" fill="${ART_C.milk}"/></g>
+    <text x="232" y="110" font-family="Georgia,serif" font-size="30" font-weight="700" fill="${ART_C.cocoa}">taller</text>
+    <g transform="translate(420 150)"><ellipse cx="60" cy="50" rx="70" ry="36" fill="${ART_C.milk}"/><circle cx="130" cy="14" r="30" fill="${ART_C.milk}"/><ellipse cx="148" cy="-8" rx="10" ry="20" fill="${ART_C.cocoa}"/><circle cx="142" cy="10" r="4" fill="${ART_C.ink}"/>
+      ${[10,40,80,110].map(x=>`<rect x="${x}" y="70" width="14" height="30" fill="${ART_C.milk}"/>`).join('')}<path d="M-8 40 Q-30 20 -24 0" fill="none" stroke="${ART_C.milk}" stroke-width="10" stroke-linecap="round"/></g>
+    <g transform="translate(620 214)"><ellipse cx="20" cy="14" rx="26" ry="14" fill="${ART_C.gold}"/><circle cx="46" cy="0" r="13" fill="${ART_C.gold}"/><circle cx="50" cy="-2" r="2.5" fill="${ART_C.ink}"/>
+      ${[2,14,26,38].map(x=>`<rect x="${x}" y="22" width="6" height="14" fill="${ART_C.gold}"/>`).join('')}</g>
+    <text x="520" y="90" font-family="Georgia,serif" font-size="30" font-weight="700" fill="${ART_C.cocoa}">bigger</text>`)
+};
+
+/* ---------- B2 ---------- */
+const B2_ART = {
+  identity: artSvg('A person looks in a mirror and sees a different reflection', `
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    ${artBust(230,200,ART_C.skin,ART_C.caramel,ART_C.cocoa,1.4)}
+    <g transform="translate(400 40)"><ellipse cx="80" cy="110" rx="90" ry="112" fill="${ART_C.milk}"/><ellipse cx="80" cy="110" rx="76" ry="98" fill="${ART_C.steel}"/>
+      <path d="M30 60 L60 40 M40 100 L90 60" stroke="${ART_C.cream}" stroke-width="6" stroke-linecap="round" opacity=".6"/>
+      ${artBust(80,150,ART_C.skin,ART_C.sageD,ART_C.cocoa,1.05)}<rect x="66" y="214" width="28" height="40" fill="${ART_C.milk}"/></g>
+    <g font-family="Georgia,serif" font-weight="700" fill="${ART_C.caramel}"><text x="90" y="90" font-size="56">?</text><text x="320" y="70" font-size="40">?</text><text x="650" y="80" font-size="46">!</text></g>`),
+  wanderlust: artSvg('Mountains, a winding road, a backpack and a compass', `
+    <path d="M0 220 L140 80 L240 180 L360 50 L500 200 L600 110 L720 220 V300 H0 Z" fill="${ART_C.milk}"/>
+    <path d="M360 50 L400 96 L376 92 L360 110 L344 90 L322 96 Z M140 80 L168 108 L140 104 L122 112 Z" fill="${ART_C.cream}"/>
+    ${artGround(220)}
+    <path d="M360 300 Q300 260 380 240 Q460 224 400 220" fill="none" stroke="${ART_C.cream}" stroke-width="22" stroke-linecap="round"/>
+    <g transform="translate(120 170)"><rect x="0" y="0" width="80" height="100" rx="20" fill="${ART_C.sageD}"/><rect x="12" y="44" width="56" height="40" rx="8" fill="${ART_C.sage}"/><path d="M14 0 Q40 -30 66 0" fill="none" stroke="${ART_C.cocoa}" stroke-width="7"/><rect x="0" y="20" width="80" height="10" fill="${ART_C.cocoa}"/></g>
+    <g transform="translate(590 230)"><circle r="44" fill="${ART_C.cream}" stroke="${ART_C.cocoa}" stroke-width="7"/><path d="M0 -32 L10 0 L0 32 L-10 0 Z" fill="${ART_C.caramel}"/><path d="M0 0 L10 0 L0 32 L-10 0 Z" fill="${ART_C.steelD}"/><text x="0" y="-12" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="700" fill="${ART_C.cocoa}" dy="-26">N</text></g>
+    <circle cx="620" cy="60" r="30" fill="${ART_C.gold}"/>`),
+  career: artSvg('A career ladder with a briefcase and an arrow going up', `
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    ${[0,1,2,3,4].map(i=>`<rect x="${150+i*90}" y="${240-i*40}" width="90" height="${20+i*40}" fill="${[ART_C.latte,ART_C.rose,ART_C.caramel,ART_C.milk,ART_C.cocoa][i]}"/>`).join('')}
+    <path d="M170 220 L560 70" stroke="${ART_C.sageD}" stroke-width="10" stroke-linecap="round"/><path d="M560 70 L520 72 M560 70 L546 108" stroke="${ART_C.sageD}" stroke-width="10" stroke-linecap="round"/>
+    ${artBust(510,130,ART_C.skin2,ART_C.steelD,ART_C.ink,0.85)}
+    <g transform="translate(70 170)"><path d="M28 0 V-16 Q28 -24 36 -24 H64 Q72 -24 72 -16 V0" fill="none" stroke="${ART_C.cocoa}" stroke-width="7"/><rect width="100" height="70" rx="10" fill="${ART_C.cocoa}"/><rect x="0" y="26" width="100" height="6" fill="${ART_C.milk}"/><rect x="44" y="22" width="12" height="14" fill="${ART_C.gold}"/></g>
+    <g fill="${ART_C.gold}"><circle cx="620" cy="50" r="8"/><circle cx="650" cy="90" r="5"/><circle cx="600" cy="100" r="5"/></g>`),
+  digital: artSvg('A laptop and a phone with messages and Wi-Fi signals', `
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    <g transform="translate(150 90)"><rect width="260" height="160" rx="10" fill="${ART_C.cocoa}"/><rect x="12" y="12" width="236" height="136" fill="${ART_C.steel}"/>
+      <rect x="28" y="30" width="120" height="14" rx="7" fill="${ART_C.cream}"/><rect x="28" y="56" width="190" height="10" rx="5" fill="${ART_C.paper}" opacity=".8"/><rect x="28" y="76" width="160" height="10" rx="5" fill="${ART_C.paper}" opacity=".8"/><rect x="28" y="100" width="80" height="28" rx="6" fill="${ART_C.caramel}"/>
+      <path d="M-30 160 H290 L270 186 H-10 Z" fill="${ART_C.milk}"/></g>
+    <g transform="translate(470 80)"><rect width="100" height="180" rx="16" fill="${ART_C.ink}"/><rect x="8" y="16" width="84" height="146" rx="6" fill="${ART_C.cream}"/>
+      <rect x="16" y="30" width="54" height="22" rx="11" fill="${ART_C.latte}"/><rect x="30" y="62" width="54" height="22" rx="11" fill="${ART_C.caramel}"/><rect x="16" y="94" width="44" height="22" rx="11" fill="${ART_C.latte}"/></g>
+    <g transform="translate(620 90)" fill="none" stroke="${ART_C.caramel}" stroke-width="7" stroke-linecap="round"><path d="M-30 0 Q0 -26 30 0"/><path d="M-50 -20 Q0 -60 50 -20"/><circle cx="0" cy="18" r="6" fill="${ART_C.caramel}" stroke="none"/></g>
+    ${artBubble(60,40,100,'Hi!')}`),
+  planet: artSvg('The Earth with leaves, a wind turbine and the sun', `
+    ${artGround(250)}
+    <circle cx="300" cy="150" r="110" fill="${ART_C.steel}"/>
+    <path d="M230 80 Q270 60 300 90 Q320 120 290 140 Q260 150 250 180 Q220 160 220 120 Z M330 160 Q370 150 390 180 Q380 220 340 230 Q320 200 330 160 Z M320 60 Q350 50 370 70 Q350 90 330 80 Z" fill="${ART_C.sage}"/>
+    <path d="M380 70 Q450 40 470 100 Q420 120 380 70 Z" fill="${ART_C.sageD}"/><path d="M380 70 L460 96" stroke="${ART_C.cream}" stroke-width="3"/>
+    <g transform="translate(560 100)"><path d="M-6 0 L-12 150 H12 L6 0 Z" fill="${ART_C.cream}" stroke="${ART_C.milk}" stroke-width="2"/>
+      ${[0,120,240].map(a=>`<path d="M0 0 L-8 -6 L-6 -84 Q0 -90 6 -84 L8 -6 Z" fill="${ART_C.cream}" stroke="${ART_C.milk}" stroke-width="2" transform="rotate(${a+15})"/>`).join('')}<circle r="9" fill="${ART_C.milk}"/></g>
+    <circle cx="90" cy="70" r="36" fill="${ART_C.gold}"/>
+    ${artTree(660,200,0.6)}${artTree(110,210,0.7)}`),
+  news: artSvg('A newspaper, a microphone and a TV with breaking news', `
+    <circle cx="360" cy="150" r="140" fill="${ART_C.blob}"/>
+    <g transform="translate(70 70) rotate(-6)"><rect width="200" height="170" fill="${ART_C.paper}" stroke="${ART_C.milk}" stroke-width="3"/><rect x="16" y="16" width="168" height="26" fill="${ART_C.cocoa}"/>
+      <text x="100" y="35" text-anchor="middle" font-family="Georgia,serif" font-size="17" font-weight="700" fill="${ART_C.cream}">THE NEWS</text>
+      <rect x="16" y="54" width="76" height="60" fill="${ART_C.steel}"/>${[54,68,82,96,110].map(y=>`<rect x="104" y="${y}" width="80" height="6" fill="${ART_C.latte}"/>`).join('')}${[126,140,154].map(y=>`<rect x="16" y="${y}" width="168" height="6" fill="${ART_C.latte}"/>`).join('')}</g>
+    <g transform="translate(330 80)"><rect width="250" height="160" rx="12" fill="${ART_C.cocoa}"/><rect x="14" y="14" width="222" height="132" fill="${ART_C.steelD}"/>
+      <rect x="14" y="110" width="222" height="26" fill="#B5402F"/><text x="125" y="129" text-anchor="middle" font-family="Georgia,serif" font-size="15" font-weight="700" fill="${ART_C.cream}">BREAKING NEWS</text>
+      ${artBust(125,70,ART_C.skin,ART_C.ink,ART_C.cocoa,0.7)}<path d="M100 160 L80 190 M150 160 L170 190" stroke="${ART_C.cocoa}" stroke-width="8"/></g>
+    <g transform="translate(640 130)"><rect x="-18" y="-50" width="36" height="64" rx="18" fill="${ART_C.ink}"/><path d="M-30 0 Q-30 34 0 34 Q30 34 30 0" fill="none" stroke="${ART_C.ink}" stroke-width="6"/><rect x="-4" y="34" width="8" height="40" fill="${ART_C.ink}"/><rect x="-24" y="74" width="48" height="8" rx="4" fill="${ART_C.ink}"/></g>`),
+  health: artSvg('Mind and body: meditation, a running shoe, water and fruit', `
+    ${artGround(250)}
+    <circle cx="300" cy="150" r="120" fill="${ART_C.blob}"/>
+    <g transform="translate(300 150)"><circle cx="0" cy="-54" r="26" fill="${ART_C.skin}"/><path d="M-26 -60 Q-26 -88 0 -86 Q26 -88 26 -60 Q18 -74 0 -74 Q-18 -74 -26 -60 Z" fill="${ART_C.cocoa}"/>
+      <path d="M-34 -20 Q0 -36 34 -20 L40 50 H-40 Z" fill="${ART_C.sageD}"/><path d="M-34 -14 Q-70 20 -40 44 M34 -14 Q70 20 40 44" fill="none" stroke="${ART_C.skin}" stroke-width="13" stroke-linecap="round"/>
+      <path d="M-90 80 Q-40 40 0 70 Q40 40 90 80 Q40 96 0 84 Q-40 96 -90 80 Z" fill="${ART_C.steelD}"/></g>
+    <g fill="${ART_C.gold}" opacity=".8">${[[230,60],[370,60],[300,30]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="6"/>`).join('')}</g>
+    <g transform="translate(470 200)"><path d="M0 40 V0 Q30 -6 50 18 L110 30 Q130 34 130 50 V56 H0 Z" fill="${ART_C.caramel}"/><rect x="0" y="50" width="130" height="10" rx="4" fill="${ART_C.cream}"/>${[30,46,62].map(x=>`<line x1="${x}" y1="10" x2="${x+10}" y2="24" stroke="${ART_C.cream}" stroke-width="3"/>`).join('')}</g>
+    <g transform="translate(110 150)"><path d="M0 0 H50 L44 100 H6 Z" fill="${ART_C.steel}" opacity=".7" stroke="${ART_C.steelD}" stroke-width="3"/><path d="M4 30 H46 L44 100 H6 Z" fill="${ART_C.steelD}" opacity=".45"/></g>
+    <g transform="translate(640 150)"><circle r="30" fill="${ART_C.sage}"/><path d="M0 -28 Q4 -44 16 -46" fill="none" stroke="${ART_C.milk}" stroke-width="4"/></g>`)
+};
+
+const STORE = 'wayfinder-b2';
+const KEYS = ['mcq','fill','correct','match','cloze','reading'];
+const SECTIONS = [
+  {id:'s1', label:'Warm-up',    keys:[]},
+  {id:'s2', label:'Grammar',    keys:['mcq','fill','correct']},
+  {id:'s3', label:'Vocabulary', keys:['match','cloze']},
+  {id:'s4', label:'Reading',    keys:['reading']},
+  {id:'s5', label:'Writing',    keys:[]}
+];
+function load(k){ try{ return JSON.parse(localStorage.getItem(STORE+':'+k)) || {}; }catch(e){ return {}; } }
+function store(k,v){ try{ localStorage.setItem(STORE+':'+k, JSON.stringify(v)); }catch(e){} }
+let saved = load('progress');
+let drafts = load('writing');
+let activeIdx = 0;
+
+const pad2 = n => String(n).padStart(2,'0');
+const unitState = i => (saved[UNITS[i].id] = saved[UNITS[i].id] || {});
+function unitPct(i){ const s = saved[UNITS[i].id] || {}; return Math.round(KEYS.filter(k=>s[k]).length / KEYS.length * 100); }
+function coursePct(){ return Math.round(UNITS.reduce((a,_,i)=>a+unitPct(i),0) / UNITS.length); }
+function markDone(key){ unitState(activeIdx)[key] = true; store('progress', saved); updateProgress(); }
+function shuffle(a){ const r=[...a]; for(let i=r.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [r[i],r[j]]=[r[j],r[i]]; } return r; }
+
+/* =========================================================
+   PROGRESS UI
+   ========================================================= */
+function renderTabs(){
+  const bar = document.getElementById('unitTabs');
+  bar.innerHTML = UNITS.map((u,i)=>{
+    const pct = unitPct(i);
+    const mark = pct===100 ? '<span class="u-pct">✓</span>' : (pct ? `<span class="u-pct">${pct}%</span>` : '');
+    return `<button type="button" class="unit-tab ${i===activeIdx?'active':''} ${pct===100?'unit-complete':''}" data-idx="${i}"><span class="u-num">${pad2(i+1)}</span>${u.title}${mark}</button>`;
+  }).join('');
+  bar.querySelectorAll('.unit-tab').forEach(b=> b.addEventListener('click', ()=> loadUnit(+b.dataset.idx)));
+  const act = bar.querySelector('.unit-tab.active');
+  if(act && bar.scrollWidth > bar.clientWidth) bar.scrollLeft = act.offsetLeft - bar.clientWidth/2 + act.offsetWidth/2;
+}
+function updateProgress(){
+  const pct = unitPct(activeIdx);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').innerHTML = `<b>Юнит ${activeIdx+1}: ${pct}%</b><span class="course-pct"> · весь курс ${coursePct()}%</span>`;
+  const s = saved[UNITS[activeIdx].id] || {};
+  SECTIONS.forEach(sec=>{
+    const done = sec.keys.length && sec.keys.every(k=>s[k]);
+    const a = document.querySelector(`.side-nav a[href="#${sec.id}"]`);
+    if(a) a.classList.toggle('done', !!done);
+    const el = document.getElementById(sec.id);
+    if(el) el.classList.toggle('sec-done', !!done);
+  });
+  renderTabs();
+}
+
+/* =========================================================
+   EXERCISE BUILDERS
+   ========================================================= */
+function buildMcq(box, items, key){
+  box.innerHTML = '';
+  let answered = 0, correct = 0;
+  items.forEach((item, idx)=>{
+    const div = document.createElement('div');
+    div.className = 'mcq';
+    div.innerHTML = `<p class="stem">${idx+1}. ${item.q || ''}</p><div class="opts">${item.options.map((o,i)=>`<button type="button" class="opt-btn" data-i="${i}">${o}</button>`).join('')}</div>`;
+    box.appendChild(div);
+    const buttons = div.querySelectorAll('.opt-btn');
+    buttons.forEach(btn=> btn.addEventListener('click', ()=>{
+      const i = +btn.dataset.i;
+      buttons.forEach(b=> b.disabled = true);
+      if(i === item.a){ btn.classList.add('correct'); correct++; }
+      else { btn.classList.add('wrong'); buttons[item.a].classList.add('correct'); }
+      answered++;
+      if(answered === items.length){
+        if(correct === items.length){
+          result.innerHTML = `<span class="fb fb-good">Все ответы верные: ${correct} из ${items.length} ✓</span>`;
+          markDone(key);
+        } else {
+          result.innerHTML = `<button class="btn" type="button">Пройти ещё раз</button><span class="fb">Верно: ${correct} из ${items.length}. Раздел засчитается, когда все ответы будут верными.</span>`;
+          result.querySelector('button').addEventListener('click', ()=> buildMcq(box, items, key));
+        }
+      }
+    }));
+  });
+  const result = document.createElement('div');
+  result.className = 'check-row mcq-result';
+  if((saved[UNITS[activeIdx].id]||{})[key]) result.innerHTML = '<span class="fb fb-good">Раздел уже пройден ✓ Можно повторить.</span>';
+  box.appendChild(result);
+}
+
+function buildFill(u){
+  const list = document.getElementById('fillList');
+  const bank = document.getElementById('fillBank');
+  const fb = document.getElementById('fillFb');
+  const done = !!(saved[u.id]||{}).fill;
+  let selected = null, filled = 0;
+  list.innerHTML = u.grammar.fill.map((f,fi)=>{
+    const [before, after] = f.text.split('___');
+    return `<p class="gap-line">${fi+1}. ${before}<button type="button" class="blank" data-fi="${fi}" aria-label="Пропуск ${fi+1}">&nbsp;</button>${after}</p>`;
+  }).join('');
+  bank.innerHTML = shuffle(u.grammar.fill.map(f=>f.answer)).map(w=>`<button type="button" class="chip" data-w="${w.replace(/"/g,'&quot;')}">${w}</button>`).join('');
+  const fillBlank = (blank, word, chip)=>{
+    blank.textContent = word; blank.classList.add('filled'); blank.disabled = true;
+    if(chip){ chip.classList.add('used'); chip.classList.remove('selected'); chip.disabled = true; }
+    filled++;
+  };
+  if(done){
+    list.querySelectorAll('.blank').forEach(b=>{
+      const w = u.grammar.fill[+b.dataset.fi].answer;
+      fillBlank(b, w, [...bank.querySelectorAll('.chip')].find(c=>c.dataset.w===w && !c.disabled));
+    });
+    fb.innerHTML = '<span class="fb-good">Раздел уже пройден ✓</span>';
+    return;
+  }
+  bank.querySelectorAll('.chip').forEach(c=> c.addEventListener('click', ()=>{
+    bank.querySelectorAll('.chip').forEach(x=> x!==c && x.classList.remove('selected'));
+    c.classList.toggle('selected');
+    selected = c.classList.contains('selected') ? c : null;
+    fb.textContent = selected ? 'Теперь нажмите на пропуск.' : '';
+  }));
+  list.querySelectorAll('.blank').forEach(b=> b.addEventListener('click', ()=>{
+    if(!selected){ fb.textContent = 'Сначала выберите слово из списка.'; return; }
+    const ans = u.grammar.fill[+b.dataset.fi].answer;
+    if(selected.dataset.w === ans){
+      fillBlank(b, ans, selected); selected = null; fb.textContent = '';
+      if(filled === u.grammar.fill.length){ fb.innerHTML = '<span class="fb-good">Все пропуски заполнены верно ✓</span>'; markDone('fill'); }
+    } else {
+      b.classList.add('wrong'); setTimeout(()=> b.classList.remove('wrong'), 400);
+      fb.textContent = 'Не подходит — попробуйте другой пропуск.';
+    }
+  }));
+}
+
+function buildMatch(u){
+  const words = u.vocab.matchPairs.map(i=>u.vocab.words[i]);
+  const tCol = document.getElementById('matchTerms');
+  const dCol = document.getElementById('matchDefs');
+  const status = document.getElementById('matchStatus');
+  tCol.innerHTML = words.map((w,i)=>`<button type="button" class="match-item" data-i="${i}">${w.term}</button>`).join('');
+  dCol.innerHTML = shuffle(words.map((w,i)=>({w,i}))).map(o=>`<button type="button" class="match-item" data-i="${o.i}">${o.w.def}</button>`).join('');
+  if((saved[u.id]||{}).match){
+    document.querySelectorAll('#matchTerms .match-item, #matchDefs .match-item').forEach(el=>{ el.classList.add('correct'); el.disabled = true; });
+    status.innerHTML = '<span class="fb-good">Раздел уже пройден ✓</span>';
+    return;
+  }
+  let sel = null, solved = 0;
+  tCol.querySelectorAll('.match-item').forEach(t=> t.addEventListener('click', ()=>{
+    tCol.querySelectorAll('.match-item').forEach(x=> x.classList.remove('selected'));
+    t.classList.add('selected'); sel = t;
+  }));
+  dCol.querySelectorAll('.match-item').forEach(d=> d.addEventListener('click', ()=>{
+    if(!sel){ status.textContent = 'Сначала выберите слово слева.'; return; }
+    if(sel.dataset.i === d.dataset.i){
+      [sel,d].forEach(el=>{ el.classList.remove('selected'); el.classList.add('correct'); el.disabled = true; });
+      sel = null; solved++;
+      status.textContent = `Найдено пар: ${solved} из ${words.length}`;
+      if(solved === words.length){ status.innerHTML = '<span class="fb-good">Все пары найдены ✓</span>'; markDone('match'); }
+    } else {
+      d.classList.add('wrong'); setTimeout(()=> d.classList.remove('wrong'), 400);
+    }
+  }));
+}
+
+function buildFlip(){
+  const grid = document.getElementById('vocabGrid');
+  grid.querySelectorAll('.flip-card').forEach(c=> c.addEventListener('click', ()=>{
+    const on = c.classList.toggle('flipped');
+    c.setAttribute('aria-pressed', on ? 'true' : 'false');
+  }));
+  const all = document.getElementById('flipAllBtn');
+  all.addEventListener('click', ()=>{
+    const cards = grid.querySelectorAll('.flip-card');
+    const show = [...cards].some(c=> !c.classList.contains('flipped'));
+    cards.forEach(c=>{ c.classList.toggle('flipped', show); c.setAttribute('aria-pressed', show ? 'true' : 'false'); });
+    all.textContent = show ? 'Скрыть переводы' : 'Показать все переводы';
+  });
+}
+
+function buildWriting(u){
+  document.querySelectorAll('textarea[data-wp]').forEach(ta=>{
+    const k = u.id + ':' + ta.dataset.wp;
+    const counter = document.querySelector(`[data-wc="${ta.dataset.wp}"]`);
+    const count = ()=>{ const t = ta.value.trim(); counter.textContent = (t ? t.split(/\s+/).length : 0) + ' слов · сохраняется автоматически'; };
+    ta.value = drafts[k] || ''; count();
+    ta.addEventListener('input', ()=>{ drafts[k] = ta.value; store('writing', drafts); count(); });
+  });
+}
+
+/* =========================================================
+   UNIT PAGE
+   ========================================================= */
+function head(label, sub){
+  return `<div class="sec-head"><div class="sec-title"><h2>${label}</h2>${sub?`<div class="sub">${sub}</div>`:''}</div></div>`;
+}
+function loadUnit(idx){
+  activeIdx = idx;
+  try{ localStorage.setItem(STORE+':last', String(idx)); }catch(e){}
+  const u = UNITS[idx];
+  document.getElementById('sideNav').innerHTML = SECTIONS.map((s,i)=>`<li><a href="#${s.id}"><span class="num">${pad2(i+1)}</span>${s.label}</a></li>`).join('');
+  document.getElementById('mainContent').innerHTML = `
+  <div class="unit-head"><p class="unum">Unit ${pad2(idx+1)} · ${u.theme}</p><h1>${u.title}</h1><p>${u.grammar.point}</p></div>
+
+  <section id="s1">
+    ${head('Warm-up','Два вопроса, чтобы настроиться на тему. Обсудите с преподавателем или ответьте для себя.')}
+    <div class="warm-row${B2_ART[u.id]?' has-art':''}">${B2_ART[u.id]?`<figure class="unit-art">${B2_ART[u.id]}<figcaption>Look at the picture. What can you see? How is it connected to the topic?</figcaption></figure>`:''}<div class="card"><ul class="qlist">${u.preview.map(q=>`<li>${q}</li>`).join('')}</ul></div></div>
+  </section>
+
+  <section id="s2">
+    ${head('Grammar', 'Правило и три упражнения на него.')}
+    <div class="explainer">${u.grammar.explain}</div>
+    <h4 class="sub-h">Quick check</h4>
+    <p class="hint">Выберите правильную форму глагола.</p>
+    <div class="card" id="gMcq"></div>
+    <h4 class="sub-h">Fill the gaps</h4>
+    <p class="hint">Нажмите на слово, затем на пропуск, куда оно подходит.</p>
+    <div class="card">
+      <div class="bank" id="fillBank"></div>
+      <div id="fillList"></div>
+      <div class="check-row"><span class="fb" id="fillFb"></span></div>
+    </div>
+    <h4 class="sub-h">Spot the correct sentence</h4>
+    <p class="hint">Только один вариант грамматически верный.</p>
+    <div class="card" id="gCorrect"></div>
+  </section>
+
+  <section id="s3">
+    ${head('Vocabulary', `${u.vocab.words.length} слов по теме. Нажмите на карточку, чтобы увидеть перевод.`)}
+    <div class="flip-tools"><button type="button" class="flip-all" id="flipAllBtn">Показать все переводы</button></div>
+    <div class="flip-grid" id="vocabGrid">${u.vocab.words.map(w=>`
+      <button type="button" class="flip-card" aria-pressed="false"><span class="flip-inner">
+        <span class="flip-face flip-front"><span class="fc-w">${w.term}</span></span>
+        <span class="flip-face flip-back"><span class="fc-ru">${w.ru}</span><span class="fc-def">${w.def}</span><span class="fc-ex">${w.ex}</span></span>
+      </span></button>`).join('')}</div>
+    <h4 class="sub-h">Match the pairs</h4>
+    <p class="hint">Нажмите на слово слева, затем на его значение справа.</p>
+    <div class="card"><div class="match-wrap"><div class="match-col" id="matchTerms"></div><div class="match-col" id="matchDefs"></div></div><div class="match-status" id="matchStatus"></div></div>
+    <h4 class="sub-h">Choose the right word</h4>
+    <p class="hint">Выберите слово, которое подходит по смыслу.</p>
+    <div class="card" id="vCloze"></div>
+  </section>
+
+  <section id="s4">
+    ${head('Reading', 'Прочитайте текст и ответьте на вопросы.')}
+    <div class="card reading"><h4 class="read-title">${u.reading.title}</h4><p>${u.reading.text}</p></div>
+    <h4 class="sub-h">Comprehension</h4>
+    <div class="card" id="rMcq"></div>
+  </section>
+
+  <section id="s5">
+    ${head('Writing', 'Ориентир — 100–150 слов. Текст сохраняется на этом устройстве.')}
+    ${u.writing.prompts.map((p,pi)=>`<div class="write-item"><p class="prompt-title">${pi+1}. ${p}</p><textarea data-wp="${pi}" rows="6" placeholder="Write your answer here..."></textarea><div class="word-count" data-wc="${pi}"></div></div>`).join('')}
+  </section>`;
+
+  buildMcq(document.getElementById('gMcq'), u.grammar.mcq, 'mcq');
+  buildFill(u);
+  buildMcq(document.getElementById('gCorrect'), u.grammar.correct, 'correct');
+  buildFlip();
+  buildMatch(u);
+  buildMcq(document.getElementById('vCloze'), u.vocab.cloze, 'cloze');
+  buildMcq(document.getElementById('rMcq'), u.reading.q, 'reading');
+  buildWriting(u);
+  updateProgress();
+  window.scrollTo(0,0);
+}
+
+/* =========================================================
+   NAVIGATION HELPERS
+   ========================================================= */
+document.addEventListener('click', e=>{
+  const a = e.target.closest && e.target.closest('.side-nav a[href^="#"]');
+  if(!a) return;
+  e.preventDefault();
+  const t = document.getElementById(a.getAttribute('href').slice(1));
+  if(t) t.scrollIntoView({behavior:'smooth', block:'start'});
+});
+window.addEventListener('scroll', ()=>{
+  let cur = null;
+  const off = (parseInt(getComputedStyle(document.documentElement).getPropertyValue('--topbar-h')) || 70) + 40;
+  document.querySelectorAll('main section').forEach(s=>{ if(s.getBoundingClientRect().top <= off) cur = s.id; });
+  if(window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) cur = 's5';
+  document.querySelectorAll('.side-nav a').forEach(a=> a.classList.toggle('active', a.getAttribute('href') === '#'+cur));
+}, {passive:true});
+function setTopbarHeight(){
+  const tb = document.querySelector('.topbar');
+  if(tb) document.documentElement.style.setProperty('--topbar-h', tb.offsetHeight + 'px');
+}
+window.addEventListener('resize', setTopbarHeight);
+document.getElementById('resetProgressBtn').addEventListener('click', ()=>{
+  if(!confirm('Сбросить прогресс по всем юнитам? Тексты в Writing останутся.')) return;
+  saved = {}; store('progress', saved); loadUnit(activeIdx);
+});
+
+let start = 0;
+try{ const last = parseInt(localStorage.getItem(STORE+':last'), 10); if(last >= 0 && last < UNITS.length) start = last; }catch(e){}
+loadUnit(start);
+setTopbarHeight();
+
+</script>
+</body>
+</html>

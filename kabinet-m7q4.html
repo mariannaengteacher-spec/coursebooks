@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex, nofollow">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Студенты и учителя — оплата и график</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    :root {
+      --ink: #2e241e;
+      --ink-soft: #5a3f2a;
+      --paper: #f5efe8;
+      --paper-alt: #f1e7de;
+      --card: #fffaf5;
+      --border: #e5d6c8;
+      --border-soft: #e7d9cd;
+      --rule: #dccfc2;
+
+      --cover: #45301f;
+      --cover-soft: #5a3f2a;
+      --cover-line: rgba(255, 255, 255, 0.12);
+      --cover-text: #fcf5ed;
+      --cover-text-soft: rgba(252, 245, 237, 0.6);
+
+      --accent: #8a6246;
+      --accent-dark: #8f755f;
+      --accent-soft: #f1e7de;
+
+      --gold: #c3a06a;
+
+      --ok: #2d7a4a;
+      --ok-bg: #e3ecdd;
+      --ok-ink: #1f5c34;
+      --bad: #b34a4a;
+      --bad-bg: #f3e0da;
+      --bad-ink: #5c2a22;
+    }
+
+    body {
+      background-color: var(--cover);
+      background-image:
+        radial-gradient(circle at 12% 8%, rgba(255, 255, 255, 0.07) 0%, transparent 42%),
+        radial-gradient(circle at 88% 92%, rgba(0, 0, 0, 0.16) 0%, transparent 48%);
+      min-height: 100vh;
+      margin: 0;
+      padding: 28px 20px 44px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--ink);
+    }
+
+    h1 {
+      font-family: 'Space Mono', 'Courier New', monospace;
+      color: var(--cover-text);
+      font-weight: 700;
+      font-size: 2rem;
+      margin: 0 0 6px 0;
+      letter-spacing: 0.3px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--cover-line);
+      text-align: center;
+    }
+
+    .subhead {
+      font-family: 'Caveat', cursive;
+      color: var(--gold);
+      margin-bottom: 20px;
+      font-size: 27.7px;
+      font-weight: 500;
+      letter-spacing: 0.2px;
+      text-align: center;
+    }
+
+    /* Панель управления */
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      background: var(--card);
+      padding: 14px 20px;
+      border-radius: 14px;
+      border: 2px dashed var(--accent);
+      box-shadow: 0 14px 30px -12px rgba(20, 10, 0, 0.55);
+      max-width: 1200px;
+    }
+
+    .input-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #fdfaf6;
+      padding: 5px 10px 5px 14px;
+      border-radius: 30px;
+      border: 1px solid var(--border);
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .input-group:focus-within {
+      border-color: var(--accent);
+      background: #fff;
+    }
+
+    .input-group label {
+      font-weight: 600;
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+    }
+
+    .input-group input,
+    .input-group select {
+      border: none;
+      padding: 7px 4px;
+      font-size: 0.9rem;
+      width: 120px;
+      outline: none;
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .input-group input::placeholder {
+      color: #bda894;
+    }
+
+    .btn {
+      border: 1px solid var(--accent-dark);
+      background: var(--accent);
+      color: #fff;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 40px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.18s ease;
+      box-shadow: 0 4px 10px rgba(46, 36, 30, 0.22);
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      background: var(--accent-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 16px rgba(46, 36, 30, 0.28);
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn.student {
+      background: var(--ok);
+      border-color: var(--ok-ink);
+      box-shadow: 0 4px 10px rgba(31, 92, 52, 0.28);
+    }
+
+    .btn.student:hover { background: var(--ok-ink); }
+
+    .btn.teacher {
+      background: var(--accent);
+      border-color: var(--accent-dark);
+      box-shadow: 0 4px 10px rgba(122, 90, 62, 0.3);
+    }
+
+    .btn.teacher:hover { background: var(--accent-dark); }
+
+    .btn.secondary {
+      background: var(--card);
+      color: var(--ink-soft);
+      border: 1px solid var(--border);
+      box-shadow: 0 3px 8px rgba(46, 36, 30, 0.12);
+    }
+
+    .btn.secondary:hover {
+      background: var(--paper-alt);
+      color: var(--ink);
+      border-color: var(--accent);
+    }
+
+    /* Доска — линованный лист тетради */
+    .board {
+      position: relative;
+      width: 100%;
+      max-width: 1400px;
+      min-height: 75vh;
+      background-color: var(--paper);
+      background-image:
+        linear-gradient(to right, transparent 0 46px, var(--accent) 46px 47px, transparent 47px 100%),
+        repeating-linear-gradient(to bottom, transparent 0 38px, var(--rule) 38px 39px);
+      background-attachment: local;
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      box-shadow:
+        0 30px 60px -22px rgba(20, 10, 0, 0.6),
+        0 0 0 1px rgba(255, 255, 255, 0.35);
+      overflow: hidden;
+    }
+
+    /* Карточки */
+    .card {
+      position: absolute;
+      width: 250px;
+      min-height: 170px;
+      border-radius: 10px;
+      padding: 14px 16px 12px 16px;
+      border: 1px solid var(--border);
+      box-shadow:
+        0 10px 22px -8px rgba(46, 36, 30, 0.38),
+        0 1px 3px rgba(46, 36, 30, 0.08);
+      cursor: grab;
+      user-select: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      will-change: left, top;
+      word-break: break-word;
+      transition: box-shadow 0.15s;
+    }
+
+    .card:active {
+      cursor: grabbing;
+      box-shadow: 0 22px 34px -12px rgba(46, 36, 30, 0.5);
+      transform: scale(1.01);
+      z-index: 1000 !important;
+    }
+
+    .card.student {
+      background: linear-gradient(135deg, #fffaf5 0%, #eef3e9 100%);
+      border-left: 7px solid var(--ok);
+    }
+
+    .card.teacher {
+      background: linear-gradient(135deg, #fffaf5 0%, #f6ece2 100%);
+      border-left: 7px solid var(--accent);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .role-badge {
+      font-size: 0.66rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      padding: 3px 9px;
+      border-radius: 40px;
+      background: var(--paper-alt);
+      border: 1px solid var(--border);
+      color: var(--ink-soft);
+    }
+
+    .card.student .role-badge {
+      color: var(--ok-ink);
+      background: var(--ok-bg);
+      border-color: #c9dcc9;
+    }
+
+    .card.teacher .role-badge {
+      color: var(--ink-soft);
+      background: var(--accent-soft);
+      border-color: var(--border);
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 4px;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      font-size: 1rem;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--accent-dark);
+      padding: 2px 6px;
+      border-radius: 20px;
+      transition: 0.15s;
+      opacity: 0.8;
+    }
+
+    .icon-btn:hover {
+      color: var(--ink);
+      opacity: 1;
+      background: var(--paper-alt);
+    }
+
+    .icon-btn.delete:hover {
+      color: var(--bad);
+      background: var(--bad-bg);
+    }
+
+    .card-name {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--ink);
+      line-height: 1.25;
+      letter-spacing: -0.1px;
+    }
+
+    .card-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      font-size: 0.82rem;
+      color: var(--ink);
+      border-top: 1px solid var(--border-soft);
+      padding-top: 7px;
+    }
+
+    .card-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    .card-row .label {
+      font-weight: 600;
+      color: var(--accent-dark);
+      min-width: 66px;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .card-row .value {
+      flex: 1;
+      color: var(--ink);
+    }
+
+    .value.schedule {
+      white-space: pre-line;
+      line-height: 1.35;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .card-link {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-color: var(--border);
+      text-underline-offset: 2px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: color 0.15s, text-decoration-color 0.15s;
+    }
+
+    .card-link:hover {
+      color: var(--accent-dark);
+      text-decoration-color: var(--accent-dark);
+    }
+
+    .payment-status {
+      display: inline-block;
+      font-size: 0.68rem;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-weight: 600;
+      margin-left: 4px;
+      border: 1px solid transparent;
+    }
+    .payment-status.paid {
+      background: var(--ok-bg);
+      color: var(--ok-ink);
+      border-color: #c9dcc9;
+    }
+    .payment-status.partial {
+      background: #f7ead2;
+      color: #8a6a2f;
+      border-color: #e8d5b0;
+    }
+    .payment-status.unpaid {
+      background: var(--bad-bg);
+      color: var(--bad-ink);
+      border-color: #e4c4bb;
+    }
+    .payment-status.na {
+      background: var(--paper-alt);
+      color: var(--ink-soft);
+      border-color: var(--border);
+    }
+
+    .books-checklist {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 6px 12px;
+      max-height: 220px;
+      overflow-y: auto;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--paper-alt);
+    }
+    .books-checklist label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 17.1px;
+      font-weight: 400;
+      cursor: pointer;
+    }
+    .books-checklist input[type="checkbox"] {
+      accent-color: var(--accent, #a0785a);
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+    }
+    .card-row .books-count {
+      cursor: default;
+    }
+
+    .empty-hint {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-1.5deg);
+      color: var(--accent);
+      font-family: 'Caveat', cursive;
+      font-size: 34.4px;
+      font-weight: 500;
+      text-align: center;
+      pointer-events: none;
+      background: rgba(255, 250, 245, 0.8);
+      padding: 12px 30px;
+      border-radius: 14px;
+      border: 2px dashed var(--border);
+      line-height: 1.2;
+    }
+
+    /* Модальное окно */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(46, 36, 30, 0.55);
+      backdrop-filter: blur(3px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      padding: 16px;
+    }
+
+    .modal-overlay.active { display: flex; }
+
+    .modal {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 24px;
+      width: 100%;
+      max-width: 480px;
+      border: 1px solid var(--border);
+      box-shadow: 0 30px 60px -20px rgba(46, 36, 30, 0.6);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal.wide {
+      max-width: 1020px;
+    }
+
+    .modal h2 {
+      margin: 0 0 18px;
+      color: var(--ink);
+      font-size: 1.2rem;
+      font-weight: 700;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .form-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 12px;
+    }
+
+    .form-row label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-row input,
+    .form-row select,
+    .form-row textarea {
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+      font-family: inherit;
+      background: #fdfaf6;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.15s, background 0.15s;
+      width: 100%;
+    }
+
+    .form-row input:focus,
+    .form-row select:focus,
+    .form-row textarea:focus {
+      border-color: var(--accent);
+      background: #fff;
+    }
+
+    .form-row textarea {
+      resize: vertical;
+      min-height: 80px;
+      line-height: 1.5;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-top: 18px;
+    }
+
+    .stats {
+      margin-top: 18px;
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+      background: var(--card);
+      padding: 10px 26px;
+      border-radius: 40px;
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 26px -14px rgba(20, 10, 0, 0.55);
+    }
+
+    .stats span {
+      font-weight: 700;
+      color: var(--ink);
+      margin-left: 4px;
+    }
+
+    /* ----- Полезные ссылки (модалка) ----- */
+    .links-intro {
+      font-family: 'Caveat', cursive;
+      font-size: 26.4px;
+      color: var(--accent);
+      margin: -4px 0 16px;
+      text-align: center;
+    }
+
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 14px;
+    }
+
+    .link-block {
+      background: #fdfaf6;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      box-shadow: 0 2px 6px rgba(139, 69, 19, 0.06);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .link-block:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(139, 69, 19, 0.12);
+    }
+
+    .link-block h3 {
+      margin: 0 0 10px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border-soft);
+      color: var(--ink);
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .link-block h4 {
+      margin: 12px 0 4px;
+      color: var(--accent-dark);
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 700;
+    }
+
+    .link-block ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .link-block li {
+      padding: 3px 0;
+      border-bottom: 1px dashed #eadbc4;
+      font-size: 0.88rem;
+      line-height: 1.4;
+    }
+
+    .link-block li:last-child {
+      border-bottom: none;
+    }
+
+    .link-block a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.02rem;
+      transition: color 0.15s;
+    }
+
+    .link-block a:hover {
+      color: var(--ink);
+      text-decoration: underline;
+      text-decoration-color: var(--accent);
+      text-underline-offset: 2px;
+    }
+
+    .link-block.wide {
+      grid-column: 1 / -1;
+    }
+
+    .link-block.interactive a,
+    .link-block.textbook a {
+      color: #4a2c17;
+    }
+
+    .link-block.interactive a:hover,
+    .link-block.textbook a:hover {
+      color: var(--ink);
+    }
+
+    .link-block.wide ul {
+      column-count: 2;
+      column-gap: 26px;
+    }
+
+    @media (max-width: 600px) {
+      .link-block.wide ul {
+        column-count: 1;
+      }
+    }
+
+    @media (max-width: 700px) {
+      body { padding: 18px 12px 30px; }
+      .toolbar { flex-direction: column; align-items: stretch; border-radius: 14px; }
+      .input-group { justify-content: space-between; }
+      .input-group input, .input-group select { width: 100%; }
+      .board { padding: 12px; border-radius: 12px; }
+      .card { width: 210px; }
+      h1 { font-size: 1.35rem; }
+      .subhead { font-size: 25.1px; }
+      .empty-hint { font-size: 27.7px; padding: 10px 20px; }
+    }
+  
+/* Весь шрифт — Times New Roman */
+html body,html body *:not(.emoji){font-family:"Times New Roman",Times,serif!important}
+</style>
+<style id="fs-scaled-132">html{font-size:132%}</style></head>
+<body>
+  <h1>📋 Студенты и учителя</h1>
+  <div class="subhead">Перетаскивайте карточки · двойной клик для редактирования</div>
+
+  <!-- Панель управления -->
+  <div class="toolbar">
+    <div class="input-group">
+      <label>👤 Имя:</label>
+      <input type="text" id="nameInput" placeholder="Иван Петров" maxlength="40">
+    </div>
+    <div class="input-group">
+      <label>📝 Доп.:</label>
+      <input type="text" id="descInput" placeholder="Курс/предмет" maxlength="40">
+    </div>
+    <button class="btn student" id="addStudentBtn">+ Студент</button>
+    <button class="btn teacher" id="addTeacherBtn">+ Учитель</button>
+    <button class="btn secondary" id="openLinksBtn">📚 Материалы</button>
+    <a class="btn secondary" href="https://mariannaengteacher-spec.github.io/coursebooks/courses.html" target="_blank" rel="noopener" style="text-decoration:none;">🎓 Курсы</a>
+    <button class="btn secondary" id="xferBtn">🔁 Перенос данных</button>
+    <button class="btn secondary" id="clearAllBtn">🗑 Очистить</button>
+  </div>
+
+  <!-- Доска -->
+  <div class="board" id="board">
+    <div class="empty-hint" id="emptyHint">Добавь первую карточку — и перетаскивай её 👆</div>
+  </div>
+
+  <!-- Статистика -->
+  <div class="stats">
+    <div>🎓 Студентов: <span id="studentCount">0</span></div>
+    <div>👩‍🏫 Учителей: <span id="teacherCount">0</span></div>
+    <div>📌 Всего: <span id="totalCount">0</span></div>
+    <div>💰 Оплачено: <span id="paidCount">0</span></div>
+    <div>⏳ Не оплачено: <span id="unpaidCount">0</span></div>
+  </div>
+
+  <!-- Модальное окно редактирования -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <h2 id="modalTitle">Редактирование</h2>
+
+      <div class="form-row">
+        <label>Имя</label>
+        <input type="text" id="editName" maxlength="60">
+      </div>
+
+      <div class="form-row">
+        <label>Доп. информация (курс, предмет)</label>
+        <input type="text" id="editDesc" maxlength="80">
+      </div>
+
+      <div class="form-row">
+        <label>💰 Оплата (сумма)</label>
+        <input type="number" id="editPayment" min="0" step="1" placeholder="0">
+      </div>
+
+      <div class="form-row">
+        <label>Статус оплаты</label>
+        <select id="editPaymentStatus">
+          <option value="na">Не указано</option>
+          <option value="paid">Оплачено</option>
+          <option value="partial">Частично</option>
+          <option value="unpaid">Не оплачено</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label>🗓 График (расписание)</label>
+        <textarea id="editSchedule" placeholder="Пн 10:00-11:30&#10;Ср 14:00-15:30&#10;Пт 09:00-10:30" maxlength="300"></textarea>
+      </div>
+
+      <div class="form-row">
+        <label>📁 Ссылка на материалы (URL)</label>
+        <input type="url" id="editMaterialsUrl" placeholder="https://..." maxlength="200">
+      </div>
+
+      <div class="form-row">
+        <label>🎥 Ссылка на Google Meet (URL)</label>
+        <input type="url" id="editMeetUrl" placeholder="https://meet.google.com/..." maxlength="200">
+      </div>
+
+      <div class="form-row">
+        <label>📘 Доступ к учебникам</label>
+        <div class="books-checklist" id="editBooksChecklist"></div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn secondary" id="modalCancel">Отмена</button>
+        <button class="btn" id="modalSave">💾 Сохранить</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Модальное окно — Полезные ссылки / Материалы -->
+  <div class="modal-overlay" id="linksModalOverlay">
+    <div class="modal wide">
+      <h2>📚 Полезные ссылки</h2>
+      <div class="links-intro">Подборка ресурсов по темам</div>
+
+      <div class="links-grid">
+
+        <div class="link-block">
+          <h3>🌟 Детские</h3>
+          <ul>
+            <li><a href="https://www.starfall.com/h/index-kindergarten.php" target="_blank">Starfall</a></li>
+            <li><a href="https://justclass.com.ua/" target="_blank">JustClass</a></li>
+            <li><a href="https://www.oxfordowl.co.uk/for-home/find-a-book/library-page/" target="_blank">Oxford Owl</a></li>
+          </ul>
+        </div>
+
+        <div class="link-block">
+          <h3>💬 Для взрослых / практика</h3>
+          <ul>
+            <li><a href="https://ellii.com/" target="_blank">Ellii</a></li>
+            <li><a href="https://eslnewsstories.com/" target="_blank">ESL News Stories</a></li>
+            <li><a href="https://printdiscuss.com/" target="_blank">Print Discuss</a></li>
+            <li><a href="https://english-e-reader.net/" target="_blank">English E-Reader</a></li>
+          </ul>
+        </div>
+
+        <div class="link-block">
+          <h3>🎬 Кино / аудио</h3>
+          <ul>
+            <li><a href="https://ororo.tv/ru/shows" target="_blank">Ororo.tv</a></li>
+            <li><a href="https://www.listeninenglish.com/" target="_blank">Listen in English</a></li>
+          </ul>
+        </div>
+
+        <div class="link-block">
+          <h3>🛠 Инструменты</h3>
+          <ul>
+            <li><a href="https://www.kamiapp.com/" target="_blank">Kami (редактор PDF)</a></li>
+          </ul>
+        </div>
+
+        <div class="link-block">
+          <h3>🌐 Экзамены — сайты</h3>
+          <ul>
+            <li><a href="https://www.examenglish.com/" target="_blank">Exam English</a></li>
+            <li><a href="https://zno.osvita.ua/master/english/" target="_blank">ЄВІ з англійської мови (ЗНО.Освіта.UA)</a></li>
+            <li><a href="https://ieltsonlinetests.com/" target="_blank">IELTS Online Tests</a></li>
+          </ul>
+        </div>
+
+        <div class="link-block interactive">
+          <h3>📘 Интерактивные — детские</h3>
+          <ul>
+            <li><a href="https://mariannaengteacher-spec.github.io/coursebooks/kids.html" target="_blank">English for Kids</a></li>
+            <li><a href="https://mariannaengteacher-spec.github.io/coursebooks/kids-grammar.html" target="_blank">Kids Grammar 1–6</a></li>
+          </ul>
+        </div>
+
+        <div class="link-block interactive">
+          <h3>📘 Интерактивные — грамматика</h3>
+          <ul>
+            <li><a href="https://mariannaengteacher-spec.github.io/coursebooks/tenses.html" target="_blank">Времена таблица</a></li>
+            <li><a href="https://mariannaengteacher-spec.github.io/coursebooks/grammar-steps.html" target="_blank">Grammar Steps A1–A2</a></li>
+          </ul>
+        </div>
+
+        <div class="link-block interactive">
+          <h3>📘 Интерактивные — чтение</h3>
+          <ul>
+            <li><a href="https://mariannaengteacher-spec.github.io/coursebooks/books.html" target="_blank">Книжная полка</a></li>
+            <li><a href="https://mariannaengteacher-spec.github.io/coursebooks/dialogues.html" target="_blank">Диалоги</a></li>
+          </ul>
+        </div>
+
+        <div class="link-block interactive">
+          <h3>📘 Интерактивные — по уровням</h3>
+          <ul>
+            <li><a href="https://mariannaengteacher-spec.github.io/coursebooks/first-steps.html" target="_blank">A1–A2 · First Steps (+ Survival abroad)</a></li>
+            <li><a href="https://mariannaengteacher-spec.github.io/coursebooks/next-steps.html" target="_blank">A2+ · Next Steps</a></li>
+            <li><a href="https://mariannaengteacher-spec.github.io/coursebooks/b1.html" target="_blank">English B1</a></li>
+            <li><a href="https://mariannaengteacher-spec.github.io/coursebooks/b2.html" target="_blank">English B2</a></li>
+          </ul>
+        </div>
+
+        <div class="link-block interactive">
+          <h3>📘 Интерактивные — B1-B2</h3>
+          <ul>
+            <li><a href="https://mariannaengteacher-spec.github.io/coursebooks/grammar-b1-b2.html" target="_blank">English Grammar B1–B2</a></li>
+            <li><a href="https://mariannaengteacher-spec.github.io/coursebooks/talking-points.html" target="_blank">Talking Points B1–B2</a></li>
+          </ul>
+        </div>
+
+        <div class="link-block interactive">
+          <h3>📘 Интерактивные — Business</h3>
+          <ul>
+            <li><a href="https://mariannaengteacher-spec.github.io/coursebooks/business-english.html" target="_blank">Business English 1–3</a></li>
+            <li><a href="https://mariannaengteacher-spec.github.io/coursebooks/business-toolkit.html" target="_blank">Business skill</a></li>
+          </ul>
+        </div>
+
+        <div class="link-block interactive">
+          <h3>📘 Интерактивные — разное</h3>
+          <ul>
+            <li><a href="https://mariannaengteacher-spec.github.io/coursebooks/textbook.html" target="_blank">Учебник</a></li>
+            <li><a href="https://mariannaengteacher-spec.github.io/coursebooks/word-trainer.html" target="_blank">Тренажёр слов</a></li>
+          </ul>
+        </div>
+
+        <div class="link-block textbook">
+          <h3>📗 Учебники для детей</h3>
+
+          <h4>Everybody Up (2nd Edition)</h4>
+          <ul>
+            <li><a href="https://online.flipbuilder.com/sdtta/vypw/" target="_blank">Student Book 1</a></li>
+            <li><a href="https://online.flipbuilder.com/sdtta/wvrs/mobile/index.html" target="_blank">Workbook 1</a></li>
+            <li><a href="https://online.flipbuilder.com/sdtta/eidf/" target="_blank">Student Book 2</a></li>
+            <li><a href="https://online.flipbuilder.com/xtrvf/epya/" target="_blank">Student Book 3</a></li>
+            <li><a href="https://online.flipbuilder.com/xtrvf/jqep/" target="_blank">Workbook 3</a></li>
+            <li><a href="https://online.flipbuilder.com/xtrvf/ptvz/" target="_blank">Student Book 4</a></li>
+            <li><a href="https://online.flipbuilder.com/xtrvf/mcki/" target="_blank">Workbook 4</a></li>
+          </ul>
+
+          <h4>i-Learn Smart Start</h4>
+          <ul>
+            <li><a href="https://online.flipbuilder.com/sdtta/vugc/" target="_blank">Student Book 1</a></li>
+            <li><a href="https://online.flipbuilder.com/sdtta/sxdj/" target="_blank">Workbook 1</a></li>
+            <li><a href="https://online.flipbuilder.com/sdtta/mcbr/" target="_blank">Student Book 2</a></li>
+            <li><a href="https://online.flipbuilder.com/sdtta/smph/" target="_blank">Workbook 2</a></li>
+            <li><a href="https://online.flipbuilder.com/sdtta/skiv/" target="_blank">Student Book 3</a></li>
+            <li><a href="https://online.flipbuilder.com/sdtta/plmk/" target="_blank">Workbook 3</a></li>
+            <li><a href="https://online.flipbuilder.com/sdtta/nhks/" target="_blank">Student Book 4</a></li>
+            <li><a href="https://online.flipbuilder.com/sdtta/etxr/" target="_blank">Workbook 4</a></li>
+            <li><a href="https://online.flipbuilder.com/sdtta/uehz/" target="_blank">Student Book 5</a></li>
+            <li><a href="https://online.flipbuilder.com/sdtta/qscx/" target="_blank">Workbook 5</a></li>
+          </ul>
+
+          <h4>Family and Friends (2nd Edition)</h4>
+          <ul>
+            <li><a href="https://online.flipbuilder.com/xtrvf/xncb/" target="_blank">Class Book 1</a></li>
+            <li><a href="https://online.flipbuilder.com/sdtta/arnd/mobile/index.html" target="_blank">Class Book 2</a></li>
+            <li><a href="https://online.flipbuilder.com/xtrvf/prio/" target="_blank">Class Book 3</a></li>
+            <li><a href="https://online.flipbuilder.com/sdtta/whif/mobile/index.html" target="_blank">Class Book 4</a></li>
+            <li><a href="https://online.flipbuilder.com/xtrvf/bcqw/" target="_blank">Student Book 5</a></li>
+          </ul>
+        </div>
+
+        <div class="link-block textbook">
+          <h3>📐 Грамматика</h3>
+
+          <h4>Oxford Grammar for Schools</h4>
+          <ul>
+            <li><a href="https://online.flipbuilder.com/sdtta/qpng/" target="_blank">Level 2</a></li>
+            <li><a href="https://online.flipbuilder.com/sdtta/lqsc/" target="_blank">Level 3</a></li>
+            <li><a href="https://online.flipbuilder.com/xtrvf/yhsj/" target="_blank">Level 4</a></li>
+            <li><a href="https://online.flipbuilder.com/sdtta/kfir/mobile/index.html" target="_blank">Level 5</a></li>
+          </ul>
+
+          <h4>Grammar in Use</h4>
+          <ul>
+            <li><a href="https://online.flipbuilder.com/sdtta/dtfu/" target="_blank">Basic Grammar in Use</a></li>
+            <li><a href="https://online.flipbuilder.com/kszth/rcsx/" target="_blank">English Grammar in Use</a></li>
+          </ul>
+        </div>
+
+        <div class="link-block textbook">
+          <h3>🎒 Учебники для подростков</h3>
+
+          <h4>Let's Talk</h4>
+          <ul>
+            <li><a href="https://online.flipbuilder.com/sdtta/uklq/mobile/index.html" target="_blank">Student Book 1</a></li>
+            <li><a href="https://online.flipbuilder.com/sdtta/gneu/mobile/index.html" target="_blank">Student Book 2</a></li>
+            <li><a href="https://online.flipbuilder.com/sdtta/qrvu/mobile/index.html" target="_blank">Student Book 3</a></li>
+          </ul>
+
+          <h4>Prepare</h4>
+          <ul>
+            <li><a href="https://online.flipbuilder.com/xtrvf/ybqm/" target="_blank">Student Book 1</a></li>
+            <li><a href="https://online.flipbuilder.com/sdtta/optp/mobile/index.html" target="_blank">Workbook 1</a></li>
+            <li><a href="https://online.flipbuilder.com/sdtta/izvt/" target="_blank">Student Book 2</a></li>
+            <li><a href="https://online.flipbuilder.com/sdtta/qfaz/mobile/index.html" target="_blank">Workbook 2</a></li>
+            <li><a href="https://online.flipbuilder.com/xtrvf/mcrt/" target="_blank">Student Book 3</a></li>
+            <li><a href="https://online.flipbuilder.com/sdtta/plws/mobile/index.html" target="_blank">Workbook 3</a></li>
+            <li><a href="https://online.flipbuilder.com/sdtta/pntf/mobile/index.html" target="_blank">Student Book 4</a></li>
+            <li><a href="https://online.flipbuilder.com/sdtta/zyjf/mobile/index.html" target="_blank">Workbook 4</a></li>
+          </ul>
+        </div>
+
+        <div class="link-block textbook">
+          <h3>🎓 Учебники для взрослых</h3>
+
+          <h4>American English File</h4>
+          <ul>
+            <li><a href="https://online.flipbuilder.com/xtrvf/cszm/" target="_blank">Starter — Student Book</a></li>
+            <li><a href="https://online.flipbuilder.com/xtrvf/fwed/" target="_blank">Student Book 1</a></li>
+            <li><a href="https://online.flipbuilder.com/xtrvf/ypwx/" target="_blank">Student Book 2</a></li>
+            <li><a href="https://online.flipbuilder.com/xtrvf/vjhd/" target="_blank">Student Book 3A</a></li>
+            <li><a href="https://online.flipbuilder.com/xtrvf/irkv/" target="_blank">Student Book 3B</a></li>
+          </ul>
+        </div>
+
+        <div class="link-block textbook wide">
+          <h3>📝 Экзамены — учебники</h3>
+          <ul>
+            <li><a href="https://online.flipbuilder.com/sdtta/awax/mobile/index.html" target="_blank">Complete PET (2020) — Student Book</a></li>
+            <li><a href="https://online.flipbuilder.com/xtrvf/thiq/" target="_blank">Complete Advanced — Student Book (with answers)</a></li>
+            <li><a href="https://online.flipbuilder.com/sdtta/rlmz/mobile/index.html" target="_blank">Complete IELTS Band 4-5 — Student Book</a></li>
+            <li><a href="https://online.flipbuilder.com/xtrvf/mxzj/" target="_blank">Complete IELTS Bands 5-6.5 — Student Book</a></li>
+            <li><a href="https://online.flipbuilder.com/xtrvf/rzwv/" target="_blank">Complete IELTS Bands 6.5-7.5 — Student Book</a></li>
+            <li><a href="https://online.flipbuilder.com/sdtta/bsjh/mobile/index.html" target="_blank">Mindset for IELTS — Foundation</a></li>
+            <li><a href="https://online.flipbuilder.com/sdtta/ubym/mobile/index.html" target="_blank">Mindset for IELTS — Level 1</a></li>
+            <li><a href="https://online.flipbuilder.com/sdtta/mkpn/mobile/index.html" target="_blank">Mindset for IELTS — Level 2</a></li>
+            <li><a href="https://online.flipbuilder.com/sdtta/uwdr/mobile/index.html" target="_blank">Mindset for IELTS — Level 3</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn secondary" id="linksClose">Закрыть</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // ---------- Учебники (для чек-листа доступа) ----------
+      const BOOKS = [
+        "Grammar Friends 1–6", "English for Kids", "Oxford · Starter", "Правила чтения",
+        "Времена таблица", "Basic Grammar in Use", "English Grammar A1-A2",
+        "English Grammar B1", "English Grammar B2", "Книжная полка", "Диалоги",
+        "Sherlock Holmes Reader", "The Reading Room", "Wayfinder B1", "Wayfinder B2",
+        "Talking Points B2", "Intelligent Business 1", "Intelligent Business 2",
+        "Intelligent Business 3", "Business skill", "Учебник"
+      ];
+
+      // ---------- Состояние ----------
+      let cards = [];
+      try {
+        const saved = localStorage.getItem('dragCards_v2');
+        if (saved) cards = JSON.parse(saved);
+      } catch (e) { console.warn(e); }
+
+      // Демо-данные
+      if (!cards.length) {
+        cards = [
+          {
+            id: 'demo1', type: 'student', name: 'Анна Смирнова',
+            desc: 'Математика, 2 курс',
+            payment: 12000, paymentStatus: 'paid',
+            schedule: 'Пн 10:00–11:30\nСр 14:00–15:30\nПт 09:00–10:30',
+            materialsUrl: 'https://example.com/math',
+            meetUrl: 'https://meet.google.com/abc-defg-hij',
+            x: 80, y: 70
+          },
+          {
+            id: 'demo2', type: 'teacher', name: 'Ольга Ивановна',
+            desc: 'Физика, доцент',
+            payment: 45000, paymentStatus: 'partial',
+            schedule: 'Вт 12:00–14:00\nЧт 16:00–18:00',
+            materialsUrl: 'https://example.com/physics',
+            meetUrl: '',
+            x: 480, y: 220
+          },
+          {
+            id: 'demo3', type: 'student', name: 'Пётр Козлов',
+            desc: 'Физика, 1 курс',
+            payment: 8000, paymentStatus: 'unpaid',
+            schedule: 'Ср 16:00–17:30',
+            materialsUrl: '',
+            meetUrl: 'https://meet.google.com/xyz-1234-567',
+            x: 900, y: 120
+          }
+        ];
+      }
+
+      // ---------- DOM ----------
+      const board = document.getElementById('board');
+      const emptyHint = document.getElementById('emptyHint');
+      const nameInput = document.getElementById('nameInput');
+      const descInput = document.getElementById('descInput');
+      const addStudentBtn = document.getElementById('addStudentBtn');
+      const addTeacherBtn = document.getElementById('addTeacherBtn');
+      const clearAllBtn = document.getElementById('clearAllBtn');
+
+      const studentCountSpan = document.getElementById('studentCount');
+      const teacherCountSpan = document.getElementById('teacherCount');
+      const totalCountSpan = document.getElementById('totalCount');
+      const paidCountSpan = document.getElementById('paidCount');
+      const unpaidCountSpan = document.getElementById('unpaidCount');
+
+      // Модальное окно редактирования
+      const modalOverlay = document.getElementById('modalOverlay');
+      const modalTitle = document.getElementById('modalTitle');
+      const editName = document.getElementById('editName');
+      const editDesc = document.getElementById('editDesc');
+      const editPayment = document.getElementById('editPayment');
+      const editPaymentStatus = document.getElementById('editPaymentStatus');
+      const editSchedule = document.getElementById('editSchedule');
+      const editMaterialsUrl = document.getElementById('editMaterialsUrl');
+      const editMeetUrl = document.getElementById('editMeetUrl');
+      const modalCancel = document.getElementById('modalCancel');
+      const modalSave = document.getElementById('modalSave');
+
+      // Модальное окно — полезные ссылки
+      const linksModalOverlay = document.getElementById('linksModalOverlay');
+      const openLinksBtn = document.getElementById('openLinksBtn');
+      const linksClose = document.getElementById('linksClose');
+
+      let editingCardId = null;
+
+      // ---------- Утилиты ----------
+      function escapeHtml(text) {
+        if (!text) return '';
+        return String(text).replace(/[&<>"]/g, m => ({
+          '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'
+        }[m]));
+      }
+
+      function formatMoney(v) {
+        if (v === '' || v === null || v === undefined || isNaN(v)) return '';
+        return Number(v).toLocaleString('ru-RU') + ' ₽';
+      }
+
+      function paymentStatusLabel(s) {
+        return {
+          paid: 'Оплачено', partial: 'Частично',
+          unpaid: 'Не оплачено', na: 'Не указано'
+        }[s] || 'Не указано';
+      }
+
+      // ---------- Статистика ----------
+      function updateStats() {
+        const students = cards.filter(c => c.type === 'student').length;
+        const teachers = cards.filter(c => c.type === 'teacher').length;
+        const paid = cards.filter(c => c.paymentStatus === 'paid').length;
+        const unpaid = cards.filter(c => c.paymentStatus === 'unpaid' || c.paymentStatus === 'partial').length;
+
+        studentCountSpan.textContent = students;
+        teacherCountSpan.textContent = teachers;
+        totalCountSpan.textContent = cards.length;
+        paidCountSpan.textContent = paid;
+        unpaidCountSpan.textContent = unpaid;
+      }
+
+      function toggleEmptyHint() {
+        emptyHint.style.display = cards.length === 0 ? 'block' : 'none';
+      }
+
+      function save() {
+        try {
+          const toSave = cards.map(c => ({
+            id: c.id, type: c.type, name: c.name, desc: c.desc,
+            payment: c.payment, paymentStatus: c.paymentStatus,
+            schedule: c.schedule,
+            materialsUrl: c.materialsUrl || '',
+            meetUrl: c.meetUrl || '',
+            x: c.x, y: c.y
+          }));
+          localStorage.setItem('dragCards_v2', JSON.stringify(toSave));
+        } catch (e) { console.warn(e); }
+      }
+
+      // ---------- Создание DOM карточки ----------
+      function createCardElement(cardData) {
+        const div = document.createElement('div');
+        div.className = `card ${cardData.type}`;
+        div.id = cardData.id;
+        div.style.left = cardData.x + 'px';
+        div.style.top = cardData.y + 'px';
+
+        const header = document.createElement('div');
+        header.className = 'card-header';
+
+        const roleBadge = document.createElement('span');
+        roleBadge.className = 'role-badge';
+        roleBadge.textContent = cardData.type === 'student' ? '🎓 Студент' : '👩‍🏫 Учитель';
+
+        const actions = document.createElement('div');
+        actions.className = 'header-actions';
+
+        const editBtn = document.createElement('button');
+        editBtn.className = 'icon-btn edit';
+        editBtn.innerHTML = '✎';
+        editBtn.title = 'Редактировать';
+        editBtn.addEventListener('click', e => {
+          e.stopPropagation();
+          openModal(cardData.id);
+        });
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'icon-btn delete';
+        deleteBtn.innerHTML = '✕';
+        deleteBtn.title = 'Удалить';
+        deleteBtn.addEventListener('click', e => {
+          e.stopPropagation();
+          deleteCard(cardData.id);
+        });
+
+        actions.appendChild(editBtn);
+        actions.appendChild(deleteBtn);
+        header.appendChild(roleBadge);
+        header.appendChild(actions);
+
+        const nameEl = document.createElement('div');
+        nameEl.className = 'card-name';
+        nameEl.textContent = cardData.name || 'Без имени';
+
+        const rows = document.createElement('div');
+        rows.className = 'card-rows';
+
+        const payRow = document.createElement('div');
+        payRow.className = 'card-row';
+        const payStatus = cardData.paymentStatus || 'na';
+        const payAmount = formatMoney(cardData.payment);
+        payRow.innerHTML = `
+          <span class="label">💰 Оплата</span>
+          <span class="value">
+            ${payAmount ? escapeHtml(payAmount) : '—'}
+            <span class="payment-status ${payStatus}">${paymentStatusLabel(payStatus)}</span>
+          </span>
+        `;
+        rows.appendChild(payRow);
+
+        if (cardData.schedule && cardData.schedule.trim()) {
+          const schRow = document.createElement('div');
+          schRow.className = 'card-row';
+          schRow.innerHTML = `
+            <span class="label">🗓 График</span>
+            <span class="value schedule">${escapeHtml(cardData.schedule)}</span>
+          `;
+          rows.appendChild(schRow);
+        }
+
+        if (cardData.desc && cardData.desc.trim()) {
+          const descRow = document.createElement('div');
+          descRow.className = 'card-row';
+          descRow.innerHTML = `
+            <span class="label">📝 Доп.</span>
+            <span class="value">${escapeHtml(cardData.desc)}</span>
+          `;
+          rows.appendChild(descRow);
+        }
+
+        if (cardData.materialsUrl && cardData.materialsUrl.trim()) {
+          const matRow = document.createElement('div');
+          matRow.className = 'card-row';
+          matRow.innerHTML = `
+            <span class="label">📁 Материалы</span>
+            <span class="value">
+              <a href="${escapeHtml(cardData.materialsUrl)}" target="_blank" class="card-link" title="${escapeHtml(cardData.materialsUrl)}">Открыть</a>
+            </span>
+          `;
+          rows.appendChild(matRow);
+        }
+
+        if (cardData.meetUrl && cardData.meetUrl.trim()) {
+          const meetRow = document.createElement('div');
+          meetRow.className = 'card-row';
+          meetRow.innerHTML = `
+            <span class="label">🎥 Google Meet</span>
+            <span class="value">
+              <a href="${escapeHtml(cardData.meetUrl)}" target="_blank" class="card-link" title="${escapeHtml(cardData.meetUrl)}">Подключиться</a>
+            </span>
+          `;
+          rows.appendChild(meetRow);
+        }
+
+        if (cardData.books && cardData.books.length) {
+          const booksRow = document.createElement('div');
+          booksRow.className = 'card-row';
+          booksRow.innerHTML = `
+            <span class="label">📘 Учебники</span>
+            <span class="value books-count" title="${escapeHtml(cardData.books.join(', '))}">${cardData.books.length}</span>
+          `;
+          rows.appendChild(booksRow);
+        }
+
+        div.appendChild(header);
+        div.appendChild(nameEl);
+        div.appendChild(rows);
+
+        div.addEventListener('dblclick', e => {
+          if (e.target.closest('.icon-btn') || e.target.closest('a')) return;
+          openModal(cardData.id);
+        });
+
+        makeDraggable(div, cardData);
+        return div;
+      }
+
+      // ---------- Перетаскивание ----------
+      function makeDraggable(el, cardData) {
+        let startX = 0, startY = 0, startLeft = 0, startTop = 0, isDragging = false;
+        let moved = false;
+
+        const onMove = e => {
+          if (!isDragging) return;
+          e.preventDefault();
+
+          const dx = e.clientX - startX;
+          const dy = e.clientY - startY;
+
+          if (Math.abs(dx) > 3 || Math.abs(dy) > 3) moved = true;
+
+          let newLeft = startLeft + dx;
+          let newTop = startTop + dy;
+
+          const boardRect = board.getBoundingClientRect();
+          const cardRect = el.getBoundingClientRect();
+
+          const maxLeft = boardRect.width - cardRect.width - 8;
+          const maxTop = boardRect.height - cardRect.height - 8;
+
+          newLeft = Math.max(8, Math.min(newLeft, maxLeft));
+          newTop = Math.max(8, Math.min(newTop, maxTop));
+
+          el.style.left = Math.round(newLeft) + 'px';
+          el.style.top = Math.round(newTop) + 'px';
+
+          cardData.x = Math.round(newLeft);
+          cardData.y = Math.round(newTop);
+        };
+
+        const onUp = () => {
+          if (!isDragging) return;
+          isDragging = false;
+          document.removeEventListener('mousemove', onMove);
+          document.removeEventListener('mouseup', onUp);
+          el.style.cursor = 'grab';
+          el.style.zIndex = '';
+          if (moved) save();
+        };
+
+        el.addEventListener('mousedown', e => {
+          if (e.target.closest('.icon-btn') || e.target.closest('button') || e.target.closest('a')) return;
+          if (e.button !== 0) return;
+          e.preventDefault();
+
+          isDragging = true;
+          moved = false;
+          startX = e.clientX;
+          startY = e.clientY;
+          startLeft = parseFloat(el.style.left) || 0;
+          startTop = parseFloat(el.style.top) || 0;
+
+          cardData.x = startLeft;
+          cardData.y = startTop;
+
+          el.style.cursor = 'grabbing';
+          el.style.zIndex = '1000';
+
+          document.addEventListener('mousemove', onMove);
+          document.addEventListener('mouseup', onUp);
+        });
+
+        el.addEventListener('dragstart', e => e.preventDefault());
+      }
+
+      // ---------- Добавление ----------
+      function addCard(type) {
+        const name = nameInput.value.trim();
+        if (!name) {
+          alert('Введите имя.');
+          nameInput.focus();
+          return;
+        }
+        const desc = descInput.value.trim();
+        const id = 'c_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7);
+
+        const boardRect = board.getBoundingClientRect();
+        const maxX = Math.max(40, boardRect.width - 270);
+        const maxY = Math.max(40, boardRect.height - 220);
+
+        const cardData = {
+          id, type, name, desc,
+          payment: '', paymentStatus: 'na', schedule: '',
+          materialsUrl: '', meetUrl: '', books: [],
+          x: Math.floor(Math.random() * (maxX - 40)) + 20,
+          y: Math.floor(Math.random() * (maxY - 40)) + 20
+        };
+
+        cards.push(cardData);
+        board.appendChild(createCardElement(cardData));
+
+        nameInput.value = '';
+        descInput.value = '';
+        nameInput.focus();
+
+        updateStats();
+        toggleEmptyHint();
+        save();
+      }
+
+      // ---------- Удаление ----------
+      function deleteCard(id) {
+        if (!confirm('Удалить эту карточку?')) return;
+        cards = cards.filter(c => c.id !== id);
+        const el = document.getElementById(id);
+        if (el) el.remove();
+        updateStats();
+        toggleEmptyHint();
+        save();
+      }
+
+      function clearAll() {
+        if (!cards.length) return;
+        if (!confirm('Удалить ВСЕ карточки?')) return;
+        document.querySelectorAll('.card').forEach(el => el.remove());
+        cards = [];
+        updateStats();
+        toggleEmptyHint();
+        save();
+      }
+
+      // ---------- Модальное окно редактирования ----------
+      function openModal(id) {
+        const card = cards.find(c => c.id === id);
+        if (!card) return;
+
+        editingCardId = id;
+        modalTitle.textContent = (card.type === 'student' ? '🎓 Студент' : '👩‍🏫 Учитель') + ': ' + card.name;
+
+        editName.value = card.name || '';
+        editDesc.value = card.desc || '';
+        editPayment.value = card.payment || '';
+        editPaymentStatus.value = card.paymentStatus || 'na';
+        editSchedule.value = card.schedule || '';
+        editMaterialsUrl.value = card.materialsUrl || '';
+        editMeetUrl.value = card.meetUrl || '';
+
+        const checklist = document.getElementById('editBooksChecklist');
+        const cardBooks = card.books || [];
+        checklist.innerHTML = BOOKS.map(b => `
+          <label>
+            <input type="checkbox" data-book="${escapeHtml(b)}" ${cardBooks.includes(b) ? 'checked' : ''}>
+            ${escapeHtml(b)}
+          </label>
+        `).join('');
+
+        modalOverlay.classList.add('active');
+        setTimeout(() => editName.focus(), 50);
+      }
+
+      function closeModal() {
+        modalOverlay.classList.remove('active');
+        editingCardId = null;
+      }
+
+      function saveModal() {
+        if (!editingCardId) return;
+        const card = cards.find(c => c.id === editingCardId);
+        if (!card) return;
+
+        const newName = editName.value.trim();
+        if (!newName) { alert('Имя не может быть пустым.'); return; }
+
+        card.name = newName;
+        card.desc = editDesc.value.trim();
+        card.payment = editPayment.value === '' ? '' : Number(editPayment.value);
+        card.paymentStatus = editPaymentStatus.value;
+        card.schedule = editSchedule.value;
+        card.materialsUrl = editMaterialsUrl.value.trim();
+        card.meetUrl = editMeetUrl.value.trim();
+        card.books = Array.from(document.querySelectorAll('#editBooksChecklist input[type="checkbox"]:checked'))
+          .map(cb => cb.dataset.book);
+
+        const oldEl = document.getElementById(card.id);
+        if (oldEl) {
+          const newEl = createCardElement(card);
+          board.replaceChild(newEl, oldEl);
+        }
+
+        updateStats();
+        save();
+        closeModal();
+      }
+
+      // ---------- Модальное окно — ссылки ----------
+      function openLinks() {
+        linksModalOverlay.classList.add('active');
+      }
+      function closeLinks() {
+        linksModalOverlay.classList.remove('active');
+      }
+
+      // ---------- Рендер ----------
+      function renderAll() {
+        document.querySelectorAll('.card').forEach(el => el.remove());
+        cards.forEach(c => board.appendChild(createCardElement(c)));
+        updateStats();
+        toggleEmptyHint();
+      }
+
+      // ---------- Инициализация ----------
+      function init() {
+        renderAll();
+
+        addStudentBtn.addEventListener('click', () => addCard('student'));
+        addTeacherBtn.addEventListener('click', () => addCard('teacher'));
+        clearAllBtn.addEventListener('click', clearAll);
+
+        openLinksBtn.addEventListener('click', openLinks);
+        linksClose.addEventListener('click', closeLinks);
+        linksModalOverlay.addEventListener('click', e => {
+          if (e.target === linksModalOverlay) closeLinks();
+        });
+
+        nameInput.addEventListener('keypress', e => {
+          if (e.key === 'Enter') { e.preventDefault(); addCard('student'); }
+        });
+        descInput.addEventListener('keypress', e => {
+          if (e.key === 'Enter') { e.preventDefault(); addCard('student'); }
+        });
+
+        modalCancel.addEventListener('click', closeModal);
+        modalSave.addEventListener('click', saveModal);
+        modalOverlay.addEventListener('click', e => {
+          if (e.target === modalOverlay) closeModal();
+        });
+
+        document.addEventListener('keydown', e => {
+          if (e.key === 'Escape') {
+            if (modalOverlay.classList.contains('active')) closeModal();
+            if (linksModalOverlay.classList.contains('active')) closeLinks();
+          }
+          if (e.key === 'Enter' && modalOverlay.classList.contains('active') && e.target.tagName !== 'TEXTAREA') {
+            e.preventDefault();
+            saveModal();
+          }
+        });
+
+        window.addEventListener('resize', () => {
+          const boardRect = board.getBoundingClientRect();
+          cards.forEach(card => {
+            const el = document.getElementById(card.id);
+            if (!el) return;
+            const cw = el.offsetWidth;
+            const ch = el.offsetHeight;
+            const maxX = Math.max(8, boardRect.width - cw - 8);
+            const maxY = Math.max(8, boardRect.height - ch - 8);
+            card.x = Math.min(Math.max(8, card.x), maxX);
+            card.y = Math.min(Math.max(8, card.y), maxY);
+            el.style.left = card.x + 'px';
+            el.style.top = card.y + 'px';
+          });
+          save();
+        });
+      }
+
+      init();
+    })();
+  </script>
+<div id="xferOverlay" style="display:none;position:fixed;inset:0;background:rgba(40,28,18,.55);z-index:10000;align-items:center;justify-content:center;padding:16px">
+  <div style="background:#fffaf5;color:#45301f;max-width:560px;width:100%;border-radius:14px;padding:20px 20px 16px;box-shadow:0 12px 40px rgba(0,0,0,.25);font-family:inherit">
+    <h3 style="margin:0 0 8px">🔁 Перенос данных</h3>
+    <p style="margin:0 0 10px;font-size:.95em;line-height:1.45"><b>Отсюда:</b> нажмите «Скопировать», затем откройте страницу на новом месте.<br><b>Сюда:</b> вставьте скопированный текст в поле (Ctrl + V) и нажмите «Загрузить».</p>
+    <textarea id="xferText" spellcheck="false" style="width:100%;height:160px;font:13.8px/1.4 monospace;border:1px solid #e5d6c8;border-radius:8px;padding:8px;box-sizing:border-box;background:#fff"></textarea>
+    <p id="xferMsg" style="min-height:1.3em;margin:6px 0 8px;font-size:.9em"></p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end">
+      <button class="btn secondary" id="xferCopy" type="button">📋 Скопировать</button>
+      <button class="btn secondary" id="xferLoad" type="button">⬇️ Загрузить</button>
+      <button class="btn secondary" id="xferClose" type="button">Закрыть</button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='dragCards_v2';
+  var ov=document.getElementById('xferOverlay'), ta=document.getElementById('xferText'), msg=document.getElementById('xferMsg');
+  function current(){ try{ return localStorage.getItem(KEY)||'[]'; }catch(e){ return '[]'; } }
+  function open(){ ta.value=current(); msg.textContent=''; ov.style.display='flex'; }
+  function close(){ ov.style.display='none'; }
+  document.getElementById('xferBtn').addEventListener('click',open);
+  document.getElementById('xferClose').addEventListener('click',close);
+  ov.addEventListener('click',function(e){ if(e.target===ov) close(); });
+  document.getElementById('xferCopy').addEventListener('click',function(){
+    ta.value=current(); ta.focus(); ta.select();
+    var ok=false;
+    try{ ok=document.execCommand('copy'); }catch(e){}
+    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(ta.value).then(function(){ msg.textContent='✅ Скопировано. Теперь вставьте на новом месте.'; },function(){ msg.textContent= ok?'✅ Скопировано.':'Текст выделен — нажмите Ctrl + C.'; }); }
+    else msg.textContent= ok?'✅ Скопировано.':'Текст выделен — нажмите Ctrl + C.';
+  });
+  document.getElementById('xferLoad').addEventListener('click',function(){
+    var t=ta.value.trim(), data;
+    try{ data=JSON.parse(t); }catch(e){ msg.textContent='❌ Это не похоже на скопированные данные. Вставьте текст целиком.'; return; }
+    if(!Array.isArray(data)){ msg.textContent='❌ Неверный формат данных.'; return; }
+    if(!confirm('Заменить карточки на этой странице загруженными ('+data.length+' шт.)?')) return;
+    try{ localStorage.setItem(KEY,JSON.stringify(data)); }catch(e){ msg.textContent='❌ Не удалось сохранить.'; return; }
+    location.reload();
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,3107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex, nofollow">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Интерактивный учебник</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js">
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+        /* ===== СТИЛИ ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Georgia', serif;
+            background: #f5efe8;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* ===== ТОП-БАР ===== */
+        .top-bar {
+            background: #45301f;
+            color: #f1e7de;
+            padding: 6px 10px;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            z-index: 110;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+            gap: 5px;
+        }
+
+        .top-bar .top-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .top-bar .brand {
+            font-size: 1.05rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .top-bar .brand small {
+            font-size: 0.6rem;
+            opacity: 0.6;
+            font-weight: 400;
+        }
+
+        .top-bar .top-actions {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .top-bar .top-btn {
+            background: rgba(255, 255, 255, 0.12);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            color: #f1e7de;
+            padding: 6px 14px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.8rem;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            white-space: nowrap;
+            min-height: 38px;
+        }
+
+        .top-bar .top-btn:active {
+            transform: scale(0.95);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .top-bar .top-btn.pdf-btn {
+            background: #c3a06a;
+            border-color: #c3a06a;
+            color: #2e1f14;
+        }
+
+        .top-bar .top-btn.pdf-btn:active {
+            background: #c3a06a;
+        }
+
+        .top-bar .file-input {
+            display: none;
+        }
+
+        .top-bar .page-nav {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .top-bar .page-nav .page-input {
+            width: 44px;
+            padding: 2px 4px;
+            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            color: #f1e7de;
+            font-family: inherit;
+            font-size: 0.85rem;
+            text-align: center;
+            min-height: 36px;
+        }
+
+        .top-bar .page-nav .page-input:focus {
+            outline: none;
+            border-color: #c3a06a;
+        }
+
+        .top-bar .page-nav .page-total {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            min-width: 24px;
+        }
+
+        .top-bar .page-nav .nav-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: #f1e7de;
+            padding: 4px 10px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            min-height: 36px;
+            min-width: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+        }
+
+        .top-bar .page-nav .nav-btn:active {
+            transform: scale(0.92);
+            background: rgba(255, 255, 255, 0.35);
+        }
+
+        .zoom-controls {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .zoom-controls .zoom-btn {
+            background: rgba(255, 255, 255, 0.12);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            color: #f1e7de;
+            padding: 4px 10px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            min-height: 36px;
+            min-width: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+        }
+
+        .zoom-controls .zoom-btn:active {
+            transform: scale(0.92);
+            background: rgba(255, 255, 255, 0.35);
+        }
+
+        .zoom-controls .zoom-level {
+            font-size: 0.75rem;
+            min-width: 38px;
+            text-align: center;
+            opacity: 0.8;
+        }
+
+        /* ===== ВТОРАЯ СТРОКА ТОП-БАРА ===== */
+        .top-bar .tools-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            align-items: center;
+            width: 100%;
+            padding-top: 5px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .top-bar .tools-row .label {
+            font-size: 0.7rem;
+            color: #c3a06a;
+            font-weight: 600;
+            margin-right: 2px;
+        }
+
+        .top-bar .tools-row .btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 6px 14px;
+            font-family: inherit;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #f1e7de;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            min-height: 38px;
+            touch-action: manipulation;
+        }
+
+        .top-bar .tools-row .btn:active {
+            transform: scale(0.95);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .top-bar .tools-row .btn.active-tool {
+            background: #c3a06a;
+            border-color: #c3a06a;
+            color: #2e1f14;
+        }
+
+        .top-bar .tools-row .btn.color-btn {
+            flex: 0 0 30px;
+            min-width: 30px;
+            min-height: 30px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 0;
+        }
+
+        .top-bar .tools-row .btn.color-btn.active {
+            border-color: #ffffff;
+            box-shadow: 0 0 0 2px #c3a06a;
+        }
+
+        .top-bar .tools-row .btn-sm {
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 4px 10px;
+            font-family: inherit;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #f1e7de;
+            cursor: pointer;
+            min-height: 38px;
+            min-width: 38px;
+            transition: 0.2s;
+            touch-action: manipulation;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .top-bar .tools-row .btn-sm:active {
+            transform: scale(0.95);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .top-bar .tools-row .btn-sm.danger {
+            background: #c62828;
+            border-color: #c62828;
+            color: #fff;
+        }
+
+        .top-bar .tools-row .btn-sm.danger:active {
+            background: #8e0000;
+        }
+
+        .top-bar .tools-row .quality-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 4px 10px;
+            font-family: inherit;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #f1e7de;
+            cursor: pointer;
+            min-height: 38px;
+            transition: 0.2s;
+            touch-action: manipulation;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .top-bar .tools-row .quality-toggle:active {
+            transform: scale(0.95);
+        }
+
+        .top-bar .tools-row .quality-toggle.high-quality {
+            background: #c3a06a;
+            border-color: #c3a06a;
+            color: #2e1f14;
+        }
+
+        .top-bar .tools-row .size-control {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 30px;
+            padding: 2px;
+        }
+
+        .top-bar .tools-row .size-control .size-btn {
+            background: rgba(255, 255, 255, 0.12);
+            border: none;
+            color: #f1e7de;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            touch-action: manipulation;
+            transition: 0.15s;
+        }
+
+        .top-bar .tools-row .size-control .size-btn:active {
+            transform: scale(0.9);
+            background: #c3a06a;
+            color: #2e1f14;
+        }
+
+        .top-bar .tools-row .size-control .size-value {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #f1e7de;
+            min-width: 18px;
+            text-align: center;
+        }
+
+        .top-bar .tools-row .stats-mini {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-left: 2px;
+            display: flex;
+            gap: 8px;
+        }
+
+        /* ===== ВЫБОР УЧЕБНИКА ===== */
+        .shelf-selector {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+            flex-wrap: wrap;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 2px 8px;
+            min-height: 26px;
+        }
+
+        .shelf-selector select {
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            color: #f1e7de;
+            padding: 2px 20px 2px 8px;
+            font-family: inherit;
+            font-size: 0.6rem;
+            min-height: 26px;
+            cursor: pointer;
+            outline: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23f5ede4'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 6px center;
+            max-width: 120px;
+        }
+
+        .shelf-selector select option {
+            background: #45301f;
+            color: #f1e7de;
+        }
+
+        .shelf-selector .shelf-btn {
+            background: rgba(255, 255, 255, 0.12);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 30px;
+            color: #f1e7de;
+            padding: 2px 8px;
+            font-size: 0.6rem;
+            cursor: pointer;
+            min-height: 26px;
+            min-width: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+            touch-action: manipulation;
+        }
+
+        .shelf-selector .shelf-btn:active {
+            transform: scale(0.92);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .shelf-selector .shelf-btn.danger {
+            background: #c62828;
+            border-color: #c62828;
+            color: #fff;
+        }
+
+        /* ===== ОСНОВНАЯ ОБЛАСТЬ ===== */
+        .main-area {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* ===== PDF ВЬЮВЕР ===== */
+        .pdf-viewer {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px 12px;
+            background: #f1e7de;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            -webkit-overflow-scrolling: touch;
+            min-width: 200px;
+        }
+
+        .pdf-viewer .page-container {
+            position: relative;
+            margin-bottom: 16px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            background: white;
+            border-radius: 6px;
+            overflow: hidden;
+            user-select: none;
+            max-width: 100%;
+            width: 100%;
+            transition: width 0.15s ease;
+        }
+
+        .pdf-viewer .page-container canvas {
+            display: block;
+            width: 100%;
+            height: auto;
+            image-rendering: auto;
+        }
+
+        .pdf-viewer .page-container .draw-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: auto;
+            cursor: default;
+            touch-action: none;
+        }
+
+        .pdf-viewer .page-container .draw-layer.strike-mode {
+            cursor: text;
+        }
+        .pdf-viewer .page-container .draw-layer.draw-mode {
+            cursor: crosshair;
+        }
+        .pdf-viewer .page-container .draw-layer.text-mode {
+            cursor: text;
+        }
+
+        /* ===== ТЕКСТОВЫЙ РЕДАКТОР ===== */
+        .text-editor-overlay {
+            position: absolute;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(6px);
+            border-radius: 12px;
+            padding: 8px 10px 8px 14px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 180px;
+            max-width: 340px;
+            border: 2px solid #8a6246;
+            animation: fadeIn 0.12s ease;
+            pointer-events: auto;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.92);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .text-editor-overlay textarea {
+            flex: 1;
+            border: none;
+            border-bottom: 2px solid #8a6246;
+            padding: 6px 0;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 0.95rem;
+            background: transparent;
+            outline: none;
+            resize: none;
+            min-height: 28px;
+            max-height: 80px;
+            width: 100%;
+            color: #2e1f14;
+            line-height: 1.4;
+        }
+
+        .text-editor-overlay textarea::placeholder {
+            color: #8a6246;
+            opacity: 0.6;
+        }
+
+        .text-editor-overlay .editor-actions {
+            display: flex;
+            gap: 4px;
+            flex-shrink: 0;
+        }
+
+        .text-editor-overlay .editor-actions button {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 4px 6px;
+            border-radius: 8px;
+            transition: 0.15s;
+            touch-action: manipulation;
+            min-width: 32px;
+            min-height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #45301f;
+        }
+
+        .text-editor-overlay .editor-actions .save-btn {
+            color: #2e7d32;
+        }
+
+        .text-editor-overlay .editor-actions .save-btn:active {
+            background: #2e7d32;
+            color: white;
+        }
+
+        .text-editor-overlay .editor-actions .cancel-btn {
+            color: #c62828;
+        }
+
+        .text-editor-overlay .editor-actions .cancel-btn:active {
+            background: #c62828;
+            color: white;
+        }
+
+        .drop-zone {
+            border: 4px dashed #e5d6c8;
+            border-radius: 24px;
+            padding: 50px 20px;
+            text-align: center;
+            color: #5a3f2a;
+            transition: 0.3s;
+            margin: 20px auto;
+            background: #fffaf5;
+            width: 100%;
+            max-width: 500px;
+            touch-action: manipulation;
+        }
+
+        .drop-zone.drag-over {
+            border-color: #8a6246;
+            background: rgba(217, 182, 155, 0.1);
+        }
+
+        .drop-zone .icon {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .drop-zone .title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .drop-zone .sub {
+            font-size: 0.95rem;
+            opacity: 0.7;
+        }
+
+        /* ===== АУДИО ПАНЕЛЬ (сбоку, сворачиваемая, регулируемая ширина) ===== */
+        .audio-sidebar {
+            --audio-width: 340px;
+            background: #f1e7de;
+            border-left: 3px solid #e5d6c8;
+            overflow: hidden;
+            width: 0;
+            flex-shrink: 0;
+            box-shadow: inset 6px 0 14px -10px rgba(0, 0, 0, 0.2);
+            transition: width 0.25s ease;
+            height: 100%;
+            position: relative;
+        }
+
+        .audio-sidebar.resizing {
+            transition: none;
+        }
+
+        .audio-sidebar.open {
+            width: var(--audio-width);
+        }
+
+        .audio-resize-handle {
+            position: absolute;
+            left: -4px;
+            top: 0;
+            width: 8px;
+            height: 100%;
+            cursor: ew-resize;
+            z-index: 5;
+            touch-action: none;
+        }
+
+        .audio-resize-handle::after {
+            content: '';
+            position: absolute;
+            left: 3px;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: transparent;
+            transition: background 0.15s;
+        }
+
+        .audio-resize-handle:hover::after,
+        .audio-sidebar.resizing .audio-resize-handle::after {
+            background: #8a6246;
+        }
+
+        .audio-sidebar-inner {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 12px 14px;
+            width: var(--audio-width);
+            height: 100%;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .audio-panel-body {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-height: 0;
+        }
+
+        .audio-panel-body .audio-list {
+            width: 100%;
+        }
+
+        .audio-sidebar .audio-top-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .audio-sidebar .audio-top-row .upload-label {
+            cursor: pointer;
+            font-size: 0.7rem;
+            color: #8a6246;
+            text-decoration: underline;
+            padding: 4px 10px;
+            border: 2px dashed #e5d6c8;
+            border-radius: 14px;
+            text-align: center;
+            min-height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            touch-action: manipulation;
+            flex: 0 1 auto;
+            background: #fffaf5;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .audio-sidebar .audio-top-row .upload-label:active {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .audio-sidebar .file-input-audio {
+            display: none;
+        }
+
+        .audio-sidebar .audio-search {
+            display: flex;
+            gap: 4px;
+            width: 100%;
+        }
+
+        .audio-sidebar .audio-search input {
+            flex: 1;
+            padding: 6px 10px;
+            border: 2px solid #e5d6c8;
+            border-radius: 14px;
+            font-family: inherit;
+            font-size: 0.8rem;
+            background: #fffaf5;
+            outline: none;
+            min-height: 34px;
+            width: 100%;
+        }
+
+        .audio-sidebar .audio-search input:focus {
+            border-color: #8a6246;
+        }
+
+        .audio-sidebar .audio-search .btn-sm {
+            background: #c3a06a;
+            border: 2px solid #c3a06a;
+            border-radius: 14px;
+            padding: 4px 10px;
+            font-family: inherit;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #2e1f14;
+            cursor: pointer;
+            min-height: 34px;
+            transition: 0.2s;
+            touch-action: manipulation;
+        }
+
+        .audio-sidebar .audio-search .btn-sm:active {
+            transform: scale(0.95);
+        }
+
+        .audio-sidebar .progress-bar-container {
+            height: 4px;
+            background: #e5d6c8;
+            border-radius: 10px;
+            overflow: hidden;
+            display: none;
+            width: 100%;
+        }
+
+        .audio-sidebar .progress-bar-container .progress-fill-upload {
+            height: 100%;
+            background: #8a6246;
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        .audio-sidebar .audio-list {
+            max-height: 220px;
+            min-height: 80px;
+            overflow-y: auto;
+            border: 2px solid #e5d6c8;
+            border-radius: 12px;
+            background: #fffaf5;
+            -webkit-overflow-scrolling: touch;
+            width: 100%;
+            flex-shrink: 0;
+            padding: 4px 0;
+        }
+
+        .audio-sidebar .audio-list .track-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.15s;
+            border-bottom: 1px solid #f1e7de;
+            min-height: 40px;
+            touch-action: manipulation;
+            width: 100%;
+            gap: 6px;
+        }
+
+        .audio-sidebar .audio-list .track-item:active {
+            background: #f5efe8;
+        }
+
+        .audio-sidebar .audio-list .track-item:last-child {
+            border-bottom: none;
+        }
+
+        .audio-sidebar .audio-list .track-item.active-track {
+            background: #c3a06a;
+            color: #2e1f14;
+        }
+
+        .audio-sidebar .audio-list .track-item .track-name {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-weight: 500;
+            font-size: 0.8rem;
+            min-width: 0;
+        }
+
+        .audio-sidebar .audio-list .track-item .track-page {
+            font-size: 0.6rem;
+            background: #e5d6c8;
+            padding: 2px 10px;
+            border-radius: 30px;
+            color: #45301f;
+            flex-shrink: 0;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .audio-sidebar .audio-list .track-item .track-delete {
+            background: none;
+            border: none;
+            color: #c62828;
+            cursor: pointer;
+            font-size: 1.1rem;
+            padding: 4px 8px;
+            border-radius: 6px;
+            touch-action: manipulation;
+            min-width: 34px;
+            min-height: 34px;
+            flex-shrink: 0;
+            font-weight: 700;
+        }
+
+        .audio-sidebar .audio-list .track-item .track-delete:active {
+            background: #c62828;
+            color: white;
+        }
+
+        .audio-sidebar .audio-list .no-results {
+            padding: 16px;
+            text-align: center;
+            color: #5a3f2a;
+            font-size: 0.8rem;
+        }
+
+        .audio-sidebar .player-section {
+            background: #f5efe8;
+            border-radius: 16px;
+            padding: 12px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            border: 2px solid #e5d6c8;
+            flex-shrink: 0;
+        }
+
+        .audio-sidebar .player-section .player-top {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .audio-sidebar .player-section .player-top .track-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .audio-sidebar .player-section .player-top .track-info .track-name-display {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #45301f;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .audio-sidebar .player-section .player-top .track-info .track-page-display {
+            font-size: 0.65rem;
+            color: #5a3f2a;
+        }
+
+        .audio-sidebar .player-section .player-top .player-big-btn {
+            background: #45301f;
+            border: none;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: 0.15s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f1e7de;
+            flex-shrink: 0;
+            touch-action: manipulation;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .audio-sidebar .player-section .player-top .player-big-btn:active {
+            transform: scale(0.92);
+        }
+
+        .audio-sidebar .player-section .player-progress-area {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+        }
+
+        .audio-sidebar .player-section .player-progress-area .audio-progress {
+            flex: 1;
+            height: 6px;
+            background: #e5d6c8;
+            border-radius: 10px;
+            cursor: pointer;
+            position: relative;
+            touch-action: none;
+            min-height: 6px;
+        }
+
+        .audio-sidebar .player-section .player-progress-area .audio-progress .progress-fill {
+            height: 100%;
+            background: #8a6246;
+            border-radius: 10px;
+            width: 0%;
+            transition: 0.1s;
+            position: relative;
+        }
+
+        .audio-sidebar .player-section .player-progress-area .audio-progress .progress-fill::after {
+            content: '';
+            position: absolute;
+            right: -5px;
+            top: -3px;
+            width: 12px;
+            height: 12px;
+            background: #8a6246;
+            border-radius: 50%;
+            border: 2px solid #f1e7de;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .audio-sidebar .player-section .player-progress-area .audio-time {
+            font-size: 0.75rem;
+            color: #5a3f2a;
+            min-width: 60px;
+            text-align: center;
+            font-variant-numeric: tabular-nums;
+            flex-shrink: 0;
+            font-weight: 500;
+        }
+
+        .audio-sidebar .player-section .player-controls-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .audio-sidebar .player-section .player-controls-row .ctrl-btn {
+            background: rgba(61, 43, 26, 0.08);
+            border: 2px solid #e5d6c8;
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.15s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #45301f;
+            touch-action: manipulation;
+        }
+
+        .audio-sidebar .player-section .player-controls-row .ctrl-btn:active {
+            transform: scale(0.92);
+            background: rgba(61, 43, 26, 0.15);
+        }
+
+        .audio-sidebar .player-section .player-controls-row .volume-wrap {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex: 0 1 100px;
+        }
+
+        .audio-sidebar .player-section .player-controls-row .volume-wrap .volume-slider {
+            flex: 1;
+            -webkit-appearance: none;
+            appearance: none;
+            height: 4px;
+            background: #e5d6c8;
+            border-radius: 10px;
+            outline: none;
+            transition: 0.2s;
+            min-width: 30px;
+        }
+
+        .audio-sidebar .player-section .player-controls-row .volume-wrap .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 12px;
+            height: 12px;
+            background: #8a6246;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid #f1e7de;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .audio-sidebar .player-section .player-controls-row .volume-wrap .volume-slider::-moz-range-thumb {
+            width: 12px;
+            height: 12px;
+            background: #8a6246;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid #f1e7de;
+        }
+
+        .audio-sidebar .player-section .player-controls-row .volume-icon {
+            font-size: 0.8rem;
+            color: #5a3f2a;
+            min-width: 16px;
+            text-align: center;
+        }
+
+        .audio-sidebar .audio-status {
+            font-size: 0.7rem;
+            color: #5a3f2a;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            width: 100%;
+            padding-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .audio-sidebar .audio-status .audio-page-badge {
+            background: #f5efe8;
+            padding: 2px 12px;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+
+        .audio-sidebar .audio-status .audio-count-badge {
+            background: #f5efe8;
+            padding: 2px 12px;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+
+        /* ===== КНОПКА ПОКАЗАТЬ/СКРЫТЬ ПАНЕЛЬ ===== */
+        .audio-toggle-btn {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .audio-toggle-btn.active-tool {
+            background: #45301f;
+            color: #f1e7de;
+            border-color: #45301f;
+        }
+
+        .audio-toggle-btn .badge {
+            background: #c3a06a;
+            color: #2e1f14;
+            border-radius: 50%;
+            min-width: 18px;
+            height: 18px;
+            padding: 0 4px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== СТАТУС-БАР ===== */
+        .status-bar {
+            padding: 3px 12px;
+            background: #e5d6c8;
+            color: #5a3f2a;
+            font-size: 0.6rem;
+            display: flex;
+            justify-content: space-between;
+            flex-shrink: 0;
+            border-top: 2px solid #e5d6c8;
+            flex-wrap: wrap;
+            gap: 3px;
+        }
+
+        .status-bar .status-left {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        /* ===== TOAST ===== */
+        .toast {
+            position: fixed;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #45301f;
+            color: #f1e7de;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 200;
+            font-family: 'Segoe UI', sans-serif;
+            max-width: 90%;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .toast.show {
+            opacity: 1;
+        }
+        .toast.error {
+            background: #c62828;
+        }
+        .toast.success {
+            background: #2e7d32;
+        }
+
+        /* ===== ПРОЧЕЕ ===== */
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            font-size: 1rem;
+            color: #45301f;
+            border-radius: 4px;
+        }
+
+        .loading-overlay .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e5d6c8;
+            border-top-color: #45301f;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-bottom: 10px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ===== АДАПТИВ ===== */
+        @media (max-width: 700px) {
+            /* На узких экранах панель выезжает поверх PDF, а не сжимает его */
+            .audio-sidebar {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 85%;
+                max-width: 320px;
+                height: 100%;
+                transform: translateX(100%);
+                transition: transform 0.25s ease;
+                z-index: 60;
+                box-shadow: -6px 0 18px rgba(0, 0, 0, 0.25);
+            }
+            .audio-sidebar.open {
+                width: 85%;
+                max-width: 320px;
+                transform: translateX(0);
+            }
+            .audio-sidebar-inner {
+                width: 100%;
+                padding: 8px 10px;
+            }
+            .audio-resize-handle {
+                display: none;
+            }
+            .audio-sidebar .audio-list {
+                max-height: 160px;
+                min-height: 60px;
+            }
+            .audio-sidebar .audio-list .track-item {
+                font-size: 0.7rem;
+                min-height: 34px;
+                padding: 6px 8px;
+            }
+            .audio-sidebar .player-section .player-top .player-big-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            .audio-sidebar .player-section .player-controls-row .ctrl-btn {
+                width: 30px;
+                height: 30px;
+                font-size: 0.7rem;
+            }
+            .audio-sidebar .player-section .player-progress-area .audio-time {
+                font-size: 0.65rem;
+                min-width: 50px;
+            }
+
+            .text-editor-overlay {
+                min-width: 150px;
+                max-width: 260px;
+                padding: 6px 8px 6px 12px;
+            }
+            .text-editor-overlay textarea {
+                font-size: 0.85rem;
+            }
+            .text-editor-overlay .editor-actions button {
+                font-size: 1rem;
+                min-width: 28px;
+                min-height: 28px;
+            }
+
+            .shelf-selector select {
+                max-width: 80px;
+                font-size: 0.55rem;
+                min-height: 22px;
+                padding: 1px 16px 1px 6px;
+            }
+            .shelf-selector .shelf-btn {
+                font-size: 0.55rem;
+                min-height: 22px;
+                min-width: 22px;
+                padding: 1px 6px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .top-bar .brand {
+                font-size: 0.85rem;
+            }
+            .top-bar .top-btn {
+                font-size: 0.7rem;
+                padding: 5px 10px;
+                min-height: 34px;
+            }
+            .top-bar .page-nav .page-input {
+                width: 36px;
+                font-size: 0.75rem;
+                min-height: 32px;
+                padding: 2px;
+            }
+            .top-bar .page-nav .nav-btn {
+                padding: 3px 8px;
+                min-height: 32px;
+                min-width: 32px;
+                font-size: 0.8rem;
+            }
+            .zoom-controls .zoom-btn {
+                min-height: 32px;
+                min-width: 32px;
+                font-size: 0.8rem;
+                padding: 3px 8px;
+            }
+            .zoom-controls .zoom-level {
+                font-size: 0.65rem;
+                min-width: 30px;
+            }
+
+            .top-bar .tools-row .btn {
+                font-size: 0.7rem;
+                padding: 5px 10px;
+                min-height: 34px;
+            }
+            .top-bar .tools-row .btn.color-btn {
+                flex: 0 0 26px;
+                min-width: 26px;
+                min-height: 26px;
+            }
+            .top-bar .tools-row .btn-sm {
+                font-size: 0.7rem;
+                padding: 4px 8px;
+                min-height: 34px;
+                min-width: 34px;
+            }
+            .top-bar .tools-row .label {
+                font-size: 0.6rem;
+            }
+            .top-bar .tools-row .quality-toggle {
+                font-size: 0.6rem;
+                padding: 4px 8px;
+                min-height: 34px;
+            }
+            .top-bar .tools-row .stats-mini {
+                font-size: 0.6rem;
+            }
+
+            .audio-sidebar {
+                padding: 6px 8px;
+            }
+            .audio-sidebar .audio-list {
+                max-height: 120px;
+                min-height: 50px;
+            }
+            .audio-sidebar .audio-list .track-item {
+                font-size: 0.6rem;
+                padding: 4px 6px;
+                min-height: 30px;
+            }
+            .audio-sidebar .audio-list .track-item .track-page {
+                font-size: 0.45rem;
+                padding: 0 6px;
+            }
+            .audio-sidebar .audio-search input {
+                font-size: 0.65rem;
+                padding: 3px 6px;
+                min-height: 28px;
+            }
+            .audio-sidebar .audio-top-row .upload-label {
+                font-size: 0.55rem;
+                padding: 2px 6px;
+                min-height: 26px;
+            }
+            .audio-sidebar .audio-status {
+                font-size: 0.55rem;
+            }
+            .audio-sidebar .player-section {
+                padding: 6px 8px;
+            }
+            .audio-sidebar .player-section .player-top .player-big-btn {
+                width: 34px;
+                height: 34px;
+                font-size: 1rem;
+            }
+            .audio-sidebar .player-section .player-top .track-info .track-name-display {
+                font-size: 0.7rem;
+            }
+            .audio-sidebar .player-section .player-controls-row .ctrl-btn {
+                width: 26px;
+                height: 26px;
+                font-size: 0.6rem;
+            }
+            .audio-sidebar .player-section .player-progress-area .audio-time {
+                font-size: 0.55rem;
+                min-width: 45px;
+            }
+            .audio-sidebar .player-section .player-controls-row .volume-wrap {
+                flex: 0 1 50px;
+            }
+
+            .drop-zone {
+                padding: 24px 12px;
+            }
+            .drop-zone .icon {
+                font-size: 2.5rem;
+            }
+            .drop-zone .title {
+                font-size: 1rem;
+            }
+            .toast {
+                font-size: 0.75rem;
+                padding: 8px 14px;
+                bottom: 70px;
+            }
+
+            .text-editor-overlay {
+                min-width: 120px;
+                max-width: 180px;
+                padding: 4px 6px 4px 8px;
+            }
+            .text-editor-overlay textarea {
+                font-size: 0.75rem;
+                min-height: 20px;
+            }
+            .text-editor-overlay .editor-actions button {
+                font-size: 0.8rem;
+                min-width: 22px;
+                min-height: 22px;
+            }
+
+            .shelf-selector select {
+                max-width: 60px;
+                font-size: 0.5rem;
+                min-height: 20px;
+                padding: 1px 14px 1px 4px;
+            }
+            .shelf-selector .shelf-btn {
+                font-size: 0.5rem;
+                min-height: 20px;
+                min-width: 20px;
+                padding: 1px 4px;
+            }
+        }
+
+        @media print {
+            .top-bar,
+            .status-bar,
+            .toast,
+            .audio-sidebar {
+                display: none !important;
+            }
+            .pdf-viewer {
+                padding: 0;
+                background: white;
+            }
+            .pdf-viewer .page-container {
+                box-shadow: none;
+                margin-bottom: 0;
+                page-break-after: always;
+            }
+        }
+    
+/* ===== Тетрадь ===== */
+:root{color-scheme:light}
+body{font-family:'Inter','Segoe UI',system-ui,sans-serif}
+.brand{font-family:'Space Mono','Courier New',monospace!important;letter-spacing:.2px}
+.brand small{font-family:'Caveat',cursive;font-size:22.4px;color:#c3a06a}
+.top-bar{border-bottom:3px solid #8a6246!important}
+.empty-state h2,.empty-state h3,.drop-zone h2,.drop-zone h3{font-family:'Space Mono','Courier New',monospace}
+.empty-state p,.drop-zone p{font-family:'Caveat',cursive;font-size:26.4px}
+button{font-family:inherit}
+
+/* Весь шрифт — Times New Roman */
+html body,html body *:not(.emoji){font-family:"Times New Roman",Times,serif!important}
+</style>
+<style id="fs-scaled-132">html{font-size:132%}</style></head>
+<body>
+
+    <!-- ===== ТОП-БАР ===== -->
+    <div class="top-bar">
+        <div class="top-row">
+            <div class="brand" id="brandBtn">
+                📘 Учебник
+                <small>моб.</small>
+            </div>
+            <div class="top-actions">
+                <!-- ВЫБОР УЧЕБНИКА -->
+                <div class="shelf-selector" id="shelfSelector">
+                    <select id="shelfSelect"></select>
+                    <button class="shelf-btn" id="newShelfBtn" title="Новый учебник">➕</button>
+                    <button class="shelf-btn danger" id="deleteShelfBtn" title="Удалить учебник">✕</button>
+                </div>
+
+                <button class="top-btn pdf-btn" id="loadPdfBtn">📄 PDF</button>
+                <input type="file" class="file-input" id="pdfInput" accept=".pdf" />
+                <div class="page-nav">
+                    <button class="nav-btn" id="prevPageBtn">◀</button>
+                    <input type="number" class="page-input" id="pageInput" min="1" value="1" />
+                    <span class="page-total" id="pageTotal">/—</span>
+                    <button class="nav-btn" id="nextPageBtn">▶</button>
+                </div>
+                <div class="zoom-controls">
+                    <button class="zoom-btn" id="zoomOutBtn">−</button>
+                    <span class="zoom-level" id="zoomLevel">100%</span>
+                    <button class="zoom-btn" id="zoomInBtn">+</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="tools-row" id="toolsRow">
+            <span class="label">🛠️</span>
+            <button class="btn" id="toolStrike">⛔ Зачерк.</button>
+            <button class="btn" id="toolDraw">✏️ Рисовать</button>
+            <button class="btn" id="toolText">📝 Текст</button>
+            <button class="btn-sm" id="undoBtn">↩️</button>
+            <button class="btn-sm danger" id="clearBtn">🗑️</button>
+            <button class="quality-toggle high-quality" id="qualityToggle">🔍 Качество</button>
+
+            <span class="label" style="margin-left:4px;">🎨</span>
+            <button class="btn color-btn active" data-color="#ffeb3b" style="background:#ffeb3b;" title="Желтый"></button>
+            <button class="btn color-btn" data-color="#ff9800" style="background:#ff9800;" title="Оранжевый"></button>
+            <button class="btn color-btn" data-color="#4CAF50" style="background:#4CAF50;" title="Зеленый"></button>
+            <button class="btn color-btn" data-color="#2196F3" style="background:#2196F3;" title="Синий"></button>
+            <button class="btn color-btn" data-color="#e91e63" style="background:#e91e63;" title="Розовый"></button>
+            <button class="btn color-btn" data-color="#9C27B0" style="background:#9C27B0;" title="Фиолетовый"></button>
+
+            <span class="label" style="margin-left:4px;" title="Толщина линии">📏</span>
+            <div class="size-control" id="lineWidthControl" title="Толщина пера/зачёркивания">
+                <button class="size-btn" id="lineWidthDown">−</button>
+                <span class="size-value" id="lineWidthValue">2</span>
+                <button class="size-btn" id="lineWidthUp">+</button>
+            </div>
+
+            <span class="label" title="Размер текста">🔤</span>
+            <div class="size-control" id="fontSizeControl" title="Размер текста">
+                <button class="size-btn" id="fontSizeDown">−</button>
+                <span class="size-value" id="fontSizeValue">13</span>
+                <button class="size-btn" id="fontSizeUp">+</button>
+            </div>
+
+            <button class="btn audio-toggle-btn" id="audioToggleBtn" style="margin-left:auto;">
+                🎵 Аудио
+                <span class="badge" id="menuBadge">0</span>
+            </button>
+
+            <span class="stats-mini">
+                📄 <span id="pagesViewedTop">0</span> ✏️ <span id="annCountTop">0</span>
+            </span>
+        </div>
+
+    </div>
+
+    <!-- ===== ОСНОВНАЯ ОБЛАСТЬ ===== -->
+    <div class="main-area">
+        <div class="pdf-viewer" id="pdfViewer">
+            <div id="pdfContainer">
+                <div class="drop-zone" id="dropZone">
+                    <span class="icon">📄</span>
+                    <div class="title">Загрузите PDF-учебник</div>
+                    <div class="sub">Нажмите «PDF» вверху или перетащите файл</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== АУДИО ПАНЕЛЬ (сбоку, сворачиваемая, регулируемая ширина) ===== -->
+        <div class="audio-sidebar" id="audioSidebar">
+            <div class="audio-resize-handle" id="audioResizeHandle" title="Потяните, чтобы изменить ширину"></div>
+            <div class="audio-sidebar-inner">
+                <div class="audio-top-row">
+                    <label class="upload-label" for="audioInput">📎 Выбрать файлы</label>
+                    <input type="file" class="file-input-audio" id="audioInput" accept=".mp3,.wav,.ogg,.m4a,.aac,.flac,.opus" multiple />
+                    <label class="upload-label folder-label" for="audioFolderInput">📁 Выбрать папку</label>
+                    <input type="file" class="file-input-audio" id="audioFolderInput" accept=".mp3,.wav,.ogg,.m4a,.aac,.flac,.opus" multiple webkitdirectory directory />
+                    <button class="btn-sm danger" id="deleteAllAudioBtn" style="min-height:34px; min-width:34px;">🗑️ Все</button>
+
+                    <div class="audio-search" style="flex:1; min-width:160px;">
+                        <input type="text" id="audioSearchInput" placeholder="🔍 Поиск по названию..." />
+                        <button class="btn-sm" id="clearSearchBtn" style="min-width:30px;">✕</button>
+                    </div>
+                </div>
+
+                <div class="progress-bar-container" id="uploadProgressContainer">
+                    <div class="progress-fill-upload" id="uploadProgressFill"></div>
+                </div>
+
+                <!-- ===== ПЛЕЕР (закреплён сверху боковой панели) ===== -->
+                <div class="player-section" id="playerSection">
+                    <div class="player-top">
+                        <div class="track-info">
+                            <div class="track-name-display" id="currentTrackName">🎵 Выберите аудио</div>
+                            <div class="track-page-display" id="currentTrackPage">Страница: —</div>
+                        </div>
+                        <button class="player-big-btn" id="playBtn">▶</button>
+                    </div>
+
+                    <div class="player-progress-area">
+                        <span class="audio-time" id="audioTime">0:00 / 0:00</span>
+                        <div class="audio-progress" id="audioProgress">
+                            <div class="progress-fill" id="audioProgressFill"></div>
+                        </div>
+                    </div>
+
+                    <div class="player-controls-row">
+                        <button class="ctrl-btn" id="rewindBtn" title="Назад 10с">⏪</button>
+                        <button class="ctrl-btn" id="forwardBtn" title="Вперёд 10с">⏩</button>
+                        <div class="volume-wrap">
+                            <span class="volume-icon" id="volumeIcon">🔊</span>
+                            <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="80" />
+                        </div>
+                        <button class="ctrl-btn" id="muteBtn" title="Выключить звук">🔇</button>
+                    </div>
+                </div>
+
+                <div class="audio-panel-body">
+                    <div class="audio-list" id="audioList"></div>
+                </div>
+
+                <div class="audio-status">
+                    <span>🎯 <span class="audio-page-badge" id="audioPageLabel">—</span></span>
+                    <span>📁 <span class="audio-count-badge" id="audioStatus">0</span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== СТАТУС-БАР ===== -->
+    <div class="status-bar">
+        <div class="status-left">
+            <span id="statusLeft">📖 Готово</span>
+            <span id="statusTool">👁️ Просмотр</span>
+        </div>
+        <span id="statusRight">Стр. <span id="statusPageNum">—</span> / <span id="statusTotalPages">—</span></span>
+    </div>
+
+    <!-- ===== TOAST ===== -->
+    <div class="toast" id="toast"></div>
+
+    <!-- ================================================================ -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const STORAGE_KEY = 'textbook_app_v3';
+            const DB_NAME = 'textbook_audio_db_v3';
+            const DB_STORE_AUDIO = 'audioFiles';
+            const DB_STORE_PDF = 'pdfFiles';
+
+            // ---------- helpers ----------
+            const $ = (s, root = document) => root.querySelector(s);
+            const $$ = (s, root = document) => Array.from(root.querySelectorAll(s));
+            const toast = $('#toast');
+            let toastTimer = null;
+
+            function showToast(msg, type = '') {
+                toast.textContent = msg;
+                toast.className = 'toast';
+                if (type) toast.classList.add(type);
+                toast.classList.add('show');
+                clearTimeout(toastTimer);
+                toastTimer = setTimeout(() => toast.classList.remove('show'), 3500);
+            }
+
+            function uid(prefix = 'id') { return prefix + '_' + Math.random().toString(36).slice(2, 10); }
+
+            function formatTime(sec) {
+                if (!Number.isFinite(sec)) return '0:00';
+                const m = Math.floor(sec / 60),
+                    s = Math.floor(sec % 60);
+                return `${m}:${String(s).padStart(2, '0')}`;
+            }
+
+            // ---------- state ----------
+            let pdfDoc = null,
+                currentPage = 1,
+                totalPages = 0,
+                scale = 1.2;
+            let currentTool = 'none',
+                currentColor = '#ffeb3b';
+            const LINE_WIDTH_KEY = 'tool_line_width';
+            const FONT_SIZE_KEY = 'tool_font_size';
+            const MIN_LINE_WIDTH = 1, MAX_LINE_WIDTH = 8;
+            const MIN_FONT_SIZE = 10, MAX_FONT_SIZE = 26;
+            let currentLineWidth = parseInt(localStorage.getItem(LINE_WIDTH_KEY)) || 2;
+            let currentFontSize = parseInt(localStorage.getItem(FONT_SIZE_KEY)) || 13;
+            let isDrawing = false,
+                startX = 0,
+                startY = 0,
+                lastX = 0,
+                lastY = 0,
+                drawPoints = [];
+            let db = null;
+            let activeAudio = null;
+            let currentAudioId = null;
+            let currentAudioUrl = null;
+            let editorOverlay = null;
+            let audioSearchQuery = '';
+            let highQuality = true;
+            let isMuted = false;
+            let currentShelfId = null;
+            let redrawAllFn = null;
+            // Надёжные параметры масштабирования слоя заметок:
+            // не зависят от getBoundingClientRect(), поэтому не "плывут"
+            // при быстром зуме / до завершения раскладки DOM.
+            let currentDpr = 1;
+            let currentQualityMult = 1;
+            let pageLoadToken = 0;
+            let currentRenderTask = null;
+
+            // ---------- App State ----------
+            let appState = loadAppState();
+
+            function defaultShelf(name) {
+                return {
+                    id: uid('shelf'),
+                    name: name || 'Новый учебник',
+                    annotations: {},
+                    textNotes: {},
+                    viewedPages: [],
+                    audioTracks: [],
+                    pdfId: null,
+                    pdfName: null,
+                    currentPage: 1,
+                    scale: 1.2
+                };
+            }
+
+            function loadAppState() {
+                try {
+                    const raw = localStorage.getItem(STORAGE_KEY);
+                    if (raw) {
+                        const data = JSON.parse(raw);
+                        if (data.shelves && data.shelves.length) {
+                            return data;
+                        }
+                    }
+                } catch (e) {}
+                // По умолчанию
+                const defaultShelfObj = defaultShelf('Учебник 1');
+                return {
+                    shelves: [defaultShelfObj],
+                    activeShelfId: defaultShelfObj.id
+                };
+            }
+
+            function saveAppState() {
+                // Сохраняем текущую страницу и масштаб в активную полку
+                const shelf = getCurrentShelf();
+                if (shelf) {
+                    shelf.currentPage = currentPage;
+                    shelf.scale = scale;
+                }
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+            }
+
+            function getCurrentShelf() {
+                return appState.shelves.find(s => s.id === currentShelfId) || appState.shelves[0];
+            }
+
+            function getShelfById(id) {
+                return appState.shelves.find(s => s.id === id);
+            }
+
+            function ensureActiveShelf() {
+                if (!currentShelfId || !getShelfById(currentShelfId)) {
+                    currentShelfId = appState.shelves[0]?.id || null;
+                }
+                if (!currentShelfId && appState.shelves.length) {
+                    currentShelfId = appState.shelves[0].id;
+                }
+                if (!appState.shelves.length) {
+                    const s = defaultShelf('Учебник 1');
+                    appState.shelves.push(s);
+                    currentShelfId = s.id;
+                    saveAppState();
+                }
+            }
+
+            // ---------- IndexedDB ----------
+            function openDb() {
+                return new Promise((resolve, reject) => {
+                    const req = indexedDB.open(DB_NAME, 2);
+                    req.onupgradeneeded = () => {
+                        const db = req.result;
+                        if (!db.objectStoreNames.contains(DB_STORE_AUDIO)) {
+                            db.createObjectStore(DB_STORE_AUDIO);
+                        }
+                        if (!db.objectStoreNames.contains(DB_STORE_PDF)) {
+                            db.createObjectStore(DB_STORE_PDF);
+                        }
+                    };
+                    req.onsuccess = () => resolve(req.result);
+                    req.onerror = () => reject(req.error);
+                });
+            }
+
+            async function dbPut(store, id, data) {
+                return new Promise((resolve, reject) => {
+                    const tx = db.transaction(store, 'readwrite');
+                    tx.objectStore(store).put(data, id);
+                    tx.oncomplete = () => resolve();
+                    tx.onerror = () => reject(tx.error);
+                });
+            }
+
+            async function dbGet(store, id) {
+                return new Promise((resolve, reject) => {
+                    const tx = db.transaction(store, 'readonly');
+                    const req = tx.objectStore(store).get(id);
+                    req.onsuccess = () => resolve(req.result || null);
+                    req.onerror = () => reject(req.error);
+                });
+            }
+
+            async function dbDelete(store, id) {
+                return new Promise((resolve, reject) => {
+                    const tx = db.transaction(store, 'readwrite');
+                    tx.objectStore(store).delete(id);
+                    tx.oncomplete = () => resolve();
+                    tx.onerror = () => reject(tx.error);
+                });
+            }
+
+            // ---------- dom ----------
+            const statusLeft = $('#statusLeft');
+            const statusTool = $('#statusTool');
+            const pdfContainer = $('#pdfContainer');
+            const dropZone = $('#dropZone');
+            const pageInput = $('#pageInput');
+            const pageTotal = $('#pageTotal');
+            const statusPageNum = $('#statusPageNum');
+            const statusTotalPages = $('#statusTotalPages');
+            const pagesViewedTop = $('#pagesViewedTop');
+            const annCountTop = $('#annCountTop');
+            const audioStatus = $('#audioStatus');
+            const audioList = $('#audioList');
+            const audioPageLabel = $('#audioPageLabel');
+            const uploadProgressContainer = $('#uploadProgressContainer');
+            const uploadProgressFill = $('#uploadProgressFill');
+            const audioSearchInput = $('#audioSearchInput');
+            const menuBadge = $('#menuBadge');
+            const zoomLevel = $('#zoomLevel');
+            const qualityToggle = $('#qualityToggle');
+            const shelfSelect = $('#shelfSelect');
+            const newShelfBtn = $('#newShelfBtn');
+            const deleteShelfBtn = $('#deleteShelfBtn');
+
+            const playBtn = $('#playBtn');
+            const audioTime = $('#audioTime');
+            const audioProgress = $('#audioProgress');
+            const audioProgressFill = $('#audioProgressFill');
+            const currentTrackName = $('#currentTrackName');
+            const currentTrackPage = $('#currentTrackPage');
+            const volumeSlider = $('#volumeSlider');
+            const volumeIcon = $('#volumeIcon');
+            const muteBtn = $('#muteBtn');
+            const rewindBtn = $('#rewindBtn');
+            const forwardBtn = $('#forwardBtn');
+
+            // ---------- RESIZER ----------
+            const audioToggleBtn = $('#audioToggleBtn');
+            const audioSidebar = $('#audioSidebar');
+            const AUDIO_PANEL_KEY = 'audio_panel_open';
+            let audioPanelOpen = localStorage.getItem(AUDIO_PANEL_KEY) === '1';
+
+            function setAudioPanelOpen(open) {
+                audioPanelOpen = open;
+                audioSidebar.classList.toggle('open', open);
+                audioToggleBtn.classList.toggle('active-tool', open);
+                localStorage.setItem(AUDIO_PANEL_KEY, open ? '1' : '0');
+            }
+
+            audioToggleBtn.addEventListener('click', () => setAudioPanelOpen(!audioPanelOpen));
+            setAudioPanelOpen(audioPanelOpen);
+
+            // Регулировка ширины аудиопанели перетаскиванием
+            const audioResizeHandle = $('#audioResizeHandle');
+            const AUDIO_WIDTH_KEY = 'audio_panel_width';
+            const MIN_AUDIO_WIDTH = 220;
+            const MAX_AUDIO_WIDTH = 560;
+
+            function setAudioWidth(px) {
+                const clamped = Math.max(MIN_AUDIO_WIDTH, Math.min(MAX_AUDIO_WIDTH, Math.round(px)));
+                audioSidebar.style.setProperty('--audio-width', clamped + 'px');
+                return clamped;
+            }
+            setAudioWidth(parseInt(localStorage.getItem(AUDIO_WIDTH_KEY)) || 340);
+
+            let isResizingAudio = false;
+            let resizeStartX = 0;
+            let resizeStartWidth = 340;
+
+            function beginAudioResize(clientX) {
+                isResizingAudio = true;
+                resizeStartX = clientX;
+                const cssWidth = getComputedStyle(audioSidebar).getPropertyValue('--audio-width');
+                resizeStartWidth = parseInt(cssWidth) || 340;
+                audioSidebar.classList.add('resizing');
+                document.body.style.userSelect = 'none';
+            }
+
+            function updateAudioResize(clientX) {
+                if (!isResizingAudio) return;
+                const delta = clientX - resizeStartX; // движение вправо уменьшает ширину, влево — увеличивает
+                setAudioWidth(resizeStartWidth - delta);
+            }
+
+            function endAudioResize() {
+                if (!isResizingAudio) return;
+                isResizingAudio = false;
+                audioSidebar.classList.remove('resizing');
+                document.body.style.userSelect = '';
+                const cssWidth = getComputedStyle(audioSidebar).getPropertyValue('--audio-width');
+                localStorage.setItem(AUDIO_WIDTH_KEY, String(parseInt(cssWidth) || 340));
+            }
+
+            audioResizeHandle.addEventListener('mousedown', (e) => {
+                e.preventDefault();
+                beginAudioResize(e.clientX);
+            });
+            window.addEventListener('mousemove', (e) => updateAudioResize(e.clientX));
+            window.addEventListener('mouseup', endAudioResize);
+
+            audioResizeHandle.addEventListener('touchstart', (e) => {
+                beginAudioResize(e.touches[0].clientX);
+            }, { passive: true });
+            window.addEventListener('touchmove', (e) => {
+                if (isResizingAudio) updateAudioResize(e.touches[0].clientX);
+            }, { passive: true });
+            window.addEventListener('touchend', endAudioResize);
+
+            // ---------- РЕГУЛИРОВКА ТОЛЩИНЫ ПЕРА И РАЗМЕРА ТЕКСТА ----------
+            const lineWidthValue = $('#lineWidthValue');
+            const fontSizeValue = $('#fontSizeValue');
+            lineWidthValue.textContent = currentLineWidth;
+            fontSizeValue.textContent = currentFontSize;
+
+            $('#lineWidthDown').addEventListener('click', () => {
+                currentLineWidth = Math.max(MIN_LINE_WIDTH, currentLineWidth - 1);
+                lineWidthValue.textContent = currentLineWidth;
+                localStorage.setItem(LINE_WIDTH_KEY, String(currentLineWidth));
+            });
+            $('#lineWidthUp').addEventListener('click', () => {
+                currentLineWidth = Math.min(MAX_LINE_WIDTH, currentLineWidth + 1);
+                lineWidthValue.textContent = currentLineWidth;
+                localStorage.setItem(LINE_WIDTH_KEY, String(currentLineWidth));
+            });
+            $('#fontSizeDown').addEventListener('click', () => {
+                currentFontSize = Math.max(MIN_FONT_SIZE, currentFontSize - 2);
+                fontSizeValue.textContent = currentFontSize;
+                localStorage.setItem(FONT_SIZE_KEY, String(currentFontSize));
+            });
+            $('#fontSizeUp').addEventListener('click', () => {
+                currentFontSize = Math.min(MAX_FONT_SIZE, currentFontSize + 2);
+                fontSizeValue.textContent = currentFontSize;
+                localStorage.setItem(FONT_SIZE_KEY, String(currentFontSize));
+            });
+
+            // ---------- SHELF MANAGEMENT ----------
+            function renderShelfSelect() {
+                shelfSelect.innerHTML = '';
+                appState.shelves.forEach(shelf => {
+                    const opt = document.createElement('option');
+                    opt.value = shelf.id;
+                    opt.textContent = shelf.name;
+                    if (shelf.id === currentShelfId) opt.selected = true;
+                    shelfSelect.appendChild(opt);
+                });
+                // Обновляем badge
+                updateMenuBadge();
+            }
+
+            function switchShelf(shelfId) {
+                // Сохраняем текущее состояние
+                const oldShelf = getCurrentShelf();
+                if (oldShelf) {
+                    oldShelf.currentPage = currentPage;
+                    oldShelf.scale = scale;
+                }
+
+                currentShelfId = shelfId;
+                const shelf = getCurrentShelf();
+                if (shelf) {
+                    currentPage = shelf.currentPage || 1;
+                    scale = shelf.scale || 1.2;
+                    zoomLevel.textContent = Math.round(scale * 100) + '%';
+                }
+
+                saveAppState();
+                renderShelfSelect();
+                loadPdfForShelf(shelf);
+                refreshUIForShelf();
+                updateMenuBadge();
+            }
+
+            function createNewShelf() {
+                const name = prompt('Введите название учебника:', 'Учебник ' + (appState.shelves.length + 1));
+                if (!name) return;
+                const newShelf = defaultShelf(name);
+                appState.shelves.push(newShelf);
+                saveAppState();
+                renderShelfSelect();
+                switchShelf(newShelf.id);
+                showToast('✅ Создан учебник: ' + name, 'success');
+            }
+
+            function deleteCurrentShelf() {
+                if (appState.shelves.length <= 1) {
+                    showToast('❌ Нельзя удалить последний учебник', 'error');
+                    return;
+                }
+                const shelf = getCurrentShelf();
+                if (!shelf) return;
+                if (!confirm(`Удалить учебник "${shelf.name}" со всеми данными?`)) return;
+
+                // Удаляем PDF из IndexedDB
+                if (shelf.pdfId) {
+                    dbDelete(DB_STORE_PDF, shelf.pdfId);
+                }
+                // Удаляем аудио
+                if (shelf.audioTracks) {
+                    shelf.audioTracks.forEach(t => dbDelete(DB_STORE_AUDIO, t.id));
+                }
+
+                const idx = appState.shelves.findIndex(s => s.id === shelf.id);
+                if (idx > -1) appState.shelves.splice(idx, 1);
+                saveAppState();
+
+                const newActive = appState.shelves[0];
+                currentShelfId = newActive.id;
+                renderShelfSelect();
+                switchShelf(newActive.id);
+                showToast('🗑️ Учебник удалён', 'success');
+            }
+
+            // ---------- toggle quality ----------
+            function toggleQuality() {
+                highQuality = !highQuality;
+                qualityToggle.classList.toggle('high-quality', highQuality);
+                qualityToggle.textContent = highQuality ? '🔍 Качество' : '⚡ Скорость';
+                if (pdfDoc) {
+                    loadPage(currentPage);
+                }
+                showToast(highQuality ? 'Высокое качество' : 'Быстрый режим', 'success');
+            }
+
+            qualityToggle.addEventListener('click', toggleQuality);
+
+            // ---------- PDF.js ----------
+            async function boot() {
+                if (typeof pdfjsLib === 'undefined') {
+                    showToast('Не загрузился PDF.js', 'error');
+                    return;
+                }
+                pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+                db = await openDb();
+                ensureActiveShelf();
+                bindEvents();
+                renderShelfSelect();
+
+                const shelf = getCurrentShelf();
+                currentPage = shelf?.currentPage || 1;
+                scale = shelf?.scale || 1.2;
+                zoomLevel.textContent = Math.round(scale * 100) + '%';
+
+                await loadPdfForShelf(shelf);
+                refreshUIForShelf();
+                statusLeft.textContent = '📖 Готово';
+                showToast('Готово', 'success');
+                updateMenuBadge();
+                initVolume();
+
+                // Восстанавливаем сохранённую страницу
+                if (shelf?.currentPage && pdfDoc) {
+                    loadPage(shelf.currentPage);
+                }
+            }
+
+            function initVolume() {
+                if (volumeSlider) {
+                    volumeSlider.value = 80;
+                    if (activeAudio) activeAudio.volume = 0.8;
+                }
+            }
+
+            function bindEvents() {
+                // Загрузка PDF
+                $('#loadPdfBtn').addEventListener('click', () => $('#pdfInput').click());
+                $('#pdfInput').addEventListener('change', e => {
+                    const file = e.target.files[0];
+                    if (file) loadPdfFile(file);
+                    e.target.value = '';
+                });
+
+                // Drop zone
+                const dz = document.getElementById('dropZone');
+                if (dz) {
+                    ['dragover', 'dragleave', 'drop'].forEach(ev => {
+                        dz.addEventListener(ev, handleDropZone);
+                    });
+                }
+
+                // Навигация
+                $('#prevPageBtn').addEventListener('click', () => pdfDoc && currentPage > 1 && loadPage(currentPage - 1));
+                $('#nextPageBtn').addEventListener('click', () => pdfDoc && currentPage < totalPages && loadPage(currentPage +
+                1));
+                pageInput.addEventListener('change', () => {
+                    if (!pdfDoc) return showToast('Сначала загрузите PDF', 'error');
+                    let p = parseInt(pageInput.value, 10) || 1;
+                    p = Math.max(1, Math.min(totalPages, p));
+                    if (p !== currentPage) loadPage(p);
+                });
+
+                // Zoom
+                $('#zoomInBtn').addEventListener('click', () => changeZoom(0.1));
+                $('#zoomOutBtn').addEventListener('click', () => changeZoom(-0.1));
+
+                // Keyboard
+                document.addEventListener('keydown', e => {
+                    if ((e.key === 'ArrowRight' || e.key === 'ArrowDown') && pdfDoc && currentPage < totalPages) { e
+                            .preventDefault();
+                        loadPage(currentPage + 1); }
+                    if ((e.key === 'ArrowLeft' || e.key === 'ArrowUp') && pdfDoc && currentPage > 1) { e.preventDefault();
+                        loadPage(currentPage - 1); }
+                    if ((e.key === '=' || e.key === '+') && e.ctrlKey) { e.preventDefault();
+                        changeZoom(0.1); }
+                    if ((e.key === '-') && e.ctrlKey) { e.preventDefault();
+                        changeZoom(-0.1); }
+                });
+
+                // Инструменты
+                const toolMap = { toolStrike: 'strike', toolDraw: 'draw', toolText: 'text' };
+                const toolLabels = { strike: 'Зачеркивание', draw: 'Рисование', text: 'Текст' };
+                Object.entries(toolMap).forEach(([id, tool]) => {
+                    $('#' + id).addEventListener('click', () => {
+                        const alreadyActive = currentTool === tool;
+                        $$('.tools-row .btn').forEach(b => b.classList.remove('active-tool'));
+                        if (alreadyActive) {
+                            currentTool = 'none';
+                            statusTool.textContent = '👁️ Просмотр';
+                        } else {
+                            currentTool = tool;
+                            $('#' + id).classList.add('active-tool');
+                            statusTool.textContent = `🔧 ${toolLabels[tool]}`;
+                            if (tool === 'text') showToast('Кликните в нужное место', '');
+                        }
+                        const layer = $('.draw-layer');
+                        if (layer) updateDrawLayerMode(layer);
+                    });
+                });
+
+                // Цвета
+                $$('.color-btn').forEach(btn => btn.addEventListener('click', () => {
+                    $$('.color-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentColor = btn.dataset.color;
+                }));
+
+                // Undo / Clear
+                $('#undoBtn').addEventListener('click', undoCurrentPage);
+                $('#clearBtn').addEventListener('click', clearCurrentPage);
+
+                // Аудио
+                $('#audioInput').addEventListener('change', (e) => uploadAudioFiles(e.target.files));
+                $('#audioFolderInput').addEventListener('change', (e) => uploadAudioFiles(e.target.files));
+                $('#deleteAllAudioBtn').addEventListener('click', deleteAllAudio);
+
+                // Плеер
+                playBtn.addEventListener('click', toggleAudioPlayback);
+                audioProgress.addEventListener('click', seekAudio);
+                rewindBtn.addEventListener('click', () => {
+                    if (activeAudio) {
+                        activeAudio.currentTime = Math.max(0, activeAudio.currentTime - 10);
+                        updateAudioTimeDisplay();
+                    }
+                });
+                forwardBtn.addEventListener('click', () => {
+                    if (activeAudio && activeAudio.duration) {
+                        activeAudio.currentTime = Math.min(activeAudio.duration, activeAudio.currentTime + 10);
+                        updateAudioTimeDisplay();
+                    }
+                });
+
+                volumeSlider.addEventListener('input', (e) => {
+                    const val = parseInt(e.target.value);
+                    if (activeAudio) {
+                        activeAudio.volume = val / 100;
+                    }
+                    if (val === 0) {
+                        volumeIcon.textContent = '🔇';
+                        isMuted = true;
+                    } else {
+                        volumeIcon.textContent = val < 40 ? '🔉' : '🔊';
+                        isMuted = false;
+                    }
+                });
+
+                muteBtn.addEventListener('click', () => {
+                    if (activeAudio) {
+                        if (isMuted) {
+                            const val = parseInt(volumeSlider.value) || 80;
+                            activeAudio.volume = val / 100;
+                            volumeIcon.textContent = val < 40 ? '🔉' : '🔊';
+                            isMuted = false;
+                        } else {
+                            activeAudio.volume = 0;
+                            volumeIcon.textContent = '🔇';
+                            isMuted = true;
+                        }
+                    } else {
+                        showToast('Нет активного аудио', 'error');
+                    }
+                });
+
+                // Поиск аудио
+                audioSearchInput.addEventListener('input', (e) => {
+                    audioSearchQuery = e.target.value.toLowerCase().trim();
+                    renderAudioList();
+                });
+                $('#clearSearchBtn').addEventListener('click', () => {
+                    audioSearchInput.value = '';
+                    audioSearchQuery = '';
+                    renderAudioList();
+                    audioSearchInput.focus();
+                });
+
+                // Управление учебниками
+                shelfSelect.addEventListener('change', (e) => {
+                    const id = e.target.value;
+                    if (id && id !== currentShelfId) {
+                        switchShelf(id);
+                    }
+                });
+
+                newShelfBtn.addEventListener('click', createNewShelf);
+                deleteShelfBtn.addEventListener('click', deleteCurrentShelf);
+
+                // Бренд — переключение между учебниками
+                $('#brandBtn').addEventListener('click', () => {
+                    if (appState.shelves.length > 1) {
+                        const idx = appState.shelves.findIndex(s => s.id === currentShelfId);
+                        const nextIdx = (idx + 1) % appState.shelves.length;
+                        switchShelf(appState.shelves[nextIdx].id);
+                        showToast('📚 ' + appState.shelves[nextIdx].name, 'success');
+                    }
+                });
+            }
+
+            // ---------- Zoom ----------
+            function changeZoom(delta) {
+                if (!pdfDoc) return showToast('Сначала загрузите PDF', 'error');
+                let newScale = scale + delta;
+                newScale = Math.max(0.3, Math.min(3.0, newScale));
+                scale = newScale;
+                zoomLevel.textContent = Math.round(scale * 100) + '%';
+                // Сохраняем в полку
+                const shelf = getCurrentShelf();
+                if (shelf) shelf.scale = scale;
+                saveAppState();
+                loadPage(currentPage);
+            }
+
+            function refreshUIForShelf() {
+                const shelf = getCurrentShelf();
+                updateStats();
+                renderAudioList();
+                updateAudioPageStatus();
+                updateMenuBadge();
+                if (shelf) {
+                    statusLeft.textContent = `📖 ${shelf.pdfName || 'Нет PDF'} — ${shelf.name}`;
+                }
+            }
+
+            function updateMenuBadge() {
+                const shelf = getCurrentShelf();
+                if (!shelf) { menuBadge.textContent = '0'; return; }
+                const total = Object.values(shelf.annotations || {}).reduce((n, arr) => n + (arr?.length || 0), 0) +
+                    Object.values(shelf.textNotes || {}).reduce((n, arr) => n + (arr?.length || 0), 0) +
+                    (shelf.audioTracks || []).length;
+                menuBadge.textContent = total || '0';
+            }
+
+            // ---------- PDF загрузка ----------
+            async function loadPdfForShelf(shelf) {
+                if (!shelf || !shelf.pdfId) {
+                    pdfDoc = null;
+                    totalPages = 0;
+                    currentPage = 1;
+                    pdfContainer.innerHTML = `
+                    <div class="drop-zone" id="dropZone">
+                        <span class="icon">📄</span>
+                        <div class="title">Загрузите PDF-учебник</div>
+                        <div class="sub">Нажмите «PDF» вверху или перетащите файл</div>
+                    </div>
+                `;
+                    const newDropZone = document.getElementById('dropZone');
+                    if (newDropZone) {
+                        ['dragover', 'dragleave', 'drop'].forEach(ev => {
+                            newDropZone.addEventListener(ev, handleDropZone);
+                        });
+                    }
+                    updatePageInfo();
+                    statusLeft.textContent = `📖 ${shelf?.name || 'Нет учебника'}`;
+                    return;
+                }
+                try {
+                    const pdfData = await dbGet(DB_STORE_PDF, shelf.pdfId);
+                    if (!pdfData) {
+                        shelf.pdfId = null;
+                        shelf.pdfName = null;
+                        saveAppState();
+                        await loadPdfForShelf(shelf);
+                        return;
+                    }
+                    pdfDoc = await pdfjsLib.getDocument({ data: pdfData }).promise;
+                    totalPages = pdfDoc.numPages;
+                    const dz = document.getElementById('dropZone');
+                    if (dz) dz.style.display = 'none';
+                    updatePageInfo();
+                    statusLeft.textContent = `📖 ${shelf.pdfName || 'PDF'} — ${shelf.name}`;
+                    zoomLevel.textContent = Math.round(scale * 100) + '%';
+                } catch (err) {
+                    console.error(err);
+                    showToast(`Ошибка загрузки PDF: ${err.message}`, 'error');
+                }
+            }
+
+            function handleDropZone(e) {
+                e.preventDefault();
+                if (e.type === 'dragover') return e.currentTarget.classList.add('drag-over');
+                if (e.type === 'dragleave') return e.currentTarget.classList.remove('drag-over');
+                e.currentTarget.classList.remove('drag-over');
+                const file = e.dataTransfer.files?.[0];
+                if (!file) return;
+                if (file.type !== 'application/pdf') return showToast('Нужен PDF-файл', 'error');
+                loadPdfFile(file);
+            }
+
+            async function loadPdfFile(file) {
+                const shelf = getCurrentShelf();
+                if (!shelf) return;
+                statusLeft.textContent = `⏳ Загрузка ${file.name}...`;
+                const reader = new FileReader();
+                reader.onload = async e => {
+                    try {
+                        const data = new Uint8Array(e.target.result);
+                        const pdfId = uid('pdf');
+                        await dbPut(DB_STORE_PDF, pdfId, data);
+                        if (shelf.pdfId) {
+                            await dbDelete(DB_STORE_PDF, shelf.pdfId);
+                        }
+                        shelf.pdfId = pdfId;
+                        shelf.pdfName = file.name;
+                        shelf.currentPage = 1;
+                        saveAppState();
+                        pdfDoc = await pdfjsLib.getDocument({ data }).promise;
+                        totalPages = pdfDoc.numPages;
+                        currentPage = 1;
+                        const dz = document.getElementById('dropZone');
+                        if (dz) dz.style.display = 'none';
+                        updatePageInfo();
+                        await loadPage(1);
+                        showToast(`✅ PDF загружен для "${shelf.name}"`, 'success');
+                        statusLeft.textContent = `📖 ${file.name} — ${shelf.name}`;
+                        updateMenuBadge();
+                        zoomLevel.textContent = Math.round(scale * 100) + '%';
+                    } catch (err) {
+                        console.error(err);
+                        showToast(`Ошибка PDF: ${err.message}`, 'error');
+                    }
+                };
+                reader.readAsArrayBuffer(file);
+            }
+
+            function updatePageInfo() {
+                pageInput.value = currentPage;
+                pageTotal.textContent = `/ ${totalPages || '—'}`;
+                statusPageNum.textContent = currentPage;
+                statusTotalPages.textContent = totalPages || '—';
+            }
+
+            // ============================================================
+            // ЗАГРУЗКА СТРАНИЦЫ С СОХРАНЕНИЕМ ТЕКСТА
+            // ============================================================
+            async function loadPage(pageNum) {
+                if (!pdfDoc) return;
+
+                // Токен защищает от гонки: если пока грузилась/рендерилась
+                // эта страница пользователь успел кликнуть зум ещё раз,
+                // "устаревший" вызов ниже просто ничего не тронет в DOM.
+                const myToken = ++pageLoadToken;
+
+                // Отменяем предыдущий незавершённый рендер PDF.js, чтобы
+                // два рендера не гонялись друг с другом и не портили канвас.
+                if (currentRenderTask) {
+                    try { currentRenderTask.cancel(); } catch (e) {}
+                    currentRenderTask = null;
+                }
+
+                const page = await pdfDoc.getPage(pageNum);
+                if (myToken !== pageLoadToken) return; // устарело
+
+                const qualityMultiplier = highQuality ? 1.5 : 1.0;
+                const finalScale = scale * qualityMultiplier;
+
+                const viewport = page.getViewport({ scale: finalScale });
+                pdfContainer.innerHTML = '';
+                const wrap = document.createElement('div');
+                wrap.className = 'page-container';
+                wrap.dataset.page = pageNum;
+                wrap.style.width = (viewport.width / qualityMultiplier) + 'px';
+                wrap.style.maxWidth = '100%';
+
+                const canvas = document.createElement('canvas');
+                const dpr = highQuality ? (window.devicePixelRatio || 1) : 1;
+                canvas.width = viewport.width * dpr;
+                canvas.height = viewport.height * dpr;
+                canvas.style.width = (viewport.width / qualityMultiplier) + 'px';
+                canvas.style.height = (viewport.height / qualityMultiplier) + 'px';
+
+                const ctx = canvas.getContext('2d');
+                ctx.imageSmoothingEnabled = true;
+                ctx.imageSmoothingQuality = highQuality ? 'high' : 'low';
+
+                const drawLayer = document.createElement('canvas');
+                drawLayer.className = 'draw-layer';
+                drawLayer.width = viewport.width * dpr;
+                drawLayer.height = viewport.height * dpr;
+                drawLayer.style.width = (viewport.width / qualityMultiplier) + 'px';
+                drawLayer.style.height = (viewport.height / qualityMultiplier) + 'px';
+                updateDrawLayerMode(drawLayer);
+
+                const loading = document.createElement('div');
+                loading.className = 'loading-overlay';
+                loading.innerHTML = '<div class="spinner"></div><span>Загрузка...</span>';
+                wrap.append(canvas, drawLayer, loading);
+                pdfContainer.appendChild(wrap);
+
+                const renderTask = page.render({
+                    canvasContext: ctx,
+                    viewport: viewport,
+                    background: 'white',
+                    enableWebGL: highQuality,
+                    useSystemFonts: true
+                });
+                currentRenderTask = renderTask;
+                try {
+                    await renderTask.promise;
+                } catch (err) {
+                    // RenderingCancelledException — ожидаемо при быстром зуме, просто выходим
+                    if (myToken !== pageLoadToken) return;
+                    if (err && err.name !== 'RenderingCancelledException') throw err;
+                    return;
+                }
+                if (currentRenderTask === renderTask) currentRenderTask = null;
+                if (myToken !== pageLoadToken) return; // страницу успели перелистнуть/перезумить
+
+                loading.remove();
+
+                // Фиксируем параметры, по которым слой заметок будет
+                // всегда пересчитываться детерминированно (без обращения
+                // к getBoundingClientRect, которое может вернуть 0 до layout).
+                currentDpr = dpr;
+                currentQualityMult = qualityMultiplier;
+
+                currentPage = pageNum;
+                updatePageInfo();
+
+                const shelf = getCurrentShelf();
+                if (shelf) {
+                    shelf.currentPage = pageNum;
+                    shelf.viewedPages = Array.from(new Set([...(shelf.viewedPages || []), pageNum]));
+                    saveAppState();
+                }
+
+                // СОХРАНЯЕМ ФУНКЦИЮ ОТРИСОВКИ В ГЛОБАЛЬНОЙ ПЕРЕМЕННОЙ
+                redrawAllFn = function(canvas, pageNum) {
+                    const ctx = canvas.getContext('2d');
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    const shelf = getCurrentShelf();
+                    if (!shelf) return;
+                    const annotations = shelf.annotations?.[pageNum] || [];
+                    const textNotes = shelf.textNotes?.[pageNum] || [];
+                    // Детерминированный коэффициент: dpr * коэфф.качества * текущий zoom.
+                    // Не зависит от текущего размера canvas в DOM, поэтому
+                    // не "теряет" текст при быстром/повторном зуме.
+                    const ratio = currentDpr * currentQualityMult * scale;
+
+                    ctx.save();
+                    ctx.scale(ratio, ratio);
+
+                    annotations.forEach(ann => {
+                        ctx.save();
+                        if (ann.type === 'strike') {
+                            ctx.strokeStyle = ann.color;
+                            ctx.lineWidth = ann.lineWidth || 3;
+                            ctx.beginPath();
+                            ctx.moveTo(ann.startX, ann.startY + 12);
+                            ctx.lineTo(ann.endX, ann.endY + 12);
+                            ctx.stroke();
+                        } else if (ann.type === 'draw') {
+                            ctx.strokeStyle = ann.color;
+                            ctx.lineWidth = ann.lineWidth || 3;
+                            ctx.lineCap = 'round';
+                            ctx.lineJoin = 'round';
+                            ctx.beginPath();
+                            ctx.moveTo(ann.points[0].x, ann.points[0].y);
+                            for (let i = 1; i < ann.points.length; i++) {
+                                ctx.lineTo(ann.points[i].x, ann.points[i].y);
+                            }
+                            ctx.stroke();
+                        }
+                        ctx.restore();
+                    });
+
+                    textNotes.forEach(t => {
+                        ctx.save();
+                        ctx.font = `${t.fontSize || 16}px 'Segoe UI', sans-serif`;
+                        ctx.fillStyle = t.color || '#1f140c';
+                        ctx.fillText(t.text, t.x, t.y + 2);
+                        ctx.restore();
+                    });
+
+                    ctx.restore();
+                };
+
+                redrawAllFn(drawLayer, pageNum);
+                bindDrawEvents(drawLayer, pageNum);
+                updateStats();
+                updateAudioPageStatus();
+                statusLeft.textContent = `📖 Страница ${pageNum} из ${totalPages}`;
+                $('#pdfViewer').scrollTop = 0;
+                updateMenuBadge();
+            }
+
+            // ---------- РИСОВАНИЕ ----------
+            function updateDrawLayerMode(layer) {
+                layer.className = 'draw-layer';
+                const modeClass = {
+                    strike: 'strike-mode',
+                    draw: 'draw-mode',
+                    text: 'text-mode'
+                } [currentTool];
+                if (modeClass) layer.classList.add(modeClass);
+            }
+
+            function canvasPos(e, canvas) {
+                const rect = canvas.getBoundingClientRect();
+                const t = (e.touches && e.touches[0]) || (e.changedTouches && e.changedTouches[0]);
+                const clientX = t ? t.clientX : e.clientX;
+                const clientY = t ? t.clientY : e.clientY;
+                return {
+                    x: clientX - rect.left,
+                    y: clientY - rect.top
+                };
+            }
+
+            function canvasRatio(canvas) {
+                const rect = canvas.getBoundingClientRect();
+                return rect.width ? (canvas.width / rect.width) : 1;
+            }
+
+            function bindDrawEvents(drawLayer, pageNum) {
+                const canvas = drawLayer;
+                // Удаляем старые обработчики, чтобы не было дублей
+                const newCanvas = canvas.cloneNode(true);
+                canvas.parentNode.replaceChild(newCanvas, canvas);
+                const newDrawLayer = newCanvas;
+
+                newDrawLayer.addEventListener('mousedown', (e) => {
+                    if (currentTool === 'text') {
+                        openTextEditor(e, newDrawLayer, pageNum);
+                        return;
+                    }
+                    if (currentTool === 'none') return;
+                    const p = canvasPos(e, newDrawLayer);
+                    isDrawing = true;
+                    startX = p.x;
+                    startY = p.y;
+                    lastX = p.x;
+                    lastY = p.y;
+                    drawPoints = currentTool === 'draw' ? [{ x: p.x, y: p.y }] : [];
+                });
+
+                newDrawLayer.addEventListener('mousemove', (e) => {
+                    if (!isDrawing || currentTool === 'none' || currentTool === 'text') return;
+                    const p = canvasPos(e, newDrawLayer);
+                    const ctx = newDrawLayer.getContext('2d');
+                    const ratio = currentDpr * currentQualityMult;
+                    if (currentTool === 'draw') {
+                        drawPoints.push({ x: p.x, y: p.y });
+                        if (redrawAllFn) redrawAllFn(newDrawLayer, pageNum);
+                        ctx.save();
+                        ctx.scale(ratio, ratio);
+                        ctx.strokeStyle = currentColor;
+                        ctx.lineWidth = currentLineWidth;
+                        ctx.lineCap = 'round';
+                        ctx.lineJoin = 'round';
+                        ctx.beginPath();
+                        ctx.moveTo(lastX, lastY);
+                        ctx.lineTo(p.x, p.y);
+                        ctx.stroke();
+                        ctx.restore();
+                        lastX = p.x;
+                        lastY = p.y;
+                        return;
+                    }
+                    if (redrawAllFn) redrawAllFn(newDrawLayer, pageNum);
+                    ctx.save();
+                    ctx.scale(ratio, ratio);
+                    if (currentTool === 'strike') {
+                        ctx.strokeStyle = currentColor;
+                        ctx.lineWidth = currentLineWidth;
+                        ctx.beginPath();
+                        ctx.moveTo(startX, startY + 12);
+                        ctx.lineTo(p.x, p.y + 12);
+                        ctx.stroke();
+                    }
+                    ctx.restore();
+                });
+
+                newDrawLayer.addEventListener('mouseup', (e) => {
+                    if (!isDrawing || currentTool === 'none' || currentTool === 'text') { isDrawing = false; return; }
+                    const shelf = getCurrentShelf();
+                    if (!shelf) { isDrawing = false; return; }
+                    shelf.annotations[pageNum] ||= [];
+                    const p = canvasPos(e, newDrawLayer);
+                    if (currentTool === 'draw' && drawPoints.length > 1) {
+                        shelf.annotations[pageNum].push({
+                            type: 'draw',
+                            color: currentColor,
+                            lineWidth: currentLineWidth,
+                            points: drawPoints.map(pt => ({ x: pt.x / scale, y: pt.y / scale }))
+                        });
+                    } else if (currentTool === 'strike' && Math.abs(p.x - startX) > 5) {
+                        shelf.annotations[pageNum].push({
+                            type: 'strike',
+                            color: currentColor,
+                            lineWidth: currentLineWidth,
+                            startX: startX / scale,
+                            startY: startY / scale,
+                            endX: p.x / scale,
+                            endY: p.y / scale
+                        });
+                    }
+                    isDrawing = false;
+                    drawPoints = [];
+                    saveAppState();
+                    if (redrawAllFn) redrawAllFn(newDrawLayer, pageNum);
+                    updateStats();
+                    updateMenuBadge();
+                });
+
+                newDrawLayer.addEventListener('mouseleave', () => { isDrawing = false; });
+
+                // Touch events
+                newDrawLayer.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    if (currentTool === 'text') {
+                        openTextEditor(e, newDrawLayer, pageNum);
+                        return;
+                    }
+                    if (currentTool === 'none') return;
+                    const p = canvasPos(e, newDrawLayer);
+                    isDrawing = true;
+                    startX = p.x;
+                    startY = p.y;
+                    lastX = p.x;
+                    lastY = p.y;
+                    drawPoints = currentTool === 'draw' ? [{ x: p.x, y: p.y }] : [];
+                }, { passive: false });
+
+                newDrawLayer.addEventListener('touchmove', (e) => {
+                    e.preventDefault();
+                    if (!isDrawing || currentTool === 'none' || currentTool === 'text') return;
+                    const p = canvasPos(e, newDrawLayer);
+                    const ctx = newDrawLayer.getContext('2d');
+                    const ratio = currentDpr * currentQualityMult;
+                    if (currentTool === 'draw') {
+                        drawPoints.push({ x: p.x, y: p.y });
+                        if (redrawAllFn) redrawAllFn(newDrawLayer, pageNum);
+                        ctx.save();
+                        ctx.scale(ratio, ratio);
+                        ctx.strokeStyle = currentColor;
+                        ctx.lineWidth = currentLineWidth;
+                        ctx.lineCap = 'round';
+                        ctx.lineJoin = 'round';
+                        ctx.beginPath();
+                        ctx.moveTo(lastX, lastY);
+                        ctx.lineTo(p.x, p.y);
+                        ctx.stroke();
+                        ctx.restore();
+                        lastX = p.x;
+                        lastY = p.y;
+                        return;
+                    }
+                    if (redrawAllFn) redrawAllFn(newDrawLayer, pageNum);
+                    ctx.save();
+                    ctx.scale(ratio, ratio);
+                    if (currentTool === 'strike') {
+                        ctx.strokeStyle = currentColor;
+                        ctx.lineWidth = currentLineWidth;
+                        ctx.beginPath();
+                        ctx.moveTo(startX, startY + 12);
+                        ctx.lineTo(p.x, p.y + 12);
+                        ctx.stroke();
+                    }
+                    ctx.restore();
+                }, { passive: false });
+
+                newDrawLayer.addEventListener('touchend', (e) => {
+                    e.preventDefault();
+                    if (!isDrawing || currentTool === 'none' || currentTool === 'text') { isDrawing = false; return; }
+                    const shelf = getCurrentShelf();
+                    if (!shelf) { isDrawing = false; return; }
+                    shelf.annotations[pageNum] ||= [];
+                    const p = canvasPos(e, newDrawLayer);
+                    if (currentTool === 'draw' && drawPoints.length > 1) {
+                        shelf.annotations[pageNum].push({
+                            type: 'draw',
+                            color: currentColor,
+                            lineWidth: currentLineWidth,
+                            points: drawPoints.map(pt => ({ x: pt.x / scale, y: pt.y / scale }))
+                        });
+                    } else if (currentTool === 'strike' && Math.abs(p.x - startX) > 5) {
+                        shelf.annotations[pageNum].push({
+                            type: 'strike',
+                            color: currentColor,
+                            lineWidth: currentLineWidth,
+                            startX: startX / scale,
+                            startY: startY / scale,
+                            endX: p.x / scale,
+                            endY: p.y / scale
+                        });
+                    }
+                    isDrawing = false;
+                    drawPoints = [];
+                    saveAppState();
+                    if (redrawAllFn) redrawAllFn(newDrawLayer, pageNum);
+                    updateStats();
+                    updateMenuBadge();
+                }, { passive: false });
+            }
+
+            // ============================================================
+            // ТЕКСТОВЫЙ РЕДАКТОР
+            // ============================================================
+            function openTextEditor(e, canvas, pageNum) {
+                if (editorOverlay) {
+                    editorOverlay.remove();
+                    editorOverlay = null;
+                }
+
+                const pos = canvasPos(e, canvas);
+                const rect = canvas.getBoundingClientRect();
+
+                const overlay = document.createElement('div');
+                overlay.className = 'text-editor-overlay';
+
+                let left = pos.x;
+                let top = pos.y - 10;
+
+                const editorWidth = Math.min(300, rect.width * 0.8);
+                const editorHeight = 80;
+
+                if (left + editorWidth > rect.width) left = rect.width - editorWidth - 10;
+                if (left < 10) left = 10;
+                if (top + editorHeight > rect.height) top = rect.height - editorHeight - 10;
+                if (top < 10) top = 10;
+
+                overlay.style.left = left + 'px';
+                overlay.style.top = top + 'px';
+                overlay.style.maxWidth = Math.min(320, rect.width * 0.85) + 'px';
+                overlay.style.minWidth = Math.min(160, rect.width * 0.5) + 'px';
+
+                overlay.innerHTML = `
+                    <textarea placeholder="Введите текст..." rows="1"></textarea>
+                    <div class="editor-actions">
+                        <button class="save-btn" title="Сохранить (Enter)">✅</button>
+                        <button class="cancel-btn" title="Отмена (Esc)">✕</button>
+                    </div>
+                `;
+
+                canvas.parentElement.appendChild(overlay);
+
+                const textarea = overlay.querySelector('textarea');
+                const saveBtn = overlay.querySelector('.save-btn');
+                const cancelBtn = overlay.querySelector('.cancel-btn');
+
+                textarea.addEventListener('input', () => {
+                    textarea.style.height = 'auto';
+                    textarea.style.height = Math.min(textarea.scrollHeight, 80) + 'px';
+                });
+
+                setTimeout(() => {
+                    textarea.focus();
+                    textarea.select();
+                }, 50);
+
+                saveBtn.addEventListener('click', () => {
+                    const text = textarea.value.trim();
+                    if (!text) {
+                        overlay.remove();
+                        editorOverlay = null;
+                        return;
+                    }
+                    const shelf = getCurrentShelf();
+                    if (!shelf) { overlay.remove();
+                        editorOverlay = null; return; }
+                    shelf.textNotes[pageNum] ||= [];
+                    shelf.textNotes[pageNum].push({
+                        text: text,
+                        x: pos.x / scale,
+                        y: pos.y / scale,
+                        color: currentColor,
+                        fontSize: currentFontSize
+                    });
+                    saveAppState();
+                    if (redrawAllFn) redrawAllFn(canvas, pageNum);
+                    overlay.remove();
+                    editorOverlay = null;
+                    showToast('✅ Текст добавлен', 'success');
+                    updateStats();
+                    updateMenuBadge();
+                });
+
+                cancelBtn.addEventListener('click', () => {
+                    overlay.remove();
+                    editorOverlay = null;
+                });
+
+                textarea.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        saveBtn.click();
+                    }
+                    if (e.key === 'Escape') {
+                        overlay.remove();
+                        editorOverlay = null;
+                    }
+                });
+
+                const closeHandler = (event) => {
+                    if (overlay && !overlay.contains(event.target)) {
+                        overlay.remove();
+                        editorOverlay = null;
+                        document.removeEventListener('mousedown', closeHandler);
+                        document.removeEventListener('touchstart', closeHandler);
+                    }
+                };
+                setTimeout(() => {
+                    document.addEventListener('mousedown', closeHandler);
+                    document.addEventListener('touchstart', closeHandler);
+                }, 100);
+
+                editorOverlay = overlay;
+            }
+
+            // ---------- ОСТАЛЬНЫЕ ФУНКЦИИ ----------
+            function undoCurrentPage() {
+                const shelf = getCurrentShelf();
+                if (!shelf) return;
+                if (shelf.textNotes[currentPage]?.length) {
+                    shelf.textNotes[currentPage].pop();
+                    saveAppState();
+                    const layer = $('.draw-layer');
+                    if (layer && redrawAllFn) redrawAllFn(layer, currentPage);
+                    updateMenuBadge();
+                    return showToast('Последняя пометка удалена', '');
+                }
+                if (shelf.annotations[currentPage]?.length) {
+                    shelf.annotations[currentPage].pop();
+                    saveAppState();
+                    const layer = $('.draw-layer');
+                    if (layer && redrawAllFn) redrawAllFn(layer, currentPage);
+                    updateMenuBadge();
+                    return showToast('Последняя аннотация удалена', '');
+                }
+                showToast('Нечего отменять', 'error');
+            }
+
+            function clearCurrentPage() {
+                if (!pdfDoc) return showToast('Сначала загрузите PDF', 'error');
+                if (!confirm(`Удалить все пометки на странице ${currentPage}?`)) return;
+                const shelf = getCurrentShelf();
+                if (!shelf) return;
+                delete shelf.annotations[currentPage];
+                delete shelf.textNotes[currentPage];
+                saveAppState();
+                const layer = $('.draw-layer');
+                if (layer && redrawAllFn) redrawAllFn(layer, currentPage);
+                updateStats();
+                updateMenuBadge();
+                showToast('Страница очищена', '');
+            }
+
+            // ---------- АУДИО ----------
+            async function uploadAudioFiles(fileList) {
+                const files = Array.from(fileList || []);
+                if (!files.length) return;
+                const audioExtensions = ['.mp3', '.wav', '.ogg', '.m4a', '.aac', '.flac', '.opus'];
+                const audioFiles = files.filter(f => {
+                    const ext = '.' + f.name.split('.').pop().toLowerCase();
+                    return audioExtensions.includes(ext);
+                });
+                if (!audioFiles.length) {
+                    showToast('Не найдено аудиофайлов', 'error');
+                    return;
+                }
+                const shelf = getCurrentShelf();
+                if (!shelf) return;
+                let ok = 0;
+                const total = audioFiles.length;
+                uploadProgressContainer.style.display = 'block';
+                uploadProgressFill.style.width = '0%';
+                for (let i = 0; i < total; i++) {
+                    const file = audioFiles[i];
+                    const id = uid('audio');
+                    await dbPut(DB_STORE_AUDIO, id, file);
+                    shelf.audioTracks.push({ id, name: file.name, page: currentPage });
+                    ok++;
+                    const percent = ((i + 1) / total) * 100;
+                    uploadProgressFill.style.width = percent + '%';
+                    if (i % 5 === 0 || i === total - 1) {
+                        audioStatus.textContent = `Загружено: ${i+1}/${total}`;
+                    }
+                }
+                setTimeout(() => {
+                    uploadProgressContainer.style.display = 'none';
+                    uploadProgressFill.style.width = '0%';
+                }, 1500);
+                saveAppState();
+                renderAudioList();
+                updateStats();
+                updateMenuBadge();
+                showToast(`✅ Загружено ${ok} аудиофайлов!`, 'success');
+                audioStatus.textContent = `${getCurrentShelf()?.audioTracks?.length || 0}`;
+                $('#audioInput').value = '';
+                $('#audioFolderInput').value = '';
+            }
+
+            function renderAudioList() {
+                const shelf = getCurrentShelf();
+                const tracks = shelf?.audioTracks || [];
+                audioList.innerHTML = '';
+                let filteredTracks = tracks;
+                if (audioSearchQuery) {
+                    filteredTracks = tracks.filter(t => t.name.toLowerCase().includes(audioSearchQuery));
+                }
+                if (filteredTracks.length === 0) {
+                    const empty = document.createElement('div');
+                    empty.className = 'no-results';
+                    empty.textContent = audioSearchQuery ? '🔍 Ничего не найдено' : 'Нет аудиофайлов';
+                    audioList.appendChild(empty);
+                    return;
+                }
+                filteredTracks.forEach(track => {
+                    const row = document.createElement('div');
+                    row.className = 'track-item' + (track.id === currentAudioId ? ' active-track' : '');
+                    row.innerHTML = `
+                    <span class="track-name" title="${track.name}">${track.name}</span>
+                    <span class="track-page">Стр. ${track.page || '—'}</span>
+                    <button class="track-delete" data-id="${track.id}" title="Удалить">✕</button>
+                `;
+                    row.querySelector('.track-delete').addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        deleteSingleAudio(track.id);
+                    });
+                    row.addEventListener('click', () => selectAudio(track.id));
+                    audioList.appendChild(row);
+                });
+                audioStatus.textContent = `${tracks.length}`;
+            }
+
+            async function deleteSingleAudio(id) {
+                if (!confirm('Удалить этот аудиофайл?')) return;
+                const shelf = getCurrentShelf();
+                if (!shelf) return;
+                const trackIndex = shelf.audioTracks.findIndex(t => t.id === id);
+                if (trackIndex === -1) return;
+                await dbDelete(DB_STORE_AUDIO, id);
+                shelf.audioTracks.splice(trackIndex, 1);
+                saveAppState();
+                if (currentAudioId === id) {
+                    if (activeAudio) { activeAudio.pause();
+                        activeAudio.src = '';
+                        playBtn.textContent = '▶'; }
+                    if (currentAudioUrl) { URL.revokeObjectURL(currentAudioUrl);
+                        currentAudioUrl = null; }
+                    currentAudioId = null;
+                    audioPageLabel.textContent = '—';
+                    currentTrackName.textContent = '🎵 Выберите аудио';
+                    currentTrackPage.textContent = 'Страница: —';
+                }
+                renderAudioList();
+                updateStats();
+                updateMenuBadge();
+                showToast('Аудиофайл удалён', 'success');
+            }
+
+            async function selectAudio(id) {
+                const shelf = getCurrentShelf();
+                if (!shelf) return;
+                const track = shelf.audioTracks.find(t => t.id === id);
+                if (!track) return;
+                const blob = await dbGet(DB_STORE_AUDIO, id);
+                if (!blob) return showToast('Файл не найден', 'error');
+                if (currentAudioUrl) URL.revokeObjectURL(currentAudioUrl);
+                currentAudioUrl = URL.createObjectURL(blob);
+                if (!activeAudio) {
+                    activeAudio = new Audio();
+                    activeAudio.addEventListener('timeupdate', updateAudioTimeDisplay);
+                    activeAudio.addEventListener('ended', () => {
+                        playBtn.textContent = '▶';
+                        updateAudioTimeDisplay();
+                    });
+                }
+                activeAudio.src = currentAudioUrl;
+                const vol = parseInt(volumeSlider.value) / 100;
+                activeAudio.volume = isMuted ? 0 : vol;
+                currentAudioId = id;
+                audioPageLabel.textContent = track.page || '—';
+                currentTrackName.textContent = '🎵 ' + track.name;
+                currentTrackPage.textContent = 'Страница: ' + (track.page || '—');
+                renderAudioList();
+                updateAudioTimeDisplay();
+                statusLeft.textContent = `🎵 ${track.name}`;
+                playBtn.textContent = '▶';
+            }
+
+            async function deleteAllAudio() {
+                const shelf = getCurrentShelf();
+                if (!shelf || !shelf.audioTracks.length) { showToast('Нет аудиофайлов', 'error'); return; }
+                if (!confirm(`Удалить ВСЕ аудиофайлы (${shelf.audioTracks.length} шт.)?`)) return;
+                for (const track of shelf.audioTracks) {
+                    await dbDelete(DB_STORE_AUDIO, track.id);
+                }
+                shelf.audioTracks = [];
+                saveAppState();
+                if (activeAudio) { activeAudio.pause();
+                    activeAudio.src = '';
+                    playBtn.textContent = '▶'; }
+                if (currentAudioUrl) { URL.revokeObjectURL(currentAudioUrl);
+                    currentAudioUrl = null; }
+                currentAudioId = null;
+                audioPageLabel.textContent = '—';
+                currentTrackName.textContent = '🎵 Выберите аудио';
+                currentTrackPage.textContent = 'Страница: —';
+                renderAudioList();
+                updateStats();
+                updateMenuBadge();
+                showToast('Все аудиофайлы удалены', 'success');
+            }
+
+            async function toggleAudioPlayback() {
+                const shelf = getCurrentShelf();
+                const tracks = shelf?.audioTracks || [];
+                if (!tracks.length) return showToast('Сначала загрузите аудио', 'error');
+                if (!activeAudio || !currentAudioId) {
+                    await selectAudio(tracks[0].id);
+                }
+                if (!activeAudio) return;
+                if (activeAudio.paused) {
+                    await activeAudio.play();
+                    playBtn.textContent = '⏸';
+                } else {
+                    activeAudio.pause();
+                    playBtn.textContent = '▶';
+                }
+            }
+
+            function seekAudio(e) {
+                if (!activeAudio || !activeAudio.duration) return;
+                const rect = e.currentTarget.getBoundingClientRect();
+                const percent = (e.clientX - rect.left) / rect.width;
+                activeAudio.currentTime = Math.max(0, Math.min(activeAudio.duration, activeAudio.duration * percent));
+                updateAudioTimeDisplay();
+            }
+
+            function updateAudioTimeDisplay() {
+                if (!activeAudio || !Number.isFinite(activeAudio.duration)) {
+                    audioTime.textContent = '0:00 / 0:00';
+                    audioProgressFill.style.width = '0%';
+                    return;
+                }
+                audioTime.textContent = `${formatTime(activeAudio.currentTime)} / ${formatTime(activeAudio.duration)}`;
+                const percent = (activeAudio.currentTime / activeAudio.duration) * 100;
+                audioProgressFill.style.width = Math.min(100, percent) + '%';
+            }
+
+            function updateAudioPageStatus() {
+                const shelf = getCurrentShelf();
+                const track = shelf?.audioTracks?.find(t => t.id === currentAudioId);
+                audioPageLabel.textContent = track?.page || '—';
+                if (track) {
+                    currentTrackPage.textContent = 'Страница: ' + (track.page || '—');
+                }
+            }
+
+            // ---------- STATS ----------
+            function updateStats() {
+                const shelf = getCurrentShelf();
+                if (!shelf) return;
+                const viewed = (shelf.viewedPages || []).length;
+                const ann = Object.values(shelf.annotations || {}).reduce((n, arr) => n + (arr?.length || 0), 0) +
+                    Object.values(shelf.textNotes || {}).reduce((n, arr) => n + (arr?.length || 0), 0);
+                pagesViewedTop.textContent = viewed;
+                annCountTop.textContent = ann;
+                audioStatus.textContent = `${(shelf.audioTracks || []).length}`;
+            }
+
+            boot();
+        });
+    </script>
+</body>
+</html>
